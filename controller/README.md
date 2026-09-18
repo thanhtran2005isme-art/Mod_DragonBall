@@ -12,7 +12,7 @@ WinForms controller scaffold matching the supplied account-manager reference.
 - Add / edit / delete.
 - Multi-row selection.
 - Import text accounts using `username|password|server|note`.
-- Double-click account / Đăng nhập button prepared for the future GameLauncher.
+- Double-click account / Đăng nhập now opens or focuses `MicroEmulatorRemoter_v103.exe` and queues the selected account(s) for the next RemoteBridge step.
 - Close selected / close all status placeholders.
 - Summary bar with total / running / selected counts.
 
@@ -48,3 +48,16 @@ Account row
 ```
 
 Passwords are still in-memory only in this UI scaffold. Persistence should use SQLite + Windows DPAPI rather than plain text.
+
+
+## Current remoter defaults
+
+The launcher currently expects:
+
+```text
+%USERPROFILE%\Desktop\EmulatorRemoter\MicroEmulatorRemoter_v103.exe
+%USERPROFILE%\Desktop\EmulatorRemoter\AngelChipEmulator_AutoSleep.jar
+%USERPROFILE%\Desktop\EmulatorRemoter\Dragonboy250-test.jar
+```
+
+The next integration step is automating the Remoter fields/Start button and assigning each newly connected J2ME client to the pending account queue.

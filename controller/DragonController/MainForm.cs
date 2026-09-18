@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using DragonController.Models;
+using DragonController.Services;
 
 namespace DragonController;
 
@@ -10,6 +11,7 @@ public sealed class MainForm : Form
 
     private readonly Panel _content = new();
     private readonly Dictionary<string, NavButton> _navButtons = new();
+    private readonly RemoterLauncher _remoterLauncher = new();
 
     private DataGridView _grid = null!;
     private TextBox _txtSearch = null!;
@@ -232,7 +234,7 @@ public sealed class MainForm : Form
         _grid.CellDoubleClick += (_, e) =>
         {
             if (e.RowIndex >= 0 && SelectedAccount() is { } account)
-                RequestLogin(account);
+                RequestLogin(new[] { account });
         };
 
         container.Controls.Add(_grid);
@@ -305,8 +307,9 @@ public sealed class MainForm : Form
         var hide = MakeButton("Ẩn taskbar");
         login.Click += (_, _) =>
         {
-            if (SelectedAccount() is { } account) RequestLogin(account);
-            else MessageBox.Show(this, "Hãy chọn một tài khoản trước.", "Dragon Controller", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var selected = SelectedAccounts().Distinct().ToList();
+            if (selected.Count > 0) RequestLogin(selected);
+            else MessageBox.Show(this, "Hãy chọn ít nhất một tài khoản trước.", "Dragon Controller", MessageBoxButtons.OK, MessageBoxIcon.Information);
         };
         hide.Click += (_, _) => MessageBox.Show(this, "Nút này sẽ nối vào WindowManager ở bước sau.", "Dragon Controller");
         AddButtonPair(layout, 6, login, hide);
@@ -579,17 +582,38 @@ public sealed class MainForm : Form
         ApplyFilter();
     }
 
-    private void RequestLogin(AccountProfile account)
+    private void RequestLogin(IEnumerable<AccountProfile> accounts)
     {
-        account.Status = "Starting";
-        ApplyFilter();
+        var selected = accounts.Distinct().ToList();
+        if (selected.Count == 0) return;
 
-        MessageBox.Show(
-            this,
-            $"Đã tạo yêu cầu mở game cho:\n\n{account.Username} • {account.Server}\n\nBước tiếp theo sẽ nối nút này với GameLauncher + RemoteBridge để tự mở client và tự đăng nhập.",
-            "Dragon Controller",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
+        try
+        {
+            foreach (var account in selected)
+                account.Status = "Đang mở Remoter";
+
+            ApplyFilter();
+            _remoterLauncher.EnsureStarted();
+
+            foreach (var account in selected)
+                account.Status = "Chờ client";
+
+            ApplyFilter();
+        }
+        catch (Exception ex)
+        {
+            foreach (var account in selected)
+                account.Status = "Lỗi";
+
+            ApplyFilter();
+
+            MessageBox.Show(
+                this,
+                ex.Message,
+                "Không thể mở MicroEmulatorRemoter",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
     }
 
     private void ApplyFilter()
