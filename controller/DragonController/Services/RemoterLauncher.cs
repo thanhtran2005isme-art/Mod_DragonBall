@@ -70,6 +70,12 @@ internal sealed class MicroEmulatorLauncher
         psi.ArgumentList.Add("-Ddragon.auto.retry.ms=3000");
         psi.ArgumentList.Add("-Ddragon.auto.retry.jitter=0");
         psi.ArgumentList.Add("-Ddragon.auto.retry.max=0");
+        psi.ArgumentList.Add("-Ddragon.auto.retry.cooldown=1");
+
+        // Prevent the private server from treating an idle character as a dead
+        // connection. The game sends its own current-position movement packet
+        // only after the character has stayed still for this long.
+        psi.ArgumentList.Add("-Ddragon.auto.idle.pulse.ms=5000");
 
         // IMPORTANT: passing the game JAR to "java -jar microemulator.jar"
         // opens MicroEmulator's Launcher screen and still requires pressing Start.

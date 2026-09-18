@@ -201,3 +201,36 @@ java -cp "microemulator-2.0.4.jar;Dragonboy250-test.jar" \
 
 This bypasses the Launcher list/Start screen and goes straight into
 `nro.GameMidlet`. Width/height come from the account's `K.thước` field.
+
+
+## Login cooldown + idle disconnect hardening
+
+Two behaviors observed on crowded servers are now handled separately:
+
+```text
+"quá tải"
+  -> retry after 3 seconds
+
+"vui lòng chờ 30s" (or another numeric wait)
+  -> do NOT keep spamming
+  -> wait the server-requested number of seconds + 1 second safety margin
+  -> retry after that cooldown
+```
+
+The 30-second response is treated as a server login cooldown/rate-limit, not as
+proof that the character is already fully inside gameplay.
+
+For controller-launched clients, the gameplay hook also watches the character
+position. If it has not changed for 5 seconds, it sends one current-position
+packet using the game's original `cM.ig()` movement implementation. This is
+intended to keep an otherwise idle socket active without visibly moving the
+character. Real movement resets the timer.
+
+Launcher properties:
+
+```text
+-Ddragon.auto.retry.ms=3000
+-Ddragon.auto.retry.jitter=0
+-Ddragon.auto.retry.cooldown=1
+-Ddragon.auto.idle.pulse.ms=5000
+```

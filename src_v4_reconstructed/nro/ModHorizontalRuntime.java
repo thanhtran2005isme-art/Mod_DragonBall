@@ -38,6 +38,16 @@ public final class ModHorizontalRuntime {
     private static int autoRetryCount;
     private static int autoLoginWait;
 
+    // Controller-only idle activity pulse. The server used by this build can
+    // drop an otherwise healthy socket after a short period with no gameplay
+    // traffic. We reuse the game's own movement packet with the current
+    // position instead of fabricating a visible movement.
+    private static boolean autoPositionKnown;
+    private static int autoLastX;
+    private static int autoLastY;
+    private static long autoLastPositionChangeAt;
+    private static long autoLastIdlePulseAt;
+
     private static final String[] GROUPS = new String[] {
         "Tàn Sát", "Auto Skill", "Nhặt Đồ", "Xmap", "Boss",
         "TĐLT / NV", "Đậu", "Hỗ Trợ", "Vật Phẩm", "Hiển Thị", "Cài Đặt"
@@ -216,53 +226,135 @@ public final class ModHorizontalRuntime {
     }
 
     /**
-     * Injected at the entry of the game's popup helpers. Only the overload
-     * message is consumed; all other errors (wrong password, banned account,
-     * maintenance, etc.) continue through the original game UI unchanged.
+     * Injected at the entry of the game's popup helpers.
+     *
+     * Two server responses are handled automatically:
+     *  - overload: retry after the configured interval;
+     *  - explicit cooldown such as "vui lòng chờ 30s": respect the server's
+     *    requested wait instead of continuing to hammer login.
+     *
+     * Wrong password, banned account, maintenance and unrelated messages keep
+     * their original game behavior.
      */
     public static boolean handleLoginMessage(String text) {
         if (!autoLoginEnabled() || autoLoginOnline || text == null) return false;
+
+        int cooldownSeconds = loginCooldownSeconds(text);
+        if (cooldownSeconds > 0 && autoRetryCooldownEnabled()) {
+            long delay = ((long) cooldownSeconds * 1000L) + 1000L;
+            scheduleLoginRetry(delay, false);
+            return true;
+        }
+
         if (!isOverloadMessage(text)) return false;
         if (!autoRetryOverloadEnabled()) return false;
 
-        // Several networking paths can repeat the same message. One pending
-        // retry is enough; do not increase the counter more than once.
-        if (!autoRetryPending) {
-            int maxRetries = intProperty("dragon.auto.retry.max", 0);
-            if (maxRetries > 0 && autoRetryCount >= maxRetries) {
-                return false;
-            }
-
-            autoRetryCount++;
-
-            int baseDelay = intProperty("dragon.auto.retry.ms", 1200);
-            int jitterMax = intProperty("dragon.auto.retry.jitter", 400);
-            if (baseDelay < 100) baseDelay = 100;
-            if (jitterMax < 0) jitterMax = 0;
-
-            int jitter = jitterMax == 0
-                    ? 0
-                    : (autoRetryCount * 173) % (jitterMax + 1);
-
-            autoRetryAt = System.currentTimeMillis() + baseDelay + jitter;
-            autoRetryPending = true;
-            autoLoginStarted = false;
+        int maxRetries = intProperty("dragon.auto.retry.max", 0);
+        if (maxRetries > 0 && autoRetryCount >= maxRetries) {
+            return false;
         }
 
-        // Returning true prevents the blocking OK popup. The ServerListScreen
-        // update loop remains alive and performs the next login attempt.
+        int baseDelay = intProperty("dragon.auto.retry.ms", 3000);
+        int jitterMax = intProperty("dragon.auto.retry.jitter", 0);
+        if (baseDelay < 100) baseDelay = 100;
+        if (jitterMax < 0) jitterMax = 0;
+
+        autoRetryCount++;
+        int jitter = jitterMax == 0
+                ? 0
+                : (autoRetryCount * 173) % (jitterMax + 1);
+
+        scheduleLoginRetry((long) baseDelay + jitter, true);
         return true;
     }
 
+    private static void scheduleLoginRetry(long delayMs, boolean overloadRetry) {
+        if (delayMs < 100L) delayMs = 100L;
+
+        long target = System.currentTimeMillis() + delayMs;
+
+        // A server cooldown always wins over a shorter pending overload retry.
+        if (!autoRetryPending || target > autoRetryAt) {
+            autoRetryAt = target;
+        }
+
+        autoRetryPending = true;
+        autoLoginStarted = false;
+    }
+
     /**
-     * Injected into the real gameplay screen update. Once gameplay is running,
-     * retry must stop permanently for this JVM.
+     * Injected into the real gameplay screen update. Reaching this screen is
+     * the authoritative point where login retry stops.
+     *
+     * It also sends a conservative position pulse only after the character has
+     * remained at exactly the same coordinates for the configured interval.
+     * The pulse is the game's own cM.ig() movement packet and carries the
+     * current coordinates, so the character does not visibly walk.
      */
     public static void markLoginOnline() {
         if (!autoLoginEnabled()) return;
+
         autoLoginOnline = true;
         autoRetryPending = false;
         autoLoginStarted = true;
+
+        int pulseMs = intProperty("dragon.auto.idle.pulse.ms", 5000);
+        if (pulseMs <= 0) return;
+
+        bv me;
+        try {
+            me = bv.e();
+        } catch (Throwable ignored) {
+            return;
+        }
+
+        if (me == null) return;
+
+        long now = System.currentTimeMillis();
+        int x = me.hT;
+        int y = me.hP;
+
+        if (!autoPositionKnown || x != autoLastX || y != autoLastY) {
+            autoPositionKnown = true;
+            autoLastX = x;
+            autoLastY = y;
+            autoLastPositionChangeAt = now;
+            autoLastIdlePulseAt = now;
+            return;
+        }
+
+        if (now - autoLastPositionChangeAt < pulseMs) return;
+        if (now - autoLastIdlePulseAt < pulseMs) return;
+
+        sendIdlePositionPulse(me);
+        autoLastIdlePulseAt = now;
+    }
+
+    private static void sendIdlePositionPulse(bv me) {
+        try {
+            if (!bh.b().E()) return;
+
+            int oldPreviousX = me.ie;
+            int oldPreviousY = me.ik;
+
+            // cM.ig() normally returns without sending when the current and
+            // previous coordinates are identical. Nudge only the cached
+            // previous X by one pixel, then let cM.ig() encode the real current
+            // coordinates using the exact original packet implementation.
+            if (me.hT == oldPreviousX && me.hP == oldPreviousY) {
+                me.ie = me.hT == -32768 ? me.hT + 1 : me.hT - 1;
+            }
+
+            cM.a().ig();
+
+            // If cM.ig() refused to send due to a game state guard, restore the
+            // cached previous position so we do not perturb later real movement.
+            if (me.ie != me.hT || me.ik != me.hP) {
+                me.ie = oldPreviousX;
+                me.ik = oldPreviousY;
+            }
+        } catch (Throwable ignored) {
+        }
     }
 
     private static boolean isOverloadMessage(String text) {
@@ -284,8 +376,43 @@ public final class ModHorizontalRuntime {
         return "1".equals(enabled);
     }
 
+    private static int loginCooldownSeconds(String text) {
+        String s = text.toLowerCase();
+
+        boolean waitMessage =
+                s.indexOf("vui lòng chờ") >= 0 ||
+                s.indexOf("vui long cho") >= 0 ||
+                s.indexOf("vui lòng đợi") >= 0 ||
+                s.indexOf("vui long doi") >= 0;
+
+        if (!waitMessage) return -1;
+
+        int value = 0;
+        boolean found = false;
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c >= '0' && c <= '9') {
+                found = true;
+                value = value * 10 + (c - '0');
+                if (value > 600) return 600;
+            } else if (found) {
+                break;
+            }
+        }
+
+        if (!found || value <= 0) return -1;
+        if (value > 600) value = 600;
+        return value;
+    }
+
     private static boolean autoRetryOverloadEnabled() {
         String enabled = safeProperty("dragon.auto.retry.overload");
+        return enabled == null || !"0".equals(enabled);
+    }
+
+    private static boolean autoRetryCooldownEnabled() {
+        String enabled = safeProperty("dragon.auto.retry.cooldown");
         return enabled == null || !"0".equals(enabled);
     }
 
