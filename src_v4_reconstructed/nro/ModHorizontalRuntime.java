@@ -9,6 +9,7 @@ public final class ModHorizontalRuntime {
     private static int item;
     private static boolean gridFocus;
     private static int tabScroll;
+    private static int itemScroll;
     private static int lastX;
     private static int lastY;
     private static int lastW;
@@ -53,6 +54,7 @@ public final class ModHorizontalRuntime {
         visible = true;
         gridFocus = false;
         item = 0;
+        itemScroll = 0;
     }
 
     public static boolean isVisible() {
@@ -73,26 +75,23 @@ public final class ModHorizontalRuntime {
             else if (isDown(key) || isFire(key)) {
                 gridFocus = true;
                 item = 0;
+                itemScroll = 0;
             }
             return true;
         }
 
         if (isUp(key)) {
-            if (item < 2) gridFocus = false;
-            else item -= 2;
-        } else if (isDown(key)) {
-            if (item + 2 < ITEMS[group].length) item += 2;
+            gridFocus = false;
         } else if (isLeft(key)) {
-            if ((item & 1) == 1) --item;
+            if (item > 0) --item;
+            ensureItemVisible(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL), lastW);
         } else if (isRight(key)) {
-            if ((item & 1) == 0 && item + 1 < ITEMS[group].length) ++item;
+            if (item + 1 < ITEMS[group].length) ++item;
+            ensureItemVisible(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL), lastW);
         } else if (isFire(key)) {
-            int id = COMMANDS[group][item];
-            if (id >= 0) {
-                visible = false;
-                N.a().a(id, null);
-            }
+            activateSelected();
         }
+
         return true;
     }
 
@@ -120,8 +119,20 @@ public final class ModHorizontalRuntime {
         group += d;
         if (group < 0) group = GROUPS.length - 1;
         if (group >= GROUPS.length) group = 0;
+
         item = 0;
+        itemScroll = 0;
         gridFocus = false;
+    }
+
+    private static void activateSelected() {
+        if (item < 0 || item >= COMMANDS[group].length) return;
+
+        int id = COMMANDS[group][item];
+        if (id >= 0) {
+            visible = false;
+            N.a().a(id, null);
+        }
     }
 
     public static boolean onPointerPressed(int px, int py) {
@@ -129,46 +140,56 @@ public final class ModHorizontalRuntime {
         if (lastW <= 0 || lastH <= 0) return true;
 
         Font bold = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_SMALL);
-        int tabY = lastY + 2;
-        int tabH = 30;
+        Font plain = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+
+        int panelH = panelHeight();
+        int panelY = lastY + lastH - panelH;
+        int tabY = panelY + 2;
+        int tabH = 25;
 
         if (py >= tabY && py <= tabY + tabH) {
             int x = lastX + 3 - tabScroll;
-            int i;
-            for (i = 0; i < GROUPS.length; i++) {
+
+            for (int i = 0; i < GROUPS.length; i++) {
                 int tw = tabWidth(bold, GROUPS[i]);
+
                 if (px >= x && px < x + tw) {
                     group = i;
                     item = 0;
+                    itemScroll = 0;
                     gridFocus = false;
                     ensureTabVisible(bold, lastW);
                     return true;
                 }
+
                 x += tw + 2;
             }
+
             return true;
         }
 
-        int gridY = lastY + 37;
-        int cellGap = 3;
-        int cellH = 29;
-        int cellW = (lastW - 9) / 2;
+        int actionY = panelY + 30;
+        int actionH = 36;
 
-        if (py >= gridY + 3) {
-            int row = (py - (gridY + 3)) / (cellH + cellGap);
-            int col = px < lastX + 4 + cellW ? 0 : 1;
-            int index = row * 2 + col;
+        if (py >= actionY && py <= actionY + actionH) {
+            String[] vals = ITEMS[group];
+            int x = lastX + 4 - itemScroll;
 
-            if (index >= 0 && index < ITEMS[group].length) {
-                gridFocus = true;
-                item = index;
-                int id = COMMANDS[group][item];
-                if (id >= 0) {
-                    visible = false;
-                    N.a().a(id, null);
+            for (int i = 0; i < vals.length; i++) {
+                int iw = itemWidth(plain, vals[i]);
+
+                if (px >= x && px < x + iw) {
+                    gridFocus = true;
+                    item = i;
+                    ensureItemVisible(plain, lastW);
+                    activateSelected();
+                    return true;
                 }
+
+                x += iw + 3;
             }
         }
+
         return true;
     }
 
@@ -183,8 +204,6 @@ public final class ModHorizontalRuntime {
         int ty = g.getTranslateY();
         if (tx != 0 || ty != 0) g.translate(-tx, -ty);
 
-        int clipX = 0;
-        int clipY = 0;
         int w = aE.a().getWidth();
         int h = aE.a().getHeight();
 
@@ -193,82 +212,140 @@ public final class ModHorizontalRuntime {
             return;
         }
 
-        lastX = clipX;
-        lastY = clipY;
+        lastX = 0;
+        lastY = 0;
         lastW = w;
         lastH = h;
 
         Font bold = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_SMALL);
         Font plain = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
 
-        int tabY = 2;
-        int tabH = 30;
-        int tabGap = 2;
-        int x = clipX + 3 - tabScroll;
+        int panelH = panelHeight();
+        int panelY = h - panelH;
+
+        // Compact bottom overlay: only the menu strip is covered.
+        g.setClip(0, panelY, w, panelH);
+        g.setColor(0xD8C7AA);
+        g.fillRect(0, panelY, w, panelH);
+        g.setColor(0x138EB7);
+        g.fillRect(0, panelY, w, 2);
 
         ensureTabVisible(bold, w);
-        x = clipX + 3 - tabScroll;
-        g.setClip(clipX, clipY, w, h);
 
-        int i;
-        for (i = 0; i < GROUPS.length; i++) {
+        int tabY = panelY + 2;
+        int tabH = 25;
+        int x = 3 - tabScroll;
+
+        for (int i = 0; i < GROUPS.length; i++) {
             int tw = tabWidth(bold, GROUPS[i]);
+
             g.setColor(i == group ? 0xFFF1A6 : 0xF3C94F);
-            g.fillRect(x, clipY + tabY, tw, tabH);
+            g.fillRect(x, tabY, tw, tabH);
             g.setColor(0x73500D);
-            g.drawRect(x, clipY + tabY, tw - 1, tabH - 1);
+            g.drawRect(x, tabY, tw - 1, tabH - 1);
+
+            if (!gridFocus && i == group) {
+                g.setColor(0xFFFFFF);
+                g.drawRect(x + 2, tabY + 2, tw - 5, tabH - 5);
+            }
+
             g.setFont(bold);
-            g.drawString(GROUPS[i], x + tw / 2, clipY + tabY + 8, Graphics.HCENTER | Graphics.TOP);
-            x += tw + tabGap;
+            g.setColor(0x3B2607);
+            g.drawString(GROUPS[i], x + tw / 2, tabY + 6, Graphics.HCENTER | Graphics.TOP);
+
+            x += tw + 2;
         }
 
-        int gridY = clipY + tabY + tabH + 5;
-        int bottom = clipY + h - 18;
-        int cellGap = 3;
-        int cellH = 29;
-        int cellW = (w - 9) / 2;
         String[] vals = ITEMS[group];
+        int actionY = panelY + 30;
+        int actionH = 36;
 
-        g.setColor(0xD8C7AA);
-        g.fillRect(clipX + 2, gridY, w - 4, bottom - gridY);
+        ensureItemVisible(plain, w);
+        x = 4 - itemScroll;
 
-        for (i = 0; i < vals.length; i++) {
-            int row = i / 2;
-            int col = i & 1;
-            int cx = clipX + 4 + col * (cellW + cellGap);
-            int cy = gridY + 3 + row * (cellH + cellGap);
-            if (cy + cellH > bottom) break;
+        for (int i = 0; i < vals.length; i++) {
+            int iw = itemWidth(plain, vals[i]);
 
             g.setColor(gridFocus && i == item ? 0xFFF5B5 : 0xF4E6CE);
-            g.fillRect(cx, cy, cellW, cellH);
+            g.fillRect(x, actionY, iw, actionH);
             g.setColor(0x8A6B3E);
-            g.drawRect(cx, cy, cellW - 1, cellH - 1);
+            g.drawRect(x, actionY, iw - 1, actionH - 1);
+
+            if (gridFocus && i == item) {
+                g.setColor(0xFFFFFF);
+                g.drawRect(x + 2, actionY + 2, iw - 5, actionH - 5);
+            }
+
             g.setFont(plain);
-            g.drawString(vals[i], cx + cellW / 2, cy + 7, Graphics.HCENTER | Graphics.TOP);
+            g.setColor(0x402B0C);
+            g.drawString(vals[i], x + iw / 2, actionY + 10, Graphics.HCENTER | Graphics.TOP);
+
+            x += iw + 3;
         }
 
         g.setFont(plain);
         g.setColor(0xFFFFFF);
-        g.drawString("← → nhóm   ↓ vào nhóm   0 đóng", clipX + 3, clipY + h - 2, Graphics.LEFT | Graphics.BOTTOM);
+        g.drawString(
+            gridFocus ? "← → chức năng   ↑ nhóm   OK chọn   0 đóng" : "← → đổi nhóm   ↓ vào nhóm   0 đóng",
+            4,
+            h - 2,
+            Graphics.LEFT | Graphics.BOTTOM
+        );
+
+        g.setClip(0, 0, w, h);
 
         if (tx != 0 || ty != 0) g.translate(tx, ty);
     }
 
+    private static int panelHeight() {
+        return 82;
+    }
+
     private static int tabWidth(Font f, String s) {
-        int tw = f.stringWidth(s) + 18;
-        return tw < 72 ? 72 : tw;
+        int tw = f.stringWidth(s) + 16;
+        return tw < 68 ? 68 : tw;
+    }
+
+    private static int itemWidth(Font f, String s) {
+        int iw = f.stringWidth(s) + 22;
+        return iw < 105 ? 105 : iw;
     }
 
     private static void ensureTabVisible(Font f, int width) {
+        if (width <= 0) return;
+
         int left = 3;
-        int i;
-        for (i = 0; i < group; i++) {
+
+        for (int i = 0; i < group; i++) {
             left += tabWidth(f, GROUPS[i]) + 2;
         }
 
         int right = left + tabWidth(f, GROUPS[group]);
+
         if (left < tabScroll + 3) tabScroll = left - 3;
         else if (right > tabScroll + width - 3) tabScroll = right - width + 3;
+
         if (tabScroll < 0) tabScroll = 0;
+    }
+
+    private static void ensureItemVisible(Font f, int width) {
+        if (width <= 0) return;
+
+        String[] vals = ITEMS[group];
+        if (item < 0) item = 0;
+        if (item >= vals.length) item = vals.length - 1;
+
+        int left = 4;
+
+        for (int i = 0; i < item; i++) {
+            left += itemWidth(f, vals[i]) + 3;
+        }
+
+        int right = left + itemWidth(f, vals[item]);
+
+        if (left < itemScroll + 4) itemScroll = left - 4;
+        else if (right > itemScroll + width - 4) itemScroll = right - width + 4;
+
+        if (itemScroll < 0) itemScroll = 0;
     }
 }
