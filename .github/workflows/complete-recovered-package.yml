@@ -1,0 +1,175 @@
+name: Complete recovered Dragonboy250 v4 package
+
+on:
+  push:
+    paths:
+      - ".github/workflows/complete-recovered-package.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  complete:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct raw bytecode from annotated bytecode
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf bytecode
+          mkdir -p bytecode
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          src = Path("annotated_bytecode")
+          dst = Path("bytecode")
+          files = sorted(src.glob("*.txt"))
+          if len(files) != 225:
+              raise SystemExit(f"Expected 225 annotated files, got {len(files)}")
+          for f in files:
+              text = f.read_text(encoding="utf-8")
+              raw = re.sub(r"[ \\t]+// DECODED: .*$", "", text, flags=re.M)
+              (dst / f.name).write_text(raw, encoding="utf-8")
+          print("Reconstructed", len(files), "raw bytecode files")
+          PY
+          test "$(find bytecode -maxdepth 1 -type f -name '*.txt' | wc -l)" -eq 225
+
+      - name: Locate and download exact Dragonboy250 v4.0 JAR
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET_SHA="6228f840027d2795442a8831f9b834830e6b7af936ddfd7bee7c443910b625e3"
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/153 Safari/537.36"
+          FOUND_ID=""
+
+          for id in $(seq 160 220); do
+            page="/tmp/page-$id.html"
+            if curl -fsSL --retry 2 --connect-timeout 15 -A "$UA"                  -c /tmp/hh.cookies -b /tmp/hh.cookies                  "https://hunghero.id.vn/?id=$id" -o "$page"; then
+              if grep -qi "Dragonboy250 v4\.0" "$page"; then
+                FOUND_ID="$id"
+                echo "Found Dragonboy250 v4.0 page at id=$FOUND_ID"
+                cp "$page" /tmp/target-page.html
+                break
+              fi
+            fi
+          done
+
+          if [ -z "$FOUND_ID" ]; then
+            echo "Could not locate Dragonboy250 v4.0 item id" >&2
+            exit 20
+          fi
+
+          URL="https://hunghero.id.vn/download.php?id=$FOUND_ID"
+          echo "Downloading $URL"
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 20                -A "$UA" -e "https://hunghero.id.vn/?id=$FOUND_ID"                -c /tmp/hh.cookies -b /tmp/hh.cookies                "$URL" -o /tmp/dragonboy-package
+
+          echo "Downloaded type:"
+          file /tmp/dragonboy-package || true
+          echo "Downloaded SHA256:"
+          sha256sum /tmp/dragonboy-package || true
+
+          rm -rf /tmp/extract-candidates
+          mkdir -p /tmp/extract-candidates
+
+          match=""
+          got="$(sha256sum /tmp/dragonboy-package | awk '{print $1}')"
+          if [ "$got" = "$TARGET_SHA" ]; then
+            match="/tmp/dragonboy-package"
+          else
+            # The website may provide a ZIP containing JAR/APK/PC builds.
+            if unzip -t /tmp/dragonboy-package >/dev/null 2>&1; then
+              unzip -q /tmp/dragonboy-package -d /tmp/extract-candidates || true
+            else
+              # 7z is available on GitHub-hosted runners and handles many archive types.
+              7z x -y -o/tmp/extract-candidates /tmp/dragonboy-package >/dev/null 2>&1 || true
+            fi
+
+            while IFS= read -r -d '' f; do
+              s="$(sha256sum "$f" | awk '{print $1}')"
+              if [ "$s" = "$TARGET_SHA" ]; then
+                match="$f"
+                break
+              fi
+            done < <(find /tmp/extract-candidates -type f -print0)
+          fi
+
+          if [ -z "$match" ]; then
+            echo "Downloaded package did not contain the exact uploaded JAR ($TARGET_SHA)." >&2
+            echo "Candidate files:" >&2
+            find /tmp/extract-candidates -type f -maxdepth 5 -printf '%p %s bytes\n' 2>/dev/null | head -200 >&2 || true
+            exit 21
+          fi
+
+          cp "$match" "Dragonboy250 v4.0-original.jar"
+          echo "$FOUND_ID" > analysis/hunghero_v4_item_id.txt
+          echo "$URL" > analysis/hunghero_v4_download_endpoint.txt
+          sha256sum "Dragonboy250 v4.0-original.jar"
+
+      - name: Extract exact resources from verified JAR
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf resources
+          mkdir -p resources
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+
+          jar = Path("Dragonboy250 v4.0-original.jar")
+          out = Path("resources")
+          count = 0
+          total = 0
+
+          with ZipFile(jar) as z:
+              for info in z.infolist():
+                  if info.is_dir() or info.filename.endswith(".class"):
+                      continue
+                  target = out / info.filename
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  data = z.read(info.filename)
+                  target.write_bytes(data)
+                  count += 1
+                  total += len(data)
+
+          print("Extracted resources:", count, "files,", total, "bytes")
+          if count != 504:
+              raise SystemExit(f"Expected 504 resources, got {count}")
+          if total != 913955:
+              raise SystemExit(f"Expected 913955 resource bytes, got {total}")
+          PY
+
+      - name: Verify recovered package completeness
+        shell: bash
+        run: |
+          set -euo pipefail
+          ann="$(find annotated_bytecode -maxdepth 1 -type f -name '*.txt' | wc -l)"
+          raw="$(find bytecode -maxdepth 1 -type f -name '*.txt' | wc -l)"
+          res="$(find resources -type f | wc -l)"
+          sha="$(sha256sum 'Dragonboy250 v4.0-original.jar' | awk '{print $1}')"
+          echo "annotated_bytecode=$ann"
+          echo "bytecode=$raw"
+          echo "resources=$res"
+          echo "jar_sha256=$sha"
+          test "$ann" -eq 225
+          test "$raw" -eq 225
+          test "$res" -eq 504
+          test "$sha" = "6228f840027d2795442a8831f9b834830e6b7af936ddfd7bee7c443910b625e3"
+
+      - name: Commit all missing recovered files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bytecode resources "Dragonboy250 v4.0-original.jar" analysis/hunghero_v4_item_id.txt analysis/hunghero_v4_download_endpoint.txt
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit"
+          else
+            git commit -m "Complete recovered Dragonboy250 v4.0 package (100%)"
+            git push origin HEAD:main
+          fi
