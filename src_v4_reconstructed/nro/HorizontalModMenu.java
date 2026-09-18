@@ -39,6 +39,7 @@ public final class HorizontalModMenu {
    private int tabScrollX;
    private int itemScrollRow;
    private boolean visible;
+   private boolean focusGrid;
 
    public HorizontalModMenu(ModMenuHandler handler) {
       this(handler, ModMenuCatalog.GROUP_TITLES, ModMenuCatalog.ITEM_TITLES, ModMenuCatalog.ACTION_KEYS);
@@ -62,6 +63,7 @@ public final class HorizontalModMenu {
 
    public void show() {
       this.visible = true;
+      this.focusGrid = false;
       this.ensureSelectedGroupVisible();
       this.ensureSelectedItemVisible();
    }
@@ -161,7 +163,7 @@ public final class HorizontalModMenu {
          int row = local >> 1;
          int cellX = this.x + col * cellWidth;
          int cellY = gridY + row * this.cellHeight;
-         boolean focus = i == this.selectedItem;
+         boolean focus = this.focusGrid && i == this.selectedItem;
 
          g.setColor(focus ? COLOR_CELL_FOCUS : COLOR_CELL);
          g.fillRect(cellX, cellY, cellWidth, this.cellHeight);
@@ -185,31 +187,57 @@ public final class HorizontalModMenu {
 
       if (GameCanvas.keyPressed[4]) {
          GameCanvas.keyPressed[4] = false;
-         this.moveGroup(-1);
+         if (this.focusGrid) {
+            this.moveItemHorizontal(-1);
+         } else {
+            this.moveGroup(-1);
+         }
          return;
       }
 
       if (GameCanvas.keyPressed[6]) {
          GameCanvas.keyPressed[6] = false;
-         this.moveGroup(1);
+         if (this.focusGrid) {
+            this.moveItemHorizontal(1);
+         } else {
+            this.moveGroup(1);
+         }
          return;
       }
 
       if (GameCanvas.keyPressed[2]) {
          GameCanvas.keyPressed[2] = false;
-         this.moveItem(-2);
+         if (this.focusGrid) {
+            if (this.selectedItem < 2) {
+               this.focusGrid = false;
+            } else {
+               this.moveItem(-2);
+            }
+         }
          return;
       }
 
       if (GameCanvas.keyPressed[8]) {
          GameCanvas.keyPressed[8] = false;
-         this.moveItem(2);
+         if (!this.focusGrid) {
+            this.focusGrid = true;
+            this.selectedItem = 0;
+         } else {
+            this.moveItem(2);
+         }
+         this.ensureSelectedItemVisible();
          return;
       }
 
       if (GameCanvas.keyPressed[5]) {
          GameCanvas.keyPressed[5] = false;
-         this.activateSelected();
+         if (!this.focusGrid) {
+            this.focusGrid = true;
+            this.selectedItem = 0;
+            this.ensureSelectedItemVisible();
+         } else {
+            this.activateSelected();
+         }
          return;
       }
 
@@ -233,6 +261,7 @@ public final class HorizontalModMenu {
                if (GameCanvas.l && GameCanvas.m) {
                   this.selectedGroup = i;
                   this.selectedItem = 0;
+                  this.focusGrid = false;
                   this.itemScrollRow = 0;
                   this.ensureSelectedGroupVisible();
                   GameCanvas.m = false;
@@ -284,6 +313,7 @@ public final class HorizontalModMenu {
 
       this.selectedGroup = next;
       this.selectedItem = 0;
+      this.focusGrid = false;
       this.itemScrollRow = 0;
       this.ensureSelectedGroupVisible();
    }
