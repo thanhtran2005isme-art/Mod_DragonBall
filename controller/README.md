@@ -61,3 +61,24 @@ The launcher currently expects:
 ```
 
 The next integration step is automating the Remoter fields/Start button and assigning each newly connected J2ME client to the pending account queue.
+
+
+## Launcher fallback
+
+Account login now uses this order:
+
+```text
+1. Try MicroEmulatorRemoter_v103.exe
+2. If missing / startup fails / exits immediately:
+   launch original microemulator-2.0.4.jar directly
+3. When multiple accounts are selected in fallback mode,
+   start one MicroEmulator process per account
+```
+
+Original MicroEmulator is searched in:
+
+```text
+%USERPROFILE%\Desktop\EmulatorRemoter\microemulator-2.0.4.jar
+%USERPROFILE%\Desktop\EmulatorRemoter\MicroEmulator\microemulator-2.0.4.jar
+<repo>\lib\microemulator-2.0.4.jar
+```

@@ -590,13 +590,15 @@ public sealed class MainForm : Form
         try
         {
             foreach (var account in selected)
-                account.Status = "Đang mở Remoter";
+                account.Status = "Đang mở game";
 
             ApplyFilter();
-            _remoterLauncher.EnsureStarted();
+            var mode = _remoterLauncher.StartClients(selected.Count);
 
             foreach (var account in selected)
-                account.Status = "Chờ client";
+                account.Status = mode == LauncherMode.Remoter
+                    ? "Chờ client (Remoter)"
+                    : "Chờ client (Micro)";
 
             ApplyFilter();
         }
@@ -610,7 +612,7 @@ public sealed class MainForm : Form
             MessageBox.Show(
                 this,
                 ex.Message,
-                "Không thể mở MicroEmulatorRemoter",
+                "Không thể mở game",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
         }
