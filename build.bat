@@ -3,28 +3,25 @@ setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0"
 
 set "MODE=%~1"
-if "%MODE%"=="" set "MODE=preview"
+if "%MODE%"=="" set "MODE=mod"
 
 if /I "%MODE%"=="preview" goto :PREVIEW
 if /I "%MODE%"=="mod" goto :MOD
 
 echo Usage:
-echo   build.bat preview
 echo   build.bat mod
+echo   build.bat preview
 exit /b 2
 
 :CHECK_JAVA
-rem First try the current PATH.
 where javac >nul 2>nul && where jar >nul 2>nul && where java >nul 2>nul && exit /b 0
 
-rem Then try JAVA_HOME if a JDK is installed but VS Code/PATH has not picked it up.
 if defined JAVA_HOME if exist "%JAVA_HOME%\bin\javac.exe" (
   set "PATH=%JAVA_HOME%\bin;%PATH%"
   echo [java] Using JAVA_HOME: %JAVA_HOME%
   exit /b 0
 )
 
-rem Auto-detect common Windows JDK install locations.
 for /d %%D in (
   "%ProgramFiles%\Eclipse Adoptium\jdk-*"
   "%ProgramFiles%\Java\jdk-*"
@@ -42,17 +39,7 @@ for /d %%D in (
 
 echo.
 echo [ERROR] A full JDK was not found.
-echo.
-echo Java runtime alone is not enough; this project also needs javac.exe and jar.exe.
-echo Install JDK 17 with:
-echo.
-echo   winget install --id EclipseAdoptium.Temurin.17.JDK -e
-echo.
-echo After installation, close all VS Code windows, reopen VS Code, then run:
-echo.
-echo   java -version
-echo   javac -version
-echo   build-run.bat
+echo Install JDK 17, reopen VS Code, then retry.
 echo.
 exit /b 11
 
@@ -61,16 +48,93 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "tools\bootstrap-test-runtim
 if errorlevel 1 exit /b 20
 exit /b 0
 
+:FIND_ORIGINAL
+set "ORIGINAL_JAR="
+for %%F in (
+  "Dragonboy250 v4.0.jar"
+  "Dragonboy250 v4.0-original.jar"
+  "lib\Dragonboy250 v4.0.jar"
+  "lib\Dragonboy250 v4.0-original.jar"
+) do (
+  if not defined ORIGINAL_JAR if exist "%%~F" set "ORIGINAL_JAR=%%~fF"
+)
+exit /b 0
+
+:MOD
+call :CHECK_JAVA || exit /b !errorlevel!
+call :BOOTSTRAP || exit /b !errorlevel!
+call :FIND_ORIGINAL
+
+if not defined ORIGINAL_JAR (
+  echo.
+  echo [ERROR] Original Dragonboy250 v4.0 JAR was not found.
+  echo.
+  echo Copy your original file into this project as either:
+  echo   Dragonboy250 v4.0.jar
+  echo or:
+  echo   lib\Dragonboy250 v4.0.jar
+  echo.
+  echo Then run build-run.bat again.
+  echo.
+  exit /b 40
+)
+
+echo [mod] Original JAR: !ORIGINAL_JAR!
+
+if exist "build\mod" rmdir /s /q "build\mod"
+if exist "build\patcher" rmdir /s /q "build\patcher"
+if not exist "build\mod" mkdir "build\mod"
+if not exist "build\patcher" mkdir "build\patcher"
+if not exist "dist" mkdir "dist"
+
+echo [mod] Compiling horizontal menu runtime...
+javac -encoding UTF-8 -source 8 -target 8 ^
+  -cp "!ORIGINAL_JAR!;lib\microemulator-2.0.4.jar" ^
+  -d "build\mod" ^
+  "src_v4_reconstructed\nro\ModHorizontalRuntime.java"
+if errorlevel 1 exit /b 41
+
+echo [mod] Compiling bytecode patcher...
+javac ^
+  --add-exports java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED ^
+  -d "build\patcher" ^
+  "tools\PatchJar.java"
+if errorlevel 1 exit /b 42
+
+echo [mod] Patching original game...
+java ^
+  --add-exports java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED ^
+  -cp "build\patcher" ^
+  PatchJar ^
+  "!ORIGINAL_JAR!" ^
+  "build\mod\nro\ModHorizontalRuntime.class" ^
+  "dist\Dragonboy250-test.jar"
+if errorlevel 1 exit /b 43
+
+jar tf "dist\Dragonboy250-test.jar" | findstr /C:"nro/ModHorizontalRuntime.class" >nul
+if errorlevel 1 (
+  echo [ERROR] Patched runtime class is missing from output JAR.
+  exit /b 44
+)
+
+echo.
+echo [OK] Real game test JAR built:
+echo   dist\Dragonboy250-test.jar
+echo.
+echo The game remains intact. When the old MENU HUNG HERO entry opens,
+echo N.bt() is redirected to the horizontal overlay.
+echo.
+exit /b 0
+
 :PREVIEW
 call :CHECK_JAVA || exit /b !errorlevel!
 call :BOOTSTRAP || exit /b !errorlevel!
 
-echo [build] Cleaning preview output...
 if exist "build\preview" rmdir /s /q "build\preview"
 if not exist "build\preview" mkdir "build\preview"
 if not exist "dist" mkdir "dist"
 
-echo [build] Compiling horizontal menu preview...
+echo [preview] Compiling standalone menu preview...
 javac -encoding UTF-8 -source 8 -target 8 ^
   -cp "lib\microemulator-2.0.4.jar" ^
   -d "build\preview" ^
@@ -90,27 +154,6 @@ jar cfm "dist\HorizontalMenuPreview.jar" "build\preview-manifest.mf" -C "build\p
 if errorlevel 1 exit /b 31
 
 echo.
-echo [OK] Built: dist\HorizontalMenuPreview.jar
-echo [INFO] This tests the new horizontal/grouped UI only.
+echo [OK] Standalone preview built: dist\HorizontalMenuPreview.jar
 echo.
 exit /b 0
-
-:MOD
-call :CHECK_JAVA || exit /b !errorlevel!
-
-echo [build] Checking v4 integration status...
-if not exist "src_v4_reconstructed\nro\N.java" (
-  echo.
-  echo [NOT READY] The real v4.0 N.class hook has not been reconstructed yet.
-  echo build.bat will NOT create a fake Dragonboy250-test.jar that behaves exactly like v4.0.
-  echo.
-  echo Use:
-  echo   build-run.bat
-  echo to test the horizontal menu UI preview now.
-  echo.
-  exit /b 40
-)
-
-echo [ERROR] v4 integration source exists but the final compile/preverify pipeline
-echo has not been enabled yet.
-exit /b 41

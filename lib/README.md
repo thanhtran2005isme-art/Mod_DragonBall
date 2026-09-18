@@ -1,7 +1,17 @@
 # lib
 
-Binary dependencies are intentionally not committed.
+Place the user's original game JAR here if desired:
 
-Run `build-run.bat`; the bootstrap script downloads the desktop J2ME test runtime into this folder.
+```text
+lib\Dragonboy250 v4.0.jar
+```
 
-Do not commit the original Dragonboy250 JAR here.
+The file is intentionally excluded from Git.
+
+`build-run.bat` creates a separate patched output:
+
+```text
+dist\Dragonboy250-test.jar
+```
+
+It never overwrites the original.
