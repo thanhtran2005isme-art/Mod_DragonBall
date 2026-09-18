@@ -1,0 +1,57 @@
+public final class nro.aP {
+  public static final int gx;
+    descriptor: I
+
+  public int bZ;
+    descriptor: I
+
+  public int bY;
+    descriptor: I
+
+  public int cy;
+    descriptor: I
+
+  public int ci;
+    descriptor: I
+
+  public int cl;
+    descriptor: I
+
+  public int p;
+    descriptor: I
+
+  public int cS;
+    descriptor: I
+
+  public int cP;
+    descriptor: I
+
+  public int aX;
+    descriptor: I
+
+  public int bX;
+    descriptor: I
+
+  public int m;
+    descriptor: I
+
+  public int cc;
+    descriptor: I
+
+  public int cf;
+    descriptor: I
+
+  public nro.aP();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field gx:I
+       5: return
+}

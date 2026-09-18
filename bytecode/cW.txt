@@ -1,0 +1,18 @@
+public final class nro.cW {
+  public static final int kn;
+    descriptor: I
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field kn:I
+       5: return
+
+  public nro.cW();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+}

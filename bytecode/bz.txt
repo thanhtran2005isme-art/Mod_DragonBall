@@ -1,0 +1,49 @@
+public final class nro.bz {
+  public static final int iC;
+    descriptor: I
+
+  public int cy;
+    descriptor: I
+
+  public int cf;
+    descriptor: I
+
+  public int bZ;
+    descriptor: I
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #7                  // Field iC:I
+       5: return
+
+  public nro.bz(int, int);
+    descriptor: (II)V
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #5                  // Field cf:I
+       9: aload_0
+      10: iload_2
+      11: putfield      #4                  // Field bZ:I
+      14: return
+
+  public nro.bz(int, int, int, int);
+    descriptor: (IIII)V
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #5                  // Field cf:I
+       9: aload_0
+      10: iload_2
+      11: putfield      #4                  // Field bZ:I
+      14: aload_0
+      15: iload_3
+      16: putfield      #6                  // Field cy:I
+      19: return
+}

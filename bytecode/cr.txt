@@ -1,0 +1,491 @@
+public abstract class nro.cr extends javax.microedition.lcdui.Canvas implements java.lang.Runnable {
+  public static final int jG;
+    descriptor: I
+
+  public static boolean dz;
+    descriptor: Z
+
+  public static int[] eu;
+    descriptor: [I
+
+  public static void a(nro.GameMidlet);
+    descriptor: (Lnro/GameMidlet;)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokestatic  #38                 // Method javax/microedition/lcdui/Display.getDisplay:(Ljavax/microedition/midlet/MIDlet;)Ljavax/microedition/lcdui/Display;
+      13: getstatic     #24                 // Field nro/aE.a:Lnro/aE;
+      16: invokevirtual #39                 // Method javax/microedition/lcdui/Display.setCurrent:(Ljavax/microedition/lcdui/Displayable;)V
+      19: return
+
+  public void run();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: ldc2_w        #22                 // long 100l
+      12: invokestatic  #33                 // Method java/lang/Thread.sleep:(J)V
+      15: iconst_1
+      16: ifne          22
+      19: aconst_null
+      20: athrow
+      21: astore_1
+      22: getstatic     #28                 // Field eu:[I
+      25: sipush        230
+      28: sipush        230
+      31: ixor
+      32: iaload
+      33: putstatic     #27                 // Field dz:Z
+      36: getstatic     #27                 // Field dz:Z
+      39: ifeq          109
+      42: invokestatic  #32                 // Method java/lang/System.currentTimeMillis:()J
+      45: lstore_1
+      46: aload_0
+      47: invokevirtual #43                 // Method ct:()V
+      50: aload_0
+      51: invokevirtual #35                 // Method javax/microedition/lcdui/Canvas.repaint:()V
+      54: aload_0
+      55: invokevirtual #36                 // Method javax/microedition/lcdui/Canvas.serviceRepaints:()V
+      58: invokestatic  #32                 // Method java/lang/System.currentTimeMillis:()J
+      61: lload_1
+      62: lsub
+      63: lstore_3
+      64: getstatic     #30                 // Field nro/h.g:J
+      67: lload_3
+      68: lsub
+      69: lstore        5
+      71: lload         5
+      73: lconst_0
+      74: lcmp
+      75: ifle          89
+      78: lload         5
+      80: invokestatic  #33                 // Method java/lang/Thread.sleep:(J)V
+      83: iconst_1
+      84: ifne          95
+      87: aconst_null
+      88: athrow
+      89: ldc2_w        #20                 // long 2l
+      92: invokestatic  #33                 // Method java/lang/Thread.sleep:(J)V
+      95: iconst_1
+      96: ifne          103
+      99: aconst_null
+     100: athrow
+     101: astore        5
+     103: iconst_1
+     104: ifne          36
+     107: aconst_null
+     108: athrow
+     109: return
+    Exception table:
+       from    to  target type
+           9    15    21   Class java/lang/Exception
+          64    95   101   Class java/lang/Exception
+
+  public int getWidth();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokespecial #41                 // Method javax/microedition/lcdui/Displayable.getWidth:()I
+      13: ireturn
+
+  public final void pointerDragged(int, int);
+    descriptor: (II)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #25                 // Field nro/bF.bZ:I
+      13: idiv
+      14: istore_1
+      15: iload_2
+      16: getstatic     #25                 // Field nro/bF.bZ:I
+      19: idiv
+      20: istore_2
+      21: aload_0
+      22: iload_1
+      23: iload_2
+      24: invokevirtual #44                 // Method d:(II)V
+      27: return
+
+  public nro.cr();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #34                 // Method javax/microedition/lcdui/Canvas."<init>":()V
+       4: aload_0
+       5: getstatic     #28                 // Field eu:[I
+       8: sipush        230
+      11: sipush        230
+      14: ixor
+      15: iaload
+      16: invokevirtual #37                 // Method javax/microedition/lcdui/Canvas.setFullScreenMode:(Z)V
+      19: aload_0
+      20: invokespecial #41                 // Method javax/microedition/lcdui/Displayable.getWidth:()I
+      23: istore_1
+      24: aload_0
+      25: invokespecial #40                 // Method javax/microedition/lcdui/Displayable.getHeight:()I
+      28: istore_2
+      29: iload_1
+      30: istore_3
+      31: iload_1
+      32: iload_2
+      33: imul
+      34: getstatic     #28                 // Field eu:[I
+      37: sipush        362
+      40: sipush        363
+      43: ixor
+      44: iaload
+      45: if_icmplt     65
+      48: getstatic     #28                 // Field eu:[I
+      51: sipush        348
+      54: sipush        348
+      57: ixor
+      58: iaload
+      59: putstatic     #25                 // Field nro/bF.bZ:I
+      62: goto          143
+      65: iload_3
+      66: iload_2
+      67: imul
+      68: getstatic     #28                 // Field eu:[I
+      71: sipush        486
+      74: sipush        484
+      77: ixor
+      78: iaload
+      79: if_icmplt     99
+      82: getstatic     #28                 // Field eu:[I
+      85: sipush        570
+      88: sipush        570
+      91: ixor
+      92: iaload
+      93: putstatic     #25                 // Field nro/bF.bZ:I
+      96: goto          143
+      99: iload_3
+     100: iload_2
+     101: imul
+     102: getstatic     #28                 // Field eu:[I
+     105: bipush        126
+     107: bipush        125
+     109: ixor
+     110: iaload
+     111: if_icmple     129
+     114: getstatic     #28                 // Field eu:[I
+     117: bipush        105
+     119: bipush        105
+     121: ixor
+     122: iaload
+     123: putstatic     #25                 // Field nro/bF.bZ:I
+     126: goto          143
+     129: getstatic     #28                 // Field eu:[I
+     132: sipush        518
+     135: sipush        518
+     138: ixor
+     139: iaload
+     140: putstatic     #25                 // Field nro/bF.bZ:I
+     143: return
+
+  public int getHeight();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokespecial #40                 // Method javax/microedition/lcdui/Displayable.getHeight:()I
+      13: ireturn
+
+  public final void pointerPressed(int, int);
+    descriptor: (II)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #25                 // Field nro/bF.bZ:I
+      13: idiv
+      14: istore_1
+      15: iload_2
+      16: getstatic     #25                 // Field nro/bF.bZ:I
+      19: idiv
+      20: istore_2
+      21: aload_0
+      22: iload_1
+      23: iload_2
+      24: invokevirtual #45                 // Method e:(II)V
+      27: return
+
+  public final int N();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokespecial #41                 // Method javax/microedition/lcdui/Displayable.getWidth:()I
+      13: dup
+      14: istore_1
+      15: getstatic     #25                 // Field nro/bF.bZ:I
+      18: idiv
+      19: iload_1
+      20: getstatic     #25                 // Field nro/bF.bZ:I
+      23: irem
+      24: ifne          44
+      27: getstatic     #28                 // Field eu:[I
+      30: sipush        226
+      33: sipush        230
+      36: ixor
+      37: iaload
+      38: iconst_1
+      39: ifne          55
+      42: aconst_null
+      43: athrow
+      44: getstatic     #28                 // Field eu:[I
+      47: sipush        363
+      50: sipush        363
+      53: ixor
+      54: iaload
+      55: iadd
+      56: ireturn
+
+  public abstract void f(int, int);
+    descriptor: (II)V
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #47                 // Method hi:()V
+       3: ldc           #4                  // int 574924928
+       5: putstatic     #29                 // Field jG:I
+       8: return
+
+  public final void pointerReleased(int, int);
+    descriptor: (II)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #25                 // Field nro/bF.bZ:I
+      13: idiv
+      14: istore_1
+      15: iload_2
+      16: getstatic     #25                 // Field nro/bF.bZ:I
+      19: idiv
+      20: istore_2
+      21: aload_0
+      22: iload_1
+      23: iload_2
+      24: invokevirtual #46                 // Method f:(II)V
+      27: return
+
+  public abstract void d(int, int);
+    descriptor: (II)V
+
+  public final int O();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokespecial #40                 // Method javax/microedition/lcdui/Displayable.getHeight:()I
+      13: dup
+      14: istore_1
+      15: getstatic     #25                 // Field nro/bF.bZ:I
+      18: idiv
+      19: iload_1
+      20: getstatic     #25                 // Field nro/bF.bZ:I
+      23: irem
+      24: ifne          44
+      27: getstatic     #28                 // Field eu:[I
+      30: sipush        226
+      33: sipush        230
+      36: ixor
+      37: iaload
+      38: iconst_1
+      39: ifne          55
+      42: aconst_null
+      43: athrow
+      44: getstatic     #28                 // Field eu:[I
+      47: sipush        363
+      50: sipush        363
+      53: ixor
+      54: iaload
+      55: iadd
+      56: ireturn
+
+  public abstract void ct();
+    descriptor: ()V
+
+  public static void hi();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        227
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #28                 // Field eu:[I
+      21: getstatic     #28                 // Field eu:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: getstatic     #26                 // Field nro/cX.o:[S
+      34: sipush        350
+      37: sipush        348
+      40: ixor
+      41: sipush        485
+      44: sipush        484
+      47: ixor
+      48: ldc           #6                  // int 574925498
+      50: sipush        570
+      53: ixor
+      54: invokestatic  #42                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+      57: invokevirtual #31                 // Method java/lang/String.length:()I
+      60: iastore
+      61: getstatic     #28                 // Field eu:[I
+      64: bipush        124
+      66: bipush        125
+      68: ixor
+      69: sipush        -791
+      72: bipush        105
+      74: ixor
+      75: ldc           #3                  // int 2073977
+      77: sipush        518
+      80: ixor
+      81: iand
+      82: iastore
+      83: getstatic     #28                 // Field eu:[I
+      86: bipush        117
+      88: bipush        119
+      90: ixor
+      91: sipush        -28932
+      94: sipush        193
+      97: ixor
+      98: ldc           #2                  // int 720088
+     100: sipush        282
+     103: ixor
+     104: iand
+     105: iastore
+     106: getstatic     #28                 // Field eu:[I
+     109: bipush        101
+     111: bipush        102
+     113: ixor
+     114: sipush        492
+     117: sipush        376
+     120: ixor
+     121: sipush        388
+     124: sipush        392
+     127: ixor
+     128: iadd
+     129: sipush        719
+     132: sipush        576
+     135: ixor
+     136: isub
+     137: bipush        97
+     139: sipush        132
+     142: ixor
+     143: iadd
+     144: ineg
+     145: sipush        -9263
+     148: sipush        556
+     151: ixor
+     152: ldc           #1                  // int 163833
+     154: sipush        270
+     157: ixor
+     158: iand
+     159: iand
+     160: iastore
+     161: getstatic     #28                 // Field eu:[I
+     164: sipush        339
+     167: sipush        343
+     170: ixor
+     171: sipush        342
+     174: sipush        309
+     177: ixor
+     178: sipush        447
+     181: sipush        500
+     184: ixor
+     185: ixor
+     186: sipush        375
+     189: sipush        463
+     192: ixor
+     193: sipush        498
+     196: sipush        326
+     199: ixor
+     200: ixor
+     201: ixor
+     202: sipush        515
+     205: sipush        513
+     208: ixor
+     209: sipush        334
+     212: sipush        343
+     215: ixor
+     216: ixor
+     217: sipush        479
+     220: sipush        341
+     223: ixor
+     224: bipush        55
+     226: sipush        130
+     229: ixor
+     230: ixor
+     231: ixor
+     232: getstatic     #26                 // Field nro/cX.o:[S
+     235: sipush        556
+     238: sipush        558
+     241: ixor
+     242: sipush        486
+     245: sipush        487
+     248: ixor
+     249: ldc           #5                  // int 574925274
+     251: sipush        346
+     254: ixor
+     255: invokestatic  #42                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     258: invokevirtual #31                 // Method java/lang/String.length:()I
+     261: ineg
+     262: ixor
+     263: iand
+     264: iastore
+     265: return
+
+  public abstract void e(int, int);
+    descriptor: (II)V
+}

@@ -1,0 +1,203 @@
+public final class nro.ch {
+  public static final int ju;
+    descriptor: I
+
+  public long au;
+    descriptor: J
+
+  public static int[] ek;
+    descriptor: [I
+
+  public int cy;
+    descriptor: I
+
+  public byte aC;
+    descriptor: B
+
+  public javax.microedition.lcdui.Image d;
+    descriptor: Ljavax/microedition/lcdui/Image;
+
+  public static void gY();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        228
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #16                 // Field ek:[I
+      21: getstatic     #16                 // Field ek:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        378
+      34: sipush        348
+      37: ixor
+      38: sipush        444
+      41: sipush        484
+      44: ixor
+      45: iadd
+      46: sipush        621
+      49: sipush        570
+      52: ixor
+      53: isub
+      54: sipush        179
+      57: bipush        125
+      59: ixor
+      60: iadd
+      61: bipush        6
+      63: bipush        105
+      65: ixor
+      66: sipush        579
+      69: sipush        518
+      72: ixor
+      73: iadd
+      74: sipush        226
+      77: bipush        119
+      79: ixor
+      80: isub
+      81: bipush        91
+      83: sipush        193
+      86: ixor
+      87: iadd
+      88: ixor
+      89: sipush        285
+      92: sipush        282
+      95: ixor
+      96: bipush        68
+      98: bipush        102
+     100: ixor
+     101: iadd
+     102: sipush        -266
+     105: sipush        376
+     108: ixor
+     109: isub
+     110: sipush        441
+     113: sipush        392
+     116: ixor
+     117: iadd
+     118: sipush        564
+     121: sipush        576
+     124: ixor
+     125: sipush        235
+     128: sipush        132
+     131: ixor
+     132: iadd
+     133: sipush        743
+     136: sipush        556
+     139: ixor
+     140: isub
+     141: sipush        358
+     144: sipush        270
+     147: ixor
+     148: iadd
+     149: ixor
+     150: getstatic     #11                 // Field nro/cX.o:[S
+     153: sipush        341
+     156: sipush        343
+     159: ixor
+     160: sipush        308
+     163: sipush        309
+     166: ixor
+     167: ldc           #2                  // int 574925172
+     169: sipush        500
+     172: ixor
+     173: invokestatic  #20                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     176: invokevirtual #19                 // Method java/lang/String.length:()I
+     179: ineg
+     180: ixor
+     181: iand
+     182: iastore
+     183: getstatic     #16                 // Field ek:[I
+     186: sipush        462
+     189: sipush        463
+     192: ixor
+     193: getstatic     #11                 // Field nro/cX.o:[S
+     196: sipush        324
+     199: sipush        326
+     202: ixor
+     203: sipush        512
+     206: sipush        513
+     209: ixor
+     210: ldc           #3                  // int 574925271
+     212: sipush        343
+     215: ixor
+     216: invokestatic  #20                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     219: invokevirtual #19                 // Method java/lang/String.length:()I
+     222: iastore
+     223: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #21                 // Method gY:()V
+       3: ldc           #1                  // int 574924928
+       5: putstatic     #17                 // Field ju:I
+       8: return
+
+  public nro.ch();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: ldc2_w        #9                  // long -1l
+       8: putfield      #13                 // Field au:J
+      11: aload_0
+      12: getstatic     #16                 // Field ek:[I
+      15: sipush        230
+      18: sipush        230
+      21: ixor
+      22: iaload
+      23: putfield      #14                 // Field cy:I
+      26: aload_0
+      27: getstatic     #16                 // Field ek:[I
+      30: sipush        362
+      33: sipush        363
+      36: ixor
+      37: iaload
+      38: putfield      #12                 // Field aC:B
+      41: invokestatic  #22                 // Method nro/cv.a:()J
+      44: pop2
+      45: return
+
+  public nro.ch(javax.microedition.lcdui.Image, byte);
+    descriptor: (Ljavax/microedition/lcdui/Image;B)V
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: ldc2_w        #9                  // long -1l
+       8: putfield      #13                 // Field au:J
+      11: aload_0
+      12: getstatic     #16                 // Field ek:[I
+      15: sipush        230
+      18: sipush        230
+      21: ixor
+      22: iaload
+      23: putfield      #14                 // Field cy:I
+      26: aload_0
+      27: getstatic     #16                 // Field ek:[I
+      30: sipush        362
+      33: sipush        363
+      36: ixor
+      37: iaload
+      38: putfield      #12                 // Field aC:B
+      41: invokestatic  #22                 // Method nro/cv.a:()J
+      44: pop2
+      45: aload_0
+      46: aload_1
+      47: putfield      #15                 // Field d:Ljavax/microedition/lcdui/Image;
+      50: aload_0
+      51: lconst_0
+      52: putfield      #13                 // Field au:J
+      55: aload_0
+      56: iload_2
+      57: putfield      #12                 // Field aC:B
+      60: return
+}

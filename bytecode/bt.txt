@@ -1,0 +1,111 @@
+public final class nro.bt {
+  public static final int hl;
+    descriptor: I
+
+  public static int[] at;
+    descriptor: [I
+
+  public static int[] ba;
+    descriptor: [I
+
+  public static int[] dq;
+    descriptor: [I
+
+  public static nro.bT[] a;
+    descriptor: [Lnro/bT;
+
+  public static int[][] h;
+    descriptor: [[I
+
+  public static int[][] i;
+    descriptor: [[I
+
+  public static int[] cg;
+    descriptor: [I
+
+  public static int[] cX;
+    descriptor: [I
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #21                 // Method fC:()V
+       3: getstatic     #14                 // Field dq:[I
+       6: iconst_0
+       7: iaload
+       8: newarray       int
+      10: putstatic     #11                 // Field ba:[I
+      13: getstatic     #14                 // Field dq:[I
+      16: iconst_0
+      17: iaload
+      18: newarray       int
+      20: putstatic     #10                 // Field at:[I
+      23: getstatic     #14                 // Field dq:[I
+      26: iconst_0
+      27: iaload
+      28: newarray       int
+      30: putstatic     #12                 // Field cX:[I
+      33: getstatic     #14                 // Field dq:[I
+      36: iconst_0
+      37: iaload
+      38: newarray       int
+      40: putstatic     #13                 // Field cg:[I
+      43: getstatic     #14                 // Field dq:[I
+      46: iconst_0
+      47: iaload
+      48: anewarray     #3                  // class "[I"
+      51: putstatic     #17                 // Field i:[[I
+      54: getstatic     #14                 // Field dq:[I
+      57: iconst_0
+      58: iaload
+      59: anewarray     #3                  // class "[I"
+      62: putstatic     #15                 // Field h:[[I
+      65: getstatic     #14                 // Field dq:[I
+      68: iconst_0
+      69: iaload
+      70: anewarray     #6                  // class nro/bT
+      73: putstatic     #9                  // Field a:[Lnro/bT;
+      76: ldc           #1                  // int 574924928
+      78: putstatic     #16                 // Field hl:I
+      81: return
+
+  public nro.bt();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void fC();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        231
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #14                 // Field dq:[I
+      21: getstatic     #14                 // Field dq:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: getstatic     #18                 // Field nro/cX.o:[S
+      34: sipush        345
+      37: sipush        348
+      40: ixor
+      41: sipush        487
+      44: sipush        484
+      47: ixor
+      48: ldc           #2                  // int 574925498
+      50: sipush        570
+      53: ixor
+      54: invokestatic  #22                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+      57: invokevirtual #20                 // Method java/lang/String.length:()I
+      60: iastore
+      61: return
+}

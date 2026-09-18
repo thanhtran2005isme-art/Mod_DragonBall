@@ -1,0 +1,9 @@
+public interface nro.cR {
+  public abstract void a(int, java.lang.Object);
+    descriptor: (ILjava/lang/Object;)V
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: return
+}

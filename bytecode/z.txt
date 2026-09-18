@@ -1,0 +1,30 @@
+public class nro.z {
+  public static final int aU;
+    descriptor: I
+
+  public java.lang.String C;
+    descriptor: Ljava/lang/String;
+
+  public java.lang.String[] a;
+    descriptor: [Ljava/lang/String;
+
+  public nro.z(java.lang.String, java.lang.String[]);
+    descriptor: (Ljava/lang/String;[Ljava/lang/String;)V
+    Code:
+       0: aload_0
+       1: invokespecial #7                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #4                  // Field C:Ljava/lang/String;
+       9: aload_0
+      10: aload_2
+      11: putfield      #5                  // Field a:[Ljava/lang/String;
+      14: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #6                  // Field aU:I
+       5: return
+}

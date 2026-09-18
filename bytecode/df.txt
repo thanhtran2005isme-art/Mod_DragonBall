@@ -1,0 +1,790 @@
+public class nro.df implements javax.microedition.lcdui.CommandListener {
+  public static final int kv;
+    descriptor: I
+
+  public javax.microedition.lcdui.TextField l;
+    descriptor: Ljavax/microedition/lcdui/TextField;
+
+  public static java.io.DataInputStream c;
+    descriptor: Ljava/io/DataInputStream;
+
+  public static int[] ff;
+    descriptor: [I
+
+  public javax.microedition.lcdui.TextField m;
+    descriptor: Ljavax/microedition/lcdui/TextField;
+
+  public javax.microedition.lcdui.Command b;
+    descriptor: Ljavax/microedition/lcdui/Command;
+
+  public javax.microedition.lcdui.Form a;
+    descriptor: Ljavax/microedition/lcdui/Form;
+
+  public static javax.microedition.rms.RecordStore a;
+    descriptor: Ljavax/microedition/rms/RecordStore;
+
+  public javax.microedition.lcdui.Command a;
+    descriptor: Ljavax/microedition/lcdui/Command;
+
+  public static javax.microedition.lcdui.ChoiceGroup b;
+    descriptor: Ljavax/microedition/lcdui/ChoiceGroup;
+
+  public javax.microedition.lcdui.TextField n;
+    descriptor: Ljavax/microedition/lcdui/TextField;
+
+  public static java.io.ByteArrayInputStream b;
+    descriptor: Ljava/io/ByteArrayInputStream;
+
+  public static java.io.ByteArrayOutputStream b;
+    descriptor: Ljava/io/ByteArrayOutputStream;
+
+  public static java.io.DataOutputStream c;
+    descriptor: Ljava/io/DataOutputStream;
+
+  public javax.microedition.lcdui.TextField o;
+    descriptor: Ljavax/microedition/lcdui/TextField;
+
+  public nro.df();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #88                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #40                 // class javax/microedition/lcdui/Form
+       8: dup
+       9: getstatic     #51                 // Field nro/cX.o:[S
+      12: sipush        815
+      15: sipush        230
+      18: ixor
+      19: sipush        354
+      22: sipush        363
+      25: ixor
+      26: ldc           #21                 // int 574925276
+      28: sipush        348
+      31: ixor
+      32: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+      35: invokespecial #100                // Method javax/microedition/lcdui/Form."<init>":(Ljava/lang/String;)V
+      38: dup_x1
+      39: putfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+      42: getstatic     #51                 // Field nro/cX.o:[S
+      45: ldc           #4                  // int 42864
+      47: sipush        484
+      50: ixor
+      51: sipush        562
+      54: sipush        570
+      57: ixor
+      58: ldc           #13                 // int 574925053
+      60: bipush        125
+      62: ixor
+      63: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+      66: invokevirtual #101                // Method javax/microedition/lcdui/Form.append:(Ljava/lang/String;)I
+      69: pop
+      70: aload_0
+      71: getfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+      74: new           #35                 // class javax/microedition/lcdui/ChoiceGroup
+      77: dup
+      78: aconst_null
+      79: getstatic     #61                 // Field ff:[I
+      82: bipush        105
+      84: bipush        105
+      86: ixor
+      87: iaload
+      88: getstatic     #61                 // Field ff:[I
+      91: sipush        519
+      94: sipush        518
+      97: ixor
+      98: iaload
+      99: anewarray     #34                 // class java/lang/String
+     102: dup
+     103: getstatic     #61                 // Field ff:[I
+     106: bipush        117
+     108: bipush        119
+     110: ixor
+     111: iaload
+     112: getstatic     #51                 // Field nro/cX.o:[S
+     115: sipush        803
+     118: sipush        193
+     121: ixor
+     122: sipush        281
+     125: sipush        282
+     128: ixor
+     129: ldc           #11                 // int 574925030
+     131: bipush        102
+     133: ixor
+     134: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     137: aastore
+     138: dup
+     139: getstatic     #61                 // Field ff:[I
+     142: sipush        376
+     145: sipush        376
+     148: ixor
+     149: iaload
+     150: getstatic     #51                 // Field nro/cX.o:[S
+     153: ldc           #3                  // int 42772
+     155: sipush        392
+     158: ixor
+     159: sipush        580
+     162: sipush        576
+     165: ixor
+     166: ldc           #8                  // int 574924804
+     168: sipush        132
+     171: ixor
+     172: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     175: aastore
+     176: dup
+     177: getstatic     #61                 // Field ff:[I
+     180: sipush        559
+     183: sipush        556
+     186: ixor
+     187: iaload
+     188: getstatic     #51                 // Field nro/cX.o:[S
+     191: ldc           #6                  // int 42926
+     193: sipush        270
+     196: ixor
+     197: sipush        338
+     200: sipush        343
+     203: ixor
+     204: ldc           #17                 // int 574925237
+     206: sipush        309
+     209: ixor
+     210: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     213: aastore
+     214: getstatic     #61                 // Field ff:[I
+     217: sipush        501
+     220: sipush        500
+     223: ixor
+     224: iaload
+     225: anewarray     #41                 // class javax/microedition/lcdui/Image
+     228: invokespecial #92                 // Method javax/microedition/lcdui/ChoiceGroup."<init>":(Ljava/lang/String;I[Ljava/lang/String;[Ljavax/microedition/lcdui/Image;)V
+     231: dup
+     232: putstatic     #57                 // Field b:Ljavax/microedition/lcdui/ChoiceGroup;
+     235: invokevirtual #102                // Method javax/microedition/lcdui/Form.append:(Ljavax/microedition/lcdui/Item;)I
+     238: pop
+     239: aload_0
+     240: getfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+     243: aload_0
+     244: new           #42                 // class javax/microedition/lcdui/TextField
+     247: dup
+     248: getstatic     #51                 // Field nro/cX.o:[S
+     251: sipush        832
+     254: sipush        463
+     257: ixor
+     258: sipush        325
+     261: sipush        326
+     264: ixor
+     265: ldc           #22                 // int 574925441
+     267: sipush        513
+     270: ixor
+     271: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     274: getstatic     #68                 // Field nro/h.a:Ljava/lang/String;
+     277: getstatic     #61                 // Field ff:[I
+     280: sipush        339
+     283: sipush        343
+     286: ixor
+     287: iaload
+     288: getstatic     #61                 // Field ff:[I
+     291: sipush        343
+     294: sipush        341
+     297: ixor
+     298: iaload
+     299: invokespecial #103                // Method javax/microedition/lcdui/TextField."<init>":(Ljava/lang/String;Ljava/lang/String;II)V
+     302: dup_x1
+     303: putfield      #64                 // Field m:Ljavax/microedition/lcdui/TextField;
+     306: invokevirtual #102                // Method javax/microedition/lcdui/Form.append:(Ljavax/microedition/lcdui/Item;)I
+     309: pop
+     310: aload_0
+     311: getfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+     314: aload_0
+     315: new           #42                 // class javax/microedition/lcdui/TextField
+     318: dup
+     319: getstatic     #51                 // Field nro/cX.o:[S
+     322: sipush        528
+     325: sipush        130
+     328: ixor
+     329: sipush        555
+     332: sipush        558
+     335: ixor
+     336: ldc           #14                 // int 574925159
+     338: sipush        487
+     341: ixor
+     342: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     345: getstatic     #67                 // Field nro/h.D:I
+     348: invokestatic  #91                 // Method java/lang/String.valueOf:(I)Ljava/lang/String;
+     351: getstatic     #61                 // Field ff:[I
+     354: sipush        350
+     357: sipush        346
+     360: ixor
+     361: iaload
+     362: getstatic     #61                 // Field ff:[I
+     365: sipush        328
+     368: sipush        330
+     371: ixor
+     372: iaload
+     373: invokespecial #103                // Method javax/microedition/lcdui/TextField."<init>":(Ljava/lang/String;Ljava/lang/String;II)V
+     376: dup_x1
+     377: putfield      #63                 // Field l:Ljavax/microedition/lcdui/TextField;
+     380: invokevirtual #102                // Method javax/microedition/lcdui/Form.append:(Ljavax/microedition/lcdui/Item;)I
+     383: pop
+     384: aload_0
+     385: getfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+     388: aload_0
+     389: new           #42                 // class javax/microedition/lcdui/TextField
+     392: dup
+     393: getstatic     #51                 // Field nro/cX.o:[S
+     396: ldc           #7                  // int 42945
+     398: sipush        356
+     401: ixor
+     402: sipush        535
+     405: sipush        530
+     408: ixor
+     409: ldc           #9                  // int 574924857
+     411: sipush        185
+     414: ixor
+     415: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     418: getstatic     #70                 // Field nro/h.c:Ljava/lang/String;
+     421: getstatic     #61                 // Field ff:[I
+     424: sipush        313
+     427: sipush        317
+     430: ixor
+     431: iaload
+     432: getstatic     #61                 // Field ff:[I
+     435: sipush        325
+     438: sipush        327
+     441: ixor
+     442: iaload
+     443: invokespecial #103                // Method javax/microedition/lcdui/TextField."<init>":(Ljava/lang/String;Ljava/lang/String;II)V
+     446: dup_x1
+     447: putfield      #66                 // Field o:Ljavax/microedition/lcdui/TextField;
+     450: invokevirtual #102                // Method javax/microedition/lcdui/Form.append:(Ljavax/microedition/lcdui/Item;)I
+     453: pop
+     454: aload_0
+     455: getfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+     458: aload_0
+     459: new           #42                 // class javax/microedition/lcdui/TextField
+     462: dup
+     463: getstatic     #51                 // Field nro/cX.o:[S
+     466: ldc           #5                  // int 42898
+     468: sipush        312
+     471: ixor
+     472: sipush        200
+     475: sipush        193
+     478: ixor
+     479: ldc           #18                 // int 574925241
+     481: sipush        313
+     484: ixor
+     485: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     488: getstatic     #71                 // Field nro/h.j:Ljava/lang/String;
+     491: getstatic     #61                 // Field ff:[I
+     494: sipush        268
+     497: sipush        264
+     500: ixor
+     501: iaload
+     502: getstatic     #61                 // Field ff:[I
+     505: sipush        477
+     508: sipush        479
+     511: ixor
+     512: iaload
+     513: invokespecial #103                // Method javax/microedition/lcdui/TextField."<init>":(Ljava/lang/String;Ljava/lang/String;II)V
+     516: dup_x1
+     517: putfield      #65                 // Field n:Ljavax/microedition/lcdui/TextField;
+     520: invokevirtual #102                // Method javax/microedition/lcdui/Form.append:(Ljavax/microedition/lcdui/Item;)I
+     523: pop
+     524: aload_0
+     525: getfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+     528: aload_0
+     529: new           #36                 // class javax/microedition/lcdui/Command
+     532: dup
+     533: getstatic     #51                 // Field nro/cX.o:[S
+     536: sipush        1169
+     539: sipush        165
+     542: ixor
+     543: sipush        420
+     546: sipush        423
+     549: ixor
+     550: ldc           #19                 // int 574925265
+     552: sipush        337
+     555: ixor
+     556: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     559: getstatic     #61                 // Field ff:[I
+     562: sipush        570
+     565: sipush        575
+     568: ixor
+     569: iaload
+     570: getstatic     #61                 // Field ff:[I
+     573: sipush        134
+     576: sipush        134
+     579: ixor
+     580: iaload
+     581: invokespecial #95                 // Method javax/microedition/lcdui/Command."<init>":(Ljava/lang/String;II)V
+     584: dup_x1
+     585: putfield      #52                 // Field a:Ljavax/microedition/lcdui/Command;
+     588: invokevirtual #98                 // Method javax/microedition/lcdui/Displayable.addCommand:(Ljavax/microedition/lcdui/Command;)V
+     591: aload_0
+     592: getfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+     595: aload_0
+     596: new           #36                 // class javax/microedition/lcdui/Command
+     599: dup
+     600: getstatic     #51                 // Field nro/cX.o:[S
+     603: sipush        1440
+     606: sipush        407
+     609: ixor
+     610: sipush        532
+     613: sipush        535
+     616: ixor
+     617: ldc           #16                 // int 574925185
+     619: sipush        257
+     622: ixor
+     623: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     626: getstatic     #61                 // Field ff:[I
+     629: sipush        537
+     632: sipush        543
+     635: ixor
+     636: iaload
+     637: getstatic     #61                 // Field ff:[I
+     640: sipush        293
+     643: sipush        293
+     646: ixor
+     647: iaload
+     648: invokespecial #95                 // Method javax/microedition/lcdui/Command."<init>":(Ljava/lang/String;II)V
+     651: dup_x1
+     652: putfield      #58                 // Field b:Ljavax/microedition/lcdui/Command;
+     655: invokevirtual #98                 // Method javax/microedition/lcdui/Displayable.addCommand:(Ljavax/microedition/lcdui/Command;)V
+     658: aload_0
+     659: getfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+     662: aload_0
+     663: invokevirtual #99                 // Method javax/microedition/lcdui/Displayable.setCommandListener:(Ljavax/microedition/lcdui/CommandListener;)V
+     666: return
+
+  public static void iE();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        225
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #61                 // Field ff:[I
+      21: getstatic     #61                 // Field ff:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: getstatic     #51                 // Field nro/cX.o:[S
+      34: sipush        350
+      37: sipush        348
+      40: ixor
+      41: sipush        485
+      44: sipush        484
+      47: ixor
+      48: ldc           #24                 // int 574925498
+      50: sipush        570
+      53: ixor
+      54: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+      57: invokevirtual #89                 // Method java/lang/String.length:()I
+      60: iastore
+      61: getstatic     #61                 // Field ff:[I
+      64: bipush        124
+      66: bipush        125
+      68: ixor
+      69: getstatic     #51                 // Field nro/cX.o:[S
+      72: bipush        108
+      74: bipush        105
+      76: ixor
+      77: sipush        517
+      80: sipush        518
+      83: ixor
+      84: ldc           #12                 // int 574925047
+      86: bipush        119
+      88: ixor
+      89: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+      92: invokevirtual #89                 // Method java/lang/String.length:()I
+      95: iastore
+      96: getstatic     #61                 // Field ff:[I
+      99: sipush        195
+     102: sipush        193
+     105: ixor
+     106: sipush        443
+     109: sipush        282
+     112: ixor
+     113: sipush        163
+     116: bipush        102
+     118: ixor
+     119: ixor
+     120: sipush        341
+     123: sipush        376
+     126: ixor
+     127: sipush        453
+     130: sipush        392
+     133: ixor
+     134: ixor
+     135: ixor
+     136: sipush        619
+     139: sipush        576
+     142: ixor
+     143: sipush        136
+     146: sipush        132
+     149: ixor
+     150: ixor
+     151: sipush        666
+     154: sipush        556
+     157: ixor
+     158: sipush        411
+     161: sipush        270
+     164: ixor
+     165: ixor
+     166: ixor
+     167: getstatic     #51                 // Field nro/cX.o:[S
+     170: sipush        341
+     173: sipush        343
+     176: ixor
+     177: sipush        308
+     180: sipush        309
+     183: ixor
+     184: ldc           #15                 // int 574925172
+     186: sipush        500
+     189: ixor
+     190: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     193: invokevirtual #89                 // Method java/lang/String.length:()I
+     196: ineg
+     197: ixor
+     198: iand
+     199: iastore
+     200: getstatic     #61                 // Field ff:[I
+     203: sipush        460
+     206: sipush        463
+     209: ixor
+     210: getstatic     #51                 // Field nro/cX.o:[S
+     213: sipush        325
+     216: sipush        326
+     219: ixor
+     220: sipush        515
+     223: sipush        513
+     226: ixor
+     227: ldc           #20                 // int 574925271
+     229: sipush        343
+     232: ixor
+     233: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     236: invokevirtual #89                 // Method java/lang/String.length:()I
+     239: iastore
+     240: getstatic     #61                 // Field ff:[I
+     243: sipush        337
+     246: sipush        341
+     249: ixor
+     250: sipush        -195
+     253: sipush        130
+     256: ixor
+     257: sipush        4582
+     260: sipush        558
+     263: ixor
+     264: iand
+     265: iastore
+     266: getstatic     #61                 // Field ff:[I
+     269: sipush        482
+     272: sipush        487
+     275: ixor
+     276: sipush        317
+     279: sipush        346
+     282: ixor
+     283: sipush        297
+     286: sipush        330
+     289: ixor
+     290: ixor
+     291: iastore
+     292: getstatic     #61                 // Field ff:[I
+     295: sipush        354
+     298: sipush        356
+     301: ixor
+     302: sipush        550
+     305: sipush        530
+     308: ixor
+     309: sipush        138
+     312: sipush        185
+     315: ixor
+     316: ixor
+     317: iastore
+     318: return
+
+  public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);
+    descriptor: (Ljavax/microedition/lcdui/Command;Ljavax/microedition/lcdui/Displayable;)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_1
+      10: aload_0
+      11: getfield      #52                 // Field a:Ljavax/microedition/lcdui/Command;
+      14: if_acmpne     385
+      17: getstatic     #57                 // Field b:Ljavax/microedition/lcdui/ChoiceGroup;
+      20: getstatic     #61                 // Field ff:[I
+      23: sipush        228
+      26: sipush        230
+      29: ixor
+      30: iaload
+      31: invokevirtual #93                 // Method javax/microedition/lcdui/ChoiceGroup.isSelected:(I)Z
+      34: ifeq          54
+      37: getstatic     #61                 // Field ff:[I
+      40: sipush        361
+      43: sipush        363
+      46: ixor
+      47: iaload
+      48: iconst_1
+      49: ifne          102
+      52: aconst_null
+      53: athrow
+      54: getstatic     #57                 // Field b:Ljavax/microedition/lcdui/ChoiceGroup;
+      57: getstatic     #61                 // Field ff:[I
+      60: sipush        348
+      63: sipush        348
+      66: ixor
+      67: iaload
+      68: invokevirtual #93                 // Method javax/microedition/lcdui/ChoiceGroup.isSelected:(I)Z
+      71: ifeq          91
+      74: getstatic     #61                 // Field ff:[I
+      77: sipush        484
+      80: sipush        484
+      83: ixor
+      84: iaload
+      85: iconst_1
+      86: ifne          102
+      89: aconst_null
+      90: athrow
+      91: getstatic     #61                 // Field ff:[I
+      94: sipush        569
+      97: sipush        570
+     100: ixor
+     101: iaload
+     102: i2b
+     103: putstatic     #69                 // Field nro/h.b:B
+     106: aload_0
+     107: getfield      #64                 // Field m:Ljavax/microedition/lcdui/TextField;
+     110: invokevirtual #104                // Method javax/microedition/lcdui/TextField.getString:()Ljava/lang/String;
+     113: invokevirtual #90                 // Method java/lang/String.trim:()Ljava/lang/String;
+     116: putstatic     #68                 // Field nro/h.a:Ljava/lang/String;
+     119: aload_0
+     120: getfield      #63                 // Field l:Ljavax/microedition/lcdui/TextField;
+     123: invokevirtual #104                // Method javax/microedition/lcdui/TextField.getString:()Ljava/lang/String;
+     126: invokevirtual #90                 // Method java/lang/String.trim:()Ljava/lang/String;
+     129: invokestatic  #87                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+     132: putstatic     #67                 // Field nro/h.D:I
+     135: aload_0
+     136: getfield      #66                 // Field o:Ljavax/microedition/lcdui/TextField;
+     139: invokevirtual #104                // Method javax/microedition/lcdui/TextField.getString:()Ljava/lang/String;
+     142: invokevirtual #90                 // Method java/lang/String.trim:()Ljava/lang/String;
+     145: putstatic     #70                 // Field nro/h.c:Ljava/lang/String;
+     148: aload_0
+     149: getfield      #65                 // Field n:Ljavax/microedition/lcdui/TextField;
+     152: invokevirtual #104                // Method javax/microedition/lcdui/TextField.getString:()Ljava/lang/String;
+     155: invokevirtual #90                 // Method java/lang/String.trim:()Ljava/lang/String;
+     158: putstatic     #71                 // Field nro/h.j:Ljava/lang/String;
+     161: new           #27                 // class java/io/ByteArrayOutputStream
+     164: dup
+     165: invokespecial #73                 // Method java/io/ByteArrayOutputStream."<init>":()V
+     168: putstatic     #56                 // Field b:Ljava/io/ByteArrayOutputStream;
+     171: new           #29                 // class java/io/DataOutputStream
+     174: dup
+     175: getstatic     #56                 // Field b:Ljava/io/ByteArrayOutputStream;
+     178: invokespecial #80                 // Method java/io/DataOutputStream."<init>":(Ljava/io/OutputStream;)V
+     181: dup
+     182: putstatic     #60                 // Field c:Ljava/io/DataOutputStream;
+     185: getstatic     #69                 // Field nro/h.b:B
+     188: invokevirtual #83                 // Method java/io/DataOutputStream.writeByte:(I)V
+     191: getstatic     #60                 // Field c:Ljava/io/DataOutputStream;
+     194: getstatic     #68                 // Field nro/h.a:Ljava/lang/String;
+     197: invokevirtual #85                 // Method java/io/DataOutputStream.writeUTF:(Ljava/lang/String;)V
+     200: getstatic     #60                 // Field c:Ljava/io/DataOutputStream;
+     203: getstatic     #67                 // Field nro/h.D:I
+     206: invokevirtual #84                 // Method java/io/DataOutputStream.writeInt:(I)V
+     209: getstatic     #60                 // Field c:Ljava/io/DataOutputStream;
+     212: getstatic     #70                 // Field nro/h.c:Ljava/lang/String;
+     215: invokevirtual #85                 // Method java/io/DataOutputStream.writeUTF:(Ljava/lang/String;)V
+     218: getstatic     #60                 // Field c:Ljava/io/DataOutputStream;
+     221: getstatic     #71                 // Field nro/h.j:Ljava/lang/String;
+     224: invokevirtual #85                 // Method java/io/DataOutputStream.writeUTF:(Ljava/lang/String;)V
+     227: getstatic     #60                 // Field c:Ljava/io/DataOutputStream;
+     230: invokevirtual #82                 // Method java/io/DataOutputStream.flush:()V
+     233: getstatic     #60                 // Field c:Ljava/io/DataOutputStream;
+     236: invokevirtual #81                 // Method java/io/DataOutputStream.close:()V
+     239: getstatic     #56                 // Field b:Ljava/io/ByteArrayOutputStream;
+     242: invokevirtual #86                 // Method java/io/OutputStream.flush:()V
+     245: getstatic     #51                 // Field nro/cX.o:[S
+     248: ldc           #2                  // int 42702
+     250: bipush        125
+     252: ixor
+     253: bipush        98
+     255: bipush        105
+     257: ixor
+     258: ldc           #23                 // int 574925446
+     260: sipush        518
+     263: ixor
+     264: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+     267: getstatic     #61                 // Field ff:[I
+     270: bipush        119
+     272: bipush        119
+     274: ixor
+     275: iaload
+     276: invokestatic  #109                // Method javax/microedition/rms/RecordStore.openRecordStore:(Ljava/lang/String;Z)Ljavax/microedition/rms/RecordStore;
+     279: putstatic     #54                 // Field a:Ljavax/microedition/rms/RecordStore;
+     282: getstatic     #56                 // Field b:Ljava/io/ByteArrayOutputStream;
+     285: invokevirtual #75                 // Method java/io/ByteArrayOutputStream.toByteArray:()[B
+     288: astore_3
+     289: getstatic     #56                 // Field b:Ljava/io/ByteArrayOutputStream;
+     292: invokevirtual #74                 // Method java/io/ByteArrayOutputStream.close:()V
+     295: getstatic     #54                 // Field a:Ljavax/microedition/rms/RecordStore;
+     298: invokevirtual #107                // Method javax/microedition/rms/RecordStore.getNumRecords:()I
+     301: ifne          331
+     304: getstatic     #54                 // Field a:Ljavax/microedition/rms/RecordStore;
+     307: aload_3
+     308: getstatic     #61                 // Field ff:[I
+     311: sipush        195
+     314: sipush        193
+     317: ixor
+     318: iaload
+     319: aload_3
+     320: arraylength
+     321: invokevirtual #105                // Method javax/microedition/rms/RecordStore.addRecord:([BII)I
+     324: pop
+     325: iconst_1
+     326: ifne          360
+     329: aconst_null
+     330: athrow
+     331: getstatic     #54                 // Field a:Ljavax/microedition/rms/RecordStore;
+     334: getstatic     #61                 // Field ff:[I
+     337: sipush        282
+     340: sipush        282
+     343: ixor
+     344: iaload
+     345: aload_3
+     346: getstatic     #61                 // Field ff:[I
+     349: bipush        100
+     351: bipush        102
+     353: ixor
+     354: iaload
+     355: aload_3
+     356: arraylength
+     357: invokevirtual #110                // Method javax/microedition/rms/RecordStore.setRecord:(I[BII)V
+     360: getstatic     #54                 // Field a:Ljavax/microedition/rms/RecordStore;
+     363: invokevirtual #106                // Method javax/microedition/rms/RecordStore.closeRecordStore:()V
+     366: iconst_1
+     367: ifne          373
+     370: aconst_null
+     371: athrow
+     372: astore_3
+     373: getstatic     #49                 // Field nro/GameMidlet.a:Lnro/GameMidlet;
+     376: invokestatic  #96                 // Method javax/microedition/lcdui/Display.getDisplay:(Ljavax/microedition/midlet/MIDlet;)Ljavax/microedition/lcdui/Display;
+     379: getstatic     #50                 // Field nro/aE.a:Lnro/aE;
+     382: invokevirtual #97                 // Method javax/microedition/lcdui/Display.setCurrent:(Ljavax/microedition/lcdui/Displayable;)V
+     385: aload_1
+     386: aload_0
+     387: getfield      #58                 // Field b:Ljavax/microedition/lcdui/Command;
+     390: if_acmpne     405
+     393: getstatic     #49                 // Field nro/GameMidlet.a:Lnro/GameMidlet;
+     396: invokestatic  #96                 // Method javax/microedition/lcdui/Display.getDisplay:(Ljavax/microedition/midlet/MIDlet;)Ljavax/microedition/lcdui/Display;
+     399: getstatic     #50                 // Field nro/aE.a:Lnro/aE;
+     402: invokevirtual #97                 // Method javax/microedition/lcdui/Display.setCurrent:(Ljavax/microedition/lcdui/Displayable;)V
+     405: return
+    Exception table:
+       from    to  target type
+         161   366   372   Class java/lang/Exception
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #112                // Method iE:()V
+       3: getstatic     #61                 // Field ff:[I
+       6: iconst_2
+       7: iaload
+       8: putstatic     #69                 // Field nro/h.b:B
+      11: ldc           #25                 // String
+      13: putstatic     #68                 // Field nro/h.a:Ljava/lang/String;
+      16: getstatic     #61                 // Field ff:[I
+      19: iconst_2
+      20: iaload
+      21: putstatic     #67                 // Field nro/h.D:I
+      24: ldc           #25                 // String
+      26: putstatic     #70                 // Field nro/h.c:Ljava/lang/String;
+      29: ldc           #25                 // String
+      31: putstatic     #71                 // Field nro/h.j:Ljava/lang/String;
+      34: getstatic     #51                 // Field nro/cX.o:[S
+      37: ldc           #1                  // int 42675
+      39: bipush        11
+      41: ldc           #10                 // int 574924928
+      43: invokestatic  #111                // Method nro/cX.a:([SIII)Ljava/lang/String;
+      46: getstatic     #61                 // Field ff:[I
+      49: iconst_0
+      50: iaload
+      51: invokestatic  #109                // Method javax/microedition/rms/RecordStore.openRecordStore:(Ljava/lang/String;Z)Ljavax/microedition/rms/RecordStore;
+      54: putstatic     #54                 // Field a:Ljavax/microedition/rms/RecordStore;
+      57: getstatic     #54                 // Field a:Ljavax/microedition/rms/RecordStore;
+      60: invokevirtual #107                // Method javax/microedition/rms/RecordStore.getNumRecords:()I
+      63: ifeq          145
+      66: new           #26                 // class java/io/ByteArrayInputStream
+      69: dup
+      70: getstatic     #54                 // Field a:Ljavax/microedition/rms/RecordStore;
+      73: getstatic     #61                 // Field ff:[I
+      76: iconst_0
+      77: iaload
+      78: invokevirtual #108                // Method javax/microedition/rms/RecordStore.getRecord:(I)[B
+      81: invokespecial #72                 // Method java/io/ByteArrayInputStream."<init>":([B)V
+      84: putstatic     #55                 // Field b:Ljava/io/ByteArrayInputStream;
+      87: new           #28                 // class java/io/DataInputStream
+      90: dup
+      91: getstatic     #55                 // Field b:Ljava/io/ByteArrayInputStream;
+      94: invokespecial #76                 // Method java/io/DataInputStream."<init>":(Ljava/io/InputStream;)V
+      97: putstatic     #59                 // Field c:Ljava/io/DataInputStream;
+     100: getstatic     #59                 // Field c:Ljava/io/DataInputStream;
+     103: invokevirtual #77                 // Method java/io/DataInputStream.readByte:()B
+     106: putstatic     #69                 // Field nro/h.b:B
+     109: getstatic     #59                 // Field c:Ljava/io/DataInputStream;
+     112: invokevirtual #79                 // Method java/io/DataInputStream.readUTF:()Ljava/lang/String;
+     115: putstatic     #68                 // Field nro/h.a:Ljava/lang/String;
+     118: getstatic     #59                 // Field c:Ljava/io/DataInputStream;
+     121: invokevirtual #78                 // Method java/io/DataInputStream.readInt:()I
+     124: putstatic     #67                 // Field nro/h.D:I
+     127: getstatic     #59                 // Field c:Ljava/io/DataInputStream;
+     130: invokevirtual #79                 // Method java/io/DataInputStream.readUTF:()Ljava/lang/String;
+     133: putstatic     #70                 // Field nro/h.c:Ljava/lang/String;
+     136: getstatic     #59                 // Field c:Ljava/io/DataInputStream;
+     139: invokevirtual #79                 // Method java/io/DataInputStream.readUTF:()Ljava/lang/String;
+     142: putstatic     #71                 // Field nro/h.j:Ljava/lang/String;
+     145: getstatic     #54                 // Field a:Ljavax/microedition/rms/RecordStore;
+     148: invokevirtual #106                // Method javax/microedition/rms/RecordStore.closeRecordStore:()V
+     151: goto          155
+     154: astore_0
+     155: ldc           #10                 // int 574924928
+     157: putstatic     #62                 // Field kv:I
+     160: return
+    Exception table:
+       from    to  target type
+          34   151   154   Class java/lang/Exception
+
+  public final void iF();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #57                 // Field b:Ljavax/microedition/lcdui/ChoiceGroup;
+      12: getstatic     #69                 // Field nro/h.b:B
+      15: getstatic     #61                 // Field ff:[I
+      18: sipush        230
+      21: sipush        230
+      24: ixor
+      25: iaload
+      26: invokevirtual #94                 // Method javax/microedition/lcdui/ChoiceGroup.setSelectedIndex:(IZ)V
+      29: getstatic     #49                 // Field nro/GameMidlet.a:Lnro/GameMidlet;
+      32: invokestatic  #96                 // Method javax/microedition/lcdui/Display.getDisplay:(Ljavax/microedition/midlet/MIDlet;)Ljavax/microedition/lcdui/Display;
+      35: aload_0
+      36: getfield      #53                 // Field a:Ljavax/microedition/lcdui/Form;
+      39: invokevirtual #97                 // Method javax/microedition/lcdui/Display.setCurrent:(Ljavax/microedition/lcdui/Displayable;)V
+      42: return
+}

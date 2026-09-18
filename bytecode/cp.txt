@@ -1,0 +1,24 @@
+public final class nro.cp {
+  public static final int jE;
+    descriptor: I
+
+  public int cf;
+    descriptor: I
+
+  public nro.aD[] a;
+    descriptor: [Lnro/aD;
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field jE:I
+       5: return
+
+  public nro.cp();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+}

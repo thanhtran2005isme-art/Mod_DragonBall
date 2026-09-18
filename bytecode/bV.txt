@@ -1,0 +1,246 @@
+public final class nro.bV {
+  public static final int jg;
+    descriptor: I
+
+  public java.io.DataOutputStream b;
+    descriptor: Ljava/io/DataOutputStream;
+
+  public java.io.ByteArrayInputStream a;
+    descriptor: Ljava/io/ByteArrayInputStream;
+
+  public static int[] dV;
+    descriptor: [I
+
+  public java.io.ByteArrayOutputStream a;
+    descriptor: Ljava/io/ByteArrayOutputStream;
+
+  public java.io.DataInputStream b;
+    descriptor: Ljava/io/DataInputStream;
+
+  public byte ad;
+    descriptor: B
+
+  public final byte[] a();
+    descriptor: ()[B
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #10                 // Field a:Ljava/io/ByteArrayOutputStream;
+      13: invokevirtual #18                 // Method java/io/ByteArrayOutputStream.toByteArray:()[B
+      16: areturn
+
+  public nro.bV(byte, byte[]);
+    descriptor: (B[B)V
+    Code:
+       0: aload_0
+       1: invokespecial #24                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aconst_null
+       6: putfield      #10                 // Field a:Ljava/io/ByteArrayOutputStream;
+       9: aload_0
+      10: aconst_null
+      11: putfield      #13                 // Field b:Ljava/io/DataOutputStream;
+      14: aload_0
+      15: aconst_null
+      16: putfield      #9                  // Field a:Ljava/io/ByteArrayInputStream;
+      19: aload_0
+      20: aconst_null
+      21: putfield      #12                 // Field b:Ljava/io/DataInputStream;
+      24: aload_0
+      25: iload_1
+      26: putfield      #11                 // Field ad:B
+      29: aload_0
+      30: new           #2                  // class java/io/ByteArrayInputStream
+      33: dup
+      34: aload_2
+      35: invokespecial #16                 // Method java/io/ByteArrayInputStream."<init>":([B)V
+      38: putfield      #9                  // Field a:Ljava/io/ByteArrayInputStream;
+      41: aload_0
+      42: new           #4                  // class java/io/DataInputStream
+      45: dup
+      46: aload_0
+      47: getfield      #9                  // Field a:Ljava/io/ByteArrayInputStream;
+      50: invokespecial #19                 // Method java/io/DataInputStream."<init>":(Ljava/io/InputStream;)V
+      53: putfield      #12                 // Field b:Ljava/io/DataInputStream;
+      56: return
+
+  public nro.bV(byte);
+    descriptor: (B)V
+    Code:
+       0: aload_0
+       1: invokespecial #24                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aconst_null
+       6: putfield      #10                 // Field a:Ljava/io/ByteArrayOutputStream;
+       9: aload_0
+      10: aconst_null
+      11: putfield      #13                 // Field b:Ljava/io/DataOutputStream;
+      14: aload_0
+      15: aconst_null
+      16: putfield      #9                  // Field a:Ljava/io/ByteArrayInputStream;
+      19: aload_0
+      20: aconst_null
+      21: putfield      #12                 // Field b:Ljava/io/DataInputStream;
+      24: aload_0
+      25: iload_1
+      26: putfield      #11                 // Field ad:B
+      29: aload_0
+      30: new           #3                  // class java/io/ByteArrayOutputStream
+      33: dup
+      34: getstatic     #14                 // Field dV:[I
+      37: sipush        230
+      40: sipush        230
+      43: ixor
+      44: iaload
+      45: invokespecial #17                 // Method java/io/ByteArrayOutputStream."<init>":(I)V
+      48: putfield      #10                 // Field a:Ljava/io/ByteArrayOutputStream;
+      51: aload_0
+      52: new           #5                  // class java/io/DataOutputStream
+      55: dup
+      56: aload_0
+      57: getfield      #10                 // Field a:Ljava/io/ByteArrayOutputStream;
+      60: invokespecial #22                 // Method java/io/DataOutputStream."<init>":(Ljava/io/OutputStream;)V
+      63: putfield      #13                 // Field b:Ljava/io/DataOutputStream;
+      66: return
+
+  public final void gI();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #12                 // Field b:Ljava/io/DataInputStream;
+      13: ifnull        23
+      16: aload_0
+      17: getfield      #12                 // Field b:Ljava/io/DataInputStream;
+      20: invokevirtual #20                 // Method java/io/DataInputStream.close:()V
+      23: aload_0
+      24: getfield      #13                 // Field b:Ljava/io/DataOutputStream;
+      27: ifnull        38
+      30: aload_0
+      31: getfield      #13                 // Field b:Ljava/io/DataOutputStream;
+      34: invokevirtual #23                 // Method java/io/DataOutputStream.close:()V
+      37: return
+      38: iconst_1
+      39: ifne          45
+      42: aconst_null
+      43: athrow
+      44: astore_1
+      45: return
+    Exception table:
+       from    to  target type
+           9    37    44   Class java/io/IOException
+
+  public static void gJ();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        231
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #14                 // Field dV:[I
+      21: getstatic     #14                 // Field dV:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        -16853
+      34: sipush        348
+      37: ixor
+      38: sipush        27226
+      41: sipush        484
+      44: ixor
+      45: iand
+      46: ineg
+      47: sipush        -17083
+      50: sipush        570
+      53: ixor
+      54: sipush        28616
+      57: bipush        125
+      59: ixor
+      60: iand
+      61: iand
+      62: iastore
+      63: return
+
+  public final java.io.DataInputStream b();
+    descriptor: ()Ljava/io/DataInputStream;
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #12                 // Field b:Ljava/io/DataInputStream;
+      13: areturn
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #25                 // Method gJ:()V
+       3: ldc           #1                  // int 574924928
+       5: putstatic     #15                 // Field jg:I
+       8: return
+
+  public final java.io.DataOutputStream b();
+    descriptor: ()Ljava/io/DataOutputStream;
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #13                 // Field b:Ljava/io/DataOutputStream;
+      13: areturn
+
+  public nro.bV();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #24                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aconst_null
+       6: putfield      #10                 // Field a:Ljava/io/ByteArrayOutputStream;
+       9: aload_0
+      10: aconst_null
+      11: putfield      #13                 // Field b:Ljava/io/DataOutputStream;
+      14: aload_0
+      15: aconst_null
+      16: putfield      #9                  // Field a:Ljava/io/ByteArrayInputStream;
+      19: aload_0
+      20: aconst_null
+      21: putfield      #12                 // Field b:Ljava/io/DataInputStream;
+      24: return
+
+  public final int M();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #12                 // Field b:Ljava/io/DataInputStream;
+      13: invokevirtual #21                 // Method java/io/DataInputStream.readInt:()I
+      16: ireturn
+}

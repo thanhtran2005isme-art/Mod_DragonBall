@@ -1,0 +1,54 @@
+public final class nro.bI {
+  public static final int iP;
+    descriptor: I
+
+  public java.lang.String ae;
+    descriptor: Ljava/lang/String;
+
+  public int cc;
+    descriptor: I
+
+  public short a;
+    descriptor: S
+
+  public int cf;
+    descriptor: I
+
+  public int bZ;
+    descriptor: I
+
+  public java.lang.String K;
+    descriptor: Ljava/lang/String;
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #10                 // Field iP:I
+       5: return
+
+  public nro.bI(byte, short, short, java.lang.String, java.lang.String, byte, byte);
+    descriptor: (BSSLjava/lang/String;Ljava/lang/String;BB)V
+    Code:
+       0: aload_0
+       1: invokespecial #11                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_2
+       6: putfield      #7                  // Field bZ:I
+       9: aload_0
+      10: iload_3
+      11: putfield      #5                  // Field a:S
+      14: aload_0
+      15: iload_1
+      16: putfield      #9                  // Field cf:I
+      19: aload_0
+      20: aload         4
+      22: putfield      #4                  // Field K:Ljava/lang/String;
+      25: aload_0
+      26: aload         5
+      28: putfield      #6                  // Field ae:Ljava/lang/String;
+      31: aload_0
+      32: iload         6
+      34: putfield      #8                  // Field cc:I
+      37: return
+}

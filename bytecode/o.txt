@@ -1,0 +1,688 @@
+public class nro.o {
+  public static final int ax;
+    descriptor: I
+
+  public static long A;
+    descriptor: J
+
+  public static int[] C;
+    descriptor: [I
+
+  public static long B;
+    descriptor: J
+
+  public static long C;
+    descriptor: J
+
+  public static long D;
+    descriptor: J
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #68                 // Method ai:()V
+       3: ldc2_w        #34                 // long -1l
+       6: putstatic     #52                 // Field D:J
+       9: ldc2_w        #34                 // long -1l
+      12: putstatic     #49                 // Field B:J
+      15: ldc2_w        #34                 // long -1l
+      18: putstatic     #50                 // Field C:J
+      21: ldc2_w        #34                 // long -1l
+      24: putstatic     #48                 // Field A:J
+      27: ldc           #11                 // int 574924928
+      29: putstatic     #53                 // Field ax:I
+      32: return
+
+  public static int a(nro.bF, int, int);
+    descriptor: (Lnro/bF;II)I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #48                 // Field A:J
+      12: lconst_0
+      13: lcmp
+      14: ifle          37
+      17: getstatic     #52                 // Field D:J
+      20: ldc2_w        #34                 // long -1l
+      23: lcmp
+      24: ifeq          37
+      27: getstatic     #50                 // Field C:J
+      30: ldc2_w        #34                 // long -1l
+      33: lcmp
+      34: ifne          42
+      37: invokestatic  #67                 // Method ab:()V
+      40: iload_2
+      41: ireturn
+      42: invokestatic  #60                 // Method java/lang/System.currentTimeMillis:()J
+      45: lstore_3
+      46: lload_3
+      47: getstatic     #48                 // Field A:J
+      50: lsub
+      51: ldc2_w        #38                 // long 1000l
+      54: ldiv
+      55: lstore        5
+      57: lload         5
+      59: lconst_0
+      60: lcmp
+      61: ifgt          67
+      64: lconst_1
+      65: lstore        5
+      67: invokestatic  #64                 // Method nro/bv.e:()Lnro/bv;
+      70: getfield      #45                 // Field nro/bv.bt:J
+      73: getstatic     #52                 // Field D:J
+      76: lsub
+      77: lstore        7
+      79: lload         7
+      81: lconst_0
+      82: lcmp
+      83: ifge          91
+      86: invokestatic  #67                 // Method ab:()V
+      89: iload_2
+      90: ireturn
+      91: invokestatic  #64                 // Method nro/bv.e:()Lnro/bv;
+      94: getfield      #44                 // Field nro/bv.bh:J
+      97: getstatic     #50                 // Field C:J
+     100: lsub
+     101: lstore        9
+     103: lload         9
+     105: lconst_0
+     106: lcmp
+     107: ifge          119
+     110: invokestatic  #64                 // Method nro/bv.e:()Lnro/bv;
+     113: getfield      #44                 // Field nro/bv.bh:J
+     116: putstatic     #50                 // Field C:J
+     119: lload         7
+     121: ldc2_w        #40                 // long 3600l
+     124: lmul
+     125: lload         5
+     127: ldiv
+     128: lstore        11
+     130: lload         9
+     132: ldc2_w        #40                 // long 3600l
+     135: lmul
+     136: lload         5
+     138: ldiv
+     139: lstore        13
+     141: getstatic     #42                 // Field nro/aF.H:Lnro/aF;
+     144: aload_0
+     145: new           #27                 // class java/lang/StringBuffer
+     148: dup
+     149: invokespecial #56                 // Method java/lang/StringBuffer."<init>":()V
+     152: getstatic     #47                 // Field nro/cX.o:[S
+     155: ldc           #5                  // int 38030
+     157: sipush        230
+     160: ixor
+     161: sipush        355
+     164: sipush        363
+     167: ixor
+     168: ldc           #19                 // int 574925276
+     170: sipush        348
+     173: ixor
+     174: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     177: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     180: lload         5
+     182: invokestatic  #66                 // Method a:(J)Ljava/lang/String;
+     185: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     188: invokevirtual #59                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     191: iload_1
+     192: iload_2
+     193: getstatic     #51                 // Field C:[I
+     196: sipush        484
+     199: sipush        484
+     202: ixor
+     203: iaload
+     204: getstatic     #43                 // Field nro/aF.h:Lnro/aF;
+     207: invokevirtual #62                 // Method nro/aF.a:(Lnro/bF;Ljava/lang/String;IIILnro/aF;)V
+     210: getstatic     #42                 // Field nro/aF.H:Lnro/aF;
+     213: aload_0
+     214: new           #27                 // class java/lang/StringBuffer
+     217: dup
+     218: invokespecial #56                 // Method java/lang/StringBuffer."<init>":()V
+     221: getstatic     #47                 // Field nro/cX.o:[S
+     224: ldc           #8                  // int 38474
+     226: sipush        570
+     229: ixor
+     230: bipush        113
+     232: bipush        125
+     234: ixor
+     235: ldc           #12                 // int 574925033
+     237: bipush        105
+     239: ixor
+     240: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     243: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     246: lload         7
+     248: invokestatic  #61                 // Method nro/aC.c:(J)Ljava/lang/String;
+     251: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     254: getstatic     #47                 // Field nro/cX.o:[S
+     257: ldc           #9                  // int 38522
+     259: sipush        518
+     262: ixor
+     263: bipush        126
+     265: bipush        119
+     267: ixor
+     268: ldc           #10                 // int 574924865
+     270: sipush        193
+     273: ixor
+     274: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     277: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     280: lload         11
+     282: invokestatic  #61                 // Method nro/aC.c:(J)Ljava/lang/String;
+     285: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     288: getstatic     #47                 // Field nro/cX.o:[S
+     291: sipush        1124
+     294: sipush        282
+     297: ixor
+     298: bipush        103
+     300: bipush        102
+     302: ixor
+     303: ldc           #21                 // int 574925304
+     305: sipush        376
+     308: ixor
+     309: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     312: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     315: invokevirtual #59                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     318: iload_1
+     319: iload_2
+     320: getstatic     #51                 // Field C:[I
+     323: sipush        393
+     326: sipush        392
+     329: ixor
+     330: iaload
+     331: iadd
+     332: getstatic     #51                 // Field C:[I
+     335: sipush        576
+     338: sipush        576
+     341: ixor
+     342: iaload
+     343: getstatic     #43                 // Field nro/aF.h:Lnro/aF;
+     346: invokevirtual #62                 // Method nro/aF.a:(Lnro/bF;Ljava/lang/String;IIILnro/aF;)V
+     349: getstatic     #42                 // Field nro/aF.H:Lnro/aF;
+     352: aload_0
+     353: new           #27                 // class java/lang/StringBuffer
+     356: dup
+     357: invokespecial #56                 // Method java/lang/StringBuffer."<init>":()V
+     360: getstatic     #47                 // Field nro/cX.o:[S
+     363: ldc           #3                  // int 37889
+     365: sipush        132
+     368: ixor
+     369: sipush        544
+     372: sipush        556
+     375: ixor
+     376: ldc           #17                 // int 574925198
+     378: sipush        270
+     381: ixor
+     382: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     385: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     388: lload         9
+     390: invokestatic  #61                 // Method nro/aC.c:(J)Ljava/lang/String;
+     393: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     396: getstatic     #47                 // Field nro/cX.o:[S
+     399: ldc           #7                  // int 38187
+     401: sipush        343
+     404: ixor
+     405: sipush        316
+     408: sipush        309
+     411: ixor
+     412: ldc           #16                 // int 574925172
+     414: sipush        500
+     417: ixor
+     418: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     421: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     424: lload         13
+     426: invokestatic  #61                 // Method nro/aC.c:(J)Ljava/lang/String;
+     429: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     432: getstatic     #47                 // Field nro/cX.o:[S
+     435: sipush        1201
+     438: sipush        463
+     441: ixor
+     442: sipush        327
+     445: sipush        326
+     448: ixor
+     449: ldc           #22                 // int 574925441
+     451: sipush        513
+     454: ixor
+     455: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     458: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     461: invokevirtual #59                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     464: iload_1
+     465: iload_2
+     466: getstatic     #51                 // Field C:[I
+     469: sipush        341
+     472: sipush        343
+     475: ixor
+     476: iaload
+     477: iadd
+     478: getstatic     #51                 // Field C:[I
+     481: sipush        341
+     484: sipush        341
+     487: ixor
+     488: iaload
+     489: getstatic     #43                 // Field nro/aF.h:Lnro/aF;
+     492: invokevirtual #62                 // Method nro/aF.a:(Lnro/bF;Ljava/lang/String;IIILnro/aF;)V
+     495: invokestatic  #64                 // Method nro/bv.e:()Lnro/bv;
+     498: getfield      #46                 // Field nro/bv.dJ:Z
+     501: ifeq          736
+     504: invokestatic  #63                 // Method nro/bv.d:()Lnro/bv;
+     507: ifnull        736
+     510: getstatic     #49                 // Field B:J
+     513: ldc2_w        #34                 // long -1l
+     516: lcmp
+     517: ifeq          528
+     520: getstatic     #49                 // Field B:J
+     523: lconst_0
+     524: lcmp
+     525: ifne          537
+     528: invokestatic  #63                 // Method nro/bv.d:()Lnro/bv;
+     531: getfield      #45                 // Field nro/bv.bt:J
+     534: putstatic     #49                 // Field B:J
+     537: invokestatic  #63                 // Method nro/bv.d:()Lnro/bv;
+     540: getfield      #45                 // Field nro/bv.bt:J
+     543: getstatic     #49                 // Field B:J
+     546: lsub
+     547: lstore        15
+     549: lload         15
+     551: lconst_0
+     552: lcmp
+     553: ifge          565
+     556: invokestatic  #63                 // Method nro/bv.d:()Lnro/bv;
+     559: getfield      #45                 // Field nro/bv.bt:J
+     562: putstatic     #49                 // Field B:J
+     565: lload         15
+     567: ldc2_w        #40                 // long 3600l
+     570: lmul
+     571: lload         5
+     573: ldiv
+     574: lstore        17
+     576: getstatic     #42                 // Field nro/aF.H:Lnro/aF;
+     579: aload_0
+     580: new           #27                 // class java/lang/StringBuffer
+     583: dup
+     584: invokespecial #56                 // Method java/lang/StringBuffer."<init>":()V
+     587: getstatic     #47                 // Field nro/cX.o:[S
+     590: ldc           #4                  // int 37907
+     592: sipush        130
+     595: ixor
+     596: sipush        549
+     599: sipush        558
+     602: ixor
+     603: ldc           #15                 // int 574925159
+     605: sipush        487
+     608: ixor
+     609: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     612: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     615: lload         15
+     617: invokestatic  #61                 // Method nro/aC.c:(J)Ljava/lang/String;
+     620: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     623: getstatic     #47                 // Field nro/cX.o:[S
+     626: ldc           #6                  // int 38182
+     628: sipush        346
+     631: ixor
+     632: sipush        323
+     635: sipush        330
+     638: ixor
+     639: ldc           #20                 // int 574925284
+     641: sipush        356
+     644: ixor
+     645: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     648: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     651: lload         17
+     653: invokestatic  #61                 // Method nro/aC.c:(J)Ljava/lang/String;
+     656: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     659: getstatic     #47                 // Field nro/cX.o:[S
+     662: sipush        1900
+     665: sipush        530
+     668: ixor
+     669: sipush        184
+     672: sipush        185
+     675: ixor
+     676: ldc           #18                 // int 574925245
+     678: sipush        317
+     681: ixor
+     682: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     685: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     688: invokevirtual #59                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     691: iload_1
+     692: iload_2
+     693: getstatic     #51                 // Field C:[I
+     696: sipush        324
+     699: sipush        327
+     702: ixor
+     703: iaload
+     704: iadd
+     705: getstatic     #51                 // Field C:[I
+     708: sipush        312
+     711: sipush        312
+     714: ixor
+     715: iaload
+     716: getstatic     #43                 // Field nro/aF.h:Lnro/aF;
+     719: invokevirtual #62                 // Method nro/aF.a:(Lnro/bF;Ljava/lang/String;IIILnro/aF;)V
+     722: iload_2
+     723: getstatic     #51                 // Field C:[I
+     726: sipush        197
+     729: sipush        193
+     732: ixor
+     733: iaload
+     734: iadd
+     735: ireturn
+     736: iload_2
+     737: getstatic     #51                 // Field C:[I
+     740: sipush        314
+     743: sipush        313
+     746: ixor
+     747: iaload
+     748: iadd
+     749: ireturn
+
+  public static void ai();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        227
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #51                 // Field C:[I
+      21: getstatic     #51                 // Field C:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        350
+      34: sipush        348
+      37: ixor
+      38: sipush        446
+      41: sipush        484
+      44: ixor
+      45: ixor
+      46: sipush        730
+      49: sipush        570
+      52: ixor
+      53: sipush        206
+      56: bipush        125
+      58: ixor
+      59: ixor
+      60: ixor
+      61: bipush        10
+      63: bipush        105
+      65: ixor
+      66: sipush        548
+      69: sipush        518
+      72: ixor
+      73: iadd
+      74: bipush        75
+      76: bipush        119
+      78: ixor
+      79: isub
+      80: sipush        169
+      83: sipush        193
+      86: ixor
+      87: iadd
+      88: sipush        336
+      91: sipush        282
+      94: ixor
+      95: bipush        77
+      97: bipush        102
+      99: ixor
+     100: iadd
+     101: sipush        312
+     104: sipush        376
+     107: ixor
+     108: isub
+     109: sipush        269
+     112: sipush        392
+     115: ixor
+     116: iadd
+     117: ixor
+     118: getstatic     #47                 // Field nro/cX.o:[S
+     121: sipush        578
+     124: sipush        576
+     127: ixor
+     128: sipush        133
+     131: sipush        132
+     134: ixor
+     135: ldc           #23                 // int 574925484
+     137: sipush        556
+     140: ixor
+     141: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     144: invokevirtual #55                 // Method java/lang/String.length:()I
+     147: ineg
+     148: ixor
+     149: iand
+     150: iastore
+     151: getstatic     #51                 // Field C:[I
+     154: sipush        271
+     157: sipush        270
+     160: ixor
+     161: sipush        377
+     164: sipush        343
+     167: ixor
+     168: sipush        388
+     171: sipush        309
+     174: ixor
+     175: iadd
+     176: sipush        290
+     179: sipush        500
+     182: ixor
+     183: isub
+     184: sipush        267
+     187: sipush        463
+     190: ixor
+     191: iadd
+     192: sipush        377
+     195: sipush        326
+     198: ixor
+     199: sipush        627
+     202: sipush        513
+     205: ixor
+     206: iadd
+     207: sipush        301
+     210: sipush        343
+     213: ixor
+     214: isub
+     215: sipush        453
+     218: sipush        341
+     221: ixor
+     222: iadd
+     223: ixor
+     224: iastore
+     225: getstatic     #51                 // Field C:[I
+     228: sipush        128
+     231: sipush        130
+     234: ixor
+     235: sipush        657
+     238: sipush        558
+     241: ixor
+     242: sipush        360
+     245: sipush        487
+     248: ixor
+     249: ixor
+     250: sipush        339
+     253: sipush        346
+     256: ixor
+     257: sipush        359
+     260: sipush        330
+     263: ixor
+     264: ixor
+     265: ixor
+     266: iastore
+     267: getstatic     #51                 // Field C:[I
+     270: sipush        359
+     273: sipush        356
+     276: ixor
+     277: sipush        540
+     280: sipush        530
+     283: ixor
+     284: sipush        249
+     287: sipush        185
+     290: ixor
+     291: ixor
+     292: sipush        333
+     295: sipush        317
+     298: ixor
+     299: sipush        359
+     302: sipush        327
+     305: ixor
+     306: ixor
+     307: ixor
+     308: iastore
+     309: getstatic     #51                 // Field C:[I
+     312: sipush        316
+     315: sipush        312
+     318: ixor
+     319: sipush        143
+     322: sipush        193
+     325: ixor
+     326: sipush        282
+     329: sipush        313
+     332: ixor
+     333: ixor
+     334: sipush        468
+     337: sipush        264
+     340: ixor
+     341: sipush        326
+     344: sipush        479
+     347: ixor
+     348: ixor
+     349: ixor
+     350: iastore
+     351: return
+
+  public static java.lang.String a(long);
+    descriptor: (J)Ljava/lang/String;
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: lload_0
+      10: ldc2_w        #40                 // long 3600l
+      13: ldiv
+      14: lstore_2
+      15: lload_0
+      16: ldc2_w        #40                 // long 3600l
+      19: lrem
+      20: ldc2_w        #36                 // long 60l
+      23: ldiv
+      24: lstore        4
+      26: lload_0
+      27: ldc2_w        #36                 // long 60l
+      30: lrem
+      31: lstore        6
+      33: new           #27                 // class java/lang/StringBuffer
+      36: dup
+      37: invokespecial #56                 // Method java/lang/StringBuffer."<init>":()V
+      40: lload_2
+      41: lconst_0
+      42: lcmp
+      43: ifle          94
+      46: new           #27                 // class java/lang/StringBuffer
+      49: dup
+      50: invokespecial #56                 // Method java/lang/StringBuffer."<init>":()V
+      53: lload_2
+      54: invokevirtual #57                 // Method java/lang/StringBuffer.append:(J)Ljava/lang/StringBuffer;
+      57: getstatic     #47                 // Field nro/cX.o:[S
+      60: ldc           #2                  // int 37295
+      62: sipush        230
+      65: ixor
+      66: sipush        362
+      69: sipush        363
+      72: ixor
+      73: ldc           #19                 // int 574925276
+      75: sipush        348
+      78: ixor
+      79: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+      82: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      85: invokevirtual #59                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+      88: iconst_1
+      89: ifne          96
+      92: aconst_null
+      93: athrow
+      94: ldc           #24                 // String
+      96: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      99: lload         4
+     101: invokevirtual #57                 // Method java/lang/StringBuffer.append:(J)Ljava/lang/StringBuffer;
+     104: getstatic     #47                 // Field nro/cX.o:[S
+     107: sipush        31127
+     110: sipush        484
+     113: ixor
+     114: sipush        571
+     117: sipush        570
+     120: ixor
+     121: ldc           #14                 // int 574925053
+     123: bipush        125
+     125: ixor
+     126: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     129: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     132: lload         6
+     134: invokevirtual #57                 // Method java/lang/StringBuffer.append:(J)Ljava/lang/StringBuffer;
+     137: getstatic     #47                 // Field nro/cX.o:[S
+     140: ldc           #1                  // int 35301
+     142: bipush        105
+     144: ixor
+     145: sipush        519
+     148: sipush        518
+     151: ixor
+     152: ldc           #13                 // int 574925047
+     154: bipush        119
+     156: ixor
+     157: invokestatic  #65                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     160: invokevirtual #58                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+     163: invokevirtual #59                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     166: areturn
+
+  public nro.o();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #54                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void ab();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: invokestatic  #64                 // Method nro/bv.e:()Lnro/bv;
+      12: getfield      #45                 // Field nro/bv.bt:J
+      15: lconst_0
+      16: lcmp
+      17: ifgt          21
+      20: return
+      21: invokestatic  #64                 // Method nro/bv.e:()Lnro/bv;
+      24: getfield      #45                 // Field nro/bv.bt:J
+      27: putstatic     #52                 // Field D:J
+      30: invokestatic  #64                 // Method nro/bv.e:()Lnro/bv;
+      33: getfield      #44                 // Field nro/bv.bh:J
+      36: putstatic     #50                 // Field C:J
+      39: invokestatic  #64                 // Method nro/bv.e:()Lnro/bv;
+      42: getfield      #46                 // Field nro/bv.dJ:Z
+      45: ifeq          69
+      48: invokestatic  #63                 // Method nro/bv.d:()Lnro/bv;
+      51: ifnull        69
+      54: invokestatic  #63                 // Method nro/bv.d:()Lnro/bv;
+      57: getfield      #45                 // Field nro/bv.bt:J
+      60: putstatic     #49                 // Field B:J
+      63: iconst_1
+      64: ifne          73
+      67: aconst_null
+      68: athrow
+      69: lconst_0
+      70: putstatic     #49                 // Field B:J
+      73: invokestatic  #60                 // Method java/lang/System.currentTimeMillis:()J
+      76: putstatic     #48                 // Field A:J
+      79: return
+}

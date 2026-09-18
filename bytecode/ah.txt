@@ -1,0 +1,30 @@
+public final class nro.ah {
+  public static final int cz;
+    descriptor: I
+
+  public int bZ;
+    descriptor: I
+
+  public nro.aP[] a;
+    descriptor: [Lnro/aP;
+
+  public nro.aP[] b;
+    descriptor: [Lnro/aP;
+
+  public int cf;
+    descriptor: I
+
+  public nro.ah();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field cz:I
+       5: return
+}

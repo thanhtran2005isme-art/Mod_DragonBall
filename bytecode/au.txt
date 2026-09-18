@@ -1,0 +1,30 @@
+public final class nro.au {
+  public static final int cV;
+    descriptor: I
+
+  public nro.cW a;
+    descriptor: Lnro/cW;
+
+  public short f;
+    descriptor: S
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #5                  // Field cV:I
+       5: return
+
+  public nro.au(byte, int, int, short);
+    descriptor: (BIIS)V
+    Code:
+       0: aload_0
+       1: invokespecial #7                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aconst_null
+       6: putfield      #4                  // Field a:Lnro/cW;
+       9: aload_0
+      10: iload         4
+      12: putfield      #6                  // Field f:S
+      15: return
+}

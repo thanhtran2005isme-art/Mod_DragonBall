@@ -1,0 +1,166 @@
+public final class nro.az {
+  public static final int da;
+    descriptor: I
+
+  public int cy;
+    descriptor: I
+
+  public nro.bv e;
+    descriptor: Lnro/bv;
+
+  public int cf;
+    descriptor: I
+
+  public int aX;
+    descriptor: I
+
+  public int bY;
+    descriptor: I
+
+  public boolean aT;
+    descriptor: Z
+
+  public int bZ;
+    descriptor: I
+
+  public int p;
+    descriptor: I
+
+  public int m;
+    descriptor: I
+
+  public static int[] bk;
+    descriptor: [I
+
+  public int bX;
+    descriptor: I
+
+  public boolean bo;
+    descriptor: Z
+
+  public int cc;
+    descriptor: I
+
+  public boolean aX;
+    descriptor: Z
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #17                 // Method dc:()V
+       3: ldc           #1                  // int 574924928
+       5: putstatic     #13                 // Field da:I
+       8: return
+
+  public static void dc();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        229
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #10                 // Field bk:[I
+      21: getstatic     #10                 // Field bk:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        -30037
+      34: sipush        348
+      37: ixor
+      38: sipush        30219
+      41: sipush        484
+      44: ixor
+      45: iand
+      46: ineg
+      47: iastore
+      48: getstatic     #10                 // Field bk:[I
+      51: sipush        571
+      54: sipush        570
+      57: ixor
+      58: getstatic     #14                 // Field nro/cX.o:[S
+      61: bipush        127
+      63: bipush        125
+      65: ixor
+      66: bipush        104
+      68: bipush        105
+      70: ixor
+      71: ldc           #2                  // int 574925446
+      73: sipush        518
+      76: ixor
+      77: invokestatic  #18                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+      80: invokevirtual #16                 // Method java/lang/String.length:()I
+      83: iastore
+      84: getstatic     #10                 // Field bk:[I
+      87: bipush        117
+      89: bipush        119
+      91: ixor
+      92: sipush        182
+      95: sipush        193
+      98: ixor
+      99: sipush        341
+     102: sipush        282
+     105: ixor
+     106: ixor
+     107: sipush        159
+     110: bipush        102
+     112: ixor
+     113: sipush        441
+     116: sipush        376
+     119: ixor
+     120: ixor
+     121: sipush        -393
+     124: sipush        392
+     127: ixor
+     128: ixor
+     129: iand
+     130: iastore
+     131: return
+
+  public nro.az();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: getstatic     #10                 // Field bk:[I
+       8: sipush        230
+      11: sipush        230
+      14: ixor
+      15: iaload
+      16: putfield      #12                 // Field cy:I
+      19: aload_0
+      20: getstatic     #10                 // Field bk:[I
+      23: sipush        363
+      26: sipush        363
+      29: ixor
+      30: iaload
+      31: putfield      #9                  // Field bY:I
+      34: aload_0
+      35: getstatic     #10                 // Field bk:[I
+      38: sipush        349
+      41: sipush        348
+      44: ixor
+      45: iaload
+      46: putfield      #8                  // Field aX:Z
+      49: aload_0
+      50: getstatic     #10                 // Field bk:[I
+      53: sipush        486
+      56: sipush        484
+      59: ixor
+      60: iaload
+      61: putfield      #11                 // Field bo:Z
+      64: aload_0
+      65: getstatic     #10                 // Field bk:[I
+      68: sipush        568
+      71: sipush        570
+      74: ixor
+      75: iaload
+      76: putfield      #7                  // Field aT:Z
+      79: return
+}

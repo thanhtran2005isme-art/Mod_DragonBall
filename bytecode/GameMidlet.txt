@@ -1,0 +1,296 @@
+public class nro.GameMidlet extends javax.microedition.midlet.MIDlet {
+  public static final int bW;
+    descriptor: I
+
+  public static java.lang.String I;
+    descriptor: Ljava/lang/String;
+
+  public static boolean aQ;
+    descriptor: Z
+
+  public static int bX;
+    descriptor: I
+
+  public static int bY;
+    descriptor: I
+
+  public static java.lang.String J;
+    descriptor: Ljava/lang/String;
+
+  public static int[] am;
+    descriptor: [I
+
+  public static nro.GameMidlet a;
+    descriptor: Lnro/GameMidlet;
+
+  public static boolean aR;
+    descriptor: Z
+
+  public static int bZ;
+    descriptor: I
+
+  public static nro.aE a;
+    descriptor: Lnro/aE;
+
+  public final void ck();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #18                 // Field am:[I
+      12: sipush        230
+      15: sipush        230
+      18: ixor
+      19: iaload
+      20: putstatic     #25                 // Field nro/cr.dz:Z
+      23: invokestatic  #27                 // Method java/lang/System.gc:()V
+      26: aload_0
+      27: invokevirtual #31                 // Method javax/microedition/midlet/MIDlet.notifyDestroyed:()V
+      30: return
+
+  public nro.GameMidlet();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #30                 // Method javax/microedition/midlet/MIDlet."<init>":()V
+       4: aload_0
+       5: putstatic     #15                 // Field a:Lnro/GameMidlet;
+       8: return
+
+  public void destroyApp(boolean);
+    descriptor: (Z)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #32                 // Method cl:()V
+       3: getstatic     #24                 // Field nro/cX.o:[S
+       6: sipush        30975
+       9: bipush        13
+      11: ldc           #1                  // int 574924928
+      13: invokestatic  #41                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+      16: putstatic     #14                 // Field I:Ljava/lang/String;
+      19: getstatic     #18                 // Field am:[I
+      22: iconst_2
+      23: iaload
+      24: putstatic     #21                 // Field bZ:I
+      27: getstatic     #18                 // Field am:[I
+      30: iconst_3
+      31: iaload
+      32: putstatic     #20                 // Field bX:I
+      35: ldc           #1                  // int 574924928
+      37: putstatic     #19                 // Field bW:I
+      40: return
+
+  public void startApp();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #17                 // Field aR:Z
+      12: ifne          109
+      15: new           #8                  // class nro/aE
+      18: dup
+      19: invokespecial #33                 // Method nro/aE."<init>":()V
+      22: dup
+      23: putstatic     #16                 // Field a:Lnro/aE;
+      26: astore_1
+      27: new           #5                  // class java/lang/Thread
+      30: dup
+      31: aload_1
+      32: invokespecial #28                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      35: invokevirtual #29                 // Method java/lang/Thread.start:()V
+      38: invokestatic  #37                 // Method nro/bh.b:()Lnro/bh;
+      41: invokestatic  #34                 // Method nro/aJ.a:()Lnro/aJ;
+      44: invokevirtual #36                 // Method nro/bh.a:(Lnro/aR;)V
+      47: invokestatic  #35                 // Method nro/bh.a:()Lnro/bh;
+      50: invokestatic  #34                 // Method nro/aJ.a:()Lnro/aJ;
+      53: invokevirtual #36                 // Method nro/bh.a:(Lnro/aR;)V
+      56: invokestatic  #35                 // Method nro/bh.a:()Lnro/bh;
+      59: getstatic     #18                 // Field am:[I
+      62: sipush        230
+      65: sipush        230
+      68: ixor
+      69: iaload
+      70: putfield      #23                 // Field nro/bh.bS:Z
+      73: invokestatic  #40                 // Method nro/cT.cB:()V
+      76: invokestatic  #39                 // Method nro/cT.ad:()V
+      79: new           #11                 // class nro/cT
+      82: dup
+      83: invokespecial #38                 // Method nro/cT."<init>":()V
+      86: putstatic     #22                 // Field nro/aE.b:Lnro/bd;
+      89: getstatic     #15                 // Field a:Lnro/GameMidlet;
+      92: invokestatic  #42                 // Method nro/cr.a:(Lnro/GameMidlet;)V
+      95: getstatic     #18                 // Field am:[I
+      98: sipush        362
+     101: sipush        363
+     104: ixor
+     105: iaload
+     106: putstatic     #17                 // Field aR:Z
+     109: return
+
+  public static void cl();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        226
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #18                 // Field am:[I
+      21: getstatic     #18                 // Field am:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        321
+      34: sipush        348
+      37: ixor
+      38: sipush        469
+      41: sipush        484
+      44: ixor
+      45: ixor
+      46: sipush        679
+      49: sipush        570
+      52: ixor
+      53: sipush        204
+      56: bipush        125
+      58: ixor
+      59: ixor
+      60: bipush        -106
+      62: bipush        105
+      64: ixor
+      65: ixor
+      66: iand
+      67: iastore
+      68: getstatic     #18                 // Field am:[I
+      71: sipush        519
+      74: sipush        518
+      77: ixor
+      78: getstatic     #24                 // Field nro/cX.o:[S
+      81: bipush        117
+      83: bipush        119
+      85: ixor
+      86: sipush        192
+      89: sipush        193
+      92: ixor
+      93: ldc           #2                  // int 574925210
+      95: sipush        282
+      98: ixor
+      99: invokestatic  #41                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     102: invokevirtual #26                 // Method java/lang/String.length:()I
+     105: iastore
+     106: getstatic     #18                 // Field am:[I
+     109: bipush        100
+     111: bipush        102
+     113: ixor
+     114: sipush        -6621
+     117: sipush        376
+     120: ixor
+     121: sipush        23103
+     124: sipush        392
+     127: ixor
+     128: iand
+     129: ineg
+     130: sipush        -577
+     133: sipush        576
+     136: ixor
+     137: sipush        31739
+     140: sipush        132
+     143: ixor
+     144: iand
+     145: iand
+     146: iastore
+     147: getstatic     #18                 // Field am:[I
+     150: sipush        559
+     153: sipush        556
+     156: ixor
+     157: sipush        315
+     160: sipush        270
+     163: ixor
+     164: sipush        305
+     167: sipush        343
+     170: ixor
+     171: iadd
+     172: sipush        323
+     175: sipush        309
+     178: ixor
+     179: isub
+     180: sipush        325
+     183: sipush        500
+     186: ixor
+     187: iadd
+     188: sipush        458
+     191: sipush        463
+     194: ixor
+     195: sipush        357
+     198: sipush        326
+     201: ixor
+     202: iadd
+     203: sipush        -514
+     206: sipush        513
+     209: ixor
+     210: isub
+     211: sipush        458
+     214: sipush        343
+     217: ixor
+     218: iadd
+     219: iadd
+     220: sipush        312
+     223: sipush        341
+     226: ixor
+     227: sipush        244
+     230: sipush        130
+     233: ixor
+     234: iadd
+     235: sipush        514
+     238: sipush        558
+     241: ixor
+     242: isub
+     243: sipush        493
+     246: sipush        487
+     249: ixor
+     250: iadd
+     251: isub
+     252: sipush        256
+     255: sipush        346
+     258: ixor
+     259: sipush        269
+     262: sipush        330
+     265: ixor
+     266: ixor
+     267: iadd
+     268: iastore
+     269: return
+
+  public void pauseApp();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: return
+}

@@ -1,0 +1,30 @@
+public final class nro.cx {
+  public static final int jN;
+    descriptor: I
+
+  public boolean bQ;
+    descriptor: Z
+
+  public java.lang.String I;
+    descriptor: Ljava/lang/String;
+
+  public short a;
+    descriptor: S
+
+  public java.lang.String p;
+    descriptor: Ljava/lang/String;
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field jN:I
+       5: return
+
+  public nro.cx();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+}

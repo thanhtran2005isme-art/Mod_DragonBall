@@ -1,0 +1,68 @@
+public final class nro.bB {
+  public static final int iE;
+    descriptor: I
+
+  public static nro.aH b;
+    descriptor: Lnro/aH;
+
+  public static void c(nro.bP);
+    descriptor: (Lnro/bP;)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #10                 // Field b:Lnro/aH;
+      12: new           #4                  // class java/lang/Short
+      15: dup
+      16: aload_0
+      17: getfield      #12                 // Field nro/bP.c:S
+      20: invokespecial #15                 // Method java/lang/Short."<init>":(S)V
+      23: aload_0
+      24: invokevirtual #18                 // Method nro/aH.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      27: pop
+      28: return
+
+  public static nro.bP a(short);
+    descriptor: (S)Lnro/bP;
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #10                 // Field b:Lnro/aH;
+      12: new           #4                  // class java/lang/Short
+      15: dup
+      16: iload_0
+      17: invokespecial #15                 // Method java/lang/Short."<init>":(S)V
+      20: invokevirtual #16                 // Method java/util/Hashtable.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      23: checkcast     #8                  // class nro/bP
+      26: areturn
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: new           #6                  // class nro/aH
+       3: dup
+       4: getstatic     #13                 // Field nro/cX.o:[S
+       7: ldc           #1                  // int 48750
+       9: bipush        6
+      11: ldc           #2                  // int 574924928
+      13: invokestatic  #19                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+      16: invokespecial #17                 // Method nro/aH."<init>":(Ljava/lang/String;)V
+      19: putstatic     #10                 // Field b:Lnro/aH;
+      22: ldc           #2                  // int 574924928
+      24: putstatic     #11                 // Field iE:I
+      27: return
+
+  public nro.bB();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: return
+}

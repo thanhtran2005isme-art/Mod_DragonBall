@@ -1,0 +1,167 @@
+public final class nro.cC {
+  public static final int jS;
+    descriptor: I
+
+  public int m;
+    descriptor: I
+
+  public int bZ;
+    descriptor: I
+
+  public static int[] eE;
+    descriptor: [I
+
+  public int cy;
+    descriptor: I
+
+  public int bY;
+    descriptor: I
+
+  public int cf;
+    descriptor: I
+
+  public boolean aV;
+    descriptor: Z
+
+  public int bX;
+    descriptor: I
+
+  public int cc;
+    descriptor: I
+
+  public final void a(int, int, int, int, int, int, boolean);
+    descriptor: (IIIIIIZ)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: iload_1
+      11: putfield      #12                 // Field cf:I
+      14: aload_0
+      15: iload_2
+      16: putfield      #10                 // Field bZ:I
+      19: aload_0
+      20: iload_3
+      21: putfield      #13                 // Field cy:I
+      24: aload_0
+      25: iload         4
+      27: putfield      #9                  // Field bY:I
+      30: aload_0
+      31: iload         5
+      33: putfield      #8                  // Field bX:I
+      36: aload_0
+      37: iload         6
+      39: putfield      #11                 // Field cc:I
+      42: aload_0
+      43: iload         7
+      45: putfield      #7                  // Field aV:Z
+      48: return
+
+  public static void hx();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        231
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #14                 // Field eE:[I
+      21: getstatic     #14                 // Field eE:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        501
+      34: sipush        348
+      37: ixor
+      38: sipush        350
+      41: sipush        484
+      44: ixor
+      45: ixor
+      46: sipush        540
+      49: sipush        570
+      52: ixor
+      53: bipush        8
+      55: bipush        125
+      57: ixor
+      58: ixor
+      59: ixor
+      60: bipush        49
+      62: bipush        105
+      64: ixor
+      65: sipush        652
+      68: sipush        518
+      71: ixor
+      72: iadd
+      73: bipush        6
+      75: bipush        119
+      77: ixor
+      78: isub
+      79: sipush        191
+      82: sipush        193
+      85: ixor
+      86: iadd
+      87: sipush        412
+      90: sipush        282
+      93: ixor
+      94: bipush        73
+      96: bipush        102
+      98: ixor
+      99: iadd
+     100: sipush        297
+     103: sipush        376
+     106: ixor
+     107: isub
+     108: sipush        451
+     111: sipush        392
+     114: ixor
+     115: iadd
+     116: ixor
+     117: getstatic     #16                 // Field nro/cX.o:[S
+     120: sipush        578
+     123: sipush        576
+     126: ixor
+     127: sipush        133
+     130: sipush        132
+     133: ixor
+     134: ldc           #2                  // int 574925484
+     136: sipush        556
+     139: ixor
+     140: invokestatic  #20                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+     143: invokevirtual #18                 // Method java/lang/String.length:()I
+     146: ineg
+     147: ixor
+     148: iand
+     149: iastore
+     150: return
+
+  public nro.cC();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: getstatic     #14                 // Field eE:[I
+       8: sipush        230
+      11: sipush        230
+      14: ixor
+      15: iaload
+      16: putfield      #7                  // Field aV:Z
+      19: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #19                 // Method hx:()V
+       3: ldc           #1                  // int 574924928
+       5: putstatic     #15                 // Field jS:I
+       8: return
+}

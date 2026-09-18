@@ -1,0 +1,54 @@
+public final class nro.cm {
+  public static final int jB;
+    descriptor: I
+
+  public java.lang.String p;
+    descriptor: Ljava/lang/String;
+
+  public int cf;
+    descriptor: I
+
+  public short d;
+    descriptor: S
+
+  public short a;
+    descriptor: S
+
+  public long bE;
+    descriptor: J
+
+  public short e;
+    descriptor: S
+
+  public nro.cm(int, java.lang.String, short, short, short, long);
+    descriptor: (ILjava/lang/String;SSSJ)V
+    Code:
+       0: aload_0
+       1: invokespecial #11                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #6                  // Field cf:I
+       9: aload_0
+      10: aload_2
+      11: putfield      #10                 // Field p:Ljava/lang/String;
+      14: aload_0
+      15: iload_3
+      16: putfield      #4                  // Field a:S
+      19: aload_0
+      20: iload         4
+      22: putfield      #8                  // Field e:S
+      25: aload_0
+      26: iload         5
+      28: putfield      #7                  // Field d:S
+      31: aload_0
+      32: lload         6
+      34: putfield      #5                  // Field bE:J
+      37: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #9                  // Field jB:I
+       5: return
+}

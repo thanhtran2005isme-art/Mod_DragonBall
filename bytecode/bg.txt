@@ -1,0 +1,90 @@
+public final class nro.bg {
+  public static final int gU;
+    descriptor: I
+
+  public int p;
+    descriptor: I
+
+  public java.lang.String T;
+    descriptor: Ljava/lang/String;
+
+  public int m;
+    descriptor: I
+
+  public int bZ;
+    descriptor: I
+
+  public java.lang.String ae;
+    descriptor: Ljava/lang/String;
+
+  public static int[] dc;
+    descriptor: [I
+
+  public java.lang.String L;
+    descriptor: Ljava/lang/String;
+
+  public short e;
+    descriptor: S
+
+  public int cf;
+    descriptor: I
+
+  public short a;
+    descriptor: S
+
+  public static void fo();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        231
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #8                  // Field dc:[I
+      21: getstatic     #8                  // Field dc:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: getstatic     #10                 // Field nro/cX.o:[S
+      34: sipush        350
+      37: sipush        348
+      40: ixor
+      41: sipush        485
+      44: sipush        484
+      47: ixor
+      48: ldc           #2                  // int 574925498
+      50: sipush        570
+      53: ixor
+      54: invokestatic  #14                 // Method nro/cX.a:([SIII)Ljava/lang/String;
+      57: invokevirtual #12                 // Method java/lang/String.length:()I
+      60: ineg
+      61: iastore
+      62: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #13                 // Method fo:()V
+       3: ldc           #1                  // int 574924928
+       5: putstatic     #9                  // Field gU:I
+       8: return
+
+  public nro.bg();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #11                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: getstatic     #8                  // Field dc:[I
+       8: sipush        230
+      11: sipush        230
+      14: ixor
+      15: iaload
+      16: putfield      #7                  // Field bZ:I
+      19: return
+}
