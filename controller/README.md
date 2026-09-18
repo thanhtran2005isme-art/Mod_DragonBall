@@ -234,3 +234,48 @@ Launcher properties:
 -Ddragon.auto.retry.cooldown=1
 -Ddragon.auto.idle.pulse.ms=5000
 ```
+
+
+## Per-account Auto Login + real game status
+
+The account table now replaces the old note column with an **Auto login**
+button. Each account persists its own Auto Login setting.
+
+The button can be changed while a client is already running:
+
+```text
+Bật
+  -> if the client is on the server/login screen, the patched game starts the
+     account login flow automatically
+  -> overload/cooldown retry stays enabled
+
+Tắt
+  -> the client may stay open, but the login screen is left alone
+  -> no automatic login/re-login is started
+```
+
+Runtime control/status is exchanged through small files under:
+
+```text
+%LOCALAPPDATA%\DragonController\sessions
+```
+
+The game, not the controller, writes the status:
+
+```text
+bR server/login screen + Auto Login off -> OFF
+login attempt/retry                    -> LOGGING_IN
+aL real gameplay update                -> ONLINE
+```
+
+Dragon Controller maps these to exactly three UI states:
+
+```text
+Off
+Đang đăng nhập
+Đã đăng nhập
+```
+
+If a Java process exits, the controller also forces its displayed state back to
+`Off`. The Close / Close all buttons now terminate the corresponding
+MicroEmulator process instead of merely changing the status text.

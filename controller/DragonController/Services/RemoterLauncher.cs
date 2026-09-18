@@ -1,25 +1,39 @@
 using System.Diagnostics;
+using System.Text;
 using DragonController.Models;
 
 namespace DragonController.Services;
 
 /// <summary>
-/// Launches the original MicroEmulator directly. Dragon Controller no longer
-/// starts or depends on MicroEmulatorRemoter_v103.exe / AngelChip.
+/// Launches one original MicroEmulator process per account and maintains a
+/// tiny file bridge used by the patched game:
+///
+///   *.autologin  controller -> game (1 / 0)
+///   *.status     game -> controller (OFF / LOGGING_IN / ONLINE)
+///   *.pid        controller bookkeeping
+///
+/// This keeps account status based on the real game screen/state rather than
+/// guessing from the fact that a Java process exists.
 /// </summary>
 internal sealed class MicroEmulatorLauncher
 {
+    private readonly string _runtimeRoot;
+
     public string GamePath { get; set; }
 
     public MicroEmulatorLauncher()
     {
         var desktop = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
         GamePath = Path.Combine(desktop, "EmulatorRemoter", "Dragonboy250-test.jar");
+
+        _runtimeRoot = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "DragonController",
+            "sessions");
+
+        Directory.CreateDirectory(_runtimeRoot);
     }
 
-    /// <summary>
-    /// Starts one original MicroEmulator process for each selected account.
-    /// </summary>
     public void StartClients(IReadOnlyList<AccountProfile> accounts)
     {
         if (accounts is null || accounts.Count == 0) return;
@@ -31,23 +45,97 @@ internal sealed class MicroEmulatorLauncher
         {
             throw new FileNotFoundException(
                 "Không tìm thấy microemulator-2.0.4.jar. " +
-                "Hãy giữ file trong thư mục lib của project hoặc Desktop\\EmulatorRemoter.");
+                "Hãy giữ file trong thư mục lib của project hoặc Desktop\EmulatorRemoter.");
         }
 
         var java = ResolveJavaExecutable();
 
         for (var i = 0; i < accounts.Count; i++)
         {
-            StartOne(java, microEmulatorJar, accounts[i], i + 1);
+            var account = accounts[i];
 
-            // Tránh khởi động nhiều JVM đúng cùng một thời điểm.
+            // If this account already has a live client, only update Auto Login.
+            // This avoids accidentally opening duplicate clients for one account.
+            if (TryGetLiveProcess(account.Id, out _))
+            {
+                SetAutoLogin(account.Id, account.AutoLogin);
+                continue;
+            }
+
+            StartOne(java, microEmulatorJar, account, i + 1);
+
             if (i + 1 < accounts.Count)
                 Thread.Sleep(300);
         }
     }
 
+    public void SetAutoLogin(int accountId, bool enabled)
+    {
+        WriteSmallFile(ControlPath(accountId), enabled ? "1" : "0");
+    }
+
+    public string GetGameStatus(int accountId)
+    {
+        if (!TryGetLiveProcess(accountId, out _))
+        {
+            TryDelete(PidPath(accountId));
+            return "Off";
+        }
+
+        string raw;
+        try
+        {
+            raw = File.Exists(StatusPath(accountId))
+                ? File.ReadAllText(StatusPath(accountId), Encoding.ASCII).Trim()
+                : "OFF";
+        }
+        catch
+        {
+            raw = "OFF";
+        }
+
+        return raw switch
+        {
+            "ONLINE" => "Đã đăng nhập",
+            "LOGGING_IN" => "Đang đăng nhập",
+            _ => "Off"
+        };
+    }
+
+    public bool IsRunning(int accountId) => TryGetLiveProcess(accountId, out _);
+
+    public void CloseClient(int accountId)
+    {
+        if (TryGetLiveProcess(accountId, out var process))
+        {
+            try
+            {
+                process.Kill(entireProcessTree: true);
+                process.WaitForExit(2500);
+            }
+            catch
+            {
+            }
+        }
+
+        WriteSmallFile(StatusPath(accountId), "OFF");
+        TryDelete(PidPath(accountId));
+    }
+
+    public void CloseAll(IEnumerable<AccountProfile> accounts)
+    {
+        foreach (var account in accounts)
+            CloseClient(account.Id);
+    }
+
     private void StartOne(string java, string microEmulatorJar, AccountProfile account, int clientNumber)
     {
+        var statusPath = StatusPath(account.Id);
+        var controlPath = ControlPath(account.Id);
+
+        WriteSmallFile(statusPath, "OFF");
+        WriteSmallFile(controlPath, account.AutoLogin ? "1" : "0");
+
         var psi = new ProcessStartInfo
         {
             FileName = java,
@@ -56,31 +144,20 @@ internal sealed class MicroEmulatorLauncher
             CreateNoWindow = false
         };
 
-        // Each JVM gets its own credentials/server. The patched game reads
-        // these directly, so multiple MicroEmulator processes do not need
-        // keyboard/mouse automation and do not share login credentials.
-        psi.ArgumentList.Add("-Ddragon.auto.login=1");
+        psi.ArgumentList.Add("-Ddragon.auto.login=" + (account.AutoLogin ? "1" : "0"));
+        psi.ArgumentList.Add("-Ddragon.auto.login.file=" + controlPath);
+        psi.ArgumentList.Add("-Ddragon.status.file=" + statusPath);
         psi.ArgumentList.Add("-Ddragon.auto.user=" + account.Username);
         psi.ArgumentList.Add("-Ddragon.auto.pass=" + account.Password);
         psi.ArgumentList.Add("-Ddragon.auto.server=" + account.Server);
 
-        // Retry only the specific server-overload response. Other login errors
-        // are left to the game's normal popup/handling.
         psi.ArgumentList.Add("-Ddragon.auto.retry.overload=1");
         psi.ArgumentList.Add("-Ddragon.auto.retry.ms=3000");
         psi.ArgumentList.Add("-Ddragon.auto.retry.jitter=0");
         psi.ArgumentList.Add("-Ddragon.auto.retry.max=0");
         psi.ArgumentList.Add("-Ddragon.auto.retry.cooldown=1");
-
-        // Prevent the private server from treating an idle character as a dead
-        // connection. The game sends its own current-position movement packet
-        // only after the character has stayed still for this long.
         psi.ArgumentList.Add("-Ddragon.auto.idle.pulse.ms=5000");
 
-        // IMPORTANT: passing the game JAR to "java -jar microemulator.jar"
-        // opens MicroEmulator's Launcher screen and still requires pressing Start.
-        // Put both JARs on the classpath and start nro.GameMidlet directly instead.
-        // This bypasses Launcher completely.
         var classPath = microEmulatorJar + Path.PathSeparator + GamePath;
         var (width, height) = ParseWindowSize(account.WindowSize);
 
@@ -96,6 +173,62 @@ internal sealed class MicroEmulatorLauncher
         if (process is null)
             throw new InvalidOperationException(
                 $"Không thể mở MicroEmulator gốc cho client {clientNumber}.");
+
+        WriteSmallFile(PidPath(account.Id), process.Id.ToString());
+    }
+
+    private bool TryGetLiveProcess(int accountId, out Process process)
+    {
+        process = null!;
+
+        try
+        {
+            var pidPath = PidPath(accountId);
+            if (!File.Exists(pidPath))
+                return false;
+
+            var text = File.ReadAllText(pidPath).Trim();
+            if (!int.TryParse(text, out var pid) || pid <= 0)
+                return false;
+
+            var candidate = Process.GetProcessById(pid);
+            if (candidate.HasExited)
+                return false;
+
+            process = candidate;
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private string StatusPath(int accountId) =>
+        Path.Combine(_runtimeRoot, $"account-{accountId}.status");
+
+    private string ControlPath(int accountId) =>
+        Path.Combine(_runtimeRoot, $"account-{accountId}.autologin");
+
+    private string PidPath(int accountId) =>
+        Path.Combine(_runtimeRoot, $"account-{accountId}.pid");
+
+    private static void WriteSmallFile(string path, string value)
+    {
+        var temp = path + ".tmp";
+        File.WriteAllText(temp, value, Encoding.ASCII);
+        File.Move(temp, path, true);
+    }
+
+    private static void TryDelete(string path)
+    {
+        try
+        {
+            if (File.Exists(path)) File.Delete(path);
+        }
+        catch
+        {
+        }
     }
 
     private static (int Width, int Height) ParseWindowSize(string? value)
@@ -118,7 +251,6 @@ internal sealed class MicroEmulatorLauncher
             return (defaultWidth, defaultHeight);
         }
 
-        // Keep obviously broken profile values away from MicroEmulator.
         width = Math.Clamp(width, 240, 3840);
         height = Math.Clamp(height, 240, 2160);
         return (width, height);

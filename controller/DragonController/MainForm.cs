@@ -20,14 +20,16 @@ public sealed class MainForm : Form
     private TextBox _txtSearch = null!;
     private TextBox _txtUsername = null!;
     private TextBox _txtPassword = null!;
-    private TextBox _txtNote = null!;
     private TextBox _txtSize = null!;
+    private FlatRoundButton _btnAutoLogin = null!;
+    private bool _editorAutoLogin = true;
     private ComboBox _cmbServer = null!;
     private ComboBox _cmbSort = null!;
     private CheckBox _chkShowPassword = null!;
     private Label _lblSummary = null!;
 
     private int _nextId = 1;
+    private readonly System.Windows.Forms.Timer _statusTimer = new() { Interval = 500 };
 
     public MainForm()
     {
@@ -44,7 +46,14 @@ public sealed class MainForm : Form
         ShowTab("Tài khoản");
         ApplyFilter();
 
-        FormClosing += (_, _) => SaveAccounts();
+        _statusTimer.Tick += (_, _) => RefreshRuntimeStatuses();
+        _statusTimer.Start();
+
+        FormClosing += (_, _) =>
+        {
+            _statusTimer.Stop();
+            SaveAccounts();
+        };
     }
 
     private void BuildShell()
@@ -231,15 +240,30 @@ public sealed class MainForm : Form
         _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = nameof(AccountProfile.Id), Width = 52 });
         _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "T.khoản", DataPropertyName = nameof(AccountProfile.Username), FillWeight = 28, AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
         _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "M.chủ", DataPropertyName = nameof(AccountProfile.Server), Width = 105 });
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "G.chú", DataPropertyName = nameof(AccountProfile.Note), FillWeight = 28, AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+
+        _grid.Columns.Add(new DataGridViewButtonColumn
+        {
+            Name = "AutoLogin",
+            HeaderText = "Auto login",
+            DataPropertyName = nameof(AccountProfile.AutoLoginText),
+            Width = 88,
+            FlatStyle = FlatStyle.Flat,
+            SortMode = DataGridViewColumnSortMode.NotSortable
+        });
+
         _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "K.thước", DataPropertyName = nameof(AccountProfile.WindowSize), Width = 92 });
-        _grid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "T.thái", DataPropertyName = nameof(AccountProfile.Status), Width = 90 });
+        _grid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Status", HeaderText = "T.thái", DataPropertyName = nameof(AccountProfile.Status), Width = 120 });
 
         _grid.DataSource = _visibleAccounts;
         _grid.SelectionChanged += (_, _) => LoadSelectedAccount();
+        _grid.CellContentClick += (_, e) => ToggleAutoLoginFromGrid(e);
+        _grid.CellFormatting += (_, e) => FormatRuntimeStatus(e);
         _grid.CellDoubleClick += (_, e) =>
         {
-            if (e.RowIndex >= 0 && SelectedAccount() is { } account)
+            if (e.RowIndex < 0) return;
+            if (_grid.Columns[e.ColumnIndex].Name == "AutoLogin") return;
+
+            if (_grid.Rows[e.RowIndex].DataBoundItem is AccountProfile account)
                 RequestLogin(new[] { account });
         };
 
@@ -298,10 +322,16 @@ public sealed class MainForm : Form
         import.Click += (_, _) => ImportAccounts();
         AddSplitField(layout, 3, "Máy chủ", _cmbServer, import);
 
-        _txtNote = MakeTextBox();
+        _btnAutoLogin = MakeButton("Bật", accent: true);
+        _btnAutoLogin.Click += (_, _) =>
+        {
+            _editorAutoLogin = !_editorAutoLogin;
+            UpdateEditorAutoLoginButton();
+        };
+
         _txtSize = MakeTextBox();
         _txtSize.Text = "1024×600";
-        AddSplitField(layout, 4, "Ghi chú", _txtNote, _txtSize, "K.thước");
+        AddSplitField(layout, 4, "Auto login", _btnAutoLogin, _txtSize, "K.thước");
 
         var add = MakeButton("Thêm", accent: true);
         var edit = MakeButton("Sửa");
@@ -331,11 +361,17 @@ public sealed class MainForm : Form
 
         var close = MakeButton("Đóng");
         var closeAll = MakeButton("Đóng tất cả", danger: true);
-        close.Click += (_, _) => SetSelectedStatus("Offline");
+        close.Click += (_, _) =>
+        {
+            foreach (var account in SelectedAccounts().Distinct().ToList())
+                _microEmulatorLauncher.CloseClient(account.Id);
+
+            RefreshRuntimeStatuses();
+        };
         closeAll.Click += (_, _) =>
         {
-            foreach (var account in _accounts) account.Status = "Offline";
-            ApplyFilter();
+            _microEmulatorLauncher.CloseAll(_accounts);
+            RefreshRuntimeStatuses();
         };
         AddButtonPair(layout, 8, close, closeAll);
 
@@ -509,7 +545,8 @@ public sealed class MainForm : Form
 
         _txtUsername.Text = account.Username;
         _txtPassword.Text = account.Password;
-        _txtNote.Text = account.Note;
+        _editorAutoLogin = account.AutoLogin;
+        UpdateEditorAutoLoginButton();
         _txtSize.Text = account.WindowSize;
         SelectServerByName(account.Server);
         UpdateSummary();
@@ -548,9 +585,9 @@ public sealed class MainForm : Form
             Username = username,
             Password = _txtPassword.Text,
             Server = selectedServer.Name,
-            Note = _txtNote.Text.Trim(),
+            AutoLogin = _editorAutoLogin,
             WindowSize = NormalizeSize(_txtSize.Text),
-            Status = "Offline"
+            Status = "Off"
         });
 
         ClearEditor();
@@ -581,8 +618,9 @@ public sealed class MainForm : Form
         account.Username = _txtUsername.Text.Trim();
         account.Password = _txtPassword.Text;
         account.Server = selectedServer.Name;
-        account.Note = _txtNote.Text.Trim();
+        account.AutoLogin = _editorAutoLogin;
         account.WindowSize = NormalizeSize(_txtSize.Text);
+        _microEmulatorLauncher.SetAutoLogin(account.Id, account.AutoLogin);
         ApplyFilter();
         SaveAccounts();
     }
@@ -606,26 +644,23 @@ public sealed class MainForm : Form
         SaveAccounts();
     }
 
-    private void SetSelectedStatus(string status)
-    {
-        foreach (var account in SelectedAccounts()) account.Status = status;
-        ApplyFilter();
-    }
-
     private void RequestLogin(IEnumerable<AccountProfile> accounts)
     {
         var selected = accounts.Distinct().ToList();
         if (selected.Count == 0) return;
 
         var invalid = selected.FirstOrDefault(account =>
-            string.IsNullOrWhiteSpace(account.Username) || string.IsNullOrEmpty(account.Password));
+            string.IsNullOrWhiteSpace(account.Username) ||
+            (account.AutoLogin && string.IsNullOrEmpty(account.Password)));
 
         if (invalid is not null)
         {
             MessageBox.Show(
                 this,
-                $"Tài khoản {invalid.Username} chưa có mật khẩu.",
-                "Không thể tự đăng nhập",
+                invalid.AutoLogin
+                    ? $"Tài khoản {invalid.Username} đang bật Auto Login nhưng chưa có mật khẩu."
+                    : "Tên tài khoản không hợp lệ.",
+                "Không thể mở game",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning);
             return;
@@ -634,23 +669,13 @@ public sealed class MainForm : Form
         try
         {
             foreach (var account in selected)
-                account.Status = "Đang mở game";
+                _microEmulatorLauncher.SetAutoLogin(account.Id, account.AutoLogin);
 
-            ApplyFilter();
             _microEmulatorLauncher.StartClients(selected);
-
-            foreach (var account in selected)
-                account.Status = "Đang đăng nhập";
-
-            ApplyFilter();
+            RefreshRuntimeStatuses();
         }
         catch (Exception ex)
         {
-            foreach (var account in selected)
-                account.Status = "Lỗi";
-
-            ApplyFilter();
-
             MessageBox.Show(
                 this,
                 ex.Message,
@@ -672,7 +697,7 @@ public sealed class MainForm : Form
             filtered = filtered.Where(x =>
                 ContainsIgnoreCase(x.Username, query) ||
                 ContainsIgnoreCase(x.Server, query) ||
-                ContainsIgnoreCase(x.Note, query) ||
+                ContainsIgnoreCase(x.AutoLoginText, query) ||
                 ContainsIgnoreCase(x.Status, query));
         }
 
@@ -720,9 +745,9 @@ public sealed class MainForm : Form
                 Username = username,
                 Password = parts.ElementAtOrDefault(1)?.Trim() ?? "",
                 Server = parts.ElementAtOrDefault(2)?.Trim() is { Length: > 0 } server ? server : "Vũ trụ 1",
-                Note = parts.ElementAtOrDefault(3)?.Trim() ?? "",
+                AutoLogin = ParseImportedAutoLogin(parts.ElementAtOrDefault(3)),
                 WindowSize = "1024×600",
-                Status = "Offline"
+                Status = "Off"
             });
             added++;
         }
@@ -736,9 +761,96 @@ public sealed class MainForm : Form
     {
         _txtUsername.Clear();
         _txtPassword.Clear();
-        _txtNote.Clear();
+        _editorAutoLogin = true;
+        UpdateEditorAutoLoginButton();
         _txtSize.Text = "1024×600";
         if (_cmbServer.Items.Count > 0) _cmbServer.SelectedIndex = 0;
+    }
+
+    private void ToggleAutoLoginFromGrid(DataGridViewCellEventArgs e)
+    {
+        if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+        if (_grid.Columns[e.ColumnIndex].Name != "AutoLogin") return;
+        if (_grid.Rows[e.RowIndex].DataBoundItem is not AccountProfile account) return;
+
+        account.AutoLogin = !account.AutoLogin;
+        _microEmulatorLauncher.SetAutoLogin(account.Id, account.AutoLogin);
+
+        var visibleIndex = _visibleAccounts.IndexOf(account);
+        if (visibleIndex >= 0) _visibleAccounts.ResetItem(visibleIndex);
+
+        if (ReferenceEquals(SelectedAccount(), account))
+        {
+            _editorAutoLogin = account.AutoLogin;
+            UpdateEditorAutoLoginButton();
+        }
+
+        SaveAccounts();
+    }
+
+    private void UpdateEditorAutoLoginButton()
+    {
+        if (_btnAutoLogin is null) return;
+
+        _btnAutoLogin.Text = _editorAutoLogin ? "Bật" : "Tắt";
+        _btnAutoLogin.ForeColor = _editorAutoLogin ? Color.White : UiTheme.Text;
+        _btnAutoLogin.NormalColor = _editorAutoLogin ? UiTheme.Accent : UiTheme.ButtonSoft;
+        _btnAutoLogin.HoverColor = _editorAutoLogin
+            ? Color.FromArgb(195, 102, 35)
+            : Color.FromArgb(247, 224, 178);
+        _btnAutoLogin.PressedColor = _editorAutoLogin
+            ? Color.FromArgb(145, 61, 14)
+            : Color.FromArgb(225, 179, 105);
+        _btnAutoLogin.BorderColor = _editorAutoLogin ? UiTheme.Accent : UiTheme.Border;
+        _btnAutoLogin.Invalidate();
+    }
+
+    private void RefreshRuntimeStatuses()
+    {
+        var changed = false;
+
+        foreach (var account in _accounts)
+        {
+            var actual = _microEmulatorLauncher.GetGameStatus(account.Id);
+            if (string.Equals(account.Status, actual, StringComparison.Ordinal))
+                continue;
+
+            account.Status = actual;
+            changed = true;
+
+            if (_grid is not null && !_grid.IsDisposed)
+            {
+                var index = _visibleAccounts.IndexOf(account);
+                if (index >= 0) _visibleAccounts.ResetItem(index);
+            }
+        }
+
+        if (changed)
+            UpdateSummary();
+    }
+
+    private void FormatRuntimeStatus(DataGridViewCellFormattingEventArgs e)
+    {
+        if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+        if (_grid.Columns[e.ColumnIndex].Name != "Status") return;
+
+        var text = e.Value?.ToString() ?? "Off";
+        e.CellStyle.Font = new Font(_grid.Font, FontStyle.Bold);
+
+        if (text == "Đã đăng nhập")
+            e.CellStyle.ForeColor = UiTheme.Green;
+        else if (text == "Đang đăng nhập")
+            e.CellStyle.ForeColor = UiTheme.Accent;
+        else
+            e.CellStyle.ForeColor = UiTheme.Gray;
+    }
+
+    private static bool ParseImportedAutoLogin(string? raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw)) return true;
+
+        var value = raw.Trim().ToLowerInvariant();
+        return value is not ("0" or "off" or "false" or "tắt" or "tat");
     }
 
     private void RefreshServerCatalog(bool preserveSelection = false)
@@ -808,7 +920,7 @@ public sealed class MainForm : Form
     private void UpdateSummary()
     {
         if (_lblSummary is null) return;
-        var running = _accounts.Count(x => !string.Equals(x.Status, "Offline", StringComparison.OrdinalIgnoreCase));
+        var running = _accounts.Count(x => _microEmulatorLauncher.IsRunning(x.Id));
         var selected = _grid?.SelectedRows.Count ?? 0;
         _lblSummary.Text = $"Tổng: {_accounts.Count}   •   Đang chạy: {running}   •   Đã chọn: {selected}   •   Double-click để đăng nhập";
     }

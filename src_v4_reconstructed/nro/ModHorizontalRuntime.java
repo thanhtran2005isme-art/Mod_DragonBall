@@ -48,6 +48,10 @@ public final class ModHorizontalRuntime {
     private static long autoLastPositionChangeAt;
     private static long autoLastIdlePulseAt;
 
+    // Last status written to the controller bridge. Avoids touching disk every
+    // game frame while the state has not changed.
+    private static String controllerStatusLast = "";
+
     private static final String[] GROUPS = new String[] {
         "Tàn Sát", "Auto Skill", "Nhặt Đồ", "Xmap", "Boss",
         "TĐLT / NV", "Đậu", "Hỗ Trợ", "Vật Phẩm", "Hiển Thị", "Cài Đặt"
@@ -184,7 +188,24 @@ public final class ModHorizontalRuntime {
      * schedules another attempt and this tick executes it after a short delay.
      */
     public static void autoLoginTick(bR serverScreen) {
-        if (serverScreen == null || !autoLoginEnabled() || autoLoginOnline) return;
+        if (serverScreen == null) return;
+
+        // bR is the server/login screen. If gameplay had previously marked the
+        // client online, returning here means the character left gameplay.
+        if (autoLoginOnline) {
+            autoLoginOnline = false;
+            autoLoginStarted = false;
+            autoRetryPending = false;
+        }
+
+        if (!autoLoginEnabled()) {
+            autoLoginStarted = false;
+            autoRetryPending = false;
+            writeControllerStatus("OFF");
+            return;
+        }
+
+        writeControllerStatus("LOGGING_IN");
 
         String user = safeProperty("dragon.auto.user");
         String pass = safeProperty("dragon.auto.pass");
@@ -219,6 +240,7 @@ public final class ModHorizontalRuntime {
     private static void startLoginAttempt(bR serverScreen, int serverIndex) {
         // Exact game flow used by the account button:
         // select server -> apply host/port -> "Chơi TK" login.
+        writeControllerStatus("LOGGING_IN");
         bR.a(serverIndex, true);
         serverScreen.gB();
         bR.ef();
@@ -237,7 +259,11 @@ public final class ModHorizontalRuntime {
      * their original game behavior.
      */
     public static boolean handleLoginMessage(String text) {
-        if (!autoLoginEnabled() || autoLoginOnline || text == null) return false;
+        if (autoLoginOnline || text == null) return false;
+        if (!autoLoginEnabled()) {
+            writeControllerStatus("OFF");
+            return false;
+        }
 
         int cooldownSeconds = loginCooldownSeconds(text);
         if (cooldownSeconds > 0 && autoRetryCooldownEnabled()) {
@@ -297,6 +323,7 @@ public final class ModHorizontalRuntime {
         autoLoginOnline = true;
         autoRetryPending = false;
         autoLoginStarted = true;
+        writeControllerStatus("ONLINE");
 
         int pulseMs = intProperty("dragon.auto.idle.pulse.ms", 5000);
         if (pulseMs <= 0) return;
@@ -372,8 +399,49 @@ public final class ModHorizontalRuntime {
     }
 
     private static boolean autoLoginEnabled() {
+        String controlFile = safeProperty("dragon.auto.login.file");
+
+        if (controlFile != null && controlFile.length() > 0) {
+            java.io.FileInputStream in = null;
+
+            try {
+                in = new java.io.FileInputStream(controlFile);
+                int value = in.read();
+                if (value == '1') return true;
+                if (value == '0') return false;
+            } catch (Throwable ignored) {
+            } finally {
+                if (in != null) {
+                    try { in.close(); } catch (Throwable ignored) {}
+                }
+            }
+        }
+
         String enabled = safeProperty("dragon.auto.login");
         return "1".equals(enabled);
+    }
+
+    private static void writeControllerStatus(String status) {
+        if (status == null) return;
+        if (status.equals(controllerStatusLast)) return;
+
+        String statusFile = safeProperty("dragon.status.file");
+        if (statusFile == null || statusFile.length() == 0) return;
+
+        java.io.FileOutputStream out = null;
+
+        try {
+            out = new java.io.FileOutputStream(statusFile);
+            byte[] bytes = status.getBytes("UTF-8");
+            out.write(bytes);
+            out.flush();
+            controllerStatusLast = status;
+        } catch (Throwable ignored) {
+        } finally {
+            if (out != null) {
+                try { out.close(); } catch (Throwable ignored) {}
+            }
+        }
     }
 
     private static int loginCooldownSeconds(String text) {

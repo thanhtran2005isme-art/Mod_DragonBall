@@ -53,8 +53,9 @@ internal sealed class AccountStore
                     Password = Unprotect(row.PasswordProtected),
                     Server = string.IsNullOrWhiteSpace(row.Server) ? "Vũ trụ 1" : row.Server,
                     Note = row.Note ?? "",
+                    AutoLogin = row.AutoLogin ?? true,
                     WindowSize = string.IsNullOrWhiteSpace(row.WindowSize) ? "1024×600" : row.WindowSize,
-                    Status = "Offline"
+                    Status = "Off"
                 });
             }
 
@@ -78,6 +79,7 @@ internal sealed class AccountStore
                 PasswordProtected = Protect(x.Password),
                 Server = x.Server,
                 Note = x.Note,
+                AutoLogin = x.AutoLogin,
                 WindowSize = x.WindowSize
             })
             .ToList();
@@ -131,6 +133,7 @@ internal sealed class AccountStore
         public string PasswordProtected { get; set; } = "";
         public string Server { get; set; } = "";
         public string Note { get; set; } = "";
+        public bool? AutoLogin { get; set; }
         public string WindowSize { get; set; } = "";
     }
 }
