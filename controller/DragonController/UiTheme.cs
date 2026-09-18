@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing.Drawing2D;
 
 namespace DragonController;
@@ -31,8 +32,16 @@ internal static class UiTheme
 
 internal class RoundedPanel : Panel
 {
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int Radius { get; set; } = 10;
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Color BorderColor { get; set; } = UiTheme.Border;
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int BorderWidth { get; set; } = 1;
 
     public RoundedPanel()
@@ -63,10 +72,24 @@ internal class RoundedPanel : Panel
 
 internal class FlatRoundButton : Button
 {
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int Radius { get; set; } = 9;
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Color NormalColor { get; set; } = UiTheme.ButtonSoft;
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Color HoverColor { get; set; } = Color.FromArgb(247, 224, 178);
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Color PressedColor { get; set; } = Color.FromArgb(225, 179, 105);
+
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public Color BorderColor { get; set; } = UiTheme.Border;
 
     private bool _hover;
@@ -111,6 +134,8 @@ internal class FlatRoundButton : Button
 
 internal sealed class NavButton : FlatRoundButton
 {
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public bool Active { get; set; }
 
     protected override void OnPaint(PaintEventArgs pevent)
