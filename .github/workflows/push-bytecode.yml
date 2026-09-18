@@ -1,0 +1,47 @@
+name: Push recovered raw bytecode
+
+on:
+  push:
+    paths:
+      - ".github/workflows/push-bytecode.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconstruct exact raw javap output
+        run: |
+          set -euo pipefail
+          rm -rf bytecode
+          mkdir -p bytecode
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          src=Path("annotated_bytecode")
+          dst=Path("bytecode")
+          fs=sorted(src.glob("*.txt"))
+          assert len(fs)==225, len(fs)
+          for f in fs:
+              s=f.read_text(encoding="utf-8")
+              s=re.sub(r"[ \\t]+// DECODED: .*$","",s,flags=re.M)
+              (dst/f.name).write_text(s,encoding="utf-8")
+          PY
+          test "$(find bytecode -maxdepth 1 -type f | wc -l)" -eq 225
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bytecode
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Add all 225 recovered raw bytecode files"
+            git push origin HEAD:main
+          fi
