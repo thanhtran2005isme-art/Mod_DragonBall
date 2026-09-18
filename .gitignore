@@ -1,0 +1,19 @@
+# Local build outputs
+/build/*
+!/build/.gitkeep
+/dist/*
+!/dist/.gitkeep
+
+# Downloaded runtime/tool binaries
+/lib/*.jar
+
+# Local original game JARs
+/Dragonboy250*.jar
+/lib/Dragonboy250*.jar
+
+# IDE / OS
+.vscode/
+.idea/
+*.iml
+Thumbs.db
+.DS_Store

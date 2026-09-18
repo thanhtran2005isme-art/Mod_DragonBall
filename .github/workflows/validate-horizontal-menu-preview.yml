@@ -1,0 +1,39 @@
+name: Validate horizontal menu preview
+
+on:
+  push:
+    branches:
+      - feature/horizontal-grouped-menu
+    paths:
+      - "src_preview/**"
+      - "build.bat"
+      - "tools/bootstrap-test-runtime.ps1"
+      - ".github/workflows/validate-horizontal-menu-preview.yml"
+
+jobs:
+  compile-preview:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Build preview
+        shell: cmd
+        run: build.bat preview
+
+      - name: Verify output
+        shell: powershell
+        run: |
+          if (-not (Test-Path "dist/HorizontalMenuPreview.jar")) {
+            throw "Preview JAR was not built"
+          }
+          $size = (Get-Item "dist/HorizontalMenuPreview.jar").Length
+          if ($size -lt 1000) {
+            throw "Preview JAR is unexpectedly small: $size"
+          }
+          Write-Host "Preview JAR size: $size"
