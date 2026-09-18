@@ -1,14 +1,17 @@
 package nro;
 
+import java.util.Vector;
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
 /**
  * Compact horizontal replacement for the original Dragonboy250 v4.0 mod menus.
  *
- * The command IDs and Integer payloads in this class were recovered from the
- * original nro.N bytecode. Navigation-only legacy commands are flattened into
- * their real leaf actions so the new UI does not lose or misroute features.
+ * Static menu actions keep the exact recovered command IDs/payloads. Any legacy
+ * side-panel submenu that is still created by the original code is captured at
+ * aB.dw() and rendered inside this horizontal overlay instead of being shown as
+ * the old vertical panel. The captured cw objects are executed unchanged, so
+ * dynamic Xmap/zone/target/item lists keep their original data and behavior.
  */
 public final class ModHorizontalRuntime {
     private static final int NO_PAYLOAD = -2147483648;
@@ -22,7 +25,15 @@ public final class ModHorizontalRuntime {
     private static int lastW;
     private static int lastH;
 
-    private static final String[] GROUPS = new String[] {"Tàn Sát", "Auto Skill", "Nhặt Đồ", "Xmap", "Boss", "TĐLT / NV", "Đậu", "Hỗ Trợ", "Vật Phẩm", "Hiển Thị", "Cài Đặt"};
+    private static boolean legacyMode;
+    private static Vector legacyItems;
+    private static String legacyTitle = "";
+    private static int legacyGeneration;
+
+    private static final String[] GROUPS = new String[] {
+        "Tàn Sát", "Auto Skill", "Nhặt Đồ", "Xmap", "Boss",
+        "TĐLT / NV", "Đậu", "Hỗ Trợ", "Vật Phẩm", "Hiển Thị", "Cài Đặt"
+    };
 
     private static final String[][] ITEMS = new String[][] {
         {"Tàn Sát", "KC Tàn Sát"},
@@ -53,17 +64,17 @@ public final class ModHorizontalRuntime {
     };
 
     private static final int[][] PAYLOADS = new int[][] {
-        {-2147483648, -2147483648},
-        {-2147483648},
-        {-2147483648, -2147483648, -2147483648, -2147483648, -2147483648},
-        {-2147483648, -2147483648, -2147483648, -2147483648},
-        {-2147483648, -2147483648},
-        {-2147483648, -2147483648, -2147483648, -2147483648, -2147483648},
-        {-2147483648, -2147483648, -2147483648, -2147483648},
-        {-2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, 0, 1, 2, -2147483648},
-        {-2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648},
-        {-2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648},
-        {0, 1, 2, 3, -2147483648, -2147483648, -2147483648, -2147483648, -2147483648}
+        {NO_PAYLOAD, NO_PAYLOAD},
+        {NO_PAYLOAD},
+        {NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD},
+        {NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD},
+        {NO_PAYLOAD, NO_PAYLOAD},
+        {NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD},
+        {NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD},
+        {NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, 0, 1, 2, NO_PAYLOAD},
+        {NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD},
+        {NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD},
+        {0, 1, 2, 3, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD, NO_PAYLOAD}
     };
 
     private static final boolean[][] CLOSE_AFTER = new boolean[][] {
@@ -88,18 +99,43 @@ public final class ModHorizontalRuntime {
         actionFocus = false;
         item = 0;
         itemScroll = 0;
+        clearLegacyMode();
     }
 
     public static boolean isVisible() {
         return visible;
     }
 
-    /**
-     * Called from patched legacy submenu methods. While the horizontal overlay
-     * is active, old vertical submenu reopen calls are suppressed.
-     */
     public static boolean blockLegacyMenu() {
         return visible;
+    }
+
+    public static boolean captureLegacyMenu(Vector source, String title) {
+        if (!visible) return false;
+        if (source == null || source.size() <= 0) return false;
+
+        Vector copy = new Vector();
+        for (int i = 0; i < source.size(); i++) {
+            Object row = source.elementAt(i);
+            if (row instanceof cw) copy.addElement(row);
+        }
+
+        if (copy.size() <= 0) return false;
+
+        legacyItems = copy;
+        legacyTitle = title == null ? "" : title;
+        legacyMode = true;
+        actionFocus = true;
+        item = 0;
+        itemScroll = 0;
+        legacyGeneration++;
+        return true;
+    }
+
+    private static void clearLegacyMode() {
+        legacyMode = false;
+        legacyItems = null;
+        legacyTitle = "";
     }
 
     public static boolean onKeyPressed(int key) {
@@ -107,6 +143,25 @@ public final class ModHorizontalRuntime {
 
         if (key == -7 || key == -6 || key == 27 || key == 48) {
             visible = false;
+            clearLegacyMode();
+            return true;
+        }
+
+        if (legacyMode) {
+            if (isUp(key)) {
+                clearLegacyMode();
+                actionFocus = true;
+                item = 0;
+                itemScroll = 0;
+            } else if (isLeft(key)) {
+                if (item > 0) --item;
+                ensureCurrentItemVisible(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL), lastW);
+            } else if (isRight(key)) {
+                if (item + 1 < currentItemCount()) ++item;
+                ensureCurrentItemVisible(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL), lastW);
+            } else if (isFire(key)) {
+                activateSelected();
+            }
             return true;
         }
 
@@ -125,10 +180,10 @@ public final class ModHorizontalRuntime {
             actionFocus = false;
         } else if (isLeft(key)) {
             if (item > 0) --item;
-            ensureItemVisible(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL), lastW);
+            ensureCurrentItemVisible(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL), lastW);
         } else if (isRight(key)) {
-            if (item + 1 < ITEMS[group].length) ++item;
-            ensureItemVisible(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL), lastW);
+            if (item + 1 < currentItemCount()) ++item;
+            ensureCurrentItemVisible(Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL), lastW);
         } else if (isFire(key)) {
             activateSelected();
         }
@@ -136,48 +191,52 @@ public final class ModHorizontalRuntime {
         return true;
     }
 
-    private static boolean isUp(int k) {
-        return k == -1 || k == 50;
-    }
-
-    private static boolean isDown(int k) {
-        return k == -2 || k == 56;
-    }
-
-    private static boolean isLeft(int k) {
-        return k == -3 || k == 52;
-    }
-
-    private static boolean isRight(int k) {
-        return k == -4 || k == 54;
-    }
-
-    private static boolean isFire(int k) {
-        return k == -5 || k == 53 || k == 10 || k == 13;
-    }
+    private static boolean isUp(int k) { return k == -1 || k == 50; }
+    private static boolean isDown(int k) { return k == -2 || k == 56; }
+    private static boolean isLeft(int k) { return k == -3 || k == 52; }
+    private static boolean isRight(int k) { return k == -4 || k == 54; }
+    private static boolean isFire(int k) { return k == -5 || k == 53 || k == 10 || k == 13; }
 
     private static void changeGroup(int delta) {
         group += delta;
         if (group < 0) group = GROUPS.length - 1;
         if (group >= GROUPS.length) group = 0;
 
+        clearLegacyMode();
         item = 0;
         itemScroll = 0;
         actionFocus = false;
     }
 
     private static void activateSelected() {
+        if (legacyMode) {
+            if (legacyItems == null || item < 0 || item >= legacyItems.size()) return;
+            Object row = legacyItems.elementAt(item);
+            if (!(row instanceof cw)) return;
+
+            int before = legacyGeneration;
+            ((cw) row).ht();
+
+            if (before == legacyGeneration) {
+                visible = false;
+                clearLegacyMode();
+            }
+            return;
+        }
+
         if (group < 0 || group >= COMMANDS.length) return;
         if (item < 0 || item >= COMMANDS[group].length) return;
 
         int command = COMMANDS[group][item];
         int payload = PAYLOADS[group][item];
         boolean close = CLOSE_AFTER[group][item];
-
-        if (close) visible = false;
+        int before = legacyGeneration;
 
         Object arg = payload == NO_PAYLOAD ? null : new Integer(payload);
         N.a().a(command, arg);
+
+        if (before != legacyGeneration) return;
+        if (close) visible = false;
     }
 
     public static boolean onPointerPressed(int px, int py) {
@@ -199,16 +258,15 @@ public final class ModHorizontalRuntime {
 
                 if (px >= x && px < x + tw) {
                     group = i;
+                    clearLegacyMode();
                     item = 0;
                     itemScroll = 0;
                     actionFocus = false;
                     ensureTabVisible(bold, lastW);
                     return true;
                 }
-
                 x += tw + 2;
             }
-
             return true;
         }
 
@@ -216,20 +274,20 @@ public final class ModHorizontalRuntime {
         int actionH = 36;
 
         if (py >= actionY && py <= actionY + actionH) {
-            String[] vals = ITEMS[group];
             int x = 4 - itemScroll;
+            int count = currentItemCount();
 
-            for (int i = 0; i < vals.length; i++) {
-                int iw = itemWidth(plain, vals[i]);
+            for (int i = 0; i < count; i++) {
+                String label = currentItemLabel(i);
+                int iw = itemWidth(plain, label);
 
                 if (px >= x && px < x + iw) {
                     actionFocus = true;
                     item = i;
-                    ensureItemVisible(plain, lastW);
+                    ensureCurrentItemVisible(plain, lastW);
                     activateSelected();
                     return true;
                 }
-
                 x += iw + 3;
             }
         }
@@ -285,7 +343,7 @@ public final class ModHorizontalRuntime {
             g.setColor(0x73500D);
             g.drawRect(x, tabY, tw - 1, tabH - 1);
 
-            if (!actionFocus && i == group) {
+            if (!actionFocus && !legacyMode && i == group) {
                 g.setColor(0xFFFFFF);
                 g.drawRect(x + 2, tabY + 2, tw - 5, tabH - 5);
             }
@@ -293,19 +351,19 @@ public final class ModHorizontalRuntime {
             g.setFont(bold);
             g.setColor(0x3B2607);
             g.drawString(GROUPS[i], x + tw / 2, tabY + 6, Graphics.HCENTER | Graphics.TOP);
-
             x += tw + 2;
         }
 
-        String[] vals = ITEMS[group];
         int actionY = panelY + 30;
         int actionH = 36;
 
-        ensureItemVisible(plain, w);
+        ensureCurrentItemVisible(plain, w);
         x = 4 - itemScroll;
+        int count = currentItemCount();
 
-        for (int i = 0; i < vals.length; i++) {
-            int iw = itemWidth(plain, vals[i]);
+        for (int i = 0; i < count; i++) {
+            String label = currentItemLabel(i);
+            int iw = itemWidth(plain, label);
 
             g.setColor(actionFocus && i == item ? 0xFFF5B5 : 0xF4E6CE);
             g.fillRect(x, actionY, iw, actionH);
@@ -319,28 +377,42 @@ public final class ModHorizontalRuntime {
 
             g.setFont(plain);
             g.setColor(0x402B0C);
-            g.drawString(vals[i], x + iw / 2, actionY + 10, Graphics.HCENTER | Graphics.TOP);
-
+            g.drawString(label, x + iw / 2, actionY + 10, Graphics.HCENTER | Graphics.TOP);
             x += iw + 3;
         }
 
         g.setFont(plain);
         g.setColor(0xFFFFFF);
-        g.drawString(
-            actionFocus ? "< > chuc nang   ^ nhom   OK chon   0 dong" : "< > doi nhom   v vao nhom   0 dong",
-            4,
-            h - 2,
-            Graphics.LEFT | Graphics.BOTTOM
-        );
+        String help;
+        if (legacyMode) help = "< > chon   OK mo   ^ tro lai   0 dong";
+        else if (actionFocus) help = "< > chuc nang   ^ nhom   OK chon   0 dong";
+        else help = "< > doi nhom   v vao nhom   0 dong";
+        g.drawString(help, 4, h - 2, Graphics.LEFT | Graphics.BOTTOM);
 
         g.setClip(0, 0, w, h);
-
         if (tx != 0 || ty != 0) g.translate(tx, ty);
     }
 
-    private static int panelHeight() {
-        return 82;
+    private static int currentItemCount() {
+        if (legacyMode && legacyItems != null) return legacyItems.size();
+        return ITEMS[group].length;
     }
+
+    private static String currentItemLabel(int index) {
+        if (legacyMode && legacyItems != null) {
+            if (index < 0 || index >= legacyItems.size()) return "";
+            Object row = legacyItems.elementAt(index);
+            if (row instanceof cw) {
+                String s = row.toString();
+                if (s == null) return "";
+                return s.replace('\n', ' ');
+            }
+            return "";
+        }
+        return ITEMS[group][index];
+    }
+
+    private static int panelHeight() { return 82; }
 
     private static int tabWidth(Font f, String s) {
         int tw = f.stringWidth(s) + 16;
@@ -356,35 +428,33 @@ public final class ModHorizontalRuntime {
         if (width <= 0) return;
 
         int left = 3;
-        for (int i = 0; i < group; i++) {
-            left += tabWidth(f, GROUPS[i]) + 2;
-        }
-
+        for (int i = 0; i < group; i++) left += tabWidth(f, GROUPS[i]) + 2;
         int right = left + tabWidth(f, GROUPS[group]);
 
         if (left < tabScroll + 3) tabScroll = left - 3;
         else if (right > tabScroll + width - 3) tabScroll = right - width + 3;
-
         if (tabScroll < 0) tabScroll = 0;
     }
 
-    private static void ensureItemVisible(Font f, int width) {
+    private static void ensureCurrentItemVisible(Font f, int width) {
         if (width <= 0) return;
 
-        String[] vals = ITEMS[group];
-        if (item < 0) item = 0;
-        if (item >= vals.length) item = vals.length - 1;
-
-        int left = 4;
-        for (int i = 0; i < item; i++) {
-            left += itemWidth(f, vals[i]) + 3;
+        int count = currentItemCount();
+        if (count <= 0) {
+            item = 0;
+            itemScroll = 0;
+            return;
         }
 
-        int right = left + itemWidth(f, vals[item]);
+        if (item < 0) item = 0;
+        if (item >= count) item = count - 1;
+
+        int left = 4;
+        for (int i = 0; i < item; i++) left += itemWidth(f, currentItemLabel(i)) + 3;
+        int right = left + itemWidth(f, currentItemLabel(item));
 
         if (left < itemScroll + 4) itemScroll = left - 4;
         else if (right > itemScroll + width - 4) itemScroll = right - width + 4;
-
         if (itemScroll < 0) itemScroll = 0;
     }
 }
