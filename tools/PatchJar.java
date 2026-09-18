@@ -155,7 +155,7 @@ public final class PatchJar {
         ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
 
         ClassVisitor cv = new ClassVisitor(Opcodes.ASM8, cw) {
-            public MethodVisitor visitMethod(int access, String name, String desc, String[] ex) {
+            public MethodVisitor visitMethod(int access, String name, String desc, String sig, String[] ex) {
                 MethodVisitor base = super.visitMethod(access, name, desc, sig, ex);
 
                 if (name.equals("dw") && desc.equals("()V")) {
