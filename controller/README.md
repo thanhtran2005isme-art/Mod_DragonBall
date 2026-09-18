@@ -179,3 +179,25 @@ The launcher currently passes:
 ```
 
 where `retry.max=0` means unlimited overload retries.
+
+
+## Skip the MicroEmulator Launcher screen
+
+Controller no longer starts the game as:
+
+```text
+java -jar microemulator-2.0.4.jar Dragonboy250-test.jar
+```
+
+because that opens MicroEmulator's built-in Launcher and requires pressing
+`Start`.
+
+It now starts the MIDlet class directly:
+
+```text
+java -cp "microemulator-2.0.4.jar;Dragonboy250-test.jar" \
+  org.microemu.app.Main --resizableDevice <width> <height> nro.GameMidlet
+```
+
+This bypasses the Launcher list/Start screen and goes straight into
+`nro.GameMidlet`. Width/height come from the account's `K.thước` field.

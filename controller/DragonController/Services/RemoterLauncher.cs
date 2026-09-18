@@ -71,14 +71,51 @@ internal sealed class MicroEmulatorLauncher
         psi.ArgumentList.Add("-Ddragon.auto.retry.jitter=400");
         psi.ArgumentList.Add("-Ddragon.auto.retry.max=0");
 
-        psi.ArgumentList.Add("-jar");
-        psi.ArgumentList.Add(microEmulatorJar);
-        psi.ArgumentList.Add(GamePath);
+        // IMPORTANT: passing the game JAR to "java -jar microemulator.jar"
+        // opens MicroEmulator's Launcher screen and still requires pressing Start.
+        // Put both JARs on the classpath and start nro.GameMidlet directly instead.
+        // This bypasses Launcher completely.
+        var classPath = microEmulatorJar + Path.PathSeparator + GamePath;
+        var (width, height) = ParseWindowSize(account.WindowSize);
+
+        psi.ArgumentList.Add("-cp");
+        psi.ArgumentList.Add(classPath);
+        psi.ArgumentList.Add("org.microemu.app.Main");
+        psi.ArgumentList.Add("--resizableDevice");
+        psi.ArgumentList.Add(width.ToString());
+        psi.ArgumentList.Add(height.ToString());
+        psi.ArgumentList.Add("nro.GameMidlet");
 
         var process = Process.Start(psi);
         if (process is null)
             throw new InvalidOperationException(
                 $"Không thể mở MicroEmulator gốc cho client {clientNumber}.");
+    }
+
+    private static (int Width, int Height) ParseWindowSize(string? value)
+    {
+        const int defaultWidth = 1000;
+        const int defaultHeight = 500;
+
+        if (string.IsNullOrWhiteSpace(value))
+            return (defaultWidth, defaultHeight);
+
+        var normalized = value.Trim()
+            .Replace('×', 'x')
+            .Replace('X', 'x');
+
+        var parts = normalized.Split('x', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (parts.Length != 2 ||
+            !int.TryParse(parts[0], out var width) ||
+            !int.TryParse(parts[1], out var height))
+        {
+            return (defaultWidth, defaultHeight);
+        }
+
+        // Keep obviously broken profile values away from MicroEmulator.
+        width = Math.Clamp(width, 240, 3840);
+        height = Math.Clamp(height, 240, 2160);
+        return (width, height);
     }
 
     private string? FindOriginalMicroEmulatorJar()
