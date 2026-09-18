@@ -30,8 +30,12 @@ public final class ModHorizontalRuntime {
     private static String legacyTitle = "";
     private static int legacyGeneration;
 
-    // One-shot automatic login state for controller-launched MicroEmulator JVMs.
-    private static boolean autoLoginTriggered;
+    // Automatic login/retry state for controller-launched MicroEmulator JVMs.
+    private static boolean autoLoginStarted;
+    private static boolean autoLoginOnline;
+    private static boolean autoRetryPending;
+    private static long autoRetryAt;
+    private static int autoRetryCount;
     private static int autoLoginWait;
 
     private static final String[] GROUPS = new String[] {
@@ -163,12 +167,14 @@ public final class ModHorizontalRuntime {
     }
 
     /**
-     * Called from the patched bR.cp() (ServerListScreen update). Once the
-     * current server list is available, select the requested server and reuse
-     * the game's own delayed login path: bR.gB() -> bb.fk().
+     * Called from the patched bR.cp() (ServerListScreen update).
+     *
+     * First launch: select the requested server and execute the game's own
+     * "Chơi TK" flow. If the server later reports overload, handleLoginMessage
+     * schedules another attempt and this tick executes it after a short delay.
      */
     public static void autoLoginTick(bR serverScreen) {
-        if (autoLoginTriggered || serverScreen == null || !autoLoginEnabled()) return;
+        if (serverScreen == null || !autoLoginEnabled() || autoLoginOnline) return;
 
         String user = safeProperty("dragon.auto.user");
         String pass = safeProperty("dragon.auto.pass");
@@ -183,25 +189,115 @@ public final class ModHorizontalRuntime {
             return;
         }
 
+        if (autoRetryPending) {
+            if (System.currentTimeMillis() < autoRetryAt) return;
+            autoRetryPending = false;
+            autoLoginStarted = false;
+        }
+
+        if (autoLoginStarted) return;
+
         int serverIndex = resolveServerIndex(servers, requestedServer);
         if (serverIndex < 0 || serverIndex >= servers.length) {
             autoLoginWait++;
             return;
         }
 
-        // Reuse the exact game actions instead of simulating a mouse click:
-        // 1) select/persist the requested server,
-        // 2) gB() applies that server's host/port to GameMidlet,
-        // 3) ef() is the game's own "Chơi TK" flow and performs connect/login.
+        startLoginAttempt(serverScreen, serverIndex);
+    }
+
+    private static void startLoginAttempt(bR serverScreen, int serverIndex) {
+        // Exact game flow used by the account button:
+        // select server -> apply host/port -> "Chơi TK" login.
         bR.a(serverIndex, true);
         serverScreen.gB();
         bR.ef();
-        autoLoginTriggered = true;
+        autoLoginStarted = true;
+    }
+
+    /**
+     * Injected at the entry of the game's popup helpers. Only the overload
+     * message is consumed; all other errors (wrong password, banned account,
+     * maintenance, etc.) continue through the original game UI unchanged.
+     */
+    public static boolean handleLoginMessage(String text) {
+        if (!autoLoginEnabled() || autoLoginOnline || text == null) return false;
+        if (!isOverloadMessage(text)) return false;
+        if (!autoRetryOverloadEnabled()) return false;
+
+        // Several networking paths can repeat the same message. One pending
+        // retry is enough; do not increase the counter more than once.
+        if (!autoRetryPending) {
+            int maxRetries = intProperty("dragon.auto.retry.max", 0);
+            if (maxRetries > 0 && autoRetryCount >= maxRetries) {
+                return false;
+            }
+
+            autoRetryCount++;
+
+            int baseDelay = intProperty("dragon.auto.retry.ms", 1200);
+            int jitterMax = intProperty("dragon.auto.retry.jitter", 400);
+            if (baseDelay < 100) baseDelay = 100;
+            if (jitterMax < 0) jitterMax = 0;
+
+            int jitter = jitterMax == 0
+                    ? 0
+                    : (autoRetryCount * 173) % (jitterMax + 1);
+
+            autoRetryAt = System.currentTimeMillis() + baseDelay + jitter;
+            autoRetryPending = true;
+            autoLoginStarted = false;
+        }
+
+        // Returning true prevents the blocking OK popup. The ServerListScreen
+        // update loop remains alive and performs the next login attempt.
+        return true;
+    }
+
+    /**
+     * Injected into the real gameplay screen update. Once gameplay is running,
+     * retry must stop permanently for this JVM.
+     */
+    public static void markLoginOnline() {
+        if (!autoLoginEnabled()) return;
+        autoLoginOnline = true;
+        autoRetryPending = false;
+        autoLoginStarted = true;
+    }
+
+    private static boolean isOverloadMessage(String text) {
+        String s = text.toLowerCase();
+
+        if (s.indexOf("quá tải") >= 0) return true;
+        if (s.indexOf("qua tai") >= 0) return true;
+
+        // Backup match for variants of the exact server response shown by the
+        // game: "vui lòng thử lại sau ít phút".
+        if (s.indexOf("thử lại sau ít phút") >= 0) return true;
+        if (s.indexOf("thu lai sau it phut") >= 0) return true;
+
+        return false;
     }
 
     private static boolean autoLoginEnabled() {
         String enabled = safeProperty("dragon.auto.login");
         return "1".equals(enabled);
+    }
+
+    private static boolean autoRetryOverloadEnabled() {
+        String enabled = safeProperty("dragon.auto.retry.overload");
+        return enabled == null || !"0".equals(enabled);
+    }
+
+    private static int intProperty(String name, int defaultValue) {
+        String value = safeProperty(name);
+        if (value == null) return defaultValue;
+
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (Exception ignored) {
+            return defaultValue;
+        }
     }
 
     private static String safeProperty(String name) {
@@ -231,8 +327,6 @@ public final class ModHorizontalRuntime {
                 if (current != null && trailingNumber(current) == wantedNumber) return i;
             }
 
-            // Server arrays are normally ordered Vũ trụ 1..N. This fallback
-            // handles minor text differences while still respecting bounds.
             int ordinal = wantedNumber - 1;
             if (ordinal >= 0 && ordinal < servers.length) return ordinal;
         }

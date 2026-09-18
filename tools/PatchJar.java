@@ -27,6 +27,7 @@ public final class PatchJar {
         boolean patchedCommand = false;
         boolean patchedServerList = false;
         boolean patchedRms = false;
+        boolean patchedGameplay = false;
 
         JarFile jf = new JarFile(in);
         Manifest mf = jf.getManifest();
@@ -66,6 +67,9 @@ public final class PatchJar {
                 } else if (name.equals("nro/bH.class")) {
                     data = patchRms(data);
                     patchedRms = true;
+                } else if (name.equals("nro/aL.class")) {
+                    data = patchGameplay(data);
+                    patchedGameplay = true;
                 }
 
                 JarEntry ne = new JarEntry(name);
@@ -85,13 +89,13 @@ public final class PatchJar {
         }
 
         if (!patchedN || !patchedCanvas || !patchedPanel || !patchedCommand ||
-                !patchedServerList || !patchedRms) {
+                !patchedServerList || !patchedRms || !patchedGameplay) {
             out.delete();
             throw new IllegalStateException(
                     "Required classes not found. N=" + patchedN +
                     " aE=" + patchedCanvas + " aB=" + patchedPanel +
                     " cw=" + patchedCommand + " bR=" + patchedServerList +
-                    " bH=" + patchedRms);
+                    " bH=" + patchedRms + " aL=" + patchedGameplay);
         }
 
         System.out.println("[patch] N.bt() now opens the horizontal menu overlay");
@@ -101,6 +105,8 @@ public final class PatchJar {
         System.out.println("[patch] aE.paint/key/touch feed the horizontal menu");
         System.out.println("[patch] bR.cp() accepts controller auto-login server selection");
         System.out.println("[patch] bH.e() reads per-process controller account/password properties");
+        System.out.println("[patch] aE login dialogs detect overload and schedule automatic retries");
+        System.out.println("[patch] aL.cp() stops login retry after real gameplay starts");
         System.out.println("[patch] Output: " + out.getAbsolutePath());
     }
 
@@ -309,9 +315,9 @@ public final class PatchJar {
         return cw.toByteArray();
     }
 
-    private static byte[] patchCanvas(byte[] input) {
-        final boolean[] paint = new boolean[1];
-        final boolean[] key = new boolean[1];
+
+    private static byte[] patchGameplay(byte[] input) {
+        final boolean[] foundUpdate = new boolean[1];
 
         ClassReader cr = new ClassReader(input);
         ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
@@ -319,6 +325,71 @@ public final class PatchJar {
         ClassVisitor cv = new ClassVisitor(Opcodes.ASM8, cw) {
             public MethodVisitor visitMethod(int access, String name, String desc, String sig, String[] ex) {
                 MethodVisitor base = super.visitMethod(access, name, desc, sig, ex);
+
+                if (name.equals("cp") && desc.equals("()V")) {
+                    foundUpdate[0] = true;
+                    return new MethodVisitor(Opcodes.ASM8, base) {
+                        public void visitCode() {
+                            super.visitCode();
+                            super.visitMethodInsn(
+                                    Opcodes.INVOKESTATIC,
+                                    RUNTIME,
+                                    "markLoginOnline",
+                                    "()V",
+                                    false
+                            );
+                        }
+                    };
+                }
+
+                return base;
+            }
+        };
+
+        cr.accept(cv, 0);
+        if (!foundUpdate[0]) throw new IllegalStateException("aL.cp() not found");
+        return cw.toByteArray();
+    }
+
+    private static byte[] patchCanvas(byte[] input) {
+        final boolean[] paint = new boolean[1];
+        final boolean[] key = new boolean[1];
+        final int[] loginDialogs = new int[1];
+
+        ClassReader cr = new ClassReader(input);
+        ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
+
+        ClassVisitor cv = new ClassVisitor(Opcodes.ASM8, cw) {
+            public MethodVisitor visitMethod(int access, String name, String desc, String sig, String[] ex) {
+                MethodVisitor base = super.visitMethod(access, name, desc, sig, ex);
+
+                boolean loginDialog =
+                        (desc.equals("(Ljava/lang/String;)V") &&
+                            (name.equals("j") || name.equals("k") || name.equals("m") || name.equals("n"))) ||
+                        (name.equals("a") &&
+                            (desc.equals("(Ljava/lang/String;ILjava/lang/Object;)V") ||
+                             desc.equals("(Ljava/lang/String;Lnro/cw;Lnro/cw;)V")));
+
+                if (loginDialog) {
+                    loginDialogs[0]++;
+                    return new MethodVisitor(Opcodes.ASM8, base) {
+                        public void visitCode() {
+                            super.visitCode();
+                            Label original = new Label();
+                            super.visitVarInsn(Opcodes.ALOAD, 0);
+                            super.visitMethodInsn(
+                                    Opcodes.INVOKESTATIC,
+                                    RUNTIME,
+                                    "handleLoginMessage",
+                                    "(Ljava/lang/String;)Z",
+                                    false
+                            );
+                            super.visitJumpInsn(Opcodes.IFEQ, original);
+                            super.visitInsn(Opcodes.RETURN);
+                            super.visitLabel(original);
+                        }
+                    };
+                }
 
                 if (name.equals("paint") && desc.equals("(Ljavax/microedition/lcdui/Graphics;)V")) {
                     paint[0] = true;
@@ -382,6 +453,9 @@ public final class PatchJar {
 
         cr.accept(cv, 0);
         if (!paint[0] || !key[0]) throw new IllegalStateException("aE paint/keyPressed not found");
+        if (loginDialogs[0] < 6) {
+            throw new IllegalStateException("Expected 6 aE login/popup helpers, patched " + loginDialogs[0]);
+        }
         return cw.toByteArray();
     }
 

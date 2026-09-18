@@ -64,6 +64,13 @@ internal sealed class MicroEmulatorLauncher
         psi.ArgumentList.Add("-Ddragon.auto.pass=" + account.Password);
         psi.ArgumentList.Add("-Ddragon.auto.server=" + account.Server);
 
+        // Retry only the specific server-overload response. Other login errors
+        // are left to the game's normal popup/handling.
+        psi.ArgumentList.Add("-Ddragon.auto.retry.overload=1");
+        psi.ArgumentList.Add("-Ddragon.auto.retry.ms=1200");
+        psi.ArgumentList.Add("-Ddragon.auto.retry.jitter=400");
+        psi.ArgumentList.Add("-Ddragon.auto.retry.max=0");
+
         psi.ArgumentList.Add("-jar");
         psi.ArgumentList.Add(microEmulatorJar);
         psi.ArgumentList.Add(GamePath);

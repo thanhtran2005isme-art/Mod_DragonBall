@@ -143,3 +143,39 @@ select server -> bR.gB() -> bR.ef() -> original connect/login logic
 
 This replaces the previous timer/flag approach that could stop after account
 and server were filled without actually starting login.
+
+
+## Automatic retry when a server is overloaded
+
+Controller-launched game clients now retry the login automatically only when
+the game receives an overload response such as:
+
+```text
+Hệ thống đang quá tải, vui lòng thử lại sau ít phút.
+```
+
+Implementation details:
+
+```text
+login
+  -> overload popup intercepted inside nro.aE
+  -> blocking OK popup is suppressed
+  -> wait ~1.2s + 0..400ms deterministic jitter
+  -> call the original server select + "Chơi TK" login path again
+  -> repeat until the real gameplay screen nro.aL is running
+  -> stop retry permanently for that client
+```
+
+Wrong-password, banned-account, maintenance and unrelated messages are not
+consumed and continue through the original game UI.
+
+The launcher currently passes:
+
+```text
+-Ddragon.auto.retry.overload=1
+-Ddragon.auto.retry.ms=1200
+-Ddragon.auto.retry.jitter=400
+-Ddragon.auto.retry.max=0
+```
+
+where `retry.max=0` means unlimited overload retries.
