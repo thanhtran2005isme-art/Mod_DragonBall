@@ -1,0 +1,33 @@
+public final class nro.bO {
+  public static final int iX;
+    descriptor: I
+
+  public java.lang.String p;
+    descriptor: Ljava/lang/String;
+
+  public boolean aW;
+    descriptor: Z
+
+  public java.lang.String I;
+    descriptor: Ljava/lang/String;
+
+  public boolean bQ;
+    descriptor: Z
+
+  public int cy;
+    descriptor: I
+
+  public nro.bO();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field iX:I
+       5: return
+}

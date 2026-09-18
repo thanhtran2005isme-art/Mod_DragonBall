@@ -1,0 +1,27 @@
+public final class nro.cB {
+  public static final int jR;
+    descriptor: I
+
+  public java.lang.String B;
+    descriptor: Ljava/lang/String;
+
+  public int cy;
+    descriptor: I
+
+  public int gH;
+    descriptor: I
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field jR:I
+       5: return
+
+  public nro.cB();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+}

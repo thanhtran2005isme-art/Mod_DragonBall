@@ -1,0 +1,60 @@
+public final class nro.aH extends java.util.Hashtable {
+  public static final int eQ;
+    descriptor: I
+
+  public final synchronized java.lang.Object put(java.lang.Object, java.lang.Object);
+    descriptor: (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: aload_1
+      11: aload_2
+      12: invokespecial #7                  // Method java/util/Hashtable.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      15: areturn
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field eQ:I
+       5: return
+
+  public final synchronized void clear();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokespecial #6                  // Method java/util/Hashtable.clear:()V
+      13: return
+
+  public nro.aH(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/util/Hashtable."<init>":()V
+       4: return
+
+  public final synchronized java.lang.Object remove(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Ljava/lang/Object;
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: aload_1
+      11: invokespecial #8                  // Method java/util/Hashtable.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+      14: areturn
+}

@@ -1,0 +1,2746 @@
+   
+  
+ 
+vChar
+vMob
+Lỗi: 
+;
+bảo trì
+phút
+0
+Giờ off: 
+h
+ - Giờ on: 
+ (On sau: 
+s)
+[Đang Login: 
+s] (status: 
+)
+[Máy chủ chưa sẵn sàng] (status: 
+[Đang chờ: 
+s]
+Đã xóa quái ở vị trí 
+ khỏi danh sách tàn sát
+Đã thêm quái ở vị trí 
+ vào danh sách tàn sát
+listSkillsAuto
+Chưa có skill trong danh sách Tàn Sát
+myChar
+Đã xóa 
+Đã thêm 
+Đang tải dữ liệu skill, vui lòng đợi...
+ khỏi danh sách auto skill
+ vào danh sách auto skill (Slot 
+Danh sách auto skill đã đầy 10 slot!
+-1;
+Danh sách khu trống!
+-1
+Lỗi định dạng khu!
+mobID
+mobNAME
+Hết capsule kì bí rồi
+Lỗi Auto: 
+Chuyển sang khu 
+ để tránh 
+TDLT đủ: 
+ phút
+Bước 1: Tắt hiệu ứng...
+Bước 2: Bật lại hiệu ứng...
+Bước 3: Đang kiểm tra kết quả...
+Đã mua 
+ TDLT!
+112.213.94.23
+Yardrat
+Đã khóa ID: 
+Hãy trỏ vào người
+Đang mặc Yardrat...
+Không có Yardrat
+Teleport tới ID: 
+storage/emulated/0
+sdcard
+file:///
+file://
+/
+Path sau khi sua: 
+>>> Nap anh THANH CONG!
+>>> Loi: 
+http
+GET
+User-Agent
+Mozilla/5.0
+Connection
+close
+UTF-8
+OK
+Có
+Không
+/icon.png
+4.0
+Đã hủy auto vào khu
+Đang auto vào khu: 
+Hết thời gian auto vào khu
+Đã vào khu: 
+/mainImage/myTexture2dmenu.png
+/button/btn_C.png
+/button/btn_B.png
+/button/btn_Z.png
+/button/btn_J.png
+/button/btn_K.png
+/button/btn_L.png
+/button/btn_G.png
+/button/btn_S.png
+/button/btn_X.png
+Nhập ngọc rồng
+Thường
+< Quay lại
+TIÊU ĐỀ
+vMenu
+Hiển Thị
+Ẩn/Hiện
+Xóa\nHiệu Ứng
+Cộng\nTiềm Năng
+Khoá\nMục Tiêu
+Huỷ Khoá\nMục Tiêu
+Tùy Chỉnh
+TIỆN ÍCH
+Cuồng Nộ: 
+Bật
+Tắt
+Bổ Huyết: 
+Bổ Khí: 
+Giáp Xên: 
+Ẩn Danh: 
+Khẩu Trang: 
+Máy Dò: 
+List Item: 
+AUTO ITEM
+Không có Capsule
+Không có Bông tai
+xmap
+ts
+view1
+view2
+view3
+view4
+annguoi
+anquai
+anitem
+SuperEff
+Xóa hào quang: 
+BombQCKK
+Xóa hiệu ứng bom và qckk: 
+Fusion
+Xóa hiệu ứng hợp thể: 
+HP
+KI
+Sức Đánh
+Giáp
+CỘNG TIỀM NĂNG
+Đã khoá mục tiêu 
+Đã huỷ khoá mục tiêu
+alogin
+sz
+acn
+abh
+abk
+agx
+aad
+akt
+amd
+itemId-effectId;itemId-effectId
+anhat
+locdo
+Đánh quái gần nhất: Bật
+Đánh sư phụ: Bật
+Đánh đệ tử: Bật
+Đánh khi đệ kêu: Tắt
+cflag
+Giới hạn sức mạnh
+out
+kok
+nb
+kvt
+xindau
+chodau
+thudau
+gb
+TDHS
+Xóa hiệu ứng TDHS: 
+Nhập mã màu rgb
+Nhập tốc chạy (0 - 100)
+Nhập tốc game (0 - 100)
+Nhập delay xmap
+Nhập delay login
+view5
+view6
+Nhập KC nhặt
+Nhập KC tàn sát
+g
+Đã dừng Xmap
+Thông Báo Boss: 
+Người Trong Map: 
+Thông Tin Sư Phụ: 
+Thông Tin Đệ Tử: 
+Thông Tin Up: 
+Check Thông Tin: 
+HIỂN THỊ
+Ẩn Người: 
+Ẩn Quái: 
+Ẩn Item: 
+ẨN/HIỆN
+Capsule
+Bông tai
+Chuyển khu
+Di chuyển
+Tàn Sát: 
+Tiện ích
+Chức năng
+Cài đặt
+Hướng dẫn
+MENU HÙNG HERO
+Auto Login
+Auto Item
+Auto Nhặt: 
+Auto Đậu
+Goback: 
+Lọc Đồ: 
+Chức Năng Đệ Tử
+CHỨC NĂNG
+Hào Quang: 
+Bom & QCKK: 
+Hợp Thể: 
+Thái Dương Hạ San: 
+HIỆU ỨNG
+ReadMe.txt
+\n
+HƯỚNG DẪN
+vCharInMap
+Trọng tài
+.
+MỤC TIÊU
+Xin Đậu: 
+Cho Đậu: 
+Thu Đậu: 
+AUTO ĐẬU
+Đánh Khi Đệ Kêu: Tắt
+Quái gần nhất
+Đánh sư phụ
+Đánh đệ tử
+Đánh Khi Đệ Kêu: 
+Treo Cờ Chống PK: 
+Thoát Khi Đủ SM: 
+Auto Kaioken: 
+Né Boss: 
+Khoá Vị Trí: 
+CHỨC NĂNG ĐỆ TỬ
+Auto Chat
+Buff Đậu
+Đánh quái
+Nhặt Đồ
+Porata
+Đánh Chuyển Mục Tiêu
+Auto Kaioken
+Auto Skill
+Lọc Đồ
+Săn Boss
+Điều Khiển Từ Xa
+Auto On-Off
+Xmap
+Ảnh Nền
+Tự Động Luyện Tập
+CÀI ĐẶT
+Dừng Xmap
+Đánh Quái\nGần Nhất
+Đánh Sư Phụ
+Đánh Đệ Tử
+ĐÁNH KHI ĐỆ KÊU
+Dừng xmap
+Tự Kết Nối: 
+Vào Lại Khu: 
+AUTO LOGIN
+Màu Nền: 
+Tốc Chạy: 
+Tốc Game: 
+Delay Xmap: 
+ms
+Delay Login: 
+KC Nhặt: 
+KC Tàn Sát: 
+TÙY CHỈNH
+RemoveChar
+RemoveMob
+RemoveItem
+ vào danh sách đánh chuyển mục tiêu
+ khỏi danh sách đánh chuyển mục tiêu
+Danh sách chuyển mục tiêu trống!
+Không vào được khu 
+, bỏ qua
+Đang ở khu 
+, đợi 
+s nữa
+Chuyển sang khu: 
+Đã thấy boss: 
+-
+ItemConfig
+listDonate
+rương
+đệ
+/x
+/users/
+/chars/
+/chat_cmd.json
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+null
+"text":"
+"
+.json
+POST
+Content-Type
+application/json
+X-HTTP-Method-Override
+PATCH
+{"sm":
+,"tn":
+,"hp":
+,"mp":
+,"sd":
+,"map":"
+Khong xac dinh
+","khu":
+,"last_update":
+}
+DELETE
+/img/map
+.png
+/mainImage/myTexture2dbantay.png
+/mainImage/myTexture2dbtX.png
+/mainImage/myTexture2dimgMoney.png
+/mainImage/myTexture2dimgDiamond.png
+/mainImage/luongkhoa.png
+/mainImage/myTexture2dup.png
+/mainImage/myTexture2ddown.png
+/mainImage/star.png
+/mainImage/starE.png
+/mainImage/star8.png
+/mainImage/star9.png
+/mainImage/starCH.png
+/mainImage/new.png
+/mainImage/ticket12.png
+: 
+%
+(
+MAX
+Top 
+ :
+HP: 
+MP: 
+, 
+ / 
+%, 
+Dragonboy250 v
+Tác giả: Hùng Hero
+Phiên bản: 2.5.0
+Online: 
+|
+:
+ [+
+]
+,
+...
+tt >>:
+- 
+ (
+- ...
+ 0/
+Đã thêm vào danh sách nhặt
+Đã xoá khỏi danh sách nhặt
+Đã thêm vào danh sách không nhặt
+Đã xoá khỏi danh sách không nhặt
+ khỏi danh sách cho đậu
+ vào danh sách cho đậu
+ khỏi danh sách auto
+Nhập thứ tự (1-10):
+levelScreenKN
+chat player
+use item
+remove item
+nhan do
+xoa do
+nhan tat
+mua do
+|0|
+\n|1|
+\n|5|
+\n|4|
+\n--
+\n|6|
+\n|7|1|
+|0|1|
+|2|1|
+|8|1|
+|7|1|
+$
+\n|1|1|
+\n|0|1|
+\n|
+|1|
+\n|3|1|
+\n|6|1|
+\n--\n|6|
+\n|2|
+\n\n
+LOAD TAM HINH
+|5|2|
+\n|5|2|
+\n|1|Top 
+       
+/mainImage/o_0.png
+/mainImage/o_1.png
+/mainImage/o_2.png
+/mainImage/o_3.png
+toi day select= 
+FIRE ZONE
+fire inventory
+Xoá khỏi danh sách nhặt
+Thêm vào danh sách nhặt
+Xoá khỏi danh sách không nhặt
+Thêm vào danh sách không nhặt
+ 2.5.0
+#
+s\n--
+\n|0|
+s
+\n|2|1|
+\n--\n|5|
+5
+|4|1|
+|3|1|
+viewchat
+\n\n--\n|5|
+(Top 
+Auto
+Xoá khỏi danh sách auto
+Thêm vào danh sách auto
+\n-
+\n1 
+\n10 
+\n100 
+TOI DAY 1
+TOI DAY 2
+TOI DAY 3
+TOI DAY 4
+my role= 
+Xoá khỏi danh sách cho đậu
+Thêm vào danh sách cho đậu
+ \n
+http://dragonball.indonaga.com/coda/?username=
+\n--\n|7|
+d
+'
+ph
+.000
+.00
+.0
+GMT+7
+vFlyText
+load bg id= 
+map ID= 
+/bg/caycot.png
+HELL
+/bg/b
+/bg/b63.png
+/bg/b100.png
+/bg/b82-1.png
+/bg/b93.png
+0.png
+/bg/sun0.png
+/tWater/wts
+/tWater/water_flow_32
+/bg/sun2.png
+/bg/sun3
+/bg/sun4
+/bg/sun5
+/bg/sun6
+/bg/sun8
+/bg/sun7
+/bg/sun9
+/bg/sun10
+/bg/sun11
+/bg/sun12
+/bg/sun13
+/bg/sun14
+/bg/sun15
+/bg/b113
+/bg/sun
+/tWater/water_flow_
+/e/w
+IP2= 
+ PORT 2= 
+vSub
+Bạn không thể đổi khu vực này
+Không thể đổi khu vực trong map này
+Không thể chuyển khu vực.
+Không thể đổi khu vực
+Can not change zone in this map
+Tidak bisa
+vCurrPopup
+/e/d
+/mainImage/myTexture2df.png
+fake
+/mainImage/wait.png
+vDebugUpdate
+vDeBugPait
+vDebugSesion
+/mainImage/myTexture2dbd
+lowGraphic
+serverchat
+isPaintAura
+isPaintAura2
+/mainImage/18+.png
+/effectdata/blue/
+/effectdata/violet/
+ 0123456789+-*='_?.,<>/[]{}!@#$%^&*():aáàảãạâấầẩẫậăắằẳẵặbcdđeéèẻẽẹêếềểễệfghiíìỉĩịjklmnoóòỏõọôốồổỗộơớờởỡợpqrstuúùủũụưứừửữựvxyýỳỷỹỵzwAÁÀẢÃẠĂẰẮẲẴẶÂẤẦẨẪẬBCDĐEÉÈẺẼẸÊẾỀỂỄỆFGHIÍÌỈĨỊJKLMNOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢPQRSTUÚÙỦŨỤƯỨỪỬỮỰVXYÝỲỶỸỴZW
+/myfont/tahoma_7b_red.png
+/myfont/tahoma_7b
+/myfont/tahoma_7b_blue.png
+/myfont/tahoma_7b_white.png
+/myfont/tahoma_7b_yellow.png
+/myfont/tahoma_7b_brown.png
+/myfont/tahoma_7b_green2.png
+/myfont/tahoma_7b_green.png
+/myfont/tahoma_7b_focus.png
+/myfont/tahoma_7b_unfocus.png
+/myfont/tahoma_7.png
+/myfont/tahoma_7
+/myfont/tahoma_7_blue1.png
+/myfont/tahoma_7_green2.png
+/myfont/tahoma_7_yellow.png
+/myfont/tahoma_7_grey.png
+/myfont/tahoma_7_red.png
+/myfont/tahoma_7_blue.png
+/myfont/tahoma_7_green.png
+/myfont/tahoma_7_white.png
+/myfont/tahoma_8b.png
+/myfont/tahoma_8b
+ 0123456789+-
+/myfont/number_yellow.png
+/myfont/number
+/myfont/number_red.png
+/myfont/number_green.png
+/myfont/number_gray.png
+/myfont/number_orange.png
+paht data:
+vLine
+item template
+low
+mid
+mid2
+hi
+>>loadItemNew:  type:
+NRitem0
+NRitem1
+NRitemVersion
+NRitem100
+NRitem101
+vcData= 
+ vData=
+NR_dart
+NR_arrow
+NR_effect
+NR_image
+NR_part
+NR_skill
+NRdata
+ADD TYPE PK= 
+ to player 
+ body= 
+ leg= 
+ bag=
+BAG ==
+*********************************
+1
+Controller readCharInfo body: body|leg|bag 
+connect 1 ok
+setType
+microedition.platform
+|2.5.0
+res\info
+write 
+item.options
+is loading map = 
+LOAD GAMESCR 2
+Skills_
+_
+type= 
+ id= 
+ playID= 
+ time= 
+str chat 
+[LEN] sl nguoi choi 
+123 char= 
+!null
+head= 
+ left= 
+ x= 
+ y= 
+ chung toc= 
+vGo size= 
+NPC size= 
+tempalte = 
+2
+3
+6
+item size = 
+/mapBackGround/
+bgItem
+Small  last= 
+new Version= 
+blend
+nKey= 
+key= 
+ value= 
+--------------------------------------------------------------------
+eff
+beff
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Loadmap khong thanh cong
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Loadmap thanh cong
+>>---read_cmdExtraBig-sub:
+frame new boss
+messageNotMap: cmd:
+****** DATA VERSION: Server 
+ Client 
+****** MAP VERSION: Server 
+****** SKILL VERSION: Server 
+****** ITEM VERSION: Server 
+send update data
+NRmap
+NRskill
+3>>>readOk:isLoadAllData: 
+CAPTION LENT= 
+GET UPDATE_MAP 
+ bytes
+NRmapVersion
+GET UPDATE_MAP NRmapVersion:
+GET UPDATE_SKILL 
+NRskillVersion
+GET UPDATE_ITEM 
+REQUEST MAP TEMPLATE
+Cmd.REQUEST_MAPTEMPLATE=10  w|H= 
+\n Dien Tich = 
+load Me Active: 
+sub: 
+Char head = 
++++++++++++++++++++++++++++++++++
+option size= 
+toi day =======================================
+vci
+delta time= 
+skidd id my  char= 
+hpgoc  =
+ hp full= 
++
+curr HP= 
+CID = 
+type pk= 
+update type pk= 
+KSkill
+OSkill
+CSkill
+ME UPDATE SKILL
+>>>>read.ItemOption  errr:
+Receive message cmd 
+cmd= 
+template id= 
+SKILLENT = 
+byte size= 
+head = 
+ body
+ leg=
+isonline = 
+mod attack id= 
+mob dame= 
+REMOVE QUÁI
+nList= 
+===> UPDATE_BODY:    type = 
+====> Cmd: -90 UPDATE_BODY   \n  isMonkey= 
+ head=  
+ legU= 
+GET UPDATE_DATA 
+NRdataVersion
+-----
+xR= 
+ yR= 
+ +++++++++++++++++++++++++++++++++++++++
+map RID = 
+ zone RID= 
+map ID = 
+ zone ID= 
+combine action =
+online offline id=
+online= 
+. 
+[Controler: cmd-74] action = 
+login ngay
+x
+path save= 
+ data save lent= 
+ === 
+% 
+last version= 
+BIG MESSAGE .......................................
+Small
+TELEPORT ...................................................
+cmd:-64 UPDATE BAG PLAER = 
+ BAG ID= 
+GET BAG
+ID=  
+ frame= 
+cmd: -62 CLAN_IMAGE id= 
+ nImage= 
+MY CLAN INFO
+clanId= 
+GameCanvas.panel.myMember 
+ameCanvas.panel.myMember
+.panel.member
+clan = 
+clan search lent= 
+cAction= 
+change slogan 
+>.SKILL_NOT_FOCUS  skill type= 
+   player use= 
+>.SKILL_NOT_FOCUS  skill playerDir= 
+>.SKILL_NOT_FOCUS  skill targetDame= 
+    c:
+   cdir:
+id use= 
+LOAD LAST SKILL
+npc size= 
+index= 
+player ID= 
+ my ID= 
+ <1> Tra ve thoi gian gong   = 
+ last= 
+second = 
+nguoi ki gui  
+num body = 
+numC=
+act= 
+toi duoc day
+curr Peas= 
+vmenu controle 2
+Curr pea= 
+BACK GROUND template id= 
+nItem= 
+***************MAP_INFO**************
+GET MAP INFO
+isRes= 
+====> 2 NEW DATA TEMPLATE  = 
+mob image lent= 
+menu open ui
+npc template id= 
+vt menu
+OPEN_UI_SAY ID= 
+npc id= 
+TASK GET index= 
+TASK NEXT
+SA769991v4-num
+SA769991v5-num
+hit eff= 
+vmenu UI
+idMessageTime + messageStr + timeMessage:::  
+ADD ITEM TO MAP --------------------------------------
+chat text= 
+HOI SINH x= 
+SERVER SEND MOB DIE
+playerid= 
+ my id= 
+mob index= 
+SA8x2y
+PLAYER REMOVED!!!!!============
+co 1 con quai
+user id= 
+ text= 
+ME DIE XP DOWN NOT IMPLEMENT YET!!!!!!!!!!!!!!!!!!!!!!!!!!
+>>>createMap: 
+banner_
+\n|ChienTruong|Log: 
+	sub    0|  nCT_team= 
+|nCT_TeamA =
+  isPaint_CT=false \n
+	sub    1 floor= 
+|timeBallte= 
+isPaint_CT=true \n
+	sub   2|  A= 
+|B =
+  isPaint_CT=true \n
+ =====> SEND OPTION_HAT 
+	sub    3|  isPaint_CT=false \n
+END LOG CT.
+>>>>read.isEXTRA_LINK 
+>>>>read.isEXTRA_LINK  numSv: 
+>>>>read.isEXTRA_LINK  typeClass: 
+>>>>read.isEXTRA_LINK  errr:
+Vào game
+Trờ ra
+Tầng 
+#01 AAAAAAAAAA
+*
+focus 1 con bossssssssssssssssssssssssssssssssssssssssssssssssss
+getFlag1
+my cflag: isme
+my cflag: true
+my cflag: cflag==
+my cflag: false
+my cflag: not me
+READ SKILL DONE
+<readOk><vsData<
+==
+<readOk><vsMap<
+<readOk><vsSkill<
+<readOk><vsItem<
+pingABCD
+icon
+big
+DO SET ONSCREEN SKILL
+GET KEYSKILL!
+LOAD DEFAULT KEY SKILL
+#01 nnnnnnnnnnnn
+ACTIVE SUPER POWER
+vClan
+vPtMap
+vFriend
+vEnemies
+vItemMap
+vMobAttack
+vSet
+vNpc
+vFlag
+vItemUpGrade
+/mainImage/myTexture2dstat.png
+/mainImage/myTexture2dlineColor20.png
+/mainImage/myTexture2dlineColor21.png
+/mainImage/myTexture2dlineColor22.png
+/mainImage/myTexture2dlineColor00.png
+/mainImage/myTexture2dlineColor01.png
+/mainImage/myTexture2dlineColor02.png
+/mainImage/i_pve_bar_0.png
+/mainImage/i_pve_bar_1.png
+/mainImage/i_vs.png
+/mainImage/i_charlife.png
+/mainImage/i_hp.png
+/mainImage/i_khung.png
+/mainImage/myTexture2dbtnl.png
+/mainImage/myTexture2dbtnlf.png
+/mainImage/myTexture2dbtnl2.png
+/mainImage/myTexture2dbtnlf2.png
+/mainImage/myTexture2dpanel.png
+/mainImage/panel2.png
+/mainImage/myTexture2dHP.png
+/mainImage/SP.png
+/mainImage/myTexture2dhpLost.png
+/mainImage/myTexture2dmpLost.png
+/mainImage/myTexture2dMP.png
+/mainImage/myTexture2dskill.png
+/mainImage/myTexture2dskill2.png
+/mainImage/myTexture2dfocus.png
+/mainImage/tm-do.png
+/mainImage/tm-vang.png
+/mainImage/tm-xam.png
+/mainImage/tm-xanh.png
+/mainImage/myTexture2darrow.png
+/mainImage/myTexture2darrow2.png
+/mainImage/myTexture2dchat.png
+/mainImage/myTexture2dchat2.png
+/mainImage/myTexture2dfocus2.png
+/mainImage/myTexture2dPea0.png
+/mainImage/myTexture2dPea1.png
+/mainImage/myTexture2danalog1.png
+/mainImage/myTexture2danalog2.png
+/mainImage/myTexture2dPea2.png
+/mainImage/myTexture2dPea3.png
+/mainImage/myTexture2dfirebtn0.png
+/mainImage/myTexture2dfirebtn1.png
+/mainImage/myTexture2dPea_0.png
+/mainImage/myTexture2dPea_1.png
+/mainImage/myTexture2dPea_2.png
+/mainImage/myTexture2dPea_3.png
+analog
+/bg/trans.png
+/mainImage/myTexture2dnut.png
+/mainImage/myTexture2dnutF.png
+/mainImage/myTexture2darrow3.png
+DO SET KEY SKILL
+PERFORM WITH ID = 
+>>>use skill spec: 
+use skill not focus
+only select skill
+return o day
+Đổi cờ
+Logout
+chat world
+InfoLog
+find 
+/e/sp
+do fire
+dt= 
+Mabu
+m
+GET ONSCREENSKILL!
+LOAD DEFAULT ONSCREEN SKILL
+VE RONG THAN O VI TRI x= 
+ y=
+GET CURRENTSKILL!
+!
+/mainImage/myTexture2dbtMenu1.png
+/mainImage/myTexture2dbtMenu2.png
+socket://
+[x]   
+[  ]   
+vPopups
+/mainImage/myTexture2dbd3.png
+/mainImage/myTexture2dimgPopup.png
+/mainImage/myTexture2dimgPopup2.png
+/mainImage/portal.png
+v Message
+imgNew BgItem
+vKeyNews
+vKeyLast
+vDarts
+/mainImage/myTexture2dgoc
+/mainImage/myTexture2dcheck.png
+vKeys
+/SmallImage/Small
+/img/Big0.png
+/img/Big1.png
+/img/Big2.png
+/img/Big3.png
+/mainImage/shadowBig.png
+/mainImage/myTexture2dmobHP.png
+small num= 
+TELEPORT x= 
+ type= 
+Y2= 
+--------------------------------------------------------------
+/mainImage/myTexture2dmaybay4a.png
+/mainImage/myTexture2dmaybay4b.png
+/mainImage/hole.png
+/mainImage/myTexture2dmaybay
+vTeleport
+/effectdata/
+/data
+/effectdata/108/img.png
+vEff
+checkDelHash
+ImgByName_
+h ImgByName
+vClanImage
+h id images
+/effectdata/100/img.png
+/effectdata/101/img.png
+err  Effect.update: 
+vEffData
+vLastEff
+vNewEff
+vdowloadEff
+/img.png
+Effect 
+ err at frame 
+ vitri 
+/mymap/
+/mymap/mapTable
+MapTemplate.vCurrItem[a] 
+Có lỗi xảy ra
+Select menu: 
+VSKILL
+nr_nap_25
+nr_nap_150
+nr_nap_350
+nr_nap_800
+nr_nap_2500
+Nạp 25 ngọc
+Nạp 150 ngọc
+Nạp 350 ngọc
+Nạp 800 ngọc
+Nạp 2500 ngọc
+22.000 VND
+109.000 VND
+219.000 VND
+449.000 VND
+1.099.000 VND
+blend color
+Lv.
+no.
+-paint-radaScr-null: 
+-upd-radaScr-null: 
+/radar/17.png
+/radar/3.png
+/radar/23.png
+/radar/0.png
+/radar/1.png
+/radar/2.png
+/radar/4.png
+/radar/5.png
+/radar/6.png
+/radar/
+/radar/14.png
+/radar/15.png
+/radar/16.png
+/radar/18.png
+/radar/19.png
+/radar/20.png
+/radar/21.png
+/radar/22.png
+vj
+bi loi save -------------------------
+CLEAR ALL
+2.5.0
+ResVersion
+clienttype
+lastZoomlevel
+userAo
+acc
+pass
+check
+END ME!
+vDARTS
+area_select
+/iconHead_
+Tiếng Việt
+English
+Indo
+VIỆT NAM
+GLOBAL
+Máy chủ tiêu chuẩn
+Máy chủ Super
+Máy chủ tiêu chuẩn:\nTiến trình game bình thường.
+Máy chủ Super:\n -Không thể giao dịch vàng.\n x3 Sức mạnh\n x3 Tiềm năng\n x3 Vàng\n x3 Vật phẩm khác
+Chỉ hiện thị máy chủ đã chơi.
+perform trong ServerScr:
+sellllect      
+-----------vo mainSelect: 
+[
+] 
+ sao
+http://ngocrongonline.com
+/mainImage/logo1.png
+Tới Whis (Hành tinh Bill) để học tuyệt kỹ
+Khi đạt tối đa thành thạo, hãy đến Whis (Hành tinh Bill) để nâng cấp tuyệt kỹ
+Thành thạo
+Xóa tài khoản
+Hôm nay bạn đã nạp nhiều ngọc. Ngày mai hãy nạp tiếp nhé!
+Khi bán thành công sẽ nhận lại Hồng Ngọc không phải Ngọc, bạn có muốn tiếp tục kí gửi?
+Sử dụng
+Mở khóa
+Sổ sưu tầm
+Bạn không đủ
+Chức năng tạm dừng để bảo trì
+Nạp Ngọc
+Bạn có chắc muốn nhặt vật phẩm này không ?
+tầng
+Con số may mắn
+Mini game
+Thông báo
+Tự động hồi sinh
+Chức năng auto
+Bạn có chắc muốn kết hợp vĩnh viễn với đệ tử của mình không? Bạn sẽ mất đệ tử và toàn bộ trang bị đệ tử đang mặc, toàn bộ sức mạnh của đệ tử sẽ chuyển thành tiềm năng của bạn
+Hợp thể vĩnh viễn
+Hợp thể
+Vui lòng nhập đúng số lượng cho phép
+Chơi tiếp
+Về nhà
+Trạng thái
+Tấn công
+Bảo vệ
+Đi theo
+Đệ tử
+Máy chủ tắt hoặc mất sóng
+Cấu hình thấp
+Cấu hình cao
+Tải dữ liệu
+Xóa dữ liệu
+Bạn cần xóa trong trường hợp có lỗi tải dữ liệu. Khi xóa xong, bạn phải tải lại toàn bộ để có thể chơi.
+Hủy
+Vui lòng tải dữ liệu để chơi
+Úm ba la xì bùa...
+Chúc mừng con nhé
+Chúc con may mắn lần sau
+Bạn có đến tương lai ngay bây giờ với giá 1 ngọc không ?
+Tăng tốc
+Bàn phím ảo
+Mã bảo vệ
+Nhập mã bảo vệ
+Mã bảo vệ phải có độ dài là 6 số.
+Vui lòng nhập số điện thoại hoặc địa chỉ email,sau đó nhập mật khẩu để tạo tài khoản mới
+Bạn sẽ mất tài khoản đang chơi và không thể khôi phục được nếu đổi tài khoản khác, bạn có đồng ý không ?
+Đăng kí để bảo vệ tài khoản
+Bạn phải hoàn thành nhiệm vụ tìm ngọc 6 sao mới có thể nạp tiền
+Diễn đàn và Nạp Ngọc
+Chưa có vật phẩm rao bán
+Kéo lên để cập nhật thêm
+Kéo xuống để cập nhật thêm
+Trang
+Up Top
+Bán bằng\nvàng
+Bán bằng\nngọc
+Bán bằng vàng
+Bán bằng ngọc
+Hủy\nkí gửi
+Nhận tiền
+Đã bán
+Đang bán
+Kí gửi
+Âm thanh
+Hạng
+Chọn máy chủ
+Năng động
+Đang đăng ký
+Đã gửi tin nhắn, xin chờ tin nhắn xác nhận.
+Không thể gởi tin nhắn. Xin kiểm tra tiền và thử khởi động lại game.
+Gửi tin nhắn thành công
+Không thể gửi tin nhắn
+Chúc mừng bạn đã gởi tin nhắn dự đoán thành công.
+Tin nhắn gửi không thành công.
+Mật khẩu phải có độ dài là 6 ký tự.
+Mật khẩu bảo vệ chỉ cho nhập số.
+Nhập mật khẩu bảo vệ
+Đổi tài khoản
+Bạn chưa nhập email hoặc số di động.
+Bạn chưa nhập mật khẩu
+Tên tài khoản phải nhiều hơn 5 ký tự
+Số di động không hợp lệ. Xin nhập theo mẫu 0912345678 hoặc 84918765432
+Email không hợp lệ. Xin nhập theo mẫu tencuaban@yahoo.com hoặc tencuaban@gmail.com
+Đăng ký\ntài khoản\nmới
+Chọn\nmáy chủ
+Quên M.khầu
+Mật khẩu
+Chưa có tài khoản xin
+chọn menu đăng ký.
+Tin nhắn
+Tin
+nhắn
+Không có tin nhắn
+Bạn có muốn huỷ chức năng bảo vệ tài khoản không ?
+Kiểm tra chính xác để lấy lại được tài khoản nếu sau này quên mật khẩu\n
+Số di động
+Địa chỉ mail
+TK
+MK
+Để lấy lại mật khẩu, xin vui lòng vào website http://ngocrongonline.com/matkhau
+Ngọc rồng
+Nhân vật
+Tài khoản
+Máy chủ
+Bạn chưa nhập tên nhân vật
+Tên nhân vật quá ngắn
+Tên nhân vật không được quá 15 kí tự
+Nhân vật cần đổi tên
+Tên nhân vật
+Đăng nhập
+Đ.Nhập
+Đăng ký
+Dịch \nchuyển tới
+Trả thù
+Chờ
+Xin chờ
+Đang kết nối
+Không có kẻ thù
+Đang tải 
+Có lỗi xảy ra, xin vui lòng khởi động lại game.
+Đổi khu vực
+Chọn khu vực
+Website\ndiễn đàn
+Hành trang
+Kỹ năng
+Tiềm năng
+Thông tin
+Trang bị
+Dân tộc: 
+Tóc: 
+Trái đất
+Namếc
+Xayda
+Rồng đất
+Rồng xanh
+Rồng đỏ
+Thách đấu
+Luyện tập
+Cừu sát
+Kết bạn
+Mời vào bang
+Phục hồi
+Xem thông tin
+Chat riêng
+Mời vào tộc
+Chặn xin vào tộc
+Nhiệm
+Vụ
+Hành
+Kỹ
+Năng
+Chức
+Bang
+Hội
+Đệ
+Tử
+Trạng
+Thái
+Vào\nphím Q
+Vào\nphím W
+Vào\nphím E
+Vào\nphím R
+Vào\nphím T
+Vào\nphím 7
+Vào\nphím 8
+Vào\nphím 9
+Vào\nphím 1
+Vào\nphím 3
+Chiêu đánh hiện tại của bạn chưa nâng cấp độ
+Đã hết đậu thần. Cậu hãy về thu hoạch thêm
+Bạn đang ở khu vực này
+Hãy đi tìm 
+ ở 
+ để nhận nhiệm vụ.
+Bạn đã hoàn thành hết nhiệm vụ phiên bản này, vui lòng chờ cho đến khi ra phiên bản tiếp theo.
+Kiệt sức
+Hồi sinh\nngay\n(1 ngọc)
+Bản đồ
+Nhiệm vụ
+Gia tộc
+Đậu thần dùng để tăng KI và HP ngay lập tức
+Bạn chỉ mang theo người được 10 hạt đậu. Nếu muốn mang nhiều hơn, hãy xin từ bạn bè trong Bang
+Tất cả các sách kỹ năng đều có thể học miễn phí tại Quy Lão Kame, khi bạn có đủ điểm tiềm năng
+Bạn không thể bay, dùng kỹ năng, nếu hết KI
+Tấn công quái vật cùng bạn bè trong Bang sẽ mang lại nhiều điểm tiềm năng hơn đánh một mình
+Tập luyện với bạn bè tại khu vực thích hợp sẽ mang lại nhiều điểm tiềm năng hơn đánh quái vật
+Khi được nâng cấp, đậu thần sẽ phục hồi nhiều HP và KI hơn
+Vào trò chơi đều đặn mỗi ngày để nhận được Ngọc miễn phí
+Đùi gà sẽ phục hồi 100% HP, KI. Cà chua phục hồi 100% KI. Cà rốt phục hồi 100% HP
+Cây đậu thần kết một hạt sau một thời gian, cho dù bạn đang offline
+Sau 3 ngày không tham gia trò chơi, bạn sẽ bị giảm sức mạnh do lười luyện tập
+Bạn sẽ giảm thể lực khi đánh quái, nhưng sẽ tăng lại thể lực khi không đánh nữa
+Khi nào hết ngọc, bạn hãy đến chỗ Bò Mộng
+Sau khi gia nhập vào lớp học, thì có thể nhận nhiệm vụ từ hiệu trưởng
+Số seri
+Mã thẻ
+Nạp thẻ Vina, Mobi, Viettel, Gate
+Nạp thẻ
+Vui lòng nhập số serial
+Vui lòng nhập mã code
+Tỉ
+Tr
+Menu
+Đóng
+Xóa
+Tiếp tục
+Thoát
+Chat
+Nhớ
+Đồng ý
+Chọn
+Đi vào
+Mở link
+Tạo mới
+Tiêu diệt
+Bắt tà thú
+vàng
+ngọc
+hồng ngọc
+Điểm hiếu chiến của bạn hiện tại là 
+ bắt đầu cừu sát bạn
+Không đủ KI để sử dụng
+Bạn nhận được
+Bạn học được 
+Bạn bè
+Kẻ thù
+Không có bạn bè
+Chat thế giới
+Cấu hình
+Tăng đồ họa (cho máy mạnh)
+Giảm đồ họa (cho máy yếu)
+Thông báo từ máy chủ
+Hào quang đặc biệt
+Hào quang sức mạnh
+Màn hình lớn
+Màn hình nhỏ
+Bạn có muốn thoát game để thay đổi cỡ màn hình không ?
+Rương đồ
+Rương
+Đồ
+Kết
+hợp
+Bản
+đồ
+Item
+cho
+nhận
+Khu
+Vực
+Khu vực
+Item nhận
+Nhận
+Nhận tất
+Hãy đến vị trí chớp nháy trên bản đồ để làm nhiệm vụ
+Dành cho Trái Đất\n
+Dành cho Namếc\n
+Dành cho Xayda\n
+Sức mạnh yêu cầu
+Sức mạnh của bạn
+Đã dùng
+ô
+Nâng cấp
+Đang nâng cấp
+Gán ô\nphím tắt
+Vào ô\nthứ 
+Cất vào\nrương
+Cất vào rương
+Nói chuyện
+Hụt
+Cho
+Nhấn 2 lần
+Có thể thu hoạch
+Nhấn Y để đồng ý (
+Nhấn # để đồng ý (
+Xin khởi động lại game để cập nhật dữ liệu
+Đang online
+Đang offline
+Chat player
+Chat với
+Capsule cho bang
+Capsule cá nhân
+Capsule bang
+Cho đậu
+Nhận đậu
+Xin đậu
+ lần
+Đã nhận
+Sức mạnh
+Ngày gia nhập
+Bang chủ
+Phó bang
+Điểm sức mạnh
+Thành viên
+Thành
+viên
+bang
+Rời
+Lập
+Tìm
+Khẩu
+hiệu
+Biểu
+tượng
+Xin
+đậu
+Cấp
+Ngày thành lập: 
+Danh sách bang
+Chưa vào bang
+Hiện tại bang chỉ có
+ 1 thành viên là bạn.
+ Xin chờ có người xin vào.
+ Bạn có thể chọn vào nhân vật
+ khác để mời họ vào bang
+Nhập tên bang
+Tên bang
+Chat bang
+Nhập tên bang cần tạo
+Nhập khẩu hiệu bang
+Bạn có muốn xin vào bang 
+Chọn biểu tượng bang
+Xin vào\nbang
+Xem thành\nviên
+Phong\nphó bang
+Phong\nchủ bang
+Cắt chức
+Loại thành viên
+Bạn hãy nhập tên bang
+Bạn hãy nhập khẩu hiệu bang
+Không tìm thấy bang
+trước
+Đang tìm bang
+Giao dịch
+ chưa khóa giao dịch
+Chưa khóa giao dịch
+ đã khóa giao dịch
+Đã khóa giao dịch
+Khóa giao dịch
+Chờ đối thủ khóa
+Nhất nút 'Xong'
+Xong
+Đối phương
+Bạn
+Khóa
+Số tiền giao dịch
+Lấy ra
+Bỏ ra
+Cho đệ tử
+Bán
+Nhập số tiền muốn giao dịch
+Nhập số tiền
+Nhập sai số tiền, vui lòng nhập lại
+Bạn không đủ tiền, vui lòng nhập lại
+Nhập số lượng muốn giao dịch
+Nhập số lượng
+Nhập sai số lượng, vui lòng nhập lại
+Đã có vật phẩm này
+Vui lòng mở khóa trước khi sử dụng vật phẩm để giao dịch
+gốc
+cần
+Đủ
+Miễn phí
+Chọn vật phẩm
+Bất kì
+Xin chào!
+Cậu muốn mua gì?
+Con muốn học gì?
+Bạn có chắc muốn giao dịch với những vật phẩm trên không ?
+Học với
+Mua bằng
+Không thể thực hiện khi đang kiệt sức
+Sử dụng\nđể\nkết hợp
+Sử dụng\nđể\ngiao dịch
+Bạn không đủ ngọc để chat kênh thế giới
+Chat kênh thế giới (5 ngọc)
+ muốn giao dịch với bạn, bạn có đồng ý không ?
+Bạn vừa nâng cấp 
+ sang cấp 
+tiềm năng đến Sư phụ để học
+Điểm tiềm năng
+Điểm thành tích
+tăng
+Tăng
+Bạn chỉ có 
+ điểm tiềm năng. Hãy luyện tập thêm để có đủ 
+Bạn có muốn dùng 
+ tiềm năng để tăng vào 
+ HP không?
+ KI không?
+ sức đánh không?
+ chí mạng không?
+Khi có 
+ tiềm năng, bạn sẽ được nâng cấp miễn phí 
+. Ngoài ra bạn có thể mua Bí Kíp từ Urôn để học nhanh
+ST Crit
+Giảm ST
+Sức đánh
+Thể lực
+Crit
+Cấp độ
+KI tiêu hao: 
+Hồi chiêu
+Đã đạt cấp tối đa
+Cấp kế cần 
+tiềm năng
+Chưa học
+Để học cần 
+Học
+để tăng 20 HP gốc
+để tăng 20 MP gốc
+để tăng 1 sức mạnh gốc
+Gohan
+Krillin
+Yamcha
+Ốc tiêu
+Pocollo
+Kami
+Cađic
+Rađic
+Kakalot
+Hango
+Linkhi
+Chayam
+Deden
+Cololo
+Mika
+Tageve
+Ditra
+Rotkaka
+Địa điểm nhiệm vụ
+Không có nhiệm vụ
+Hoàn thành, thưởng 
+Nhiệm vụ thành tích
+Bạn muốn làm gì
+Chọn nơi muốn đến
+Chọn để ẩn chat thế giới
+Chọn để hiện chat thế giới
+Chơi mới
+Chơi TK
+Chưa đăng ký
+tiềm năng đến Whis để học
+http://world.teamobi.com
+/mainImage/logo1E.png
+Go to Whis (Beerus Planet) to learn skill
+When reach maximum proficiency, go to Whis (Beerus Planet) to upgrade skill
+Proficiency
+Delete account
+You bought many gems today. Let's try again tomorrow!
+When selling successfully, you will receive Ruby non Gem. Do you want to continue consign?
+Equip
+load Screen= 
+ select= 
+v2.5.0(
+ disconnect
+ connected
+Vũ trụ 1:dragon1.teamobi.com:14445:0:0:0,Vũ trụ 2:dragon2.teamobi.com:14445:0:0:0,Vũ trụ 3:dragon3.teamobi.com:14445:0:0:0,Vũ trụ 4:dragon4.teamobi.com:14445:0:0:0,Vũ trụ 5:dragon5.teamobi.com:14445:0:0:0,Vũ trụ 6:dragon6.teamobi.com:14445:0:0:0,Vũ trụ 7:dragon7.teamobi.com:14445:0:0:0,Vũ trụ 8:dragon10.teamobi.com:14446:0:0:0,Vũ trụ 9:dragon10.teamobi.com:14447:0:0:0,Vũ trụ 10:dragon10.teamobi.com:14445:0:0:0,Vũ trụ 11:dragon11.teamobi.com:14445:0:0:0,Võ đài liên vũ trụ:dragonwar.teamobi.com:20000:0:0:0,Universe 1:dragon.indonaga.com:14445:1:0:0,Naga:dragon.indonaga.com:14446:2:0:0,0,0
+Vũ trụ 1:112.213.94.23:14445:0:0:0,Vũ trụ 2:210.211.109.199:14445:0:0:0,Vũ trụ 3:112.213.85.88:14445:0:0:0,Vũ trụ 4:27.0.12.164:14445:0:0:0,Vũ trụ 5:27.0.12.16:14445:0:0:0,Vũ trụ 6:27.0.12.173:14445:0:0:0,Vũ trụ 7:112.213.94.223:14445:0:0:0,Vũ trụ 8:27.0.14.66:14446:0:0:0,Vũ trụ 9:27.0.14.66:14447:0:0:0,Vũ trụ 10:27.0.14.66:14445:0:0:0,Vũ trụ 11:112.213.85.35:14445:0:0:0,Võ đài liên vũ trụ:27.0.12.173:20000:0:0:0,Universe 1:52.74.230.22:14445:1:0:0,Naga:52.74.230.22:14446:2:0:0,0,0
+Naga:dragon.indonaga.com:14446:2:0:0,2,0
+Naga:52.74.230.22:14446:2:0:0,2,0
+Universe 1:dragon.indonaga.com:14445:1:0:0,1,0
+Universe 1:52.74.230.22:14445:1:0:0,1,0
+NRlink3
+svselect
+NRlink_extra
+perform trong ServerListScreen
+tao user ao
+cau hinh
+>>> getServerList= 
+>>> getServerList= serverPriority: 
+2>>>saveRMSInt:  RMS_svselect == 
+com.sonyericsson.imei
+Gọi hotline
+||||||||||||||||||||||||||||||||||||||||||||
+ num= 
+/bg/fog1.png
+/bg/fog0.png
+/bg/mua.png
+/bg/mua1.png
+/bg/mua2.png
+/bg/lacay.png
+/bg/lacay2.png
+/bg/lacay3.png
+/bg/lacay4.png
+/bg/lacay5.png
+/bg/tuyet.png
+/bg/sao.png
+/bg/ship.png
+/bg/fire1.png
+/bg/fire2.png
+/bg/cham-tron1.png
+/bg/cham-tron2.png
+vBG Effect
+/mainImage/myTexture2dwater1.png
+/mainImage/myTexture2dwater2.png
+Pergi ke Whis (Beerus Planet) untuk mempelajari keterampilan
+Saat mencapai kemahiran maksimum, pergi ke Whis (Beerus Planet) untuk meningkatkan keterampilan Anda
+Kecakapan
+Anda membeli banyak permata hari ini. Mari kita coba lagi besok!
+Saat menjual dengan sukses, Anda akan menerima Ruby non Gem. Apakah Anda ingin melanjutkan menyerahkan?
+Mengalati
+Unlock
+Buku koleksi
+Uang tidak
+Fungsi dalam maintenance.
+Yakin ingin memilih barang ini ?
+Tingkat
+bergeser ke
+Hasil angka keberuntungan
+Siapa yang harus dipilih
+Pemberitahuan
+Auto terlahir kembali
+Auto fungsi
+Apakah kamu yakin fusion selamanya dengan muridmu? Kamu akan kehilangan muridmu dan perlengkapan semua murid, dan semua power muridmu kan ditambahkan ke potensial anda
+Fusion selama-lamanya
+Fusion dance 
+Masukkan informasi lengkap
+Terus
+Pulang
+Status
+Serang
+Lindungi
+Ikut
+Murid
+Koneksi gagal, harap coba kembali
+Grafik rendah
+Grafik tinggi
+Memperbaiki Kesalahan
+Download
+Hapus data
+Kamu harus manghapus data ketika data game error. Setelah selesai manghapus, kamu harus download data lagi untuk bermain.
+Batal
+Harap download data untuk main
+Abracadabra...
+Selamat sayangku
+Semoga beruntung lain kali sayangku
+Apakah kamu ingin ke masa depan dengan 1 gem?
+Naikkan kecepatan
+Analog
+Persediaan Sandi
+Masukkan password keamanan
+Password keamanan harus berupa 6 angka
+Harap masukkan nomor HP atau email, kemudian masukkan password untuk membuat account baru
+Kamu akan kehilangan account kamu selamanya jika kamu berganti ke account yang lain. Apakah kamu setuju?
+Daftar untuk melindungi account
+Kamu harus menyelesaikan misi mencari Dragon Ball bintang 6 untuk recharge
+Forum and Beli lebih gems
+Beli lebih gems
+Tidak ada item untuk dibeli
+Tekan atas untuk mendapatkan lebih banyak
+Tekan bawah untuk mendapatkan lebih banyak
+Halaman
+Ke atas
+Serahkan dengan\ngold
+Beri dengan gem
+Beri dengan gold
+Serahkan dengan\ngem
+Batal\nmenyerahkan
+Ambil\nuang
+Terjual
+Menjual
+Serahkan
+Swara
+Tidak ada musuh
+Pilih server
+Peringkat
+ Active point 
+Mendaftar
+Pesan terkirim, harap tunggu konfirmasi
+Pesan tidak bisa dikirim. Harap periksa account anda dan mulai kembali game-nya
+User untuk\nmurid
+Pesan terkirim
+Pesan tidak bisa dikirim
+Selamat, kamu baru saja berhasil mengirim pesan yang diprediksi.
+Pengiriman pesan gagal.
+Password harus sepanjang 6 karakter (huruf)
+Masukkan nomor untuk password pribadi saja
+Masukkan password pribadi
+Pilih akun
+Email atau nomor HP tidak dimasukkan
+Password tidak dimasukkan
+Nama account harus lebih panjang dari 5 karakter
+Nomor HP tidak berlaku. Harap masukkan dengan format berikut: 0912345678 atau 84918765432
+Email tidak berlaku. Harap masukkan seperti format berikut: yournamehere@yahoo.com atau yournamehere@gmail.com
+Daftarkan account\nbaru\n
+Pilih\nserver
+Lupa pass\n
+Password
+Tidak memiliki account? Harap
+memilih menu daftar
+Pesan
+Tidak ada pesan
+Apakah kamu ingin membatalkan fungsi perlindungan account
+Harap periksa informasi account dengan baik untuk me-recover account. Jika lupa password\n
+Nomor HP
+Email
+Acc
+Pwd
+Untuk me-recover password harap kunjungi website http://ngocrongonline.com/matkhau
+Dragon Ball
+Karakter
+Account
+Server account
+Nama karakter tidak dimasukkan
+Nama karakter terlalu pendek
+Nama karakter tidak bisa lebih dari 15 huruf
+Nama karakter harus diganti
+Nama karakter
+Masuk
+Daftar
+Balas dendam
+Tunggu
+Harap tunggu
+Menyambung
+Downloading 
+Error! Harap ulang kembali game.
+Ubah zona
+Pilih zona
+Website\nforum
+Server
+Inventory
+Kriya
+Potential
+Info
+Perlengkapan
+Planit:
+Rambut:
+Earth
+Namekian
+Saiyan
+Tantangan
+Praktek
+PK
+Tambah teman
+Undang clan
+Recover
+Informasi
+Chat pribadi
+Undang ke clan
+Blok undangan ke clan
+Quest
+Inven-
+tory
+Skill
+Func-
+tion
+Clan
+Dis-
+ciple
+Tambah\nQ
+Tambah\nW
+Tambah\nE
+Tambah\nR
+Tambah\nT
+Tambah\n7
+Tambah\n8
+Tambah\n9
+Tambah\n1
+Tambah\n3
+Teknik seranganmu tidak menambah point
+Senzu Bean habis. Datang kembali untuk mengambil lagi
+Kamu sudah di daerah ini
+Fenemukan
+di
+untuk menerima quest.
+Kamu telah menyelesaikan semua quest di versi ini
+harap menunggu versi yang akan datang.
+Darah habis
+Kembali ke rumah
+Revive sekarang\n(1 gem)
+Peta
+Penca\n-rian
+Minta dari teman clanmu
+Semua skill bisa dipelajari dengan gratis di Kame-Sennin
+Jika kamu mempunya potential points yang cukup
+Kamu tidak bisa terbang atau menggunakan skill jika KI habis
+Serang monster dengan teman clan akan mendapatkan potential points lebih daripada latihan sendiri
+Berlatih bersama teman di zona yang tepat akan memberi potential points lebih daripada menyerang monster
+Saat diupgrade
+Senzu bean akan mengisi lebih banyak HP dan KI
+Log in setiap hari untuk mendapatkan Gem gratis
+Paha ayam akan mengisi HP dan KI sebanyak 100%. Tomat mengisi 100% KI. Wortel mengisi 100% HP.
+Pohon Senzu Bean akan berbuah secara berkala
+meskipun kamu offline
+Jika kamu tidak log in dalam 3 hari
+powermu akan menurun karena kemalasanmu
+Kekuatanmu akan berkurang saat menyerang monster
+tapi akan bertambah jika kamu berhenti
+Kehabisan Gem? Cari NPC Bora
+Setelah bergabung di kelas, kamu akan menerima quest dari Kepala Sekolah
+Nomor seri
+Kode kartu
+Pay Vina, Mobi, Viettel, VTC
+Kartu bayar
+Harap masukkan nomor seri
+Harap masukkan kode kartu
+bil
+mil
+Tutup
+Clear
+Lanjut
+Pakai
+Ya
+Tidak
+Keluar
+Ingat
+Terima
+Pilih
+Enter
+Buka link
+Karakter baru
+Kembali
+Bunuh
+Bunuh boss
+gold
+gem
+ruby
+PK Point kamu adalah
+menyerangmu
+Tidak cukup KI
+Kamu menerima
+Kamu telah mempelajari
+Teman
+Musuh
+Tidak ada teman
+World chat
+Ganti bendera
+Pilihan
+Naikkan resolusi (device kuat)
+Turunkan resolusi (device lemah)
+Kabar Server
+Aura khusus
+Aura daya
+Layar kecil
+Layar besar
+Apakah kamu ingin keluar untuk merubah ukuran layar?
+Peti
+taris
+mengga-
+bungkan
+membe-
+rikan
+mene-
+rima
+Zona
+Terima item
+Terima semua
+Pergi ke titik berkedip di peta untuk pencarian
+Hanya untuk Bumi\n
+Hanya untuk Namekian\n
+Hanya untuk Xaiyan\n
+Power dibutuhkan
+Power kamu
+Dipakai
+tempat
+Upgrade
+Sedang mengupgrade
+Tambahkan\nShort cut
+di\ntempat
+Pindahkan ke peti
+Meleset
+Sumbang
+Tekan dua kali
+Bisa memanen
+Tekan Y untuk terima (
+Tekan # untuk terima (
+Harap ulangi game
+Online
+Offline
+Berteman
+Chat dengan pemain
+Chat dengan
+Capsule Donate
+Personal Capsule
+Clan's Capsule
+Berikan bean
+Terima bean
+Minta bean
+waktu
+Diterima
+Power
+Tanggal bergabung
+Pemimpin Clan
+Wakil pemimpin clan
+Power points
+Anggota
+clan
+Menin-
+ggalkan
+Memb-
+uat
+Mene-
+mukan
+Slogan
+Icon
+Permintaan
+kacang
+Level
+Ulang tahun clan
+Daftar clan
+Tidak bergabung dengan clan
+Kamulah satu-satunya
+anggota klan ini
+Seseorang bisa meminta untuk bergabung
+Kamu bisa memilih pemain lain
+untuk mengundang mereka ke clan
+Masukkan nama clan
+Nama clan
+Chat clan
+Masukkan nama clan yang ingin kamu buat
+Masukkan slogan clan
+Apakah kamu ingin bergabung dengan clan?
+Pilih icon clan
+Permintaan bergabung ke clan
+Lihat anggota clan
+Memerintah wakil pemimpin\n
+Memerintah pemimpin\n
+Bubarkan
+Keluarkan anggota
+Harap masukkan nama clan
+Harap masukkan slogan clan
+Tidak bisa menemukan clan
+lalu
+Mencari clan
+Bertukar
+Tidak mengunci transaksi
+Transaksi tidak terkunci
+Transaksi terkunci
+Transaksi dikunci
+Kunci transaksi
+Menunggu lawan mengunci transaksi
+Tekan 'Selesai'
+Selesai
+Lawan
+Kamu
+Kunci
+Jumlah Transaksi
+Tinggalkan
+Jual
+Masukkan uang untuk bertransaksi
+Masukkan uang
+Jumlah salah, harap ulang kembali
+Uang tidak cukup, harap ulang kembali
+Masukkan jumlah yang hendak ditukarkan
+Masukkan jumlah
+Kamu telah memiliki item ini
+Harap diunlock sebelum bertukar item ini
+Dasar
+butuh
+Butuh
+Bebas
+Pilih item
+Acak
+Halo!
+Apa yang ingin kamu beli?
+Apa yang ingin kamu pelajari?
+Apakah kamu yakin ingin bertukar dengan item ini?
+Belajar dengan
+Beli dengan
+Kamu tidak bisa melakukan ini saat mati
+Gunakan untuk kombinasi
+Gunakan untuk bertukar
+Tidak cukup gem untuk chat di world channel
+Chat di world channel (5 gem)
+ingin bertukar dengan kamu, terima?
+Kamu baru saja mengupgrade
+ke
+potential untuk Master untuk belajar
+potential untuk Whis untuk belajar
+Potential points
+ Achievement point 
+bertambah
+Bertambah
+Kamu hanya memiliki
+potential points. Mari latihan lagi untuk mendapatkannya.
+Apakah kamu ingin menggunakan
+potential pts untuk ditambahkan
+untuk HP?
+untuk KI?
+untuk serangan?
+untuk critical?
+Saat kamu punya
+potential points, kamu bisa meng-upgrade dengan gratis
+Disamping itu kamu bisa membeli resep di Uron untuk belajar dengan cepat
+Crit Dame
+Re.Dame
+Armor
+Vitality
+Pemakaian KI:
+Tenang
+Level maksimum tercapai
+Level berikut dibutuhkan
+potential
+Belum dipelajari
+Belajar
+untuk mendapatkan 20 HP
+untuk mendapatkan 20 MP
+untuk mendapatkan 1 power point
+Dende
+Piccolo
+Vegeta
+Raditz
+Kakarot
+Tempat quest
+Kamu tidak memiliki quest.
+Hadiah karena selesai
+Quest achievement
+Apa yang ingin kamu lakukan
+Pilih tujuanmu
+OK untuk menonaktifkan Dunia Saluran
+OK untuk menyalakan world channel
+Game baru
+Account bermain
+Tidak mendaftar belum
+@
+qwerty
+ 0
+.,@?!_1"/$-():*+<=>;%&~#%^&*{}[];'/1
+abc2áàảãạâấầẩẫậăắằẳẵặ2
+def3đéèẻẽẹêếềểễệ3
+ghi4íìỉĩị4
+jkl5
+mno6óòỏõọôốồổỗộơớờởỡợ6
+pqrs7
+tuv8úùủũụưứừửữự8
+wxyz9ýỳỷỹỵ9
+abc2
+def3
+ghi4
+mno6
+tuv8
+wxyz9
+abc
+Abc
+ABC
+123
+/mainImage/myTexture2der.png
+/mainImage/myTexture2dtf.png
+84
+vMenu Login
+passAo
+user ao= 
+isLogin 2= 
+a
+user = 
+ pass= 
+ [0]
+v2.5.0
+SEND MSG: 
+DO SEND MSG: 
+>>connect: 
+/mainImage/myTexture2dmobCapcha.png
+/effectdata/109/img.png
+/mainImage/myTexture2dfutherShip.png
+/mainImage/taungam.png
+vecInfo chientruong
+/mainImage/myTexture2dhatdau.png
+http://ngocrongonline.com/
+http://dragonball.indonaga.com/
+http://world.teamobi.com/games-page-0.html
+Vui lòng điền đầy đủ thông tin
+Res switch
+Số điện thoại
+01234567890
+Họ và tên
+Nguyễn Văn A
+Ngày sinh
+01
+Tháng sinh
+Năm sinh
+1980
+Địa chỉ đăng ký thường trú
+123 đường số 1, Quận 1, TP.HCM
+Số Chứng minh nhân dân hoặc số hộ chiếu
+123456789
+Ngày cấp
+01/01/1990
+Nơi cấp
+TP.HCM
+Cập nhật thông tin
+,0
+k
+check Controller= 
+check Map= 
+Gôhan
+Bunma
+Mabun
+Bunman
+Bun ma
+Đậu thần
+Cây thần
+Buma
+Ma bư
+Dasay
+Xay da
+Mecda
+Na mếc
+Namek
+Rồng thần
+Kame
+Meka
+Lotkaka
+Broly
+Lybro
+Ngọc thần
+ngọc rồng
+Radic
+Dicra
+Ra dic
+Ra đíc
+Cadic
+Dicca
+Ca dic
+Ca đíc
+Quy lão
+Lão
+quy lão
+lão
+QuyLão
+Quy Lão
+Santa
+Tasan
+Hạt Mít
+Hạt Dẻ
+Hạt mít
+Hạt dẻ
+Tàu bảy bảy
+Tàu tàu
+Uron
+Onru
+U ron
+Urôn
+Ngọc Rồng
+Fide
+Defi
+Moori
+Rimoo
+Aru
+Ura
+Kamejoko
+Kojomeka
+kamejoko
+kojomeka
+kame
+meka
+Masenko
+Kosenma
+Thái Dương Hạ San
+Hạ Dương
+Solar flare
+Solar
+Quả cầu kênh khi
+Quả cầu
+Genki-Dama
+Dama
+Makankosappo
+Oppasoknakam
+<color=#ff0000ff>[  LOG_CAT  ]</color>
+<color=#ff0000ff>[LOG_SESSION]</color>
+<color=#ffff00ff>[LOG_SESSION]</color>
+<color=#ff0000ff>[LOG_MOBILE ]</color>
+curr - last= 
+/mainImage/myTexture2dat-trai-dat.png
+/mainImage/myTexture2dmat-namek.png
+/mainImage/myTexture2dthucuoi10.png
+/mainImage/myTexture2dthucuoi20.png
+/mainImage/myTexture2dthucuoi21.png
+/mainImage/myTexture2dthucuoi30.png
+/mainImage/myTexture2dthucuoi11.png
+/mainImage/myTexture2dthucuoi22.png
+/mainImage/myTexture2dthucuoi23.png
+/mainImage/myTexture2dthucuoi31.png
+/mainImage/myTexture2drong.png
+/mainImage/myTexture2dcanhrong.png
+/mainImage/glass0.png
+/mainImage/glass1.png
+chiêu 1
+chiêu 2
+items
+Char.boxSort()
+tim kiem id cai trang 1265 ko tim thay
+Cắc cùm cum
+cấp 
+c
+/redeye.png
+REST POINT x= 
+vSkill
+vSkillFight
+vEff char
+focus
+taskOrders
+vMovePoints
+mount_
+aura_
+set_eff_
+hat_sau_
+hat_truoc_
+ngang_
+sao sư phụ
+/Mob/50
+50
+TASKx 
+aa
+sc= 
+ max= 
+_1
+co the tan cong nguoi
+khong the tan cong quai
+co the tan ong quai
+set pox x= 
+  7.5 gong namekLazer 
+<*> 8  namekLazer gong xong 
+<*> 9 [me] xay da xong  
+<*> 9 [me] namec xong 
+<*> 10 xay da xong 111   
+<*> 10 C_NAMEC xong 222   
+<*> 10  C_TRAIDAT xong 333   
+<*> 11 Hoàn thành skill not focus -  STAND
+<*> 11 gồng qua cau kinh khi  
+<*> 12 kết thúc skill  qua cau kinh khi 	FLY 
+Jum lun
+%= 
+_0
+=======================> gui message cmd = -27 to server
+Chưa có skill trong danh sách Auto Skill
+vItems
+/t/
+$1.png
+t
+Error Load Map
+vGO
+vItemBg
+vCurrItem
+/mainImage/myTexture2dbong.png
+vObject
+/bg/light.png
+/tWater/wtf.png
+/tWater/twtf.png
+/tWater/wts.png
+/tWater/wtsN.png
+/tWater/wtsN2.png
+type quay= 
+titile= 
+playerID= 
+ skillID= 
+tra ve huy chieu 2
+modbHoldID= 
+eff ID= 
+server gui ve actionFlag = 
+---------------actionFlag1:  
+ : 
+i: 
+  cflag: 
+   IDimageFlag: 
+t Indxe= 
+max page= 
+ curr page= 
+char ID=
+big boss--------------------------------------------------
+CHUONG nChar= 
+SHOW AD public ID= 
+second login = 
+SET POSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSss x= 
+chaPos= 
+type Pos= 
+noi chuyen = 
+npc ID= 
+npc avatar= 
+duaHau = 
+in ra second= 
+perform chat 1
+perform chat 2
+------------service--  
+Login 2
+JOIN CLAN 
+add friend
+name= 
+ gender= 
+ hair=
+finishLoadMap
+SERVER DATA
+gửi tăng tiềm năng NUM= 
+invite action = 
+layerid= 
+ clanID= 
+ code= 
+>>>getGetImgByName = 
+SEND ATTACT vChar=  
+PLAYER ATTACK NPC
+player attack player 
+REMOTE CLAN id = 
+ role= 
+MEMBER CLAN 
+LEAVE CLAN
+npc id
+Request Register 
+combine
+gui id 
+confirme menu=
+ npc= 
+ki gui action= 
+ item id= 
+ki gui so luong 
+currTab= 
+ page= 
+PLAYER VS PLAYER
+IMAGE SOURCE size= 
+gui len str 
+Send chat 
+get image id= 
+request bag image
+CLAN MESSAGE
+CLAN DONATE
+get ngoc
+request magic tree
+request resource action= 
+FUNSION
+SEND SLOGAN= 
+GUI THACH DAUA
+Login 
+send SEARCH CLAN 
+send map offline
+giao dich action = 
+gui len indxe =
+ SELECT SKILL 
+Skill not focus so 
+cap char c= 
+ImageSource
+vS size= 
+ vRMS size= 
+/gamelogo.png
+>>>>>loadIP:  svselect == 
+>>>loadIP:  svselect == -1
+Error: Image not found!
+Error decoding!
+isPlaySound
+Chưa thể chuyển
+khu vực này
+Setup_AutoOnOff
+Lưu cài đặt thành công
+Thiết Lập
+• Auto On-Off
+• Chế Độ Off
+Theo Thời Gian
+Theo Thông Báo Bảo Trì
+Giờ off:
+Phút off:
+Giờ on
+Phút on:
+Lưu
+:0:0:0
+List_Server
+Đổi IP thành công, vui lòng thoát game để tải lại dữ liệu
+ERR setSoundSkill_END: 
+ERR create_Effect: 
+ERR update: 
+EffectEnd VecEffEnd
+/e/e_
+\n|6|2|--
+--
+ Lv.
+/mainImage/myTexture2dflare.png
+/mainImage/myTexture2ditemaura1.png
+/mainImage/myTexture2ditemaura2.png
+/mainImage/myTexture2ditemaura3.png
+vEffect3
+vEffect2
+vRemoveEff2
+vEffect2Out
+vAnimate
+vEffectFeet
+title= 
+/effectdata/102/img.png
+/effectdata/103/img.png
+ADD POP
+<
+>
+maxStarSlot
+Kb
+====> getKey 
+ co nect 2 is 
+-upd--null: 
+-paint--null: 
+/e/e_1.png
+/e/e_0.png
+/e/e_2.png
+/e/nut2.png
+/e/nut3.png
+infoWaitToShow
+/mainImage/myTexture2dgocnhon.png
+Nhấn # để chat
+Nhấn Y để chat
+vMobMove
+/Mob/
+MOB ID= 
+lastMob
+newMob
+ [2]
+path load rms= 
+/mainImage/black.png
+ [1]
+===========> 2 vào OnconnectFail
+b
+/mainImage/btn0left.png
+/mainImage/btn0mid.png
+/mainImage/btn0right.png
+/mainImage/btn1left.png
+/mainImage/btn1mid.png
+/mainImage/btn1right.png
+• Đánh Chuyển Mục Tiêu
+Theo Thời Gian Hồi Chiêu
+Theo Thời Gian Tùy Chỉnh
+Đánh chuyển mục tiêu sau X millis:
+Setup_AutoChangeFocus
+Mod by Hùng Hero
+Setup_AutoChat
+• Auto Chat
+Chat Công Cộng
+Chat Thế Giới
+Nội dung:
+Chat sau X millis:
+Setup_PickItem
+• Auto Nhặt
+Chạy Bộ
+Dịch Chuyển
+A*
+• Chế Độ Nhặt
+Tất Cả
+ID Item
+ID item nhặt:
+ID item không nhặt:
+76;188;189;190
+342;343;344;345
+https://nro-controller-default-rtdb.firebaseio.com
+Setup_Controller
+• Điều Khiển Từ Xa
+FIREBASE URL:
+UserID:
+• Auto Kaioken
+Nhảy Lên Xuống
+Di Chuyển Đến Quái
+• Di Chuyển Đến
+Tất Cả Quái
+Quái Chỉ Định
+• Kiểu Di Chuyển
+Setup_AutoKaioken
+ • Proxy
+HTTP
+SOCK5
+IP:
+PORT:
+USER:
+PASSWORD:
+Setup_Proxy
+• Auto Porata
+Theo %HP, %MP
+%HP, %MP:
+Dùng Porata sau X millis:
+• Tách Hợp Thể Đệ Sẽ?
+Đi Theo
+Bảo Vệ
+Tấn Công
+Về Nhà
+Setup_AutoPorata
+Setup_AutoPlay
+100-200
+• Đánh Quái
+• Chế Độ Tàn Sát
+Chỉ đánh quái thường
+Chỉ đánh siêu quái
+Đánh quái theo vị trí
+Đánh quái theo tên
+Đánh quái hp min-max
+Đánh tất cả quái
+• Né siêu quái khi dùng chế độ tàn sát 3, 4, 5
+HP min-max:
+• Chuyển Khu Khi Lag Quái
+Danh sách khu:
+• Chuyển Khu Khi Hết Quái
+Setup_AutoTDLT
+• Auto TDLT
+Số phút
+Số lần:
+• BackGround
+Đường dẫn hình ảnh:
+BG_Image
+Setup_AutoSkill
+• Tái Tạo Năng Lượng
+%HP, %MP tái tạo năng lượng:
+• Tự Hồi Sinh Namek
+%HP, %MP tự hồi sinh Namek:
+Setup_Char
+• Buff Đậu Sư Phụ
+Theo Chỉ Số
+Chỉ số HP sư phụ:
+Chỉ số KI sư phụ:
+Buff đậu sau X millis:
+• Buff Đậu Đệ Tử
+Chỉ số HP đệ tử:
+Chỉ số KI đệ tử:
+Chỉ số TL đệ tử:
+Setup_AttackBoss
+super broly
+• Lọc Thông Báo Boss
+• Chuyển Khu Tìm Boss
+Từ Trên Xuống
+Từ Dưới Lên
+Ngẫu Nhiên
+• Tấn Công Boss
+Theo Tên và HP
+Tên boss:
+HP boss:
+Thêm Server
+NAME:
+Thêm
+,0,0
+Vũ trụ 1:dragon1.teamobi.com:14445:0:0:0,0,0
+225
+Setup_FilterItem
+• Lọc Đồ
+Bán Đồ
+Vứt Đồ
+ID item muốn bán hoặc vứt:
+• Bán Đồ Khi
+Hành Trang Đầy
+Hành Trang Còn X Ô Trống
+Bán đồ khi hành trang còn X ô trống:
+• Xmap
+• Dùng Capsule Nhanh
+Setup_Xmap
+tối đa
+bạn chỉ có
+bạn cần thêm
+Vui lòng mở giới hạn sức mạnh
+Không đủ tiềm năng
+reduceGraphic
+HotKey
+Nhấn phím bất kì để trở lại game!
+skill
+Ô skill 
+ không tồn tại
+ trống
+Đã đặt 
+ vào slot auto 
+Slot auto từ 1-10
+ khỏi Auto
+ chưa có trong Auto
+sm
+mv
+SmartMove to: 
+Sai định dạng! (sm/mv x y)
+Lỗi: sm/mv x y
+tdlt
+Bạn chưa bật goback
+Auto TDLT: Tắt
+Auto TDLT: Bật
+hd
+gsm
+Giảm sức mạnh: Tắt
+sb
+Săn boss: 
+xy
+x: 
+ -  y: 
+hotkey
+Phím tắt: 
+checklag
+Check lag: 
+ahs
+Auto hồi sinh: 
+Phải có tối thiểu 1 ngọc để hồi sinh
+Hãy trỏ vào mục tiêu
+Goto: 
+akb
+Tấn công boss: 
+ahsnm
+Auto HS namek: 
+Bạn không phải Namek
+ats
+Auto skill: 
+apk
+akn
+Đánh chuyển mục tiêu: 
+ak
+Tự đánh: 
+move
+Hãy trỏ vào quái
+Auto nhặt: Tắt
+Auto nhặt: Bật
+atc
+Auto chat: 
+Lọc đồ: 
+Auto dùng Cuồng nộ: 
+Đã hết Cuồng nộ
+Auto dùng Bổ huyết: 
+Đã hết Bổ huyết
+Auto dùng Bổ khí: 
+Đã hết Bổ khí
+Auto dùng Giáp xên: 
+Đã hết Giáp xên
+Auto dùng Ẩn danh: 
+Đã hết Ẩn danh
+Auto dùng Khẩu trang: 
+Đã hết Khẩu trang
+Auto dùng Máy dò: 
+Đã hết Máy dò
+cskb
+Auto mở capsule kì bí: 
+Đã hết Capsule kì bí
+Tự kết nối lại: 
+Về lại khu cũ: 
+xdh
+Xóa đồ hoạ: 
+Tàn sát: 
+add
+addd
+rsvt
+Xóa tất cả vị trí quái trong danh sách tàn sát
+Goback: Tắt
+Goback: Bật
+Ẩn người: 
+Ẩn quái: 
+Ẩn item: 
+anho
+Auto dùng Nho: 
+abt
+Auto dùng Porata: 
+Auto xin đậu: 
+Auto cho đậu: 
+Auto thu đậu: 
+Treo cờ chống PK: 
+Thoát khi sức mạnh đệ đạt 
+Auto kaioken: 
+Chuyển khu tránh boss: 
+Khoá vị trí:\nMap: 
+\nToạ độ: 
+ - 
+Khoá vị trí: Tắt
+ttnl
+Auto tái tạo năng lượng: 
+fb
+Focus boss: 
+additem
+Đã cập nhật item 
+ vào auto
+Sai định dạng! (additem id effectId)
+Lỗi additem
+delitem
+Đã xóa item 
+ khỏi auto
+Không tìm thấy item 
+Sai định dạng! (delitem id)
+Lỗi delitem
+listitem
+Danh sách auto item trống
+Auto item: 
+anv
+Auto nhiệm vụ: 
+RangeTanSat
+DistanceAutoPick
+SpeedChar
+SpeedGame
+ColorBG
+PowerPet
+DelayXmap
+DelayLogin
+kts
+Không thể đặt giá trị <= 0
+Khoảng cách tàn sát: 
+ tại (
+Khoảng cách nhặt: 
+Tốc độ chạy: 
+mk
+Di chuyển Kaioken: 
+td
+Tốc độ game: 
+Tốc độ game từ 0 đến 100
+view
+PaintBoss
+Thông báo boss: 
+PaintChar
+Người và boss trong map: 
+InfoChar
+Thông tin sư phụ: 
+InfoPet
+Thông tin đệ tử: 
+InfoUp
+Thông tin up: 
+CheckInfo
+Check thông tin: 
+XMAP - BẢN ĐỒ
+Tương lai
+Cold
+Ngũ Hành Sơn
+Potaufeu
+Yardart
+Bang hội
+ 23\n[
+Siêu hạng\n[
+\n[
+Đang đến: 
+Không thể thực hiện
+Hãy hoàn thành nhiệm vụ trước
+Đã đến: 
+XMAP - HÀNH TINH
+Không thể tìm thấy đường đi
+pảy
+karin
+Xong!
+Thưởng\nBùa 1h\nngẫu nhiên
+đồng ý
+dong y
+chấp nhận
+xác nhận
+xac nhan
+có
+chiến
+ok
+thách đấu
+thach dau
+nhiệm vụ
+nhiem vu
+nói chuyện
+noi chuyen
+drawPath
+startPath
+Không tìm thấy đường đi!
+Vui lòng nhập số từ 1-10
+Vui lòng nhập số
+Delay login: 
+Delay xmap: 
+Màu nền từ -1 đến 16777215
+Đã cập nhật danh sách item
+Danh sách item: 
+Tốc độ chạy
+Tốc độ game
+Màu nền background
+Sức mạnh đệ tử
+Delay xmap
+Delay login
+Danh sách item
+Khoảng cách nhặt
+Khoảng cách tàn sát
+Thứ tự ưu tiên (1-10):
+TimeUp: 
+SM Sư phụ: +
+ (Avg/h: 
+Vàng nhặt: +
+SM Đệ tử: +
+Lệnh cần số thay X!
+X
+Chat Command
+rawPath
+reversedPath
+path
+smoothPath
+ đang trói bạn
+ đang trói 
+ [
+ đang bom: 
+Trong tầm
+Ngoài tầm
+TĐ
+NM
+XD
+Bị thôi miên
+Bị choáng
+Bị TDHS
+Bị trói
+ >
+ <
+Ông già
+Tuần lộc
+Đang khiên: 
+ giây
+Đang khỉ: 
+Đang có huýt sáo: 
+Bị thôi miên: 
+Bị choáng: 
+Bị TDHS: 
+Cờ xanh
+Cờ đỏ
+Cờ tím
+Cờ vàng
+Cờ lục
+Cờ hồng
+Cờ cam
+Cờ đen
+Cờ Kaio
+Cờ Mabu
+Cờ xanh dương
+ - (
+] - Khu: 
+Time: 
+Tàn sát
+[Sư phụ]
+SM: 
+TN: 
+%)
+KI: 
+SĐ: 
+TL: 
+[Đệ tử]
+ trước
+ListBoss
+Xmap đến: 
+Không tìm thấy ID Map!
+boss
+muncul di
+boss 
+ muncul di 
+tda
+appear
+ appear at 
+ vừa xuất hiện tại 
+Đã huỷ giữ mục tiêu do không thấy 
+ trong map
+ khỏi danh sách di chuyển
+ vào danh sách di chuyển

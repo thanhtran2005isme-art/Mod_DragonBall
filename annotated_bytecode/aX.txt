@@ -1,0 +1,33 @@
+public final class nro.aX {
+  public static final int gE;
+    descriptor: I
+
+  public int bX;
+    descriptor: I
+
+  public int cy;
+    descriptor: I
+
+  public int bY;
+    descriptor: I
+
+  public int bZ;
+    descriptor: I
+
+  public int cf;
+    descriptor: I
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field gE:I
+       5: return
+
+  public nro.aX();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+}

@@ -1,0 +1,82 @@
+public final class nro.by {
+  public static final int iB;
+    descriptor: I
+
+  public byte at;
+    descriptor: B
+
+  public short G;
+    descriptor: S
+
+  public short b;
+    descriptor: S
+
+  public short H;
+    descriptor: S
+
+  public byte au;
+    descriptor: B
+
+  public java.lang.String B;
+    descriptor: Ljava/lang/String;
+
+  public java.lang.String ae;
+    descriptor: Ljava/lang/String;
+
+  public int aX;
+    descriptor: I
+
+  public boolean aV;
+    descriptor: Z
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #14                 // Field iB:I
+       5: return
+
+  public nro.by(short, byte, byte, java.lang.String, java.lang.String, byte, int, short, short, boolean);
+    descriptor: (SBBLjava/lang/String;Ljava/lang/String;BISSZ)V
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #7                  // Field H:S
+       9: aload_0
+      10: iload_2
+      11: putfield      #11                 // Field at:B
+      14: aload_0
+      15: iload_3
+      16: putfield      #12                 // Field au:B
+      19: aload_0
+      20: aload         4
+      22: putfield      #5                  // Field B:Ljava/lang/String;
+      25: aload_0
+      26: aload_0
+      27: getfield      #5                  // Field B:Ljava/lang/String;
+      30: invokestatic  #16                 // Method nro/br.c:(Ljava/lang/String;)Ljava/lang/String;
+      33: putfield      #5                  // Field B:Ljava/lang/String;
+      36: aload_0
+      37: aload         5
+      39: putfield      #10                 // Field ae:Ljava/lang/String;
+      42: aload_0
+      43: aload_0
+      44: getfield      #10                 // Field ae:Ljava/lang/String;
+      47: invokestatic  #16                 // Method nro/br.c:(Ljava/lang/String;)Ljava/lang/String;
+      50: putfield      #10                 // Field ae:Ljava/lang/String;
+      53: aload_0
+      54: iload         7
+      56: putfield      #9                  // Field aX:I
+      59: aload_0
+      60: iload         8
+      62: putfield      #6                  // Field G:S
+      65: aload_0
+      66: iload         9
+      68: putfield      #13                 // Field b:S
+      71: aload_0
+      72: iload         10
+      74: putfield      #8                  // Field aV:Z
+      77: return
+}

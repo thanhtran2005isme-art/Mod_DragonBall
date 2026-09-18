@@ -1,0 +1,68 @@
+public final class nro.aG {
+  public static final int eP;
+    descriptor: I
+
+  public static nro.aH b;
+    descriptor: Lnro/aH;
+
+  public static void a(nro.by);
+    descriptor: (Lnro/by;)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #10                 // Field b:Lnro/aH;
+      12: new           #4                  // class java/lang/Short
+      15: dup
+      16: aload_0
+      17: getfield      #12                 // Field nro/by.H:S
+      20: invokespecial #15                 // Method java/lang/Short."<init>":(S)V
+      23: aload_0
+      24: invokevirtual #18                 // Method nro/aH.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      27: pop
+      28: return
+
+  public static nro.by a(short);
+    descriptor: (S)Lnro/by;
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #10                 // Field b:Lnro/aH;
+      12: new           #4                  // class java/lang/Short
+      15: dup
+      16: iload_0
+      17: invokespecial #15                 // Method java/lang/Short."<init>":(S)V
+      20: invokevirtual #16                 // Method java/util/Hashtable.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      23: checkcast     #8                  // class nro/by
+      26: areturn
+
+  public nro.aG();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: new           #7                  // class nro/aH
+       3: dup
+       4: getstatic     #13                 // Field nro/cX.o:[S
+       7: ldc           #1                  // int 39074
+       9: bipush        13
+      11: ldc           #2                  // int 574924928
+      13: invokestatic  #19                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'item template'
+      16: invokespecial #17                 // Method nro/aH."<init>":(Ljava/lang/String;)V
+      19: putstatic     #10                 // Field b:Lnro/aH;
+      22: ldc           #2                  // int 574924928
+      24: putstatic     #11                 // Field eP:I
+      27: return
+}

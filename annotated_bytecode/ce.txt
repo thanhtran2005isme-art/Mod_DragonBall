@@ -1,0 +1,12 @@
+public interface nro.ce {
+  public abstract void a(java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)V
+
+  public abstract void cA();
+    descriptor: ()V
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: return
+}

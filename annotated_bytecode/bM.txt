@@ -1,0 +1,39 @@
+public final class nro.bM {
+  public static final int iU;
+    descriptor: I
+
+  public long aU;
+    descriptor: J
+
+  public java.lang.String ae;
+    descriptor: Ljava/lang/String;
+
+  public nro.aj b;
+    descriptor: Lnro/aj;
+
+  public byte au;
+    descriptor: B
+
+  public byte ad;
+    descriptor: B
+
+  public byte ay;
+    descriptor: B
+
+  public byte F;
+    descriptor: B
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field iU:I
+       5: return
+
+  public nro.bM();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+}

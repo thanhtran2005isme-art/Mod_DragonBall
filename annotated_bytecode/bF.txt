@@ -1,0 +1,1105 @@
+public final class nro.bF {
+  public static final int iI;
+    descriptor: I
+
+  public javax.microedition.lcdui.Graphics a;
+    descriptor: Ljavax/microedition/lcdui/Graphics;
+
+  public static int bZ;
+    descriptor: I
+
+  public static int[] dB;
+    descriptor: [I
+
+  public final int F();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      13: invokevirtual #28                 // Method javax/microedition/lcdui/Graphics.getClipHeight:()I
+      16: ireturn
+
+  public final void z(int);
+    descriptor: (I)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      13: iload_1
+      14: invokevirtual #36                 // Method javax/microedition/lcdui/Graphics.setStrokeStyle:(I)V
+      17: return
+
+  public final void c(int, int, int, int);
+    descriptor: (IIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: iload_1
+      11: iload_2
+      12: getstatic     #17                 // Field dB:[I
+      15: sipush        228
+      18: sipush        230
+      21: ixor
+      22: iaload
+      23: iload         4
+      25: invokevirtual #43                 // Method f:(IIII)V
+      28: aload_0
+      29: iload_1
+      30: iload_3
+      31: iadd
+      32: iload_2
+      33: getstatic     #17                 // Field dB:[I
+      36: sipush        361
+      39: sipush        363
+      42: ixor
+      43: iaload
+      44: iload         4
+      46: invokevirtual #43                 // Method f:(IIII)V
+      49: aload_0
+      50: iload_1
+      51: iload_2
+      52: iload_3
+      53: getstatic     #17                 // Field dB:[I
+      56: sipush        350
+      59: sipush        348
+      62: ixor
+      63: iaload
+      64: invokevirtual #43                 // Method f:(IIII)V
+      67: aload_0
+      68: iload_1
+      69: iload_2
+      70: iload         4
+      72: iadd
+      73: iload_3
+      74: getstatic     #17                 // Field dB:[I
+      77: sipush        486
+      80: sipush        484
+      83: ixor
+      84: iaload
+      85: iadd
+      86: getstatic     #17                 // Field dB:[I
+      89: sipush        568
+      92: sipush        570
+      95: ixor
+      96: iaload
+      97: invokevirtual #43                 // Method f:(IIII)V
+     100: return
+
+  public final void A(int);
+    descriptor: (I)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      13: iload_1
+      14: invokevirtual #35                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+      17: return
+
+  public final void a(javax.microedition.lcdui.Image, int, int, int);
+    descriptor: (Ljavax/microedition/lcdui/Image;III)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_1
+      10: ifnull        37
+      13: iload_2
+      14: getstatic     #16                 // Field bZ:I
+      17: imul
+      18: istore_2
+      19: iload_3
+      20: getstatic     #16                 // Field bZ:I
+      23: imul
+      24: istore_3
+      25: aload_0
+      26: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      29: aload_1
+      30: iload_2
+      31: iload_3
+      32: iload         4
+      34: invokevirtual #23                 // Method javax/microedition/lcdui/Graphics.drawImage:(Ljavax/microedition/lcdui/Image;III)V
+      37: return
+
+  public final void d(int, int, int, int);
+    descriptor: (IIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: iload_1
+      11: iload_2
+      12: iload_3
+      13: iload         4
+      15: invokevirtual #43                 // Method f:(IIII)V
+      18: return
+
+  public final int G();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      13: invokevirtual #32                 // Method javax/microedition/lcdui/Graphics.getTranslateX:()I
+      16: getstatic     #16                 // Field bZ:I
+      19: idiv
+      20: ireturn
+
+  public final int H();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      13: invokevirtual #30                 // Method javax/microedition/lcdui/Graphics.getClipX:()I
+      16: ireturn
+
+  public final int I();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      13: invokevirtual #29                 // Method javax/microedition/lcdui/Graphics.getClipWidth:()I
+      16: ireturn
+
+  public static void gp();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        225
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #17                 // Field dB:[I
+      21: getstatic     #17                 // Field dB:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        418
+      34: sipush        348
+      37: ixor
+      38: sipush        342
+      41: sipush        484
+      44: ixor
+      45: ixor
+      46: sipush        708
+      49: sipush        570
+      52: ixor
+      53: sipush        207
+      56: bipush        125
+      58: ixor
+      59: ixor
+      60: bipush        -106
+      62: bipush        105
+      64: ixor
+      65: ixor
+      66: iand
+      67: iastore
+      68: getstatic     #17                 // Field dB:[I
+      71: sipush        519
+      74: sipush        518
+      77: ixor
+      78: sipush        -20195
+      81: bipush        119
+      83: ixor
+      84: sipush        20284
+      87: sipush        193
+      90: ixor
+      91: iand
+      92: iastore
+      93: getstatic     #17                 // Field dB:[I
+      96: sipush        280
+      99: sipush        282
+     102: ixor
+     103: getstatic     #19                 // Field nro/cX.o:[S
+     106: bipush        100
+     108: bipush        102
+     110: ixor
+     111: sipush        377
+     114: sipush        376
+     117: ixor
+     118: ldc           #4                  // int 574925064
+     120: sipush        392
+     123: ixor
+     124: invokestatic  #46                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: ' '
+     127: invokevirtual #21                 // Method java/lang/String.length:()I
+     130: iastore
+     131: getstatic     #17                 // Field dB:[I
+     134: sipush        579
+     137: sipush        576
+     140: ixor
+     141: sipush        164
+     144: sipush        132
+     147: ixor
+     148: sipush        540
+     151: sipush        556
+     154: ixor
+     155: ixor
+     156: sipush        418
+     159: sipush        270
+     162: ixor
+     163: sipush        451
+     166: sipush        343
+     169: ixor
+     170: ixor
+     171: sipush        388
+     174: sipush        309
+     177: ixor
+     178: sipush        381
+     181: sipush        500
+     184: ixor
+     185: ixor
+     186: sipush        -464
+     189: sipush        463
+     192: ixor
+     193: ixor
+     194: iand
+     195: ixor
+     196: iastore
+     197: getstatic     #17                 // Field dB:[I
+     200: sipush        322
+     203: sipush        326
+     206: ixor
+     207: sipush        761
+     210: sipush        513
+     213: ixor
+     214: sipush        488
+     217: sipush        343
+     220: ixor
+     221: iadd
+     222: sipush        399
+     225: sipush        341
+     228: ixor
+     229: isub
+     230: sipush        160
+     233: sipush        130
+     236: ixor
+     237: iadd
+     238: iastore
+     239: getstatic     #17                 // Field dB:[I
+     242: sipush        555
+     245: sipush        558
+     248: ixor
+     249: sipush        374
+     252: sipush        487
+     255: ixor
+     256: sipush        483
+     259: sipush        346
+     262: ixor
+     263: ixor
+     264: sipush        291
+     267: sipush        330
+     270: ixor
+     271: sipush        301
+     274: sipush        356
+     277: ixor
+     278: ixor
+     279: ixor
+     280: iastore
+     281: getstatic     #17                 // Field dB:[I
+     284: sipush        532
+     287: sipush        530
+     290: ixor
+     291: sipush        -5066
+     294: sipush        185
+     297: ixor
+     298: ldc           #2                  // int 16781901
+     300: sipush        317
+     303: ixor
+     304: iand
+     305: ineg
+     306: iastore
+     307: return
+
+  public final void a(javax.microedition.lcdui.Image, int, int, int, int, int, int, int, int);
+    descriptor: (Ljavax/microedition/lcdui/Image;IIIIIIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_1
+      10: ifnull        42
+      13: aload_0
+      14: aload_1
+      15: getstatic     #17                 // Field dB:[I
+      18: sipush        230
+      21: sipush        230
+      24: ixor
+      25: iaload
+      26: iload_3
+      27: iload         4
+      29: iload         5
+      31: iload         6
+      33: iload         7
+      35: iload         8
+      37: iload         9
+      39: invokevirtual #42                 // Method b:(Ljavax/microedition/lcdui/Image;IIIIIIII)V
+      42: return
+
+  public final void n(int, int);
+    descriptor: (II)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #16                 // Field bZ:I
+      13: imul
+      14: istore_1
+      15: iload_2
+      16: getstatic     #16                 // Field bZ:I
+      19: imul
+      20: istore_2
+      21: aload_0
+      22: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      25: iload_1
+      26: iload_2
+      27: invokevirtual #37                 // Method javax/microedition/lcdui/Graphics.translate:(II)V
+      30: return
+
+  public final void a(int, int, int, int, int);
+    descriptor: (IIIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #16                 // Field bZ:I
+      13: imul
+      14: istore_1
+      15: iload_2
+      16: getstatic     #16                 // Field bZ:I
+      19: imul
+      20: istore_2
+      21: iload_3
+      22: getstatic     #16                 // Field bZ:I
+      25: imul
+      26: istore_3
+      27: iload         4
+      29: getstatic     #16                 // Field bZ:I
+      32: imul
+      33: istore        4
+      35: aload_0
+      36: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      39: iload         5
+      41: invokevirtual #35                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+      44: aload_0
+      45: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      48: iload_1
+      49: iload_2
+      50: iload_3
+      51: iload         4
+      53: invokevirtual #27                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+      56: return
+
+  public nro.bF();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #20                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public final void b(javax.microedition.lcdui.Image, int, int, int, int, int, int, int, int);
+    descriptor: (Ljavax/microedition/lcdui/Image;IIIIIIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_1
+      10: ifnull        79
+      13: iload         7
+      15: getstatic     #16                 // Field bZ:I
+      18: imul
+      19: istore        7
+      21: iload         8
+      23: getstatic     #16                 // Field bZ:I
+      26: imul
+      27: istore        8
+      29: iload_2
+      30: getstatic     #16                 // Field bZ:I
+      33: imul
+      34: istore_2
+      35: iload_3
+      36: getstatic     #16                 // Field bZ:I
+      39: imul
+      40: istore_3
+      41: iload         4
+      43: getstatic     #16                 // Field bZ:I
+      46: imul
+      47: istore        4
+      49: iload         5
+      51: getstatic     #16                 // Field bZ:I
+      54: imul
+      55: istore        5
+      57: aload_0
+      58: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      61: aload_1
+      62: iload_2
+      63: iload_3
+      64: iload         4
+      66: iload         5
+      68: iload         6
+      70: iload         7
+      72: iload         8
+      74: iload         9
+      76: invokevirtual #25                 // Method javax/microedition/lcdui/Graphics.drawRegion:(Ljavax/microedition/lcdui/Image;IIIIIIII)V
+      79: return
+
+  public final void a(int, int, int, int, int, int);
+    descriptor: (IIIIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #16                 // Field bZ:I
+      13: imul
+      14: istore_1
+      15: iload_2
+      16: getstatic     #16                 // Field bZ:I
+      19: imul
+      20: istore_2
+      21: iload_3
+      22: getstatic     #16                 // Field bZ:I
+      25: imul
+      26: istore_3
+      27: iload         4
+      29: getstatic     #16                 // Field bZ:I
+      32: imul
+      33: istore        4
+      35: iload         5
+      37: getstatic     #16                 // Field bZ:I
+      40: imul
+      41: istore        5
+      43: iload         6
+      45: getstatic     #16                 // Field bZ:I
+      48: imul
+      49: istore        6
+      51: aload_0
+      52: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      55: iload_1
+      56: iload_2
+      57: iload_3
+      58: iload         4
+      60: iload         5
+      62: iload         6
+      64: invokevirtual #22                 // Method javax/microedition/lcdui/Graphics.drawArc:(IIIIII)V
+      67: return
+
+  public static int a(float, int, int);
+    descriptor: (FII)I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #19                 // Field nro/cX.o:[S
+      12: ldc           #1                  // int 49148
+      14: sipush        230
+      17: ixor
+      18: sipush        352
+      21: sipush        363
+      24: ixor
+      25: ldc           #5                  // int 574925276
+      27: sipush        348
+      30: ixor
+      31: invokestatic  #46                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'blend color'
+      34: invokestatic  #45                 // Method nro/br.m:(Ljava/lang/String;)V
+      37: iload_2
+      38: getstatic     #17                 // Field dB:[I
+      41: sipush        487
+      44: sipush        484
+      47: ixor
+      48: iaload
+      49: ishr
+      50: getstatic     #17                 // Field dB:[I
+      53: sipush        574
+      56: sipush        570
+      59: ixor
+      60: iaload
+      61: iand
+      62: i2f
+      63: fstore_0
+      64: iload_2
+      65: getstatic     #17                 // Field dB:[I
+      68: bipush        120
+      70: bipush        125
+      72: ixor
+      73: iaload
+      74: ishr
+      75: getstatic     #17                 // Field dB:[I
+      78: bipush        109
+      80: bipush        105
+      82: ixor
+      83: iaload
+      84: iand
+      85: i2f
+      86: fstore_3
+      87: iload_2
+      88: getstatic     #17                 // Field dB:[I
+      91: sipush        514
+      94: sipush        518
+      97: ixor
+      98: iaload
+      99: iand
+     100: i2f
+     101: fstore        4
+     103: fload_0
+     104: ldc           #6                  // float 0.4f
+     106: fmul
+     107: fstore_0
+     108: fload_3
+     109: ldc           #6                  // float 0.4f
+     111: fmul
+     112: fstore_3
+     113: fload         4
+     115: ldc           #6                  // float 0.4f
+     117: fmul
+     118: fstore        4
+     120: fload_0
+     121: ldc           #7                  // float 255.0f
+     123: fcmpl
+     124: ifle          130
+     127: ldc           #7                  // float 255.0f
+     129: fstore_0
+     130: fload_0
+     131: fconst_0
+     132: fcmpg
+     133: ifge          138
+     136: fconst_0
+     137: fstore_0
+     138: fload_3
+     139: ldc           #7                  // float 255.0f
+     141: fcmpl
+     142: ifle          148
+     145: ldc           #7                  // float 255.0f
+     147: fstore_3
+     148: fload_3
+     149: fconst_0
+     150: fcmpg
+     151: ifge          156
+     154: fconst_0
+     155: fstore_3
+     156: fload         4
+     158: fconst_0
+     159: fcmpg
+     160: ifge          166
+     163: fconst_0
+     164: fstore        4
+     166: fload         4
+     168: ldc           #7                  // float 255.0f
+     170: fcmpl
+     171: ifle          178
+     174: ldc           #7                  // float 255.0f
+     176: fstore        4
+     178: getstatic     #17                 // Field dB:[I
+     181: bipush        113
+     183: bipush        119
+     185: ixor
+     186: iaload
+     187: fload_0
+     188: f2i
+     189: getstatic     #17                 // Field dB:[I
+     192: sipush        194
+     195: sipush        193
+     198: ixor
+     199: iaload
+     200: ishl
+     201: ior
+     202: fload_3
+     203: f2i
+     204: getstatic     #17                 // Field dB:[I
+     207: sipush        287
+     210: sipush        282
+     213: ixor
+     214: iaload
+     215: ishl
+     216: ior
+     217: fload         4
+     219: f2i
+     220: getstatic     #17                 // Field dB:[I
+     223: bipush        98
+     225: bipush        102
+     227: ixor
+     228: iaload
+     229: iand
+     230: ior
+     231: ireturn
+
+  public final void a(javax.microedition.lcdui.Image, float, float, int);
+    descriptor: (Ljavax/microedition/lcdui/Image;FFI)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload         4
+      11: istore        5
+      13: fload_3
+      14: fstore        6
+      16: aload_1
+      17: ifnull        51
+      20: fload_2
+      21: getstatic     #16                 // Field bZ:I
+      24: i2f
+      25: fmul
+      26: fstore_3
+      27: fload         6
+      29: getstatic     #16                 // Field bZ:I
+      32: i2f
+      33: fmul
+      34: fstore        6
+      36: aload_0
+      37: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      40: aload_1
+      41: fload_3
+      42: f2i
+      43: fload         6
+      45: f2i
+      46: iload         5
+      48: invokevirtual #23                 // Method javax/microedition/lcdui/Graphics.drawImage:(Ljavax/microedition/lcdui/Image;III)V
+      51: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #44                 // Method gp:()V
+       3: getstatic     #17                 // Field dB:[I
+       6: iconst_2
+       7: iaload
+       8: putstatic     #16                 // Field bZ:I
+      11: ldc           #3                  // int 574924928
+      13: putstatic     #18                 // Field iI:I
+      16: return
+
+  public final void a(javax.microedition.lcdui.Image, int, int, int, int);
+    descriptor: (Ljavax/microedition/lcdui/Image;IIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #17                 // Field dB:[I
+      12: sipush        230
+      15: sipush        230
+      18: ixor
+      19: iaload
+      20: istore        6
+      22: iload         6
+      24: iload         4
+      26: aload_1
+      27: invokestatic  #40                 // Method a:(Ljavax/microedition/lcdui/Image;)I
+      30: idiv
+      31: getstatic     #17                 // Field dB:[I
+      34: sipush        361
+      37: sipush        363
+      40: ixor
+      41: iaload
+      42: iadd
+      43: if_icmpge     154
+      46: getstatic     #17                 // Field dB:[I
+      49: sipush        348
+      52: sipush        348
+      55: ixor
+      56: iaload
+      57: istore        7
+      59: iload         7
+      61: iload         5
+      63: aload_1
+      64: invokestatic  #41                 // Method b:(Ljavax/microedition/lcdui/Image;)I
+      67: idiv
+      68: getstatic     #17                 // Field dB:[I
+      71: sipush        486
+      74: sipush        484
+      77: ixor
+      78: iaload
+      79: iadd
+      80: if_icmpge     145
+      83: aload_0
+      84: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      87: aload_1
+      88: getstatic     #17                 // Field dB:[I
+      91: sipush        570
+      94: sipush        570
+      97: ixor
+      98: iaload
+      99: iload         6
+     101: aload_1
+     102: invokestatic  #40                 // Method a:(Ljavax/microedition/lcdui/Image;)I
+     105: imul
+     106: iadd
+     107: getstatic     #17                 // Field dB:[I
+     110: bipush        125
+     112: bipush        125
+     114: ixor
+     115: iaload
+     116: iload         7
+     118: aload_1
+     119: invokestatic  #41                 // Method b:(Ljavax/microedition/lcdui/Image;)I
+     122: imul
+     123: iadd
+     124: getstatic     #17                 // Field dB:[I
+     127: bipush        105
+     129: bipush        105
+     131: ixor
+     132: iaload
+     133: invokevirtual #23                 // Method javax/microedition/lcdui/Graphics.drawImage:(Ljavax/microedition/lcdui/Image;III)V
+     136: iinc          7, 1
+     139: iconst_1
+     140: ifne          59
+     143: aconst_null
+     144: athrow
+     145: iinc          6, 1
+     148: iconst_1
+     149: ifne          22
+     152: aconst_null
+     153: athrow
+     154: return
+
+  public static int a(javax.microedition.lcdui.Image);
+    descriptor: (Ljavax/microedition/lcdui/Image;)I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokevirtual #39                 // Method javax/microedition/lcdui/Image.getWidth:()I
+      13: getstatic     #16                 // Field bZ:I
+      16: idiv
+      17: ireturn
+
+  public static int b(javax.microedition.lcdui.Image);
+    descriptor: (Ljavax/microedition/lcdui/Image;)I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokevirtual #38                 // Method javax/microedition/lcdui/Image.getHeight:()I
+      13: getstatic     #16                 // Field bZ:I
+      16: idiv
+      17: ireturn
+
+  public final void e(int, int, int, int);
+    descriptor: (IIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #16                 // Field bZ:I
+      13: imul
+      14: istore_1
+      15: iload_2
+      16: getstatic     #16                 // Field bZ:I
+      19: imul
+      20: istore_2
+      21: iload_3
+      22: getstatic     #16                 // Field bZ:I
+      25: imul
+      26: istore_3
+      27: iload         4
+      29: getstatic     #16                 // Field bZ:I
+      32: imul
+      33: istore        4
+      35: aload_0
+      36: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      39: iload_1
+      40: iload_2
+      41: iload_3
+      42: iload         4
+      44: invokevirtual #24                 // Method javax/microedition/lcdui/Graphics.drawLine:(IIII)V
+      47: return
+
+  public static int c(javax.microedition.lcdui.Image);
+    descriptor: (Ljavax/microedition/lcdui/Image;)I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokevirtual #38                 // Method javax/microedition/lcdui/Image.getHeight:()I
+      13: ireturn
+
+  public final int J();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      13: invokevirtual #33                 // Method javax/microedition/lcdui/Graphics.getTranslateY:()I
+      16: getstatic     #16                 // Field bZ:I
+      19: idiv
+      20: ireturn
+
+  public static int d(javax.microedition.lcdui.Image);
+    descriptor: (Ljavax/microedition/lcdui/Image;)I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokevirtual #39                 // Method javax/microedition/lcdui/Image.getWidth:()I
+      13: ireturn
+
+  public static int e(javax.microedition.lcdui.Image);
+    descriptor: (Ljavax/microedition/lcdui/Image;)I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: ifnonnull     25
+      13: getstatic     #17                 // Field dB:[I
+      16: sipush        230
+      19: sipush        230
+      22: ixor
+      23: iaload
+      24: ireturn
+      25: aload_0
+      26: invokevirtual #38                 // Method javax/microedition/lcdui/Image.getHeight:()I
+      29: getstatic     #16                 // Field bZ:I
+      32: idiv
+      33: ireturn
+
+  public final int K();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      13: invokevirtual #31                 // Method javax/microedition/lcdui/Graphics.getClipY:()I
+      16: ireturn
+
+  public static int f(javax.microedition.lcdui.Image);
+    descriptor: (Ljavax/microedition/lcdui/Image;)I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: ifnonnull     25
+      13: getstatic     #17                 // Field dB:[I
+      16: sipush        230
+      19: sipush        230
+      22: ixor
+      23: iaload
+      24: ireturn
+      25: aload_0
+      26: invokevirtual #39                 // Method javax/microedition/lcdui/Image.getWidth:()I
+      29: getstatic     #16                 // Field bZ:I
+      32: idiv
+      33: ireturn
+
+  public final void f(int, int, int, int);
+    descriptor: (IIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #16                 // Field bZ:I
+      13: imul
+      14: istore_1
+      15: iload_2
+      16: getstatic     #16                 // Field bZ:I
+      19: imul
+      20: istore_2
+      21: iload_3
+      22: getstatic     #16                 // Field bZ:I
+      25: imul
+      26: istore_3
+      27: iload         4
+      29: getstatic     #16                 // Field bZ:I
+      32: imul
+      33: istore        4
+      35: aload_0
+      36: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      39: iload_1
+      40: iload_2
+      41: iload_3
+      42: iload         4
+      44: invokevirtual #27                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+      47: return
+
+  public final void g(int, int, int, int);
+    descriptor: (IIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #16                 // Field bZ:I
+      13: imul
+      14: istore_1
+      15: iload_2
+      16: getstatic     #16                 // Field bZ:I
+      19: imul
+      20: istore_2
+      21: iload_3
+      22: getstatic     #16                 // Field bZ:I
+      25: imul
+      26: istore_3
+      27: iload         4
+      29: getstatic     #16                 // Field bZ:I
+      32: imul
+      33: istore        4
+      35: aload_0
+      36: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      39: iload_1
+      40: iload_2
+      41: iload_3
+      42: iload         4
+      44: invokevirtual #34                 // Method javax/microedition/lcdui/Graphics.setClip:(IIII)V
+      47: return
+
+  public final void b(int, int, int, int, int, int);
+    descriptor: (IIIIII)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: iload_1
+      10: getstatic     #16                 // Field bZ:I
+      13: imul
+      14: istore_1
+      15: iload_2
+      16: getstatic     #16                 // Field bZ:I
+      19: imul
+      20: istore_2
+      21: iload_3
+      22: getstatic     #16                 // Field bZ:I
+      25: imul
+      26: istore_3
+      27: iload         4
+      29: getstatic     #16                 // Field bZ:I
+      32: imul
+      33: istore        4
+      35: aload_0
+      36: getfield      #15                 // Field a:Ljavax/microedition/lcdui/Graphics;
+      39: iload_1
+      40: iload_2
+      41: iload_3
+      42: iload         4
+      44: getstatic     #17                 // Field dB:[I
+      47: sipush        230
+      50: sipush        230
+      53: ixor
+      54: iaload
+      55: getstatic     #17                 // Field dB:[I
+      58: sipush        362
+      61: sipush        363
+      64: ixor
+      65: iaload
+      66: invokevirtual #26                 // Method javax/microedition/lcdui/Graphics.fillArc:(IIIIII)V
+      69: return
+}

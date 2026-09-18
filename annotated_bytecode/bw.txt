@@ -1,0 +1,27 @@
+public final class nro.bw {
+  public static final int iz;
+    descriptor: I
+
+  public short[] a;
+    descriptor: [S
+
+  public byte[] c;
+    descriptor: [B
+
+  public short[] l;
+    descriptor: [S
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field iz:I
+       5: return
+
+  public nro.bw();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+}

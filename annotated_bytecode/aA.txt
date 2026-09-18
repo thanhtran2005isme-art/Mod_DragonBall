@@ -1,0 +1,24 @@
+public interface nro.aA {
+  public abstract void cz();
+    descriptor: ()V
+
+  public abstract int l();
+    descriptor: ()I
+
+  public abstract boolean m();
+    descriptor: ()Z
+
+  public abstract int m();
+    descriptor: ()I
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: return
+
+  public abstract int j();
+    descriptor: ()I
+
+  public abstract int k();
+    descriptor: ()I
+}

@@ -1,0 +1,21 @@
+public final class nro.bZ {
+  public static final int jk;
+    descriptor: I
+
+  public nro.ck[] a;
+    descriptor: [Lnro/ck;
+
+  public nro.bZ();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field jk:I
+       5: return
+}

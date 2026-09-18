@@ -1,0 +1,221 @@
+public class nro.bT extends java.util.Vector {
+  public static final int je;
+    descriptor: I
+
+  public static int[] dP;
+    descriptor: [I
+
+  public java.lang.String I;
+    descriptor: Ljava/lang/String;
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #27                 // Method gG:()V
+       3: ldc           #1                  // int 574924928
+       5: putstatic     #13                 // Field je:I
+       8: return
+
+  public synchronized void insertElementAt(java.lang.Object, int);
+    descriptor: (Ljava/lang/Object;I)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokevirtual #26                 // Method java/util/Vector.size:()I
+      13: getstatic     #12                 // Field dP:[I
+      16: sipush        230
+      19: sipush        230
+      22: ixor
+      23: iaload
+      24: if_icmple     112
+      27: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      30: new           #5                  // class java/lang/StringBuffer
+      33: dup
+      34: invokespecial #16                 // Method java/lang/StringBuffer."<init>":()V
+      37: getstatic     #14                 // Field nro/cX.o:[S
+      40: sipush        19108
+      43: sipush        363
+      46: ixor
+      47: sipush        368
+      50: sipush        348
+      53: ixor
+      54: ldc           #3                  // int 574925156
+      56: sipush        484
+      59: ixor
+      60: invokestatic  #28                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: '||||||||||||||||||||||||||||||||||||||||||||'
+      63: invokevirtual #18                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      66: aload_0
+      67: getfield      #11                 // Field I:Ljava/lang/String;
+      70: invokevirtual #18                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      73: getstatic     #14                 // Field nro/cX.o:[S
+      76: sipush        18881
+      79: sipush        570
+      82: ixor
+      83: bipush        123
+      85: bipush        125
+      87: ixor
+      88: ldc           #2                  // int 574925033
+      90: bipush        105
+      92: ixor
+      93: invokestatic  #28                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: ' num= '
+      96: invokevirtual #18                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      99: aload_0
+     100: invokevirtual #26                 // Method java/util/Vector.size:()I
+     103: invokevirtual #17                 // Method java/lang/StringBuffer.append:(I)Ljava/lang/StringBuffer;
+     106: invokevirtual #19                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     109: invokevirtual #15                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+     112: aload_0
+     113: aload_1
+     114: iload_2
+     115: invokespecial #22                 // Method java/util/Vector.insertElementAt:(Ljava/lang/Object;I)V
+     118: return
+
+  public nro.bT();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #20                 // Method java/util/Vector."<init>":()V
+       4: return
+
+  public synchronized boolean removeElement(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: aload_1
+      11: invokespecial #24                 // Method java/util/Vector.removeElement:(Ljava/lang/Object;)Z
+      14: ireturn
+
+  public synchronized void addElement(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokevirtual #26                 // Method java/util/Vector.size:()I
+      13: getstatic     #12                 // Field dP:[I
+      16: sipush        230
+      19: sipush        230
+      22: ixor
+      23: iaload
+      24: if_icmple     112
+      27: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      30: new           #5                  // class java/lang/StringBuffer
+      33: dup
+      34: invokespecial #16                 // Method java/lang/StringBuffer."<init>":()V
+      37: getstatic     #14                 // Field nro/cX.o:[S
+      40: sipush        19108
+      43: sipush        363
+      46: ixor
+      47: sipush        368
+      50: sipush        348
+      53: ixor
+      54: ldc           #3                  // int 574925156
+      56: sipush        484
+      59: ixor
+      60: invokestatic  #28                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: '||||||||||||||||||||||||||||||||||||||||||||'
+      63: invokevirtual #18                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      66: aload_0
+      67: getfield      #11                 // Field I:Ljava/lang/String;
+      70: invokevirtual #18                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      73: getstatic     #14                 // Field nro/cX.o:[S
+      76: sipush        18881
+      79: sipush        570
+      82: ixor
+      83: bipush        123
+      85: bipush        125
+      87: ixor
+      88: ldc           #2                  // int 574925033
+      90: bipush        105
+      92: ixor
+      93: invokestatic  #28                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: ' num= '
+      96: invokevirtual #18                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+      99: aload_0
+     100: invokevirtual #26                 // Method java/util/Vector.size:()I
+     103: invokevirtual #17                 // Method java/lang/StringBuffer.append:(I)Ljava/lang/StringBuffer;
+     106: invokevirtual #19                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     109: invokevirtual #15                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+     112: aload_0
+     113: aload_1
+     114: invokespecial #21                 // Method java/util/Vector.addElement:(Ljava/lang/Object;)V
+     117: return
+
+  public static void gG();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        231
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #12                 // Field dP:[I
+      21: getstatic     #12                 // Field dP:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        -32073
+      34: sipush        348
+      37: ixor
+      38: sipush        32280
+      41: sipush        484
+      44: ixor
+      45: iand
+      46: iastore
+      47: return
+
+  public synchronized void removeElementAt(int);
+    descriptor: (I)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: iload_1
+      11: invokespecial #25                 // Method java/util/Vector.removeElementAt:(I)V
+      14: return
+
+  public synchronized void removeAllElements();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: invokespecial #23                 // Method java/util/Vector.removeAllElements:()V
+      13: return
+
+  public nro.bT(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    Code:
+       0: aload_0
+       1: invokespecial #20                 // Method java/util/Vector."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #11                 // Field I:Ljava/lang/String;
+       9: return
+}

@@ -1,0 +1,9 @@
+public interface nro.bS {
+  public abstract void k(nro.bV);
+    descriptor: (Lnro/bV;)V
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: return
+}

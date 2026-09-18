@@ -1,0 +1,162 @@
+public final class nro.ax {
+  public static final int cY;
+    descriptor: I
+
+  public int bX;
+    descriptor: I
+
+  public int cf;
+    descriptor: I
+
+  public static int[] bh;
+    descriptor: [I
+
+  public int bY;
+    descriptor: I
+
+  public int bZ;
+    descriptor: I
+
+  public int cy;
+    descriptor: I
+
+  public nro.ax();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: getstatic     #8                  // Field bh:[I
+       8: sipush        230
+      11: sipush        230
+      14: ixor
+      15: iaload
+      16: putfield      #10                 // Field cf:I
+      19: aload_0
+      20: getstatic     #8                  // Field bh:[I
+      23: sipush        363
+      26: sipush        363
+      29: ixor
+      30: iaload
+      31: putfield      #7                  // Field bZ:I
+      34: return
+
+  public static void da();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        231
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #8                  // Field bh:[I
+      21: getstatic     #8                  // Field bh:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        317
+      34: sipush        348
+      37: ixor
+      38: sipush        510
+      41: sipush        484
+      44: ixor
+      45: iadd
+      46: sipush        -554
+      49: sipush        570
+      52: ixor
+      53: isub
+      54: bipush        113
+      56: bipush        125
+      58: ixor
+      59: iadd
+      60: bipush        101
+      62: bipush        105
+      64: ixor
+      65: sipush        527
+      68: sipush        518
+      71: ixor
+      72: iadd
+      73: bipush        115
+      75: bipush        119
+      77: ixor
+      78: isub
+      79: bipush        77
+      81: sipush        193
+      84: ixor
+      85: iadd
+      86: ixor
+      87: sipush        315
+      90: sipush        282
+      93: ixor
+      94: bipush        19
+      96: bipush        102
+      98: ixor
+      99: iadd
+     100: sipush        -380
+     103: sipush        376
+     106: ixor
+     107: isub
+     108: sipush        407
+     111: sipush        392
+     114: ixor
+     115: iadd
+     116: sipush        538
+     119: sipush        576
+     122: ixor
+     123: sipush        174
+     126: sipush        132
+     129: ixor
+     130: iadd
+     131: sipush        -572
+     134: sipush        556
+     137: ixor
+     138: isub
+     139: sipush        301
+     142: sipush        270
+     145: ixor
+     146: iadd
+     147: ixor
+     148: getstatic     #11                 // Field nro/cX.o:[S
+     151: sipush        341
+     154: sipush        343
+     157: ixor
+     158: sipush        308
+     161: sipush        309
+     164: ixor
+     165: ldc           #2                  // int 574925172
+     167: sipush        500
+     170: ixor
+     171: invokestatic  #15                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: ' '
+     174: invokevirtual #13                 // Method java/lang/String.length:()I
+     177: ineg
+     178: ixor
+     179: iand
+     180: iastore
+     181: return
+
+  public nro.ax(int, int);
+    descriptor: (II)V
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #10                 // Field cf:I
+       9: aload_0
+      10: iload_2
+      11: putfield      #7                  // Field bZ:I
+      14: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #14                 // Method da:()V
+       3: ldc           #1                  // int 574924928
+       5: putstatic     #9                  // Field cY:I
+       8: return
+}

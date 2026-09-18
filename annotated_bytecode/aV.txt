@@ -1,0 +1,51 @@
+public final class nro.aV {
+  public static final int gC;
+    descriptor: I
+
+  public nro.bZ a;
+    descriptor: Lnro/bZ;
+
+  public nro.bv j;
+    descriptor: Lnro/bv;
+
+  public int cf;
+    descriptor: I
+
+  public boolean aW;
+    descriptor: Z
+
+  public nro.ct b;
+    descriptor: Lnro/ct;
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #8                  // Field gC:I
+       5: return
+
+  public nro.aV();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #11                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public final int t();
+    descriptor: ()I
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aload_0
+      10: getfield      #6                  // Field a:Lnro/bZ;
+      13: getfield      #9                  // Field nro/bZ.a:[Lnro/ck;
+      16: aload_0
+      17: getfield      #7                  // Field cf:I
+      20: aaload
+      21: getfield      #10                 // Field nro/ck.cy:I
+      24: ireturn
+}

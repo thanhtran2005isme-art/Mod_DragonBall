@@ -1,0 +1,2405 @@
+public class nro.J implements java.lang.Runnable {
+  public static final int bp;
+    descriptor: I
+
+  public static final java.lang.String D;
+    descriptor: Ljava/lang/String;
+
+  public static java.util.Vector d;
+    descriptor: Ljava/util/Vector;
+
+  public static java.lang.String E;
+    descriptor: Ljava/lang/String;
+
+  public static long a;
+    descriptor: J
+
+  public static long Z;
+    descriptor: J
+
+  public static int[] W;
+    descriptor: [I
+
+  public static boolean af;
+    descriptor: Z
+
+  public static boolean ag;
+    descriptor: Z
+
+  public static final java.lang.String F;
+    descriptor: Ljava/lang/String;
+
+  public void run();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #40                 // Field F:Ljava/lang/String;
+      12: astore_1
+      13: aload_1
+      14: ifnull        63
+      17: aload_1
+      18: invokevirtual #71                 // Method java/lang/String.trim:()Ljava/lang/String;
+      21: astore_1
+      22: aload_1
+      23: getstatic     #51                 // Field nro/cX.o:[S
+      26: sipush        28320
+      29: sipush        230
+      32: ixor
+      33: sipush        367
+      36: sipush        363
+      39: ixor
+      40: ldc           #12                 // int 574925276
+      42: sipush        348
+      45: ixor
+      46: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'http'
+      49: invokevirtual #65                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+      52: istore_2
+      53: iload_2
+      54: ifle          63
+      57: aload_1
+      58: iload_2
+      59: invokevirtual #69                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+      62: astore_1
+      63: aload_1
+      64: ifnull        116
+      67: aload_1
+      68: getstatic     #51                 // Field nro/cX.o:[S
+      71: sipush        28578
+      74: sipush        484
+      77: ixor
+      78: sipush        574
+      81: sipush        570
+      84: ixor
+      85: ldc           #6                  // int 574925053
+      87: bipush        125
+      89: ixor
+      90: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'http'
+      93: invokevirtual #68                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      96: ifeq          116
+      99: aload_0
+     100: aload_1
+     101: getstatic     #41                 // Field W:[I
+     104: bipush        97
+     106: bipush        105
+     108: ixor
+     109: iaload
+     110: invokespecial #84                 // Method a:(Ljava/lang/String;Z)Z
+     113: ifne          135
+     116: aload_0
+     117: getstatic     #38                 // Field D:Ljava/lang/String;
+     120: getstatic     #41                 // Field W:[I
+     123: sipush        512
+     126: sipush        518
+     129: ixor
+     130: iaload
+     131: invokespecial #84                 // Method a:(Ljava/lang/String;Z)Z
+     134: pop
+     135: return
+
+  public static void be();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #44                 // Field ag:Z
+      12: ifne          164
+      15: getstatic     #46                 // Field d:Ljava/util/Vector;
+      18: invokevirtual #82                 // Method java/util/Vector.size:()I
+      21: ifle          164
+      24: getstatic     #49                 // Field nro/aE.eF:I
+      27: getstatic     #41                 // Field W:[I
+      30: sipush        230
+      33: sipush        230
+      36: ixor
+      37: iaload
+      38: irem
+      39: ifne          164
+      42: getstatic     #46                 // Field d:Ljava/util/Vector;
+      45: getstatic     #41                 // Field W:[I
+      48: sipush        362
+      51: sipush        363
+      54: ixor
+      55: iaload
+      56: invokevirtual #80                 // Method java/util/Vector.elementAt:(I)Ljava/lang/Object;
+      59: checkcast     #21                 // class java/lang/String
+      62: astore_0
+      63: getstatic     #46                 // Field d:Ljava/util/Vector;
+      66: getstatic     #41                 // Field W:[I
+      69: sipush        350
+      72: sipush        348
+      75: ixor
+      76: iaload
+      77: invokevirtual #80                 // Method java/util/Vector.elementAt:(I)Ljava/lang/Object;
+      80: checkcast     #21                 // class java/lang/String
+      83: astore_1
+      84: getstatic     #46                 // Field d:Ljava/util/Vector;
+      87: getstatic     #41                 // Field W:[I
+      90: sipush        487
+      93: sipush        484
+      96: ixor
+      97: iaload
+      98: invokevirtual #80                 // Method java/util/Vector.elementAt:(I)Ljava/lang/Object;
+     101: checkcast     #21                 // class java/lang/String
+     104: astore_2
+     105: aload_0
+     106: getstatic     #39                 // Field E:Ljava/lang/String;
+     109: invokevirtual #63                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     112: ifeq          148
+     115: aload_1
+     116: getstatic     #41                 // Field W:[I
+     119: sipush        574
+     122: sipush        570
+     125: ixor
+     126: iaload
+     127: getstatic     #41                 // Field W:[I
+     130: bipush        120
+     132: bipush        125
+     134: ixor
+     135: iaload
+     136: invokevirtual #67                 // Method java/lang/String.replace:(CC)Ljava/lang/String;
+     139: invokestatic  #86                 // Method i:(Ljava/lang/String;)V
+     142: iconst_1
+     143: ifne          152
+     146: aconst_null
+     147: athrow
+     148: aload_2
+     149: invokestatic  #86                 // Method i:(Ljava/lang/String;)V
+     152: getstatic     #41                 // Field W:[I
+     155: bipush        111
+     157: bipush        105
+     159: ixor
+     160: iaload
+     161: putstatic     #44                 // Field ag:Z
+     164: return
+
+  public static void bf();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: sipush        174
+      12: sipush        230
+      15: ixor
+      16: newarray       int
+      18: putstatic     #41                 // Field W:[I
+      21: getstatic     #41                 // Field W:[I
+      24: sipush        363
+      27: sipush        363
+      30: ixor
+      31: sipush        -11728
+      34: sipush        348
+      37: ixor
+      38: sipush        11355
+      41: sipush        484
+      44: ixor
+      45: iand
+      46: iastore
+      47: getstatic     #41                 // Field W:[I
+      50: sipush        571
+      53: sipush        570
+      56: ixor
+      57: bipush        100
+      59: bipush        125
+      61: ixor
+      62: bipush        95
+      64: bipush        105
+      66: ixor
+      67: ixor
+      68: sipush        540
+      71: sipush        518
+      74: ixor
+      75: bipush        74
+      77: bipush        119
+      79: ixor
+      80: ixor
+      81: ixor
+      82: iastore
+      83: getstatic     #41                 // Field W:[I
+      86: sipush        195
+      89: sipush        193
+      92: ixor
+      93: getstatic     #51                 // Field nro/cX.o:[S
+      96: sipush        287
+      99: sipush        282
+     102: ixor
+     103: bipush        101
+     105: bipush        102
+     107: ixor
+     108: ldc           #13                 // int 574925304
+     110: sipush        376
+     113: ixor
+     114: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: '   '
+     117: invokevirtual #66                 // Method java/lang/String.length:()I
+     120: iastore
+     121: getstatic     #41                 // Field W:[I
+     124: sipush        395
+     127: sipush        392
+     130: ixor
+     131: sipush        523
+     134: sipush        576
+     137: ixor
+     138: sipush        183
+     141: sipush        132
+     144: ixor
+     145: ixor
+     146: sipush        568
+     149: sipush        556
+     152: ixor
+     153: sipush        358
+     156: sipush        270
+     159: ixor
+     160: ixor
+     161: ixor
+     162: iastore
+     163: getstatic     #41                 // Field W:[I
+     166: sipush        339
+     169: sipush        343
+     172: ixor
+     173: sipush        288
+     176: sipush        309
+     179: ixor
+     180: sipush        474
+     183: sipush        500
+     186: ixor
+     187: ixor
+     188: iastore
+     189: getstatic     #41                 // Field W:[I
+     192: sipush        458
+     195: sipush        463
+     198: ixor
+     199: sipush        278
+     202: sipush        326
+     205: ixor
+     206: sipush        597
+     209: sipush        513
+     212: ixor
+     213: ixor
+     214: sipush        412
+     217: sipush        343
+     220: ixor
+     221: sipush        400
+     224: sipush        341
+     227: ixor
+     228: ixor
+     229: ixor
+     230: iastore
+     231: getstatic     #41                 // Field W:[I
+     234: sipush        132
+     237: sipush        130
+     240: ixor
+     241: getstatic     #51                 // Field nro/cX.o:[S
+     244: sipush        556
+     247: sipush        558
+     250: ixor
+     251: sipush        486
+     254: sipush        487
+     257: ixor
+     258: ldc           #11                 // int 574925274
+     260: sipush        346
+     263: ixor
+     264: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: ' '
+     267: invokevirtual #66                 // Method java/lang/String.length:()I
+     270: iastore
+     271: getstatic     #41                 // Field W:[I
+     274: sipush        333
+     277: sipush        330
+     280: ixor
+     281: getstatic     #51                 // Field nro/cX.o:[S
+     284: sipush        358
+     287: sipush        356
+     290: ixor
+     291: sipush        531
+     294: sipush        530
+     297: ixor
+     298: ldc           #2                  // int 574924857
+     300: sipush        185
+     303: ixor
+     304: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: ' '
+     307: invokevirtual #66                 // Method java/lang/String.length:()I
+     310: ineg
+     311: iastore
+     312: getstatic     #41                 // Field W:[I
+     315: sipush        309
+     318: sipush        317
+     321: ixor
+     322: sipush        273
+     325: sipush        327
+     328: ixor
+     329: sipush        383
+     332: sipush        312
+     335: ixor
+     336: ixor
+     337: sipush        131
+     340: sipush        193
+     343: ixor
+     344: sipush        362
+     347: sipush        313
+     350: ixor
+     351: ixor
+     352: sipush        -265
+     355: sipush        264
+     358: ixor
+     359: ixor
+     360: iand
+     361: iastore
+     362: getstatic     #41                 // Field W:[I
+     365: sipush        470
+     368: sipush        479
+     371: ixor
+     372: sipush        -1032
+     375: sipush        165
+     378: ixor
+     379: sipush        7948
+     382: sipush        423
+     385: ixor
+     386: iand
+     387: ineg
+     388: sipush        -342
+     391: sipush        337
+     394: ixor
+     395: sipush        7520
+     398: sipush        575
+     401: ixor
+     402: iand
+     403: iand
+     404: iastore
+     405: getstatic     #41                 // Field W:[I
+     408: sipush        140
+     411: sipush        134
+     414: ixor
+     415: sipush        -10695
+     418: sipush        407
+     421: ixor
+     422: ldc           #1                  // int 109798
+     424: sipush        535
+     427: ixor
+     428: iand
+     429: iastore
+     430: getstatic     #41                 // Field W:[I
+     433: sipush        266
+     436: sipush        257
+     439: ixor
+     440: sipush        -12814
+     443: sipush        543
+     446: ixor
+     447: sipush        13022
+     450: sipush        293
+     453: ixor
+     454: iand
+     455: iastore
+     456: getstatic     #41                 // Field W:[I
+     459: sipush        528
+     462: sipush        540
+     465: ixor
+     466: getstatic     #51                 // Field nro/cX.o:[S
+     469: sipush        157
+     472: sipush        158
+     475: ixor
+     476: sipush        358
+     479: sipush        356
+     482: ixor
+     483: ldc           #8                  // int 574925188
+     485: sipush        260
+     488: ixor
+     489: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: '  '
+     492: invokevirtual #66                 // Method java/lang/String.length:()I
+     495: iastore
+     496: getstatic     #41                 // Field W:[I
+     499: sipush        499
+     502: sipush        510
+     505: ixor
+     506: sipush        336
+     509: sipush        313
+     512: ixor
+     513: sipush        213
+     516: sipush        159
+     519: ixor
+     520: ixor
+     521: iastore
+     522: getstatic     #41                 // Field W:[I
+     525: sipush        359
+     528: sipush        361
+     531: ixor
+     532: sipush        -22734
+     535: bipush        103
+     537: ixor
+     538: sipush        32331
+     541: sipush        497
+     544: ixor
+     545: iand
+     546: iastore
+     547: getstatic     #41                 // Field W:[I
+     550: sipush        428
+     553: sipush        419
+     556: ixor
+     557: sipush        223
+     560: sipush        152
+     563: ixor
+     564: sipush        197
+     567: sipush        201
+     570: ixor
+     571: ixor
+     572: iastore
+     573: getstatic     #41                 // Field W:[I
+     576: sipush        210
+     579: sipush        194
+     582: ixor
+     583: sipush        306
+     586: sipush        394
+     589: ixor
+     590: sipush        319
+     593: sipush        398
+     596: ixor
+     597: ixor
+     598: getstatic     #51                 // Field nro/cX.o:[S
+     601: sipush        316
+     604: sipush        319
+     607: ixor
+     608: sipush        373
+     611: sipush        375
+     614: ixor
+     615: ldc           #15                 // int 574925527
+     617: sipush        599
+     620: ixor
+     621: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: '  '
+     624: invokevirtual #66                 // Method java/lang/String.length:()I
+     627: ixor
+     628: iastore
+     629: getstatic     #41                 // Field W:[I
+     632: sipush        507
+     635: sipush        490
+     638: ixor
+     639: bipush        65
+     641: bipush        101
+     643: ixor
+     644: sipush        515
+     647: sipush        553
+     650: ixor
+     651: ixor
+     652: sipush        622
+     655: sipush        529
+     658: ixor
+     659: sipush        188
+     662: sipush        173
+     665: ixor
+     666: ixor
+     667: iadd
+     668: sipush        467
+     671: sipush        333
+     674: ixor
+     675: sipush        750
+     678: sipush        586
+     681: ixor
+     682: ixor
+     683: isub
+     684: sipush        584
+     687: sipush        560
+     690: ixor
+     691: sipush        191
+     694: sipush        225
+     697: ixor
+     698: iadd
+     699: sipush        184
+     702: sipush        193
+     705: ixor
+     706: isub
+     707: sipush        261
+     710: sipush        300
+     713: ixor
+     714: iadd
+     715: iadd
+     716: iastore
+     717: getstatic     #41                 // Field W:[I
+     720: sipush        208
+     723: sipush        194
+     726: ixor
+     727: sipush        506
+     730: sipush        503
+     733: ixor
+     734: sipush        144
+     737: sipush        242
+     740: ixor
+     741: ixor
+     742: sipush        432
+     745: sipush        407
+     748: ixor
+     749: sipush        245
+     752: sipush        193
+     755: ixor
+     756: ixor
+     757: ixor
+     758: iastore
+     759: getstatic     #41                 // Field W:[I
+     762: sipush        194
+     765: sipush        209
+     768: ixor
+     769: sipush        382
+     772: sipush        344
+     775: ixor
+     776: sipush        498
+     779: sipush        498
+     782: ixor
+     783: ixor
+     784: iastore
+     785: getstatic     #41                 // Field W:[I
+     788: sipush        599
+     791: sipush        579
+     794: ixor
+     795: sipush        259
+     798: sipush        347
+     801: ixor
+     802: sipush        280
+     805: sipush        296
+     808: ixor
+     809: ixor
+     810: iastore
+     811: getstatic     #41                 // Field W:[I
+     814: sipush        542
+     817: sipush        523
+     820: ixor
+     821: sipush        459
+     824: sipush        395
+     827: ixor
+     828: sipush        304
+     831: sipush        359
+     834: ixor
+     835: ixor
+     836: sipush        355
+     839: sipush        423
+     842: ixor
+     843: sipush        494
+     846: sipush        329
+     849: ixor
+     850: ixor
+     851: ixor
+     852: iastore
+     853: getstatic     #41                 // Field W:[I
+     856: sipush        598
+     859: sipush        576
+     862: ixor
+     863: sipush        631
+     866: sipush        576
+     869: ixor
+     870: sipush        477
+     873: sipush        428
+     876: ixor
+     877: ixor
+     878: sipush        336
+     881: sipush        470
+     884: ixor
+     885: bipush        64
+     887: sipush        240
+     890: ixor
+     891: ixor
+     892: ixor
+     893: iastore
+     894: getstatic     #41                 // Field W:[I
+     897: sipush        147
+     900: sipush        132
+     903: ixor
+     904: bipush        57
+     906: sipush        129
+     909: ixor
+     910: sipush        709
+     913: sipush        583
+     916: ixor
+     917: ixor
+     918: iastore
+     919: getstatic     #41                 // Field W:[I
+     922: sipush        487
+     925: sipush        511
+     928: ixor
+     929: sipush        292
+     932: sipush        309
+     935: ixor
+     936: sipush        293
+     939: sipush        346
+     942: ixor
+     943: ixor
+     944: sipush        403
+     947: sipush        375
+     950: ixor
+     951: sipush        245
+     954: bipush        122
+     956: ixor
+     957: ixor
+     958: ixor
+     959: iastore
+     960: getstatic     #41                 // Field W:[I
+     963: sipush        423
+     966: sipush        446
+     969: ixor
+     970: sipush        199
+     973: sipush        204
+     976: ixor
+     977: sipush        225
+     980: sipush        197
+     983: ixor
+     984: ixor
+     985: iastore
+     986: getstatic     #41                 // Field W:[I
+     989: sipush        573
+     992: sipush        551
+     995: ixor
+     996: bipush        79
+     998: sipush        131
+    1001: ixor
+    1002: sipush        434
+    1005: sipush        270
+    1008: ixor
+    1009: ixor
+    1010: sipush        492
+    1013: sipush        406
+    1016: ixor
+    1017: sipush        391
+    1020: sipush        395
+    1023: ixor
+    1024: ixor
+    1025: ixor
+    1026: iastore
+    1027: getstatic     #41                 // Field W:[I
+    1030: sipush        213
+    1033: sipush        206
+    1036: ixor
+    1037: sipush        290
+    1040: sipush        279
+    1043: ixor
+    1044: sipush        282
+    1047: sipush        346
+    1050: ixor
+    1051: ixor
+    1052: sipush        300
+    1055: sipush        328
+    1058: ixor
+    1059: sipush        568
+    1062: sipush        558
+    1065: ixor
+    1066: ixor
+    1067: ixor
+    1068: iastore
+    1069: getstatic     #41                 // Field W:[I
+    1072: sipush        443
+    1075: sipush        423
+    1078: ixor
+    1079: getstatic     #51                 // Field nro/cX.o:[S
+    1082: sipush        254
+    1085: sipush        252
+    1088: ixor
+    1089: sipush        433
+    1092: sipush        432
+    1095: ixor
+    1096: ldc           #7                  // int 574925094
+    1098: sipush        422
+    1101: ixor
+    1102: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: ' '
+    1105: invokevirtual #66                 // Method java/lang/String.length:()I
+    1108: sipush        602
+    1111: sipush        523
+    1114: ixor
+    1115: sipush        560
+    1118: sipush        533
+    1121: ixor
+    1122: ixor
+    1123: ixor
+    1124: iastore
+    1125: getstatic     #41                 // Field W:[I
+    1128: sipush        491
+    1131: sipush        502
+    1134: ixor
+    1135: sipush        469
+    1138: sipush        452
+    1141: ixor
+    1142: sipush        264
+    1145: sipush        272
+    1148: ixor
+    1149: ixor
+    1150: iastore
+    1151: getstatic     #41                 // Field W:[I
+    1154: sipush        332
+    1157: sipush        338
+    1160: ixor
+    1161: sipush        652
+    1164: sipush        532
+    1167: ixor
+    1168: sipush        304
+    1171: sipush        272
+    1174: ixor
+    1175: iadd
+    1176: sipush        397
+    1179: sipush        268
+    1182: ixor
+    1183: isub
+    1184: sipush        235
+    1187: bipush        125
+    1189: ixor
+    1190: iadd
+    1191: sipush        700
+    1194: sipush        542
+    1197: ixor
+    1198: bipush        123
+    1200: sipush        227
+    1203: ixor
+    1204: iadd
+    1205: sipush        799
+    1208: sipush        533
+    1211: ixor
+    1212: isub
+    1213: sipush        426
+    1216: sipush        473
+    1219: ixor
+    1220: iadd
+    1221: ixor
+    1222: iastore
+    1223: getstatic     #41                 // Field W:[I
+    1226: bipush        96
+    1228: bipush        127
+    1230: ixor
+    1231: sipush        398
+    1234: sipush        321
+    1237: ixor
+    1238: sipush        675
+    1241: sipush        523
+    1244: ixor
+    1245: ixor
+    1246: iastore
+    1247: getstatic     #41                 // Field W:[I
+    1250: sipush        472
+    1253: sipush        504
+    1256: ixor
+    1257: sipush        491
+    1260: sipush        403
+    1263: ixor
+    1264: sipush        339
+    1267: sipush        378
+    1270: ixor
+    1271: ixor
+    1272: bipush        47
+    1274: sipush        193
+    1277: ixor
+    1278: sipush        684
+    1281: sipush        547
+    1284: ixor
+    1285: ixor
+    1286: ixor
+    1287: iastore
+    1288: getstatic     #41                 // Field W:[I
+    1291: sipush        372
+    1294: sipush        341
+    1297: ixor
+    1298: bipush        8
+    1300: sipush        230
+    1303: ixor
+    1304: bipush        35
+    1306: sipush        135
+    1309: ixor
+    1310: ixor
+    1311: bipush        124
+    1313: bipush        121
+    1315: ixor
+    1316: sipush        288
+    1319: sipush        355
+    1322: ixor
+    1323: ixor
+    1324: ixor
+    1325: iastore
+    1326: getstatic     #41                 // Field W:[I
+    1329: sipush        615
+    1332: sipush        581
+    1335: ixor
+    1336: sipush        271
+    1339: sipush        399
+    1342: ixor
+    1343: bipush        88
+    1345: sipush        200
+    1348: ixor
+    1349: iadd
+    1350: bipush        91
+    1352: sipush        251
+    1355: ixor
+    1356: isub
+    1357: sipush        319
+    1360: sipush        442
+    1363: ixor
+    1364: iadd
+    1365: sipush        544
+    1368: sipush        541
+    1371: ixor
+    1372: sipush        436
+    1375: sipush        384
+    1378: ixor
+    1379: iadd
+    1380: sipush        -613
+    1383: sipush        596
+    1386: ixor
+    1387: isub
+    1388: sipush        331
+    1391: sipush        340
+    1394: ixor
+    1395: iadd
+    1396: ixor
+    1397: iastore
+    1398: getstatic     #41                 // Field W:[I
+    1401: sipush        241
+    1404: sipush        210
+    1407: ixor
+    1408: sipush        217
+    1411: sipush        165
+    1414: ixor
+    1415: sipush        219
+    1418: sipush        170
+    1421: ixor
+    1422: ixor
+    1423: iastore
+    1424: getstatic     #41                 // Field W:[I
+    1427: sipush        166
+    1430: sipush        130
+    1433: ixor
+    1434: bipush        12
+    1436: sipush        129
+    1439: ixor
+    1440: bipush        61
+    1442: sipush        129
+    1445: ixor
+    1446: ixor
+    1447: iastore
+    1448: getstatic     #41                 // Field W:[I
+    1451: sipush        418
+    1454: sipush        391
+    1457: ixor
+    1458: sipush        438
+    1461: sipush        424
+    1464: ixor
+    1465: sipush        554
+    1468: sipush        534
+    1471: ixor
+    1472: ixor
+    1473: sipush        445
+    1476: sipush        341
+    1479: ixor
+    1480: sipush        348
+    1483: sipush        408
+    1486: ixor
+    1487: ixor
+    1488: ixor
+    1489: iastore
+    1490: getstatic     #41                 // Field W:[I
+    1493: bipush        76
+    1495: bipush        106
+    1497: ixor
+    1498: sipush        402
+    1501: sipush        481
+    1504: ixor
+    1505: sipush        324
+    1508: sipush        312
+    1511: ixor
+    1512: ixor
+    1513: iastore
+    1514: getstatic     #41                 // Field W:[I
+    1517: sipush        627
+    1520: sipush        596
+    1523: ixor
+    1524: sipush        632
+    1527: sipush        529
+    1530: ixor
+    1531: sipush        509
+    1534: sipush        442
+    1537: ixor
+    1538: ixor
+    1539: iastore
+    1540: getstatic     #41                 // Field W:[I
+    1543: sipush        186
+    1546: sipush        146
+    1549: ixor
+    1550: iconst_1
+    1551: sipush        189
+    1554: ixor
+    1555: sipush        410
+    1558: sipush        310
+    1561: ixor
+    1562: ixor
+    1563: iastore
+    1564: getstatic     #41                 // Field W:[I
+    1567: sipush        638
+    1570: sipush        599
+    1573: ixor
+    1574: sipush        357
+    1577: sipush        374
+    1580: ixor
+    1581: sipush        490
+    1584: sipush        385
+    1587: ixor
+    1588: ixor
+    1589: iastore
+    1590: getstatic     #41                 // Field W:[I
+    1593: sipush        162
+    1596: sipush        136
+    1599: ixor
+    1600: sipush        470
+    1603: sipush        345
+    1606: ixor
+    1607: sipush        718
+    1610: sipush        592
+    1613: ixor
+    1614: ixor
+    1615: iastore
+    1616: getstatic     #41                 // Field W:[I
+    1619: sipush        388
+    1622: sipush        431
+    1625: ixor
+    1626: sipush        292
+    1629: sipush        498
+    1632: ixor
+    1633: sipush        333
+    1636: sipush        393
+    1639: ixor
+    1640: ixor
+    1641: iastore
+    1642: getstatic     #41                 // Field W:[I
+    1645: sipush        510
+    1648: sipush        466
+    1651: ixor
+    1652: sipush        549
+    1655: sipush        578
+    1658: ixor
+    1659: sipush        282
+    1662: sipush        366
+    1665: ixor
+    1666: ixor
+    1667: iastore
+    1668: getstatic     #41                 // Field W:[I
+    1671: sipush        498
+    1674: sipush        479
+    1677: ixor
+    1678: sipush        306
+    1681: sipush        289
+    1684: ixor
+    1685: sipush        617
+    1688: sipush        543
+    1691: ixor
+    1692: ixor
+    1693: iastore
+    1694: getstatic     #41                 // Field W:[I
+    1697: sipush        423
+    1700: sipush        393
+    1703: ixor
+    1704: sipush        502
+    1707: sipush        474
+    1710: ixor
+    1711: sipush        269
+    1714: sipush        309
+    1717: ixor
+    1718: ixor
+    1719: iastore
+    1720: getstatic     #41                 // Field W:[I
+    1723: sipush        291
+    1726: sipush        268
+    1729: ixor
+    1730: sipush        427
+    1733: sipush        478
+    1736: ixor
+    1737: sipush        290
+    1740: sipush        288
+    1743: ixor
+    1744: ixor
+    1745: sipush        378
+    1748: sipush        369
+    1751: ixor
+    1752: sipush        460
+    1755: sipush        477
+    1758: ixor
+    1759: ixor
+    1760: ixor
+    1761: iastore
+    1762: getstatic     #41                 // Field W:[I
+    1765: sipush        238
+    1768: sipush        222
+    1771: ixor
+    1772: sipush        601
+    1775: sipush        591
+    1778: ixor
+    1779: sipush        253
+    1782: sipush        254
+    1785: ixor
+    1786: ixor
+    1787: iastore
+    1788: getstatic     #41                 // Field W:[I
+    1791: sipush        333
+    1794: sipush        380
+    1797: ixor
+    1798: bipush        95
+    1800: sipush        250
+    1803: ixor
+    1804: sipush        406
+    1807: sipush        293
+    1810: ixor
+    1811: ixor
+    1812: iastore
+    1813: getstatic     #41                 // Field W:[I
+    1816: sipush        638
+    1819: sipush        588
+    1822: ixor
+    1823: sipush        763
+    1826: sipush        548
+    1829: ixor
+    1830: sipush        338
+    1833: sipush        494
+    1836: ixor
+    1837: ixor
+    1838: iastore
+    1839: getstatic     #41                 // Field W:[I
+    1842: sipush        422
+    1845: sipush        405
+    1848: ixor
+    1849: sipush        480
+    1852: sipush        459
+    1855: ixor
+    1856: sipush        318
+    1859: sipush        331
+    1862: ixor
+    1863: ixor
+    1864: sipush        466
+    1867: sipush        283
+    1870: ixor
+    1871: sipush        295
+    1874: sipush        423
+    1877: ixor
+    1878: ixor
+    1879: ixor
+    1880: iastore
+    1881: getstatic     #41                 // Field W:[I
+    1884: sipush        295
+    1887: sipush        275
+    1890: ixor
+    1891: sipush        277
+    1894: sipush        281
+    1897: ixor
+    1898: sipush        138
+    1901: bipush        111
+    1903: ixor
+    1904: iadd
+    1905: sipush        461
+    1908: sipush        443
+    1911: ixor
+    1912: isub
+    1913: sipush        402
+    1916: sipush        273
+    1919: ixor
+    1920: iadd
+    1921: sipush        250
+    1924: sipush        153
+    1927: ixor
+    1928: sipush        633
+    1931: sipush        516
+    1934: ixor
+    1935: iadd
+    1936: sipush        647
+    1939: sipush        593
+    1942: ixor
+    1943: isub
+    1944: sipush        405
+    1947: sipush        274
+    1950: ixor
+    1951: iadd
+    1952: ixor
+    1953: iastore
+    1954: getstatic     #41                 // Field W:[I
+    1957: sipush        638
+    1960: sipush        587
+    1963: ixor
+    1964: sipush        396
+    1967: sipush        505
+    1970: ixor
+    1971: sipush        616
+    1974: sipush        517
+    1977: ixor
+    1978: ixor
+    1979: sipush        179
+    1982: sipush        218
+    1985: ixor
+    1986: sipush        449
+    1989: sipush        447
+    1992: ixor
+    1993: ixor
+    1994: sipush        349
+    1997: sipush        366
+    2000: ixor
+    2001: sipush        295
+    2004: sipush        259
+    2007: ixor
+    2008: ixor
+    2009: sipush        -188
+    2012: sipush        187
+    2015: ixor
+    2016: ixor
+    2017: iand
+    2018: ixor
+    2019: iastore
+    2020: getstatic     #41                 // Field W:[I
+    2023: bipush        88
+    2025: bipush        110
+    2027: ixor
+    2028: sipush        231
+    2031: sipush        153
+    2034: ixor
+    2035: sipush        481
+    2038: sipush        390
+    2041: ixor
+    2042: ixor
+    2043: iastore
+    2044: getstatic     #41                 // Field W:[I
+    2047: sipush        465
+    2050: sipush        486
+    2053: ixor
+    2054: sipush        744
+    2057: sipush        586
+    2060: ixor
+    2061: sipush        683
+    2064: sipush        531
+    2067: ixor
+    2068: ixor
+    2069: iastore
+    2070: getstatic     #41                 // Field W:[I
+    2073: sipush        370
+    2076: sipush        330
+    2079: ixor
+    2080: sipush        169
+    2083: sipush        188
+    2086: ixor
+    2087: sipush        556
+    2090: sipush        521
+    2093: ixor
+    2094: ixor
+    2095: sipush        232
+    2098: sipush        241
+    2101: ixor
+    2102: sipush        396
+    2105: sipush        491
+    2108: ixor
+    2109: ixor
+    2110: ixor
+    2111: iastore
+    2112: getstatic     #41                 // Field W:[I
+    2115: sipush        371
+    2118: sipush        330
+    2121: ixor
+    2122: sipush        337
+    2125: sipush        275
+    2128: ixor
+    2129: sipush        380
+    2132: sipush        293
+    2135: ixor
+    2136: ixor
+    2137: iastore
+    2138: getstatic     #41                 // Field W:[I
+    2141: sipush        355
+    2144: sipush        345
+    2147: ixor
+    2148: sipush        409
+    2151: sipush        481
+    2154: ixor
+    2155: sipush        551
+    2158: sipush        525
+    2161: ixor
+    2162: ixor
+    2163: iastore
+    2164: getstatic     #41                 // Field W:[I
+    2167: sipush        346
+    2170: sipush        353
+    2173: ixor
+    2174: bipush        64
+    2176: sipush        195
+    2179: ixor
+    2180: sipush        688
+    2183: sipush        559
+    2186: ixor
+    2187: ixor
+    2188: iastore
+    2189: getstatic     #41                 // Field W:[I
+    2192: sipush        531
+    2195: sipush        559
+    2198: ixor
+    2199: sipush        378
+    2202: sipush        415
+    2205: ixor
+    2206: bipush        77
+    2208: sipush        231
+    2211: ixor
+    2212: ixor
+    2213: iastore
+    2214: getstatic     #41                 // Field W:[I
+    2217: sipush        503
+    2220: sipush        458
+    2223: ixor
+    2224: bipush        102
+    2226: bipush        109
+    2228: ixor
+    2229: sipush        332
+    2232: sipush        360
+    2235: ixor
+    2236: ixor
+    2237: sipush        403
+    2240: sipush        416
+    2243: ixor
+    2244: sipush        165
+    2247: sipush        164
+    2250: ixor
+    2251: ixor
+    2252: ixor
+    2253: iastore
+    2254: getstatic     #41                 // Field W:[I
+    2257: sipush        385
+    2260: sipush        447
+    2263: ixor
+    2264: sipush        181
+    2267: sipush        165
+    2270: ixor
+    2271: sipush        186
+    2274: sipush        207
+    2277: ixor
+    2278: ixor
+    2279: bipush        49
+    2281: sipush        199
+    2284: ixor
+    2285: sipush        447
+    2288: sipush        306
+    2291: ixor
+    2292: ixor
+    2293: ixor
+    2294: iastore
+    2295: getstatic     #41                 // Field W:[I
+    2298: sipush        437
+    2301: sipush        394
+    2304: ixor
+    2305: sipush        310
+    2308: sipush        440
+    2311: ixor
+    2312: sipush        286
+    2315: sipush        388
+    2318: ixor
+    2319: iadd
+    2320: sipush        420
+    2323: sipush        131
+    2326: ixor
+    2327: isub
+    2328: sipush        176
+    2331: bipush        110
+    2333: ixor
+    2334: iadd
+    2335: sipush        267
+    2338: sipush        259
+    2341: ixor
+    2342: sipush        410
+    2345: sipush        286
+    2348: ixor
+    2349: iadd
+    2350: sipush        432
+    2353: sipush        406
+    2356: ixor
+    2357: isub
+    2358: sipush        214
+    2361: sipush        243
+    2364: ixor
+    2365: iadd
+    2366: ixor
+    2367: iastore
+    2368: getstatic     #41                 // Field W:[I
+    2371: sipush        506
+    2374: sipush        442
+    2377: ixor
+    2378: sipush        160
+    2381: sipush        167
+    2384: ixor
+    2385: sipush        491
+    2388: sipush        499
+    2391: ixor
+    2392: ixor
+    2393: iastore
+    2394: getstatic     #41                 // Field W:[I
+    2397: sipush        617
+    2400: sipush        552
+    2403: ixor
+    2404: sipush        255
+    2407: sipush        237
+    2410: ixor
+    2411: sipush        465
+    2414: sipush        510
+    2417: ixor
+    2418: ixor
+    2419: sipush        467
+    2422: sipush        466
+    2425: ixor
+    2426: sipush        447
+    2429: sipush        419
+    2432: ixor
+    2433: ixor
+    2434: ixor
+    2435: iastore
+    2436: getstatic     #41                 // Field W:[I
+    2439: sipush        454
+    2442: sipush        388
+    2445: ixor
+    2446: sipush        340
+    2449: sipush        325
+    2452: ixor
+    2453: sipush        206
+    2456: sipush        190
+    2459: ixor
+    2460: ixor
+    2461: iastore
+    2462: getstatic     #41                 // Field W:[I
+    2465: sipush        607
+    2468: sipush        540
+    2471: ixor
+    2472: bipush        123
+    2474: bipush        118
+    2476: ixor
+    2477: sipush        227
+    2480: sipush        219
+    2483: ixor
+    2484: ixor
+    2485: sipush        429
+    2488: sipush        482
+    2491: ixor
+    2492: bipush        48
+    2494: bipush        107
+    2496: ixor
+    2497: ixor
+    2498: ixor
+    2499: iastore
+    2500: getstatic     #41                 // Field W:[I
+    2503: sipush        205
+    2506: sipush        137
+    2509: ixor
+    2510: sipush        725
+    2513: sipush        563
+    2516: ixor
+    2517: iconst_4
+    2518: sipush        175
+    2521: ixor
+    2522: ixor
+    2523: iastore
+    2524: getstatic     #41                 // Field W:[I
+    2527: sipush        272
+    2530: sipush        341
+    2533: ixor
+    2534: sipush        558
+    2537: sipush        593
+    2540: ixor
+    2541: sipush        157
+    2544: sipush        147
+    2547: ixor
+    2548: ixor
+    2549: sipush        509
+    2552: sipush        289
+    2555: ixor
+    2556: bipush        101
+    2558: sipush        234
+    2561: ixor
+    2562: ixor
+    2563: ixor
+    2564: iastore
+    2565: getstatic     #41                 // Field W:[I
+    2568: sipush        332
+    2571: sipush        266
+    2574: ixor
+    2575: sipush        547
+    2578: sipush        560
+    2581: ixor
+    2582: sipush        158
+    2585: sipush        169
+    2588: ixor
+    2589: ixor
+    2590: iastore
+    2591: getstatic     #41                 // Field W:[I
+    2594: sipush        582
+    2597: sipush        513
+    2600: ixor
+    2601: sipush        147
+    2604: sipush        233
+    2607: ixor
+    2608: sipush        415
+    2611: sipush        466
+    2614: ixor
+    2615: iadd
+    2616: sipush        430
+    2619: sipush        452
+    2622: ixor
+    2623: isub
+    2624: sipush        224
+    2627: sipush        165
+    2630: ixor
+    2631: iadd
+    2632: sipush        593
+    2635: sipush        538
+    2638: ixor
+    2639: sipush        596
+    2642: sipush        584
+    2645: ixor
+    2646: iadd
+    2647: sipush        -276
+    2650: sipush        274
+    2653: ixor
+    2654: isub
+    2655: sipush        329
+    2658: sipush        343
+    2661: ixor
+    2662: iadd
+    2663: ixor
+    2664: iastore
+    2665: return
+
+  public static void Z();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: invokestatic  #75                 // Method java/lang/System.currentTimeMillis:()J
+      12: lstore_0
+      13: getstatic     #43                 // Field af:Z
+      16: ifne          66
+      19: lload_0
+      20: getstatic     #42                 // Field a:J
+      23: lsub
+      24: ldc2_w        #36                 // long 60000l
+      27: lcmp
+      28: ifle          66
+      31: getstatic     #41                 // Field W:[I
+      34: sipush        224
+      37: sipush        230
+      40: ixor
+      41: iaload
+      42: putstatic     #43                 // Field af:Z
+      45: lload_0
+      46: putstatic     #42                 // Field a:J
+      49: new           #24                 // class java/lang/Thread
+      52: dup
+      53: new           #26                 // class nro/J
+      56: dup
+      57: invokespecial #83                 // Method "<init>":()V
+      60: invokespecial #76                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+      63: invokevirtual #77                 // Method java/lang/Thread.start:()V
+      66: return
+
+  public boolean a(java.lang.String, boolean);
+    descriptor: (Ljava/lang/String;Z)Z
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: aconst_null
+      10: astore_3
+      11: aconst_null
+      12: astore        4
+      14: aconst_null
+      15: astore        5
+      17: aload_1
+      18: invokestatic  #94                 // Method nro/aQ.a:(Ljava/lang/String;)Ljava/lang/Object;
+      21: astore_3
+      22: aload_3
+      23: getstatic     #51                 // Field nro/cX.o:[S
+      26: sipush        194
+      29: sipush        230
+      32: ixor
+      33: sipush        360
+      36: sipush        363
+      39: ixor
+      40: ldc           #12                 // int 574925276
+      42: sipush        348
+      45: ixor
+      46: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'GET'
+      49: invokestatic  #92                 // Method nro/aQ.a:(Ljava/lang/Object;Ljava/lang/String;)V
+      52: aload_3
+      53: getstatic     #51                 // Field nro/cX.o:[S
+      56: sipush        451
+      59: sipush        484
+      62: ixor
+      63: sipush        560
+      66: sipush        570
+      69: ixor
+      70: ldc           #6                  // int 574925053
+      72: bipush        125
+      74: ixor
+      75: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'User-Agent'
+      78: getstatic     #51                 // Field nro/cX.o:[S
+      81: sipush        28195
+      84: bipush        105
+      86: ixor
+      87: sipush        525
+      90: sipush        518
+      93: ixor
+      94: ldc           #5                  // int 574925047
+      96: bipush        119
+      98: ixor
+      99: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'Mozilla/5.0'
+     102: invokestatic  #93                 // Method nro/aQ.a:(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;)V
+     105: aload_3
+     106: getstatic     #51                 // Field nro/cX.o:[S
+     109: bipush        97
+     111: sipush        193
+     114: ixor
+     115: sipush        272
+     118: sipush        282
+     121: ixor
+     122: ldc           #4                  // int 574925030
+     124: bipush        102
+     126: ixor
+     127: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'Connection'
+     130: getstatic     #51                 // Field nro/cX.o:[S
+     133: sipush        466
+     136: sipush        376
+     139: ixor
+     140: sipush        397
+     143: sipush        392
+     146: ixor
+     147: ldc           #14                 // int 574925504
+     149: sipush        576
+     152: ixor
+     153: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'close'
+     156: invokestatic  #93                 // Method nro/aQ.a:(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;)V
+     159: aload_3
+     160: invokestatic  #89                 // Method nro/aQ.a:(Ljava/lang/Object;)I
+     163: getstatic     #41                 // Field W:[I
+     166: sipush        149
+     169: sipush        132
+     172: ixor
+     173: iaload
+     174: if_icmpne     507
+     177: aload_3
+     178: invokestatic  #90                 // Method nro/aQ.a:(Ljava/lang/Object;)Ljava/io/InputStream;
+     181: astore        4
+     183: new           #17                 // class java/io/InputStreamReader
+     186: dup
+     187: aload         4
+     189: getstatic     #51                 // Field nro/cX.o:[S
+     192: sipush        868
+     195: sipush        556
+     198: ixor
+     199: sipush        267
+     202: sipush        270
+     205: ixor
+     206: ldc           #10                 // int 574925271
+     208: sipush        343
+     211: ixor
+     212: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'UTF-8'
+     215: invokespecial #58                 // Method java/io/InputStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+     218: astore        5
+     220: new           #22                 // class java/lang/StringBuffer
+     223: dup
+     224: invokespecial #72                 // Method java/lang/StringBuffer."<init>":()V
+     227: astore        6
+     229: aload         5
+     231: invokevirtual #60                 // Method java/io/InputStreamReader.read:()I
+     234: dup
+     235: istore        7
+     237: getstatic     #41                 // Field W:[I
+     240: sipush        306
+     243: sipush        309
+     246: ixor
+     247: iaload
+     248: if_icmpeq     266
+     251: aload         6
+     253: iload         7
+     255: i2c
+     256: invokevirtual #73                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+     259: pop
+     260: iconst_1
+     261: ifne          229
+     264: aconst_null
+     265: athrow
+     266: aload         6
+     268: invokevirtual #74                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+     271: invokevirtual #71                 // Method java/lang/String.trim:()Ljava/lang/String;
+     274: astore        8
+     276: aload         8
+     278: invokevirtual #66                 // Method java/lang/String.length:()I
+     281: ifle          507
+     284: aload         8
+     286: invokestatic  #87                 // Method nro/S.b:(Ljava/lang/String;)Ljava/lang/String;
+     289: astore        9
+     291: aload         9
+     293: ifnull        308
+     296: aload         9
+     298: invokevirtual #66                 // Method java/lang/String.length:()I
+     301: ifle          308
+     304: aload         9
+     306: astore        8
+     308: iconst_1
+     309: ifne          316
+     312: aconst_null
+     313: athrow
+     314: astore        9
+     316: getstatic     #46                 // Field d:Ljava/util/Vector;
+     319: invokevirtual #81                 // Method java/util/Vector.removeAllElements:()V
+     322: getstatic     #41                 // Field W:[I
+     325: sipush        508
+     328: sipush        500
+     331: ixor
+     332: iaload
+     333: istore        9
+     335: iload_2
+     336: ifeq          356
+     339: getstatic     #41                 // Field W:[I
+     342: sipush        458
+     345: sipush        463
+     348: ixor
+     349: iaload
+     350: iconst_1
+     351: ifne          367
+     354: aconst_null
+     355: athrow
+     356: getstatic     #41                 // Field W:[I
+     359: sipush        340
+     362: sipush        326
+     365: ixor
+     366: iaload
+     367: istore        11
+     369: aload         8
+     371: iload         11
+     373: iload         9
+     375: invokevirtual #64                 // Method java/lang/String.indexOf:(II)I
+     378: dup
+     379: istore        10
+     381: getstatic     #41                 // Field W:[I
+     384: sipush        518
+     387: sipush        513
+     390: ixor
+     391: iaload
+     392: if_icmpeq     435
+     395: getstatic     #46                 // Field d:Ljava/util/Vector;
+     398: aload         8
+     400: iload         9
+     402: iload         10
+     404: invokevirtual #70                 // Method java/lang/String.substring:(II)Ljava/lang/String;
+     407: invokevirtual #71                 // Method java/lang/String.trim:()Ljava/lang/String;
+     410: invokevirtual #79                 // Method java/util/Vector.addElement:(Ljava/lang/Object;)V
+     413: iload         10
+     415: getstatic     #41                 // Field W:[I
+     418: sipush        337
+     421: sipush        343
+     424: ixor
+     425: iaload
+     426: iadd
+     427: istore        9
+     429: iconst_1
+     430: ifne          369
+     433: aconst_null
+     434: athrow
+     435: getstatic     #46                 // Field d:Ljava/util/Vector;
+     438: aload         8
+     440: iload         9
+     442: invokevirtual #69                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+     445: invokevirtual #71                 // Method java/lang/String.trim:()Ljava/lang/String;
+     448: invokevirtual #79                 // Method java/util/Vector.addElement:(Ljava/lang/Object;)V
+     451: getstatic     #41                 // Field W:[I
+     454: sipush        339
+     457: sipush        341
+     460: ixor
+     461: iaload
+     462: istore        12
+     464: aload         5
+     466: ifnull        474
+     469: aload         5
+     471: invokevirtual #59                 // Method java/io/InputStreamReader.close:()V
+     474: iconst_1
+     475: ifne          482
+     478: aconst_null
+     479: athrow
+     480: astore        13
+     482: aload         4
+     484: ifnull        492
+     487: aload         4
+     489: invokevirtual #57                 // Method java/io/InputStream.close:()V
+     492: iconst_1
+     493: ifne          500
+     496: aconst_null
+     497: athrow
+     498: astore        13
+     500: aload_3
+     501: invokestatic  #91                 // Method nro/aQ.a:(Ljava/lang/Object;)V
+     504: iload         12
+     506: ireturn
+     507: aload         5
+     509: ifnull        517
+     512: aload         5
+     514: invokevirtual #59                 // Method java/io/InputStreamReader.close:()V
+     517: iconst_1
+     518: ifne          525
+     521: aconst_null
+     522: athrow
+     523: astore        6
+     525: aload         4
+     527: ifnull        535
+     530: aload         4
+     532: invokevirtual #57                 // Method java/io/InputStream.close:()V
+     535: iconst_1
+     536: ifne          543
+     539: aconst_null
+     540: athrow
+     541: astore        6
+     543: aload_3
+     544: invokestatic  #91                 // Method nro/aQ.a:(Ljava/lang/Object;)V
+     547: iconst_1
+     548: ifne          646
+     551: aconst_null
+     552: athrow
+     553: astore        6
+     555: aload         5
+     557: ifnull        565
+     560: aload         5
+     562: invokevirtual #59                 // Method java/io/InputStreamReader.close:()V
+     565: iconst_1
+     566: ifne          573
+     569: aconst_null
+     570: athrow
+     571: astore        6
+     573: aload         4
+     575: ifnull        583
+     578: aload         4
+     580: invokevirtual #57                 // Method java/io/InputStream.close:()V
+     583: iconst_1
+     584: ifne          591
+     587: aconst_null
+     588: athrow
+     589: astore        6
+     591: aload_3
+     592: invokestatic  #91                 // Method nro/aQ.a:(Ljava/lang/Object;)V
+     595: iconst_1
+     596: ifne          646
+     599: aconst_null
+     600: athrow
+     601: astore        14
+     603: aload         5
+     605: ifnull        613
+     608: aload         5
+     610: invokevirtual #59                 // Method java/io/InputStreamReader.close:()V
+     613: iconst_1
+     614: ifne          621
+     617: aconst_null
+     618: athrow
+     619: astore        15
+     621: aload         4
+     623: ifnull        631
+     626: aload         4
+     628: invokevirtual #57                 // Method java/io/InputStream.close:()V
+     631: iconst_1
+     632: ifne          639
+     635: aconst_null
+     636: athrow
+     637: astore        15
+     639: aload_3
+     640: invokestatic  #91                 // Method nro/aQ.a:(Ljava/lang/Object;)V
+     643: aload         14
+     645: athrow
+     646: getstatic     #41                 // Field W:[I
+     649: sipush        138
+     652: sipush        130
+     655: ixor
+     656: iaload
+     657: ireturn
+    Exception table:
+       from    to  target type
+         284   308   314   Class java/lang/Exception
+         464   474   480   Class java/lang/Exception
+         482   492   498   Class java/lang/Exception
+         507   517   523   Class java/lang/Exception
+         525   535   541   Class java/lang/Exception
+          17   464   553   Class java/lang/Exception
+         555   565   571   Class java/lang/Exception
+         573   583   589   Class java/lang/Exception
+          17   464   601   any
+         553   555   601   any
+         603   613   619   Class java/lang/Exception
+         621   631   637   Class java/lang/Exception
+         601   603   601   any
+
+  public nro.J();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #61                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void i(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: getstatic     #46                 // Field d:Ljava/util/Vector;
+      12: getstatic     #41                 // Field W:[I
+      15: sipush        231
+      18: sipush        230
+      21: ixor
+      22: iaload
+      23: invokevirtual #80                 // Method java/util/Vector.elementAt:(I)Ljava/lang/Object;
+      26: checkcast     #21                 // class java/lang/String
+      29: astore_1
+      30: invokestatic  #88                 // Method nro/aE.df:()V
+      33: new           #31                 // class nro/cJ
+      36: dup
+      37: getstatic     #41                 // Field W:[I
+      40: sipush        364
+      43: sipush        363
+      46: ixor
+      47: iaload
+      48: getstatic     #41                 // Field W:[I
+      51: sipush        340
+      54: sipush        348
+      57: ixor
+      58: iaload
+      59: getstatic     #41                 // Field W:[I
+      62: sipush        492
+      65: sipush        484
+      68: ixor
+      69: iaload
+      70: getstatic     #41                 // Field W:[I
+      73: sipush        562
+      76: sipush        570
+      79: ixor
+      80: iaload
+      81: getstatic     #41                 // Field W:[I
+      84: bipush        117
+      86: bipush        125
+      88: ixor
+      89: iaload
+      90: getstatic     #41                 // Field W:[I
+      93: bipush        97
+      95: bipush        105
+      97: ixor
+      98: iaload
+      99: invokespecial #95                 // Method nro/cJ."<init>":(IIIIII)V
+     102: astore_2
+     103: aload_2
+     104: getstatic     #41                 // Field W:[I
+     107: sipush        527
+     110: sipush        518
+     113: ixor
+     114: iaload
+     115: putfield      #50                 // Field nro/bv.eo:I
+     118: aload_0
+     119: getstatic     #41                 // Field W:[I
+     122: bipush        125
+     124: bipush        119
+     126: ixor
+     127: iaload
+     128: aload_2
+     129: invokestatic  #98                 // Method nro/cl.a:(Ljava/lang/String;ILnro/cJ;)V
+     132: aload_1
+     133: getstatic     #39                 // Field E:Ljava/lang/String;
+     136: invokevirtual #63                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     139: ifeq          261
+     142: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     145: new           #35                 // class nro/cw
+     148: dup
+     149: getstatic     #51                 // Field nro/cX.o:[S
+     152: sipush        7019
+     155: sipush        193
+     158: ixor
+     159: sipush        280
+     162: sipush        282
+     165: ixor
+     166: ldc           #4                  // int 574925030
+     168: bipush        102
+     170: ixor
+     171: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'OK'
+     174: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     177: getstatic     #41                 // Field W:[I
+     180: sipush        371
+     183: sipush        376
+     186: ixor
+     187: iaload
+     188: aconst_null
+     189: invokespecial #99                 // Method nro/cw."<init>":(Ljava/lang/String;Lnro/cR;ILjava/lang/Object;)V
+     192: putfield      #52                 // Field nro/cl.U:Lnro/cw;
+     195: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     198: getfield      #52                 // Field nro/cl.U:Lnro/cw;
+     201: getstatic     #47                 // Field nro/aE.dX:I
+     204: getstatic     #41                 // Field W:[I
+     207: sipush        388
+     210: sipush        392
+     213: ixor
+     214: iaload
+     215: idiv
+     216: getstatic     #41                 // Field W:[I
+     219: sipush        589
+     222: sipush        576
+     225: ixor
+     226: iaload
+     227: isub
+     228: putfield      #56                 // Field nro/cw.cl:I
+     231: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     234: getfield      #52                 // Field nro/cl.U:Lnro/cw;
+     237: getstatic     #48                 // Field nro/aE.do:I
+     240: getstatic     #41                 // Field W:[I
+     243: sipush        137
+     246: sipush        132
+     249: ixor
+     250: iaload
+     251: isub
+     252: putfield      #55                 // Field nro/cw.ci:I
+     255: iconst_1
+     256: ifne          489
+     259: aconst_null
+     260: athrow
+     261: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     264: new           #35                 // class nro/cw
+     267: dup
+     268: getstatic     #51                 // Field nro/cX.o:[S
+     271: sipush        6579
+     274: sipush        556
+     277: ixor
+     278: sipush        268
+     281: sipush        270
+     284: ixor
+     285: ldc           #10                 // int 574925271
+     287: sipush        343
+     290: ixor
+     291: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'Có'
+     294: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     297: getstatic     #41                 // Field W:[I
+     300: sipush        315
+     303: sipush        309
+     306: ixor
+     307: iaload
+     308: aconst_null
+     309: invokespecial #99                 // Method nro/cw."<init>":(Ljava/lang/String;Lnro/cR;ILjava/lang/Object;)V
+     312: putfield      #52                 // Field nro/cl.U:Lnro/cw;
+     315: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     318: getfield      #52                 // Field nro/cl.U:Lnro/cw;
+     321: getstatic     #47                 // Field nro/aE.dX:I
+     324: getstatic     #41                 // Field W:[I
+     327: sipush        504
+     330: sipush        500
+     333: ixor
+     334: iaload
+     335: idiv
+     336: getstatic     #41                 // Field W:[I
+     339: sipush        448
+     342: sipush        463
+     345: ixor
+     346: iaload
+     347: isub
+     348: putfield      #56                 // Field nro/cw.cl:I
+     351: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     354: getfield      #52                 // Field nro/cl.U:Lnro/cw;
+     357: getstatic     #48                 // Field nro/aE.do:I
+     360: getstatic     #41                 // Field W:[I
+     363: sipush        331
+     366: sipush        326
+     369: ixor
+     370: iaload
+     371: isub
+     372: putfield      #55                 // Field nro/cw.ci:I
+     375: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     378: new           #35                 // class nro/cw
+     381: dup
+     382: getstatic     #51                 // Field nro/cX.o:[S
+     385: sipush        6560
+     388: sipush        513
+     391: ixor
+     392: sipush        338
+     395: sipush        343
+     398: ixor
+     399: ldc           #9                  // int 574925269
+     401: sipush        341
+     404: ixor
+     405: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'Không'
+     408: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     411: getstatic     #41                 // Field W:[I
+     414: sipush        137
+     417: sipush        130
+     420: ixor
+     421: iaload
+     422: aconst_null
+     423: invokespecial #99                 // Method nro/cw."<init>":(Ljava/lang/String;Lnro/cR;ILjava/lang/Object;)V
+     426: putfield      #53                 // Field nro/cl.V:Lnro/cw;
+     429: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     432: getfield      #53                 // Field nro/cl.V:Lnro/cw;
+     435: getstatic     #47                 // Field nro/aE.dX:I
+     438: getstatic     #41                 // Field W:[I
+     441: sipush        546
+     444: sipush        558
+     447: ixor
+     448: iaload
+     449: idiv
+     450: getstatic     #41                 // Field W:[I
+     453: sipush        503
+     456: sipush        487
+     459: ixor
+     460: iaload
+     461: iadd
+     462: putfield      #56                 // Field nro/cw.cl:I
+     465: getstatic     #54                 // Field nro/cl.e:Lnro/cl;
+     468: getfield      #53                 // Field nro/cl.V:Lnro/cw;
+     471: getstatic     #48                 // Field nro/aE.do:I
+     474: getstatic     #41                 // Field W:[I
+     477: sipush        343
+     480: sipush        346
+     483: ixor
+     484: iaload
+     485: isub
+     486: putfield      #55                 // Field nro/cw.ci:I
+     489: return
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: invokestatic  #85                 // Method bf:()V
+       3: getstatic     #51                 // Field nro/cX.o:[S
+       6: sipush        28245
+       9: bipush        9
+      11: ldc           #3                  // int 574924928
+      13: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: '/icon.png'
+      16: invokestatic  #96                 // Method nro/cT.f:(Ljava/lang/String;)Ljava/lang/String;
+      19: putstatic     #40                 // Field F:Ljava/lang/String;
+      22: new           #21                 // class java/lang/String
+      25: dup
+      26: getstatic     #41                 // Field W:[I
+      29: bipush        19
+      31: iaload
+      32: newarray       char
+      34: dup
+      35: getstatic     #41                 // Field W:[I
+      38: bipush        8
+      40: iaload
+      41: getstatic     #41                 // Field W:[I
+      44: bipush        20
+      46: iaload
+      47: castore
+      48: dup
+      49: getstatic     #41                 // Field W:[I
+      52: bipush        6
+      54: iaload
+      55: getstatic     #41                 // Field W:[I
+      58: bipush        21
+      60: iaload
+      61: castore
+      62: dup
+      63: getstatic     #41                 // Field W:[I
+      66: bipush        12
+      68: iaload
+      69: getstatic     #41                 // Field W:[I
+      72: bipush        21
+      74: iaload
+      75: castore
+      76: dup
+      77: getstatic     #41                 // Field W:[I
+      80: iconst_2
+      81: iaload
+      82: getstatic     #41                 // Field W:[I
+      85: bipush        22
+      87: iaload
+      88: castore
+      89: dup
+      90: getstatic     #41                 // Field W:[I
+      93: iconst_3
+      94: iaload
+      95: getstatic     #41                 // Field W:[I
+      98: bipush        23
+     100: iaload
+     101: castore
+     102: dup
+     103: getstatic     #41                 // Field W:[I
+     106: bipush        24
+     108: iaload
+     109: getstatic     #41                 // Field W:[I
+     112: bipush        25
+     114: iaload
+     115: castore
+     116: dup
+     117: getstatic     #41                 // Field W:[I
+     120: bipush        26
+     122: iaload
+     123: getstatic     #41                 // Field W:[I
+     126: bipush        25
+     128: iaload
+     129: castore
+     130: dup
+     131: getstatic     #41                 // Field W:[I
+     134: bipush        27
+     136: iaload
+     137: getstatic     #41                 // Field W:[I
+     140: bipush        20
+     142: iaload
+     143: castore
+     144: dup
+     145: getstatic     #41                 // Field W:[I
+     148: iconst_1
+     149: iaload
+     150: getstatic     #41                 // Field W:[I
+     153: bipush        28
+     155: iaload
+     156: castore
+     157: dup
+     158: getstatic     #41                 // Field W:[I
+     161: bipush        29
+     163: iaload
+     164: getstatic     #41                 // Field W:[I
+     167: bipush        30
+     169: iaload
+     170: castore
+     171: dup
+     172: getstatic     #41                 // Field W:[I
+     175: iconst_5
+     176: iaload
+     177: getstatic     #41                 // Field W:[I
+     180: bipush        31
+     182: iaload
+     183: castore
+     184: dup
+     185: getstatic     #41                 // Field W:[I
+     188: bipush        16
+     190: iaload
+     191: getstatic     #41                 // Field W:[I
+     194: bipush        32
+     196: iaload
+     197: castore
+     198: dup
+     199: getstatic     #41                 // Field W:[I
+     202: bipush        33
+     204: iaload
+     205: getstatic     #41                 // Field W:[I
+     208: bipush        34
+     210: iaload
+     211: castore
+     212: dup
+     213: getstatic     #41                 // Field W:[I
+     216: bipush        35
+     218: iaload
+     219: getstatic     #41                 // Field W:[I
+     222: bipush        36
+     224: iaload
+     225: castore
+     226: dup
+     227: getstatic     #41                 // Field W:[I
+     230: bipush        37
+     232: iaload
+     233: getstatic     #41                 // Field W:[I
+     236: bipush        32
+     238: iaload
+     239: castore
+     240: dup
+     241: getstatic     #41                 // Field W:[I
+     244: bipush        38
+     246: iaload
+     247: getstatic     #41                 // Field W:[I
+     250: bipush        39
+     252: iaload
+     253: castore
+     254: dup
+     255: getstatic     #41                 // Field W:[I
+     258: bipush        40
+     260: iaload
+     261: getstatic     #41                 // Field W:[I
+     264: bipush        41
+     266: iaload
+     267: castore
+     268: dup
+     269: getstatic     #41                 // Field W:[I
+     272: bipush        42
+     274: iaload
+     275: getstatic     #41                 // Field W:[I
+     278: bipush        21
+     280: iaload
+     281: castore
+     282: dup
+     283: getstatic     #41                 // Field W:[I
+     286: bipush        43
+     288: iaload
+     289: getstatic     #41                 // Field W:[I
+     292: bipush        31
+     294: iaload
+     295: castore
+     296: dup
+     297: getstatic     #41                 // Field W:[I
+     300: bipush        44
+     302: iaload
+     303: getstatic     #41                 // Field W:[I
+     306: bipush        45
+     308: iaload
+     309: castore
+     310: dup
+     311: getstatic     #41                 // Field W:[I
+     314: bipush        46
+     316: iaload
+     317: getstatic     #41                 // Field W:[I
+     320: bipush        47
+     322: iaload
+     323: castore
+     324: dup
+     325: getstatic     #41                 // Field W:[I
+     328: bipush        48
+     330: iaload
+     331: getstatic     #41                 // Field W:[I
+     334: bipush        39
+     336: iaload
+     337: castore
+     338: dup
+     339: getstatic     #41                 // Field W:[I
+     342: bipush        49
+     344: iaload
+     345: getstatic     #41                 // Field W:[I
+     348: bipush        50
+     350: iaload
+     351: castore
+     352: dup
+     353: getstatic     #41                 // Field W:[I
+     356: bipush        51
+     358: iaload
+     359: getstatic     #41                 // Field W:[I
+     362: bipush        52
+     364: iaload
+     365: castore
+     366: dup
+     367: getstatic     #41                 // Field W:[I
+     370: bipush        53
+     372: iaload
+     373: getstatic     #41                 // Field W:[I
+     376: bipush        47
+     378: iaload
+     379: castore
+     380: dup
+     381: getstatic     #41                 // Field W:[I
+     384: bipush        54
+     386: iaload
+     387: getstatic     #41                 // Field W:[I
+     390: bipush        25
+     392: iaload
+     393: castore
+     394: dup
+     395: getstatic     #41                 // Field W:[I
+     398: bipush        55
+     400: iaload
+     401: getstatic     #41                 // Field W:[I
+     404: bipush        56
+     406: iaload
+     407: castore
+     408: dup
+     409: getstatic     #41                 // Field W:[I
+     412: bipush        57
+     414: iaload
+     415: getstatic     #41                 // Field W:[I
+     418: bipush        58
+     420: iaload
+     421: castore
+     422: dup
+     423: getstatic     #41                 // Field W:[I
+     426: bipush        59
+     428: iaload
+     429: getstatic     #41                 // Field W:[I
+     432: bipush        60
+     434: iaload
+     435: castore
+     436: dup
+     437: getstatic     #41                 // Field W:[I
+     440: bipush        61
+     442: iaload
+     443: getstatic     #41                 // Field W:[I
+     446: bipush        25
+     448: iaload
+     449: castore
+     450: dup
+     451: getstatic     #41                 // Field W:[I
+     454: bipush        62
+     456: iaload
+     457: getstatic     #41                 // Field W:[I
+     460: bipush        63
+     462: iaload
+     463: castore
+     464: dup
+     465: getstatic     #41                 // Field W:[I
+     468: bipush        64
+     470: iaload
+     471: getstatic     #41                 // Field W:[I
+     474: bipush        45
+     476: iaload
+     477: castore
+     478: dup
+     479: getstatic     #41                 // Field W:[I
+     482: bipush        65
+     484: iaload
+     485: getstatic     #41                 // Field W:[I
+     488: bipush        66
+     490: iaload
+     491: castore
+     492: dup
+     493: getstatic     #41                 // Field W:[I
+     496: bipush        67
+     498: iaload
+     499: getstatic     #41                 // Field W:[I
+     502: bipush        68
+     504: iaload
+     505: castore
+     506: dup
+     507: getstatic     #41                 // Field W:[I
+     510: bipush        69
+     512: iaload
+     513: getstatic     #41                 // Field W:[I
+     516: bipush        39
+     518: iaload
+     519: castore
+     520: dup
+     521: getstatic     #41                 // Field W:[I
+     524: bipush        13
+     526: iaload
+     527: getstatic     #41                 // Field W:[I
+     530: bipush        21
+     532: iaload
+     533: castore
+     534: dup
+     535: getstatic     #41                 // Field W:[I
+     538: bipush        70
+     540: iaload
+     541: getstatic     #41                 // Field W:[I
+     544: bipush        41
+     546: iaload
+     547: castore
+     548: dup
+     549: getstatic     #41                 // Field W:[I
+     552: bipush        71
+     554: iaload
+     555: getstatic     #41                 // Field W:[I
+     558: bipush        21
+     560: iaload
+     561: castore
+     562: invokespecial #62                 // Method java/lang/String."<init>":([C)V
+     565: putstatic     #38                 // Field D:Ljava/lang/String;
+     568: new           #25                 // class java/util/Vector
+     571: dup
+     572: invokespecial #78                 // Method java/util/Vector."<init>":()V
+     575: putstatic     #46                 // Field d:Ljava/util/Vector;
+     578: getstatic     #51                 // Field nro/cX.o:[S
+     581: sipush        28254
+     584: iconst_3
+     585: ldc           #3                  // int 574924928
+     587: invokestatic  #97                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: '4.0'
+     590: putstatic     #39                 // Field E:Ljava/lang/String;
+     593: lconst_0
+     594: putstatic     #42                 // Field a:J
+     597: ldc           #3                  // int 574924928
+     599: putstatic     #45                 // Field bp:I
+     602: return
+}

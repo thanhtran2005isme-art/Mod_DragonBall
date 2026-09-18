@@ -1,0 +1,71 @@
+public class nro.t {
+  public static final int aM;
+    descriptor: I
+
+  public static boolean J;
+    descriptor: Z
+
+  public static long E;
+    descriptor: J
+
+  public static long F;
+    descriptor: J
+
+  public static long G;
+    descriptor: J
+
+  public static void as();
+    descriptor: ()V
+    Code:
+       0: bipush        14
+       2: iconst_2
+       3: irem
+       4: ifeq          9
+       7: aconst_null
+       8: athrow
+       9: invokestatic  #17                 // Method nro/bv.e:()Lnro/bv;
+      12: getfield      #10                 // Field nro/bv.bb:J
+      15: putstatic     #11                 // Field E:J
+      18: invokestatic  #16                 // Method java/lang/System.currentTimeMillis:()J
+      21: getstatic     #12                 // Field F:J
+      24: lsub
+      25: ldc2_w        #8                  // long 60000l
+      28: lcmp
+      29: iflt          63
+      32: getstatic     #11                 // Field E:J
+      35: getstatic     #13                 // Field G:J
+      38: lcmp
+      39: ifne          51
+      42: invokestatic  #18                 // Method nro/f.t:()V
+      45: iconst_1
+      46: ifne          57
+      49: aconst_null
+      50: athrow
+      51: getstatic     #11                 // Field E:J
+      54: putstatic     #13                 // Field G:J
+      57: invokestatic  #16                 // Method java/lang/System.currentTimeMillis:()J
+      60: putstatic     #12                 // Field F:J
+      63: iconst_1
+      64: ifne          70
+      67: aconst_null
+      68: athrow
+      69: astore_0
+      70: return
+    Exception table:
+       from    to  target type
+           9    63    69   Class java/lang/Exception
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #14                 // Field aM:I
+       5: return
+
+  public nro.t();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: return
+}

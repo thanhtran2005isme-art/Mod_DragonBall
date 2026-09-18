@@ -1,0 +1,96 @@
+public abstract class nro.cg {
+  public static final int jt;
+    descriptor: I
+
+  public static nro.bT aa;
+    descriptor: Lnro/bT;
+
+  public static nro.bT ab;
+    descriptor: Lnro/bT;
+
+  public static nro.bT ac;
+    descriptor: Lnro/bT;
+
+  public static nro.bT O;
+    descriptor: Lnro/bT;
+
+  public static nro.bT ad;
+    descriptor: Lnro/bT;
+
+  public static nro.bT E;
+    descriptor: Lnro/bT;
+
+  public abstract void h(nro.bF);
+    descriptor: (Lnro/bF;)V
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: new           #3                  // class nro/bT
+       3: dup
+       4: getstatic     #6                  // Field nro/cX.o:[S
+       7: sipush        28393
+      10: bipush        8
+      12: ldc           #1                  // int 574924928
+      14: invokestatic  #16                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'vEffect3'
+      17: invokespecial #15                 // Method nro/bT."<init>":(Ljava/lang/String;)V
+      20: putstatic     #12                 // Field ad:Lnro/bT;
+      23: new           #3                  // class nro/bT
+      26: dup
+      27: getstatic     #6                  // Field nro/cX.o:[S
+      30: sipush        28401
+      33: bipush        8
+      35: ldc           #1                  // int 574924928
+      37: invokestatic  #16                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'vEffect2'
+      40: invokespecial #15                 // Method nro/bT."<init>":(Ljava/lang/String;)V
+      43: putstatic     #9                  // Field aa:Lnro/bT;
+      46: new           #3                  // class nro/bT
+      49: dup
+      50: getstatic     #6                  // Field nro/cX.o:[S
+      53: sipush        28409
+      56: bipush        11
+      58: ldc           #1                  // int 574924928
+      60: invokestatic  #16                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'vRemoveEff2'
+      63: invokespecial #15                 // Method nro/bT."<init>":(Ljava/lang/String;)V
+      66: putstatic     #11                 // Field ac:Lnro/bT;
+      69: new           #3                  // class nro/bT
+      72: dup
+      73: getstatic     #6                  // Field nro/cX.o:[S
+      76: sipush        28420
+      79: bipush        11
+      81: ldc           #1                  // int 574924928
+      83: invokestatic  #16                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'vEffect2Out'
+      86: invokespecial #15                 // Method nro/bT."<init>":(Ljava/lang/String;)V
+      89: putstatic     #10                 // Field ab:Lnro/bT;
+      92: new           #3                  // class nro/bT
+      95: dup
+      96: getstatic     #6                  // Field nro/cX.o:[S
+      99: sipush        28431
+     102: bipush        8
+     104: ldc           #1                  // int 574924928
+     106: invokestatic  #16                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'vAnimate'
+     109: invokespecial #15                 // Method nro/bT."<init>":(Ljava/lang/String;)V
+     112: putstatic     #7                  // Field E:Lnro/bT;
+     115: new           #3                  // class nro/bT
+     118: dup
+     119: getstatic     #6                  // Field nro/cX.o:[S
+     122: sipush        28439
+     125: bipush        11
+     127: ldc           #1                  // int 574924928
+     129: invokestatic  #16                 // Method nro/cX.a:([SIII)Ljava/lang/String;    // DECODED: 'vEffectFeet'
+     132: invokespecial #15                 // Method nro/bT."<init>":(Ljava/lang/String;)V
+     135: putstatic     #8                  // Field O:Lnro/bT;
+     138: ldc           #1                  // int 574924928
+     140: putstatic     #13                 // Field jt:I
+     143: return
+
+  public nro.cg();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public abstract void ad();
+    descriptor: ()V
+}

@@ -1,0 +1,541 @@
+﻿class,method,pc,offset,length,key,text
+C,public static java.lang.String b();,601,46360,13,574924928,[Đang Login: 
+D,public static void b(nro.ct);,114,48501,23,574924928, khỏi danh sách tàn sát
+D,public static void b(nro.ct);,217,48524,22,574924928, vào danh sách tàn sát
+D,public static void aP();,31,48546,14,574924928,listSkillsAuto
+D,public static void aQ();,123,48560,37,574924928,Chưa có skill trong danh sách Tàn Sát
+D,public static void c(nro.ct);,109,48501,23,574924928, khỏi danh sách tàn sát
+D,public static void c(nro.ct);,211,48524,22,574924928, vào danh sách tàn sát
+D,public static void l(int);,55,33755,39,574924928,"Đang tải dữ liệu skill, vui lòng đợi..."
+D,public static void l(int);,275,48603,26,574924928, khỏi danh sách auto skill
+D,public static void l(int);,465,48629,32,574924928, vào danh sách auto skill (Slot 
+D,public static void l(int);,638,48629,32,574924928, vào danh sách auto skill (Slot 
+D,public static void l(int);,730,48661,36,574924928,Danh sách auto skill đã đầy 10 slot!
+D,public static void aT();,236,48546,14,574924928,listSkillsAuto
+D,"public static void a(java.lang.String, boolean);",73,48700,20,574924928,Danh sách khu trống!
+D,"public static void a(java.lang.String, boolean);",461,48720,18,574924928,Lỗi định dạng khu!
+E,public void run();,404,49311,10,574924928,Lỗi Auto: 
+F,public static void aW();,99,2240,16,574924928,Chuyển sang khu 
+G,public static void Z();,526,2267,9,574924928,TDLT đủ: 
+G,public void run();,414,2370,6,574924928, TDLT!
+K,public static void n(int);,62,28520,19,574924928,Đã hủy auto vào khu
+K,public static void n(int);,139,28539,19,574924928,Đang auto vào khu: 
+K,public static void Z();,75,28558,26,574924928,Hết thời gian auto vào khu
+K,public static void Z();,173,28584,12,574924928,Đã vào khu: 
+N,public void bq();,991,29108,11,574924928,List Item: 
+N,public void bq();,1145,29119,9,574924928,AUTO ITEM
+N,"public void a(int, java.lang.Object);",1236,29161,4,574924928,xmap
+N,"public void a(int, java.lang.Object);",1602,29200,6,574924928,anitem
+N,"public void a(int, java.lang.Object);",3082,29350,6,574924928,alogin
+N,"public void a(int, java.lang.Object);",3476,29379,31,574924928,itemId-effectId;itemId-effectId
+N,"public void a(int, java.lang.Object);",3525,29410,5,574924928,anhat
+N,"public void a(int, java.lang.Object);",3727,29443,16,574924928,Đánh sư phụ: Bật
+N,"public void a(int, java.lang.Object);",3776,29459,15,574924928,Đánh đệ tử: Bật
+N,"public void a(int, java.lang.Object);",4190,29524,6,574924928,xindau
+N,"public void a(int, java.lang.Object);",4233,29530,6,574924928,chodau
+N,"public void a(int, java.lang.Object);",4276,29536,6,574924928,thudau
+N,"public void a(int, java.lang.Object);",4867,29628,15,574924928,Nhập delay xmap
+N,"public void a(int, java.lang.Object);",4916,29643,16,574924928,Nhập delay login
+N,"public void a(int, java.lang.Object);",5110,29669,12,574924928,Nhập KC nhặt
+N,"public void a(int, java.lang.Object);",5159,29681,15,574924928,Nhập KC tàn sát
+N,"public void a(int, java.lang.Object);",5285,29161,4,574924928,xmap
+N,"public void a(int, java.lang.Object);",5326,29697,12,574924928,Đã dừng Xmap
+N,public void br();,86,29709,16,574924928,Thông Báo Boss: 
+N,public void br();,213,29725,17,574924928,Người Trong Map: 
+N,public void br();,343,29742,18,574924928,Thông Tin Sư Phụ: 
+N,public void br();,473,29760,17,574924928,Thông Tin Đệ Tử: 
+N,public void bs();,343,29835,9,574924928,Ẩn Item: 
+N,public void bt();,284,29866,10,574924928,Chuyển khu
+N,public void bt();,391,29885,9,574924928,Tàn Sát: 
+N,public void bu();,79,29941,10,574924928,Auto Login
+N,public void bu();,125,29951,9,574924928,Auto Item
+N,public void bu();,181,29960,11,574924928,Auto Nhặt: 
+N,public void bu();,304,29971,8,574924928,Auto Đậu
+N,public void bu();,614,29995,15,574924928,Chức Năng Đệ Tử
+N,public void bx();,45,30098,10,574924928,vCharInMap
+N,public void by();,86,30116,9,574924928,Xin Đậu: 
+N,public void by();,213,30125,9,574924928,Cho Đậu: 
+N,public void by();,343,30134,9,574924928,Thu Đậu: 
+N,public void by();,558,30143,8,574924928,AUTO ĐẬU
+N,public void bz();,190,30184,11,574924928,Đánh sư phụ
+N,public void bz();,240,30195,10,574924928,Đánh đệ tử
+N,public void bz();,606,30257,14,574924928,Auto Kaioken: 
+N,public void bz();,736,30271,9,574924928,Né Boss: 
+N,public void bz();,1077,30293,15,574924928,CHỨC NĂNG ĐỆ TỬ
+N,public void bA();,79,30308,9,574924928,Auto Chat
+N,public void bA();,125,30317,8,574924928,Buff Đậu
+N,public void bA();,224,30334,7,574924928,Nhặt Đồ
+N,public void bA();,374,30367,12,574924928,Auto Kaioken
+N,public void bA();,424,30379,10,574924928,Auto Skill
+N,public void bA();,524,30395,8,574924928,Săn Boss
+N,public void bA();,624,30419,11,574924928,Auto On-Off
+N,public void bA();,674,30430,4,574924928,Xmap
+N,public void g(nro.bF);,160,30465,9,574924928,Dừng Xmap
+N,public void bB();,143,30492,11,574924928,Đánh Sư Phụ
+N,public void bB();,207,30503,10,574924928,Đánh Đệ Tử
+N,public void bC();,103,30528,9,574924928,Dừng xmap
+N,public void bE();,213,30549,13,574924928,Vào Lại Khu: 
+N,public void bE();,428,30562,10,574924928,AUTO LOGIN
+N,public void bF();,292,30601,12,574924928,Delay Xmap: 
+N,public void bF();,390,30613,13,574924928,Delay Login: 
+N,public void bF();,488,30626,9,574924928,KC Nhặt: 
+N,public void bF();,557,30635,12,574924928,KC Tàn Sát: 
+O,public static {};,51,30748,10,574924928,RemoveItem
+Q,public static void bN();,254,30988,19,574924928,Không vào được khu 
+Q,public static void bN();,471,31015,11,574924928,Đang ở khu 
+Q,public static void bN();,801,31037,17,574924928,Chuyển sang khu: 
+Q,public static void bN();,932,31054,14,574924928,Đã thấy boss: 
+R,"public static void a(short, int);",429,1629,10,574924928,ItemConfig
+a,public static void a();,138,22,14,574924928,/chat_cmd.json
+a,public static void c();,625,282,8,574924928,",""map"":"""
+a,public static void c();,696,304,8,574924928,""",""khu"":"
+aB,public static {};,26,35852,8,574924928,/img/map
+aB,"public final void a(int, java.lang.Object);",65,36315,26,574924928,Đã thêm vào danh sách nhặt
+aB,"public final void a(int, java.lang.Object);",137,36341,26,574924928,Đã xoá khỏi danh sách nhặt
+aB,"public final void a(int, java.lang.Object);",211,36367,32,574924928,Đã thêm vào danh sách không nhặt
+aB,"public final void a(int, java.lang.Object);",285,36399,32,574924928,Đã xoá khỏi danh sách không nhặt
+aB,"public final void a(int, java.lang.Object);",417,36431,23,574924928, khỏi danh sách cho đậu
+aB,"public final void a(int, java.lang.Object);",526,36454,22,574924928, vào danh sách cho đậu
+aB,"public final void a(int, java.lang.Object);",713,36476,20,574924928, khỏi danh sách auto
+aB,"public final void a(int, java.lang.Object);",1902,36528,11,574924928,chat player
+aB,"public final void a(int, java.lang.Object);",2559,36539,8,574924928,use item
+aB,"public final void a(int, java.lang.Object);",2821,36547,11,574924928,remove item
+aB,public void dy();,351,35852,8,574924928,/img/map
+aB,public void dI();,716,36813,23,574924928,Xoá khỏi danh sách nhặt
+aB,public void dI();,775,36836,23,574924928,Thêm vào danh sách nhặt
+aB,public void dI();,835,36859,29,574924928,Xoá khỏi danh sách không nhặt
+aB,public void dI();,894,36888,29,574924928,Thêm vào danh sách không nhặt
+aB,public void ei();,39,36955,8,574924928,viewchat
+aB,public void R(nro.bF);,1142,36976,4,574924928,Auto
+aB,public final void en();,1489,36980,23,574924928,Xoá khỏi danh sách auto
+aB,public final void en();,1546,37003,23,574924928,Thêm vào danh sách auto
+aB,public final void en();,9468,37085,26,574924928,Xoá khỏi danh sách cho đậu
+aB,public final void en();,9527,37111,26,574924928,Thêm vào danh sách cho đậu
+aE,public static void p(int);,145,37337,8,574924928,map ID= 
+aE,public static void j(java.lang.String);,36,37642,29,574924928,Bạn không thể đổi khu vực này
+aE,public static void j(java.lang.String);,67,37671,35,574924928,Không thể đổi khu vực trong map này
+aE,public static void j(java.lang.String);,97,37706,25,574924928,Không thể chuyển khu vực.
+aE,public static void j(java.lang.String);,128,37731,21,574924928,Không thể đổi khu vực
+aE,public static void j(java.lang.String);,160,37752,31,574924928,Can not change zone in this map
+aE,public nro.aE();,1197,32869,10,574924928,serverchat
+aG,public static {};,13,39074,13,574924928,item template
+aJ,"public void a(java.io.DataInputStream, boolean);",67,39237,21,574924928,>>loadItemNew:  type:
+aJ,"public void a(java.io.DataInputStream, boolean);",293,39258,7,574924928,NRitem0
+aJ,"public void a(java.io.DataInputStream, boolean);",449,39265,7,574924928,NRitem1
+aJ,"public void a(java.io.DataInputStream, boolean);",511,39272,13,574924928,NRitemVersion
+aJ,"public void a(java.io.DataInputStream, boolean);",602,39285,9,574924928,NRitem100
+aJ,"public void a(java.io.DataInputStream, boolean);",724,39294,9,574924928,NRitem101
+aJ,"public static void b(java.io.DataInputStream, boolean);",283,39349,8,574924928,NR_skill
+aJ,public void c(nro.bV);,76,39499,12,574924928,item.options
+aJ,public static void a(byte);,39,39511,17,574924928,is loading map = 
+aJ,public static void d(nro.bV);,254,28081,7,574924928,Skills_
+aJ,"public static void b(nro.bV, int);",318,39569,9,574924928,str chat 
+aJ,public void f(nro.bV);,2132,39670,12,574924928,item size = 
+aJ,public void f(nro.bV);,2995,27511,15,574924928,/mapBackGround/
+aJ,public void f(nro.bV);,3216,39682,6,574924928,bgItem
+aJ,public void f(nro.bV);,3507,27511,15,574924928,/mapBackGround/
+aJ,public void f(nro.bV);,4817,39813,56,574924928,>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Loadmap khong thanh cong
+aJ,public void f(nro.bV);,4883,39869,50,574924928,>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Loadmap thanh cong
+aJ,public static {};,33,39945,14,574924928,frame new boss
+aJ,public void h(nro.bV);,47,39959,19,574924928,messageNotMap: cmd:
+aJ,public void h(nro.bV);,530,40014,27,574924928,****** MAP VERSION: Server 
+aJ,public void h(nro.bV);,613,40041,29,574924928,****** SKILL VERSION: Server 
+aJ,public void h(nro.bV);,696,40070,28,574924928,****** ITEM VERSION: Server 
+aJ,public void h(nro.bV);,930,40114,5,574924928,NRmap
+aJ,public void h(nro.bV);,1058,40119,7,574924928,NRskill
+aJ,public void h(nro.bV);,1180,39258,7,574924928,NRitem0
+aJ,public void h(nro.bV);,1239,39265,7,574924928,NRitem1
+aJ,public void h(nro.bV);,1299,39285,9,574924928,NRitem100
+aJ,public void h(nro.bV);,1392,39294,9,574924928,NRitem101
+aJ,public void h(nro.bV);,1656,40166,15,574924928,GET UPDATE_MAP 
+aJ,public void h(nro.bV);,1780,40114,5,574924928,NRmap
+aJ,public void h(nro.bV);,1840,40187,12,574924928,NRmapVersion
+aJ,public void h(nro.bV);,1877,40199,28,574924928,GET UPDATE_MAP NRmapVersion:
+aJ,public void h(nro.bV);,1950,40227,17,574924928,GET UPDATE_SKILL 
+aJ,public void h(nro.bV);,2076,40119,7,574924928,NRskill
+aJ,public void h(nro.bV);,2137,40244,14,574924928,NRskillVersion
+aJ,public void h(nro.bV);,2202,40258,16,574924928,GET UPDATE_ITEM 
+aJ,public void h(nro.bV);,2336,40274,20,574924928,REQUEST MAP TEMPLATE
+aJ,public void h(nro.bV);,2429,40294,33,574924928,Cmd.REQUEST_MAPTEMPLATE=10  w|H= 
+aJ,public void i(nro.bV);,5908,40560,6,574924928,KSkill
+aJ,public void i(nro.bV);,5959,40566,6,574924928,OSkill
+aJ,public void i(nro.bV);,6007,40572,6,574924928,CSkill
+aJ,public void i(nro.bV);,6064,40578,15,574924928,ME UPDATE SKILL
+aJ,public static nro.cV a(nro.bV);,82,40593,26,574924928,>>>>read.ItemOption  errr:
+aJ,public final void k(nro.bV);,1920,40657,11,574924928,SKILLENT = 
+aJ,public final void k(nro.bV);,7977,40918,10,574924928,map RID = 
+aJ,public final void k(nro.bV);,8065,40939,9,574924928,map ID = 
+aJ,public final void k(nro.bV);,10706,41031,10,574924928,login ngay
+aJ,public final void k(nro.bV);,16715,41421,31,574924928,>.SKILL_NOT_FOCUS  skill type= 
+aJ,public final void k(nro.bV);,16918,41467,36,574924928,>.SKILL_NOT_FOCUS  skill playerDir= 
+aJ,public final void k(nro.bV);,17295,41503,37,574924928,>.SKILL_NOT_FOCUS  skill targetDame= 
+aJ,public final void k(nro.bV);,17702,41562,15,574924928,LOAD LAST SKILL
+aJ,public final void k(nro.bV);,24563,39682,6,574924928,bgItem
+aJ,public final void k(nro.bV);,24633,41755,7,574924928,nItem= 
+aJ,public final void k(nro.bV);,25003,41762,37,574924928,***************MAP_INFO**************
+aJ,public final void k(nro.bV);,25059,41799,12,574924928,GET MAP INFO
+aJ,public final void k(nro.bV);,32691,42038,54,574924928,ADD ITEM TO MAP --------------------------------------
+aJ,public final void k(nro.bV);,33432,42092,11,574924928,chat text= 
+aJ,public static void a(java.io.DataInputStream);,42,42287,14,574924928,>>>createMap: 
+aL,public final void cp();,625,42752,64,574924928,focus 1 con bossssssssssssssssssssssssssssssssssssssssssssssssss
+aL,public static void dS();,41,39349,8,574924928,NR_skill
+aL,public static void dS();,890,42900,15,574924928,READ SKILL DONE
+aL,public static void dK();,116,42933,15,574924928,<readOk><vsMap<
+aL,public static void dK();,196,42948,17,574924928,<readOk><vsSkill<
+aL,public static void dK();,277,42965,16,574924928,<readOk><vsItem<
+aL,public static void a(nro.aD);,31,42996,21,574924928,DO SET ONSCREEN SKILL
+aL,public final void b(byte[]);,31,43017,13,574924928,GET KEYSKILL!
+aL,public final void b(byte[]);,77,43030,22,574924928,LOAD DEFAULT KEY SKILL
+aL,public static {};,53,43091,6,574924928,vPtMap
+aL,public static {};,118,30098,10,574924928,vCharInMap
+aL,public static {};,140,43112,8,574924928,vItemMap
+aL,public static {};,312,43143,12,574924928,vItemUpGrade
+aL,public static {};,975,43522,22,574924928,/mainImage/i_khung.png
+aL,public static {};,1191,43857,31,574924928,/mainImage/myTexture2dskill.png
+aL,public static {};,1209,43888,32,574924928,/mainImage/myTexture2dskill2.png
+aL,public static {};,1374,44099,30,574924928,/mainImage/myTexture2dchat.png
+aL,public static {};,1392,44129,31,574924928,/mainImage/myTexture2dchat2.png
+aL,public static {};,1709,40187,12,574924928,NRmapVersion
+aL,public static {};,1725,40244,14,574924928,NRskillVersion
+aL,public static {};,1741,39272,13,574924928,NRitemVersion
+aL,public static void b(nro.aD);,31,44680,16,574924928,DO SET KEY SKILL
+aL,"public void b(nro.bP, boolean);",167,44714,19,574924928,>>>use skill spec: 
+aL,"public void b(nro.bP, boolean);",278,44733,19,574924928,use skill not focus
+aL,"public void b(nro.bP, boolean);",339,44752,17,574924928,only select skill
+aL,public nro.aL();,725,44787,10,574924928,chat world
+aL,public final void ct();,5636,29161,4,574924928,xmap
+aL,"public static final void h(int, int);",1310,36955,8,574924928,viewchat
+aL,"public static final void h(int, int);",1376,36955,8,574924928,viewchat
+aL,public final void c(byte[]);,31,44829,18,574924928,GET ONSCREENSKILL!
+aL,public final void c(byte[]);,104,44847,27,574924928,LOAD DEFAULT ONSCREEN SKILL
+aL,public final void d(byte[]);,31,44902,17,574924928,GET CURRENTSKILL!
+aU,public final void eZ();,78,32869,10,574924928,serverchat
+aU,public final void eZ();,119,32869,10,574924928,serverchat
+ab,public static {};,16,32918,13,574924928,imgNew BgItem
+ay,public nro.ay();,512,27531,7,574924928,/mymap/
+ay,public static void a(byte[]);,63,27471,15,574924928,/mymap/mapTable
+ay,public static void a(byte[]);,125,27486,25,574924928,MapTemplate.vCurrItem[a] 
+ay,public static void a(byte[]);,318,27511,15,574924928,/mapBackGround/
+ay,public static void a(byte[]);,423,27511,15,574924928,/mapBackGround/
+bB,public static {};,13,48750,6,574924928,VSKILL
+bQ,public static void a(byte);,468,2778,42,574924928,Bạn có chắc muốn nhặt vật phẩm này không ?
+bQ,public static void a(byte);,641,2872,14,574924928,Chức năng auto
+bQ,public static void a(byte);,669,2886,174,574924928,"Bạn có chắc muốn kết hợp vĩnh viễn với đệ tử của mình không? Bạn sẽ mất đệ tử và toàn bộ trang bị đệ tử đang mặc, toàn bộ sức mạnh của đệ tử sẽ chuyển thành tiềm năng của bạn"
+bQ,public static void a(byte);,958,3166,5,574924928,Đệ tử
+bQ,public static void a(byte);,1619,3783,63,574924928,Bạn phải hoàn thành nhiệm vụ tìm ngọc 6 sao mới có thể nạp tiền
+bQ,public static void a(byte);,3817,5303,11,574924928,Đổi khu vực
+bQ,public static void a(byte);,3846,5314,12,574924928,Chọn khu vực
+bQ,public static void a(byte);,4832,5506,10,574924928,Chat riêng
+bQ,public static void a(byte);,7061,5728,42,574924928,Đã hết đậu thần. Cậu hãy về thu hoạch thêm
+bQ,public static void a(byte);,7090,5770,22,574924928,Bạn đang ở khu vực này
+bQ,public static void a(byte);,7221,5806,18,574924928, để nhận nhiệm vụ.
+bQ,public static void a(byte);,7260,5824,94,574924928,"Bạn đã hoàn thành hết nhiệm vụ phiên bản này, vui lòng chờ cho đến khi ra phiên bản tiếp theo."
+bQ,public static void a(byte);,7526,5954,8,574924928,Nhiệm vụ
+bQ,public static void a(byte);,7619,5969,43,574924928,Đậu thần dùng để tăng KI và HP ngay lập tức
+bQ,public static void a(byte);,7658,6012,94,574924928,"Bạn chỉ mang theo người được 10 hạt đậu. Nếu muốn mang nhiều hơn, hãy xin từ bạn bè trong Bang"
+bQ,public static void a(byte);,7813,6334,93,574924928,Tập luyện với bạn bè tại khu vực thích hợp sẽ mang lại nhiều điểm tiềm năng hơn đánh quái vật
+bQ,public static void a(byte);,7852,6427,58,574924928,"Khi được nâng cấp, đậu thần sẽ phục hồi nhiều HP và KI hơn"
+bQ,public static void a(byte);,7969,6622,67,574924928,"Cây đậu thần kết một hạt sau một thời gian, cho dù bạn đang offline"
+bQ,public static void a(byte);,8114,6886,69,574924928,"Sau khi gia nhập vào lớp học, thì có thể nhận nhiệm vụ từ hiệu trưởng"
+bQ,public static void a(byte);,8600,7078,4,574924928,Chat
+bQ,public static void a(byte);,9261,7284,13,574924928,Chat thế giới
+bQ,public static void a(byte);,9994,7522,4,574924928,Item
+bQ,public static void a(byte);,10043,7522,4,574924928,Item
+bQ,public static void a(byte);,10092,7533,3,574924928,Khu
+bQ,public static void a(byte);,10128,7539,7,574924928,Khu vực
+bQ,public static void a(byte);,10160,7546,9,574924928,Item nhận
+bQ,public static void a(byte);,10207,7567,52,574924928,Hãy đến vị trí chớp nháy trên bản đồ để làm nhiệm vụ
+bQ,public static void a(byte);,10619,7921,11,574924928,Chat player
+bQ,public static void a(byte);,10635,7932,8,574924928,Chat với
+bQ,public static void a(byte);,10699,7983,7,574924928,Cho đậu
+bQ,public static void a(byte);,10715,7990,8,574924928,Nhận đậu
+bQ,public static void a(byte);,10731,7998,7,574924928,Xin đậu
+bQ,public static void a(byte);,10936,7078,4,574924928,Chat
+bQ,public static void a(byte);,11249,8118,3,574924928,đậu
+bQ,public static void a(byte);,11472,8308,9,574924928,Chat bang
+bQ,public static void a(byte);,11963,8741,9,574924928,Cho đệ tử
+bQ,public static void a(byte);,12375,9238,39,574924928,Bạn không đủ ngọc để chat kênh thế giới
+bQ,public static void a(byte);,12391,9277,27,574924928,Chat kênh thế giới (5 ngọc)
+bQ,public static void a(byte);,12455,9377,27,574924928,tiềm năng đến Sư phụ để học
+bQ,public static void a(byte);,13500,9978,17,574924928,Địa điểm nhiệm vụ
+bQ,public static void a(byte);,13516,9995,17,574924928,Không có nhiệm vụ
+bQ,public static void a(byte);,13548,10031,19,574924928,Nhiệm vụ thành tích
+bQ,public static void a(byte);,13642,10082,24,574924928,Chọn để ẩn chat thế giới
+bQ,public static void a(byte);,13658,10106,26,574924928,Chọn để hiện chat thế giới
+bQ,public static void a(byte);,13779,10229,41,574924928,Go to Whis (Beerus Planet) to learn skill
+bQ,public static void a(byte);,13795,10270,75,574924928,"When reach maximum proficiency, go to Whis (Beerus Planet) to upgrade skill"
+bW,public static void ad();,521,20119,21,574924928,Auto terlahir kembali
+bW,public static void ad();,550,20140,11,574924928,Auto fungsi
+bW,public static void ad();,1643,21189,27,574924928,Tidak ada item untuk dibeli
+bW,public static void ad();,4623,22877,12,574924928,Chat pribadi
+bW,public static void ad();,4782,13468,5,574924928,Quest
+bW,public static void ad();,4966,13270,5,574924928,Skill
+bW,public static void ad();,5169,13468,5,574924928,Quest
+bW,public static void ad();,5353,13270,5,574924928,Skill
+bW,public static void ad();,6846,23130,21,574924928,untuk menerima quest.
+bW,public static void ad();,6885,23151,49,574924928,Kamu telah menyelesaikan semua quest di versi ini
+bW,public static void ad();,7318,23326,56,574924928,Semua skill bisa dipelajari dengan gratis di Kame-Sennin
+bW,public static void ad();,7396,23428,60,574924928,Kamu tidak bisa terbang atau menggunakan skill jika KI habis
+bW,public static void ad();,7932,24143,72,574924928,"Setelah bergabung di kelas, kamu akan menerima quest dari Kepala Sekolah"
+bW,public static void ad();,8417,7078,4,574924928,Chat
+bW,public static void ad();,8735,24403,10,574924928,Bunuh boss
+bW,public static void ad();,9082,15099,10,574924928,World chat
+bW,public static void ad();,9252,24612,11,574924928,Aura khusus
+bW,public static void ad();,10036,24753,11,574924928,Terima item
+bW,public static void ad();,10307,7078,4,574924928,Chat
+bW,public static void ad();,10499,25091,18,574924928,Chat dengan pemain
+bW,public static void ad();,10515,25109,11,574924928,Chat dengan
+bW,public static void ad();,10806,7078,4,574924928,Chat
+bW,public static void ad();,11309,25484,9,574924928,Chat clan
+bW,public static void ad();,11928,26188,28,574924928,Kamu telah memiliki item ini
+bW,public static void ad();,11944,26216,40,574924928,Harap diunlock sebelum bertukar item ini
+bW,public static void ad();,12020,26276,10,574924928,Pilih item
+bW,public static void ad();,12098,26349,49,574924928,Apakah kamu yakin ingin bertukar dengan item ini?
+bW,public static void ad();,12194,26507,43,574924928,Tidak cukup gem untuk chat di world channel
+bW,public static void ad();,12210,26550,29,574924928,Chat di world channel (5 gem)
+bW,public static void ad();,13092,27240,12,574924928,Tempat quest
+bW,public static void ad();,13108,27252,26,574924928,Kamu tidak memiliki quest.
+bW,public static void ad();,13140,27299,17,574924928,Quest achievement
+bX,public nro.bX();,292,27471,15,574924928,/mymap/mapTable
+bX,public nro.bX();,358,27486,25,574924928,MapTemplate.vCurrItem[a] 
+bX,public nro.bX();,555,27511,15,574924928,/mapBackGround/
+bX,public nro.bX();,658,27511,15,574924928,/mapBackGround/
+bX,public static void a(byte[]);,57,27531,7,574924928,/mymap/
+bb,"public final void a(int, java.lang.Object);",1345,45600,11,574924928,vMenu Login
+bb,public final void fk();,228,45629,11,574924928,isLogin 2= 
+bn,public static {};,12,46108,32,574924928,/mainImage/myTexture2dhatdau.png
+bq,"public final void a(int, java.lang.Object);",1128,45600,11,574924928,vMenu Login
+br,public static void h(nro.bF);,122,46722,11,574924928,check Map= 
+br,public static java.lang.String c(java.lang.String);,584,46760,8,574924928,Đậu thần
+br,public static java.lang.String c(java.lang.String);,627,46760,8,574924928,Đậu thần
+bv,public final void fI();,35,47834,5,574924928,items
+bv,public nro.bv();,195,47932,6,574924928,vSkill
+bv,public nro.bv();,231,47938,11,574924928,vSkillFight
+bv,public final void q(java.lang.String);,41,48027,10,574924928,sao sư phụ
+bv,public final nro.bv f();,178,39499,12,574924928,item.options
+bv,public void ad();,6986,48316,42,574924928,<*> 11 Hoàn thành skill not focus -  STAND
+bv,public void ad();,7595,48388,45,574924928,<*> 12 kết thúc skill  qua cau kinh khi 	FLY 
+c,public static void l();,238,33092,40,574924928,Chưa có skill trong danh sách Auto Skill
+cE,public nro.cE();,76,31068,6,574924928,vItems
+cF,public static void u(int);,39,27531,7,574924928,/mymap/
+cF,public static void v(int);,215,31084,14,574924928,Error Load Map
+cF,public static {};,98,31101,7,574924928,vItemBg
+cF,public static {};,121,31108,9,574924928,vCurrItem
+cI,public static void k(nro.bV);,1129,31426,10,574924928, skillID= 
+cI,public static void k(nro.bV);,2129,31426,10,574924928, skillID= 
+cI,public static void k(nro.bV);,6424,31614,58,574924928,big boss--------------------------------------------------
+cI,public static void k(nro.bV);,7955,31705,15,574924928,second login = 
+cK,"public final void a(int, java.lang.Object);",59,31866,14,574924928,perform chat 1
+cK,"public final void a(int, java.lang.Object);",157,31880,14,574924928,perform chat 2
+cM,public final void y(java.lang.String);,32,31973,7,574924928,Login 2
+cM,public final void hN();,32,32021,13,574924928,finishLoadMap
+cM,"public final void a(java.lang.String, java.lang.String, java.lang.String, java.lang.String);",39,32296,17,574924928,Request Register 
+cM,"public final void a(byte, int, byte, int, int);",74,32363,10,574924928, item id= 
+cM,public final void C(java.lang.String);,52,32452,10,574924928,Send chat 
+cM,public final void O(int);,32,32476,17,574924928,request bag image
+cM,public final void g(byte);,32,32524,18,574924928,request magic tree
+cM,"public final void b(byte, nro.bT);",39,32542,25,574924928,request resource action= 
+cM,public final void X(int);,32,32587,14,574924928,GUI THACH DAUA
+cM,"public final void a(java.lang.String, java.lang.String, java.lang.String, byte);",39,32601,6,574924928,Login 
+cM,public final void if();,32,32624,16,574924928,send map offline
+cM,public final void Y(int);,48,32674,14,574924928, SELECT SKILL 
+cM,public final void j(byte);,39,32688,19,574924928,Skill not focus so 
+cM,public final void ac(int);,32,32524,18,574924928,request magic tree
+cT,public final void cp();,85,32869,10,574924928,serverchat
+cT,public final void cp();,123,32869,10,574924928,serverchat
+cU,"public final void e(java.lang.String, int);",64,32905,11,574924928,khu vực này
+cY,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",297,932,15,574924928,Setup_AutoOnOff
+cY,public static {};,62,932,15,574924928,Setup_AutoOnOff
+cY,public nro.cY();,64,978,13,574924928,• Auto On-Off
+ca,public void co();,71,28027,23,574924928,ERR setSoundSkill_END: 
+ca,public void cB();,1627,28081,7,574924928,Skills_
+cd,public static {};,32,28288,35,574924928,/mainImage/myTexture2ditemaura1.png
+cd,public static {};,51,28323,35,574924928,/mainImage/myTexture2ditemaura2.png
+cd,public static {};,70,28358,35,574924928,/mainImage/myTexture2ditemaura3.png
+cs,"public final void d(nro.bF, int, int, int);",1454,786,14,574924928,Nhấn # để chat
+cs,"public final void d(nro.bF, int, int, int);",1545,800,14,574924928,Nhấn Y để chat
+da,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",163,33689,21,574924928,Setup_AutoChangeFocus
+da,public static {};,26,33689,21,574924928,Setup_AutoChangeFocus
+db,public static {};,44,35773,14,574924928,Setup_AutoChat
+db,public nro.db();,63,35787,11,574924928,• Auto Chat
+db,public nro.db();,133,35798,14,574924928,Chat Công Cộng
+db,public nro.db();,171,35812,13,574924928,Chat Thế Giới
+db,public nro.db();,301,35834,18,574924928,Chat sau X millis:
+db,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",185,35773,14,574924928,Setup_AutoChat
+dc,public static void iy();,106,37211,14,574924928,Setup_PickItem
+dc,public nro.dc();,63,37225,11,574924928,• Auto Nhặt
+dc,public nro.dc();,267,37236,13,574924928,• Chế Độ Nhặt
+dc,public nro.dc();,381,37249,7,574924928,ID Item
+dc,public nro.dc();,441,37256,13,574924928,ID item nhặt:
+dc,public nro.dc();,511,37269,19,574924928,ID item không nhặt:
+dc,public static {};,58,37211,14,574924928,Setup_PickItem
+de,public nro.de();,63,39087,14,574924928,• Auto Kaioken
+de,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",135,39188,17,574924928,Setup_AutoKaioken
+de,public static {};,36,39188,17,574924928,Setup_AutoKaioken
+dg,public nro.dg();,64,1817,13,574924928,• Auto Porata
+dg,public static {};,47,1925,16,574924928,Setup_AutoPorata
+dg,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",317,1925,16,574924928,Setup_AutoPorata
+dh,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",236,45664,14,574924928,Setup_AutoPlay
+dh,public static {};,96,45664,14,574924928,Setup_AutoPlay
+dh,public nro.dh();,267,45698,16,574924928,• Chế Độ Tàn Sát
+dh,public nro.dh();,587,45827,46,574924928,"• Né siêu quái khi dùng chế độ tàn sát 3, 4, 5"
+dh,public nro.dh();,824,45884,25,574924928,• Chuyển Khu Khi Lag Quái
+dh,public nro.dh();,999,45909,14,574924928,Danh sách khu:
+dh,public nro.dh();,1064,45923,25,574924928,• Chuyển Khu Khi Hết Quái
+dh,public nro.dh();,1239,45909,14,574924928,Danh sách khu:
+di,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",128,46239,14,574924928,Setup_AutoTDLT
+di,public nro.di();,63,46253,11,574924928,• Auto TDLT
+di,public static {};,29,46239,14,574924928,Setup_AutoTDLT
+dk,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",247,2107,15,574924928,Setup_AutoSkill
+dk,public static {};,47,2107,15,574924928,Setup_AutoSkill
+dl,public nro.dl();,67,19467,17,574924928,• Buff Đậu Sư Phụ
+dl,public nro.dl();,277,19495,17,574924928,Chỉ số HP sư phụ:
+dl,public nro.dl();,351,19512,17,574924928,Chỉ số KI sư phụ:
+dl,public nro.dl();,425,19529,22,574924928,Buff đậu sau X millis:
+dl,public nro.dl();,494,19551,16,574924928,• Buff Đậu Đệ Tử
+dl,public nro.dl();,670,19567,16,574924928,Chỉ số HP đệ tử:
+dl,public nro.dl();,744,19583,16,574924928,Chỉ số KI đệ tử:
+dl,public nro.dl();,816,19599,16,574924928,Chỉ số TL đệ tử:
+dm,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",339,27785,16,574924928,Setup_AttackBoss
+dm,public static {};,61,27785,16,574924928,Setup_AttackBoss
+dm,public nro.dm();,67,27812,20,574924928,• Lọc Thông Báo Boss
+dm,public nro.dm();,233,27832,21,574924928,• Chuyển Khu Tìm Boss
+dm,public nro.dm();,443,27887,15,574924928,• Tấn Công Boss
+dm,public nro.dm();,619,27922,9,574924928,Tên boss:
+dm,public nro.dm();,690,27931,8,574924928,HP boss:
+do,public static {};,53,31249,16,574924928,Setup_FilterItem
+do,public nro.do();,235,31285,26,574924928,ID item muốn bán hoặc vứt:
+do,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",244,31249,16,574924928,Setup_FilterItem
+dp,public nro.dp();,67,31894,6,574924928,• Xmap
+dp,public static {};,29,31940,10,574924928,Setup_Xmap
+dp,"public void commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable);",117,31940,10,574924928,Setup_Xmap
+h,public boolean a(java.lang.String);,33,33750,5,574924928,skill
+h,public boolean a(java.lang.String);,87,33755,39,574924928,"Đang tải dữ liệu skill, vui lòng đợi..."
+h,public boolean a(java.lang.String);,437,33794,8,574924928,Ô skill 
+h,public boolean a(java.lang.String);,561,33794,8,574924928,Ô skill 
+h,public boolean a(java.lang.String);,913,1247,15,574924928, vào slot auto 
+h,public boolean a(java.lang.String);,974,1262,17,574924928,Slot auto từ 1-10
+h,public boolean a(java.lang.String);,1175,33822,10,574924928, khỏi Auto
+h,public boolean a(java.lang.String);,1246,33832,19,574924928, chưa có trong Auto
+h,public boolean a(java.lang.String);,1742,33911,4,574924928,tdlt
+h,public boolean a(java.lang.String);,1851,33934,14,574924928,Auto TDLT: Tắt
+h,public boolean a(java.lang.String);,1913,33948,14,574924928,Auto TDLT: Bật
+h,public boolean a(java.lang.String);,2223,33987,10,574924928,Săn boss: 
+h,public boolean a(java.lang.String);,3059,34047,15,574924928,Auto hồi sinh: 
+h,public boolean a(java.lang.String);,3831,34127,15,574924928,Tấn công boss: 
+h,public boolean a(java.lang.String);,4053,34147,15,574924928,Auto HS namek: 
+h,public boolean a(java.lang.String);,4304,34185,12,574924928,Auto skill: 
+h,public boolean a(java.lang.String);,5054,29410,5,574924928,anhat
+h,public boolean a(java.lang.String);,5123,34256,14,574924928,Auto nhặt: Tắt
+h,public boolean a(java.lang.String);,5184,34270,14,574924928,Auto nhặt: Bật
+h,public boolean a(java.lang.String);,5316,34287,11,574924928,Auto chat: 
+h,public boolean a(java.lang.String);,5816,34306,20,574924928,Auto dùng Cuồng nộ: 
+h,public boolean a(java.lang.String);,6089,34341,20,574924928,Auto dùng Bổ huyết: 
+h,public boolean a(java.lang.String);,6359,34376,18,574924928,Auto dùng Bổ khí: 
+h,public boolean a(java.lang.String);,6628,34407,20,574924928,Auto dùng Giáp xên: 
+h,public boolean a(java.lang.String);,6899,34442,19,574924928,Auto dùng Ẩn danh: 
+h,public boolean a(java.lang.String);,7170,34475,22,574924928,Auto dùng Khẩu trang: 
+h,public boolean a(java.lang.String);,7440,34514,18,574924928,Auto dùng Máy dò: 
+h,public boolean a(java.lang.String);,7705,34549,23,574924928,Auto mở capsule kì bí: 
+h,public boolean a(java.lang.String);,7877,29350,6,574924928,alogin
+h,public boolean a(java.lang.String);,8167,34608,15,574924928,Về lại khu cũ: 
+h,public boolean a(java.lang.String);,8637,34638,9,574924928,Tàn sát: 
+h,public boolean a(java.lang.String);,9030,34658,46,574924928,Xóa tất cả vị trí quái trong danh sách tàn sát
+h,public boolean a(java.lang.String);,9084,29161,4,574924928,xmap
+h,public boolean a(java.lang.String);,9866,29200,6,574924928,anitem
+h,public boolean a(java.lang.String);,9898,30748,10,574924928,RemoveItem
+h,public boolean a(java.lang.String);,10005,34745,9,574924928,Ẩn item: 
+h,public boolean a(java.lang.String);,10210,34758,15,574924928,Auto dùng Nho: 
+h,public boolean a(java.lang.String);,10415,34776,18,574924928,Auto dùng Porata: 
+h,public boolean a(java.lang.String);,10541,29524,6,574924928,xindau
+h,public boolean a(java.lang.String);,10620,34794,14,574924928,Auto xin đậu: 
+h,public boolean a(java.lang.String);,10746,29530,6,574924928,chodau
+h,public boolean a(java.lang.String);,10823,34808,14,574924928,Auto cho đậu: 
+h,public boolean a(java.lang.String);,10948,29536,6,574924928,thudau
+h,public boolean a(java.lang.String);,11026,34822,14,574924928,Auto thu đậu: 
+h,public boolean a(java.lang.String);,11677,34880,14,574924928,Auto kaioken: 
+h,public boolean a(java.lang.String);,11879,34894,23,574924928,Chuyển khu tránh boss: 
+h,public boolean a(java.lang.String);,12091,34917,18,574924928,"Khoá vị trí:
+Map: "
+h,public boolean a(java.lang.String);,12364,34967,25,574924928,Auto tái tạo năng lượng: 
+h,public boolean a(java.lang.String);,12563,34994,12,574924928,Focus boss: 
+h,public boolean a(java.lang.String);,12690,35006,7,574924928,additem
+h,public boolean a(java.lang.String);,12821,1577,17,574924928,Đã cập nhật item 
+h,public boolean a(java.lang.String);,12853,1594,9,574924928, vào auto
+h,public boolean a(java.lang.String);,12908,35013,36,574924928,Sai định dạng! (additem id effectId)
+h,public boolean a(java.lang.String);,12957,35049,11,574924928,Lỗi additem
+h,public boolean a(java.lang.String);,13006,35060,7,574924928,delitem
+h,public boolean a(java.lang.String);,13317,1629,10,574924928,ItemConfig
+h,public boolean a(java.lang.String);,13361,35067,12,574924928,Đã xóa item 
+h,public boolean a(java.lang.String);,13393,35079,10,574924928, khỏi auto
+h,public boolean a(java.lang.String);,13441,35089,20,574924928,Không tìm thấy item 
+h,public boolean a(java.lang.String);,13480,35109,27,574924928,Sai định dạng! (delitem id)
+h,public boolean a(java.lang.String);,13510,35136,11,574924928,Lỗi delitem
+h,public boolean a(java.lang.String);,13537,35147,8,574924928,listitem
+h,public boolean a(java.lang.String);,13576,35155,25,574924928,Danh sách auto item trống
+h,public boolean a(java.lang.String);,13612,35180,11,574924928,Auto item: 
+h,public boolean a(java.lang.String);,13703,35194,15,574924928,Auto nhiệm vụ: 
+h,public static void w();,105,1347,16,574924928,DistanceAutoPick
+h,public static void w();,136,1347,16,574924928,DistanceAutoPick
+h,public static void w();,447,1477,9,574924928,DelayXmap
+h,public static void w();,479,1477,9,574924928,DelayXmap
+h,public static void w();,515,1433,10,574924928,DelayLogin
+h,public static void w();,548,1433,10,574924928,DelayLogin
+h,public static void w();,584,1629,10,574924928,ItemConfig
+h,public static void w();,617,1629,10,574924928,ItemConfig
+h,public boolean c(java.lang.String);,413,1379,21,574924928,Khoảng cách tàn sát: 
+h,public boolean c(java.lang.String);,663,1329,18,574924928,Khoảng cách nhặt: 
+h,public boolean c(java.lang.String);,718,1347,16,574924928,DistanceAutoPick
+h,public boolean c(java.lang.String);,1070,35215,19,574924928,Di chuyển Kaioken: 
+h,public boolean c(java.lang.String);,1482,35240,9,574924928,PaintBoss
+h,public boolean c(java.lang.String);,1590,35249,16,574924928,Thông báo boss: 
+h,public boolean c(java.lang.String);,1814,35274,25,574924928,Người và boss trong map: 
+h,public boolean c(java.lang.String);,2038,35307,18,574924928,Thông tin sư phụ: 
+h,public boolean c(java.lang.String);,2262,35332,17,574924928,Thông tin đệ tử: 
+i,public void a(int[]);,311,35395,13,574924928,XMAP - BẢN ĐỒ
+i,public static void x();,277,35508,29,574924928,Hãy hoàn thành nhiệm vụ trước
+i,public void F();,164,35545,16,574924928,XMAP - HÀNH TINH
+i,public void G();,568,35545,16,574924928,XMAP - HÀNH TINH
+j,public static void N();,1044,1195,9,574924928,thach dau
+j,public static void Y();,588,1204,8,574924928,nhiệm vụ
+j,public static void Y();,633,1212,8,574924928,nhiem vu
+n,public static boolean e(java.lang.String);,460,1247,15,574924928, vào slot auto 
+n,public static boolean e(java.lang.String);,519,1262,17,574924928,Slot auto từ 1-10
+n,public static boolean e(java.lang.String);,724,1329,18,574924928,Khoảng cách nhặt: 
+n,public static boolean e(java.lang.String);,779,1347,16,574924928,DistanceAutoPick
+n,public static boolean e(java.lang.String);,997,1379,21,574924928,Khoảng cách tàn sát: 
+n,public static boolean e(java.lang.String);,1268,1418,13,574924928,Delay login: 
+n,public static boolean e(java.lang.String);,1348,1433,10,574924928,DelayLogin
+n,public static boolean e(java.lang.String);,1636,1465,12,574924928,Delay xmap: 
+n,public static boolean e(java.lang.String);,1717,1477,9,574924928,DelayXmap
+n,public static boolean e(java.lang.String);,2533,1577,17,574924928,Đã cập nhật item 
+n,public static boolean e(java.lang.String);,2567,1594,9,574924928, vào auto
+n,public static boolean e(java.lang.String);,2626,1603,26,574924928,Đã cập nhật danh sách item
+n,public static boolean e(java.lang.String);,2666,1629,10,574924928,ItemConfig
+n,public static boolean e(java.lang.String);,2719,1639,16,574924928,Danh sách item: 
+n,public static boolean e(java.lang.String);,2771,1629,10,574924928,ItemConfig
+n,public static {};,61,1695,14,574924928,Sức mạnh đệ tử
+n,public static {};,77,1709,10,574924928,Delay xmap
+n,public static {};,93,1719,11,574924928,Delay login
+n,public static {};,109,1730,14,574924928,Danh sách item
+n,public static {};,125,1744,16,574924928,Khoảng cách nhặt
+n,public static {};,141,1760,19,574924928,Khoảng cách tàn sát
+o,"public static int a(nro.bF, int, int);",240,38000,12,574924928,SM Sư phụ: +
+o,"public static int a(nro.bF, int, int);",382,38021,12,574924928,Vàng nhặt: +
+o,"public static int a(nro.bF, int, int);",609,38033,11,574924928,SM Đệ tử: +
+p,public static void b(nro.bF);,295,39225,12,574924928,Chat Command
+u,public static {};,56,35240,9,574924928,PaintBoss
+u,public static void d(nro.bF);,81,45284,9,574924928,] - Khu: 
+u,public static void d(nro.bF);,505,45299,7,574924928,Tàn sát
+u,public static void d(nro.bF);,569,45299,7,574924928,Tàn sát
+u,public static void d(nro.bF);,667,45306,8,574924928,[Sư phụ]
+u,public static void d(nro.bF);,1542,45336,7,574924928,[Đệ tử]
+w,public static {};,16,45349,8,574924928,ListBoss
+w,public static void aw();,216,45357,10,574924928,Xmap đến: 
+w,public static void aw();,283,45367,22,574924928,Không tìm thấy ID Map!
+w,public static void f(java.lang.String);,38,45389,4,574924928,boss
+w,public static java.lang.String[] a(java.lang.String);,89,45402,5,574924928,boss 
+w,public static java.lang.String[] a(java.lang.String);,256,45402,5,574924928,boss 
+w,public static java.lang.String[] a(java.lang.String);,391,45402,5,574924928,boss 
+w,public static void g(java.lang.String);,38,45389,4,574924928,boss
+x,public static void ay();,453,45982,10,574924928, trong map

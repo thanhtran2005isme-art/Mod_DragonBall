@@ -1,0 +1,45 @@
+public final class nro.bf {
+  public static final int gT;
+    descriptor: I
+
+  public short[] e;
+    descriptor: [S
+
+  public short b;
+    descriptor: S
+
+  public short k;
+    descriptor: S
+
+  public int aX;
+    descriptor: I
+
+  public short[] f;
+    descriptor: [S
+
+  public short[] g;
+    descriptor: [S
+
+  public short[] b;
+    descriptor: [S
+
+  public short[][] b;
+    descriptor: [[S
+
+  public short[][] c;
+    descriptor: [[S
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field gT:I
+       5: return
+
+  public nro.bf();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+}

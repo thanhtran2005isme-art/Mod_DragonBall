@@ -1,0 +1,18 @@
+public final class nro.cQ {
+  public static final int ki;
+    descriptor: I
+
+  public static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #1                  // int 574924928
+       2: putstatic     #4                  // Field ki:I
+       5: return
+
+  public nro.cQ();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #5                  // Method java/lang/Object."<init>":()V
+       4: return
+}
