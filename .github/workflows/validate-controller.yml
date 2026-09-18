@@ -3,6 +3,7 @@ name: Validate WinForms controller
 on:
   push:
     branches:
+      - main
       - feature/windows-controller-ui
     paths:
       - "controller/**"
