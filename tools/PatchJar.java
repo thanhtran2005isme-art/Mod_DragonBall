@@ -74,22 +74,54 @@ public final class PatchJar {
         }
 
         System.out.println("[patch] N.bt() now opens the horizontal menu overlay");
-        System.out.println("[patch] aE.paint/key/touch now feed the horizontal menu");
+        System.out.println("[patch] Legacy vertical submenu reopen calls are suppressed while the overlay is active");
+        System.out.println("[patch] aE.paint/key/touch feed the horizontal menu");
         System.out.println("[patch] Output: " + out.getAbsolutePath());
     }
 
+    private static boolean isLegacyMenuMethod(String name) {
+        return name.equals("bp") || name.equals("bq") || name.equals("br") ||
+               name.equals("bs") || name.equals("bu") || name.equals("bv") ||
+               name.equals("by") || name.equals("bz") || name.equals("bA") ||
+               name.equals("bB") || name.equals("bE") || name.equals("bF");
+    }
+
     private static byte[] patchN(byte[] input) {
-        final boolean[] found = new boolean[1];
+        final boolean[] foundRoot = new boolean[1];
+        final int[] guardedMenus = new int[1];
         ClassReader cr = new ClassReader(input);
         ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
 
         ClassVisitor cv = new ClassVisitor(Opcodes.ASM8, cw) {
             public MethodVisitor visitMethod(int access, String name, String desc, String sig, String[] ex) {
                 if (name.equals("bt") && desc.equals("()V")) {
-                    found[0] = true;
+                    foundRoot[0] = true;
                     return null;
                 }
-                return super.visitMethod(access, name, desc, sig, ex);
+
+                MethodVisitor base = super.visitMethod(access, name, desc, sig, ex);
+
+                if (desc.equals("()V") && isLegacyMenuMethod(name)) {
+                    guardedMenus[0]++;
+                    return new MethodVisitor(Opcodes.ASM8, base) {
+                        public void visitCode() {
+                            super.visitCode();
+                            Label original = new Label();
+                            super.visitMethodInsn(
+                                    Opcodes.INVOKESTATIC,
+                                    RUNTIME,
+                                    "blockLegacyMenu",
+                                    "()Z",
+                                    false
+                            );
+                            super.visitJumpInsn(Opcodes.IFEQ, original);
+                            super.visitInsn(Opcodes.RETURN);
+                            super.visitLabel(original);
+                        }
+                    };
+                }
+
+                return base;
             }
 
             public void visitEnd() {
@@ -104,7 +136,10 @@ public final class PatchJar {
         };
 
         cr.accept(cv, 0);
-        if (!found[0]) throw new IllegalStateException("N.bt() not found");
+        if (!foundRoot[0]) throw new IllegalStateException("N.bt() not found");
+        if (guardedMenus[0] != 12) {
+            throw new IllegalStateException("Expected 12 legacy submenu methods, patched " + guardedMenus[0]);
+        }
         return cw.toByteArray();
     }
 
