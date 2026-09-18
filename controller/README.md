@@ -24,7 +24,13 @@ From repository root:
 controller-run.bat
 ```
 
-Requires .NET 8 SDK.
+Requires .NET 10 SDK.
+
+The WinForms project targets:
+
+```text
+net10.0-windows
+```
 
 ## Next integration
 
