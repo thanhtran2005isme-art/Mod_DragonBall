@@ -11,7 +11,7 @@ public sealed class MainForm : Form
 
     private readonly Panel _content = new();
     private readonly Dictionary<string, NavButton> _navButtons = new();
-    private readonly RemoterLauncher _remoterLauncher = new();
+    private readonly MicroEmulatorLauncher _microEmulatorLauncher = new();
 
     private DataGridView _grid = null!;
     private TextBox _txtSearch = null!;
@@ -593,12 +593,10 @@ public sealed class MainForm : Form
                 account.Status = "Đang mở game";
 
             ApplyFilter();
-            var mode = _remoterLauncher.StartClients(selected.Count);
+            _microEmulatorLauncher.StartClients(selected.Count);
 
             foreach (var account in selected)
-                account.Status = mode == LauncherMode.Remoter
-                    ? "Chờ client (Remoter)"
-                    : "Chờ client (Micro)";
+                account.Status = "Chờ client (Micro)";
 
             ApplyFilter();
         }

@@ -12,7 +12,7 @@ WinForms controller scaffold matching the supplied account-manager reference.
 - Add / edit / delete.
 - Multi-row selection.
 - Import text accounts using `username|password|server|note`.
-- Double-click account / Đăng nhập now opens or focuses `MicroEmulatorRemoter_v103.exe` and queues the selected account(s) for the next RemoteBridge step.
+- Double-click account / Đăng nhập launches the original `microemulator-2.0.4.jar` directly; one MicroEmulator process is created per selected account.
 - Close selected / close all status placeholders.
 - Summary bar with total / running / selected counts.
 
@@ -50,29 +50,22 @@ Account row
 Passwords are still in-memory only in this UI scaffold. Persistence should use SQLite + Windows DPAPI rather than plain text.
 
 
-## Current remoter defaults
+## Launcher
 
-The launcher currently expects:
+Dragon Controller now uses only the original MicroEmulator. It does not start or depend on `MicroEmulatorRemoter_v103.exe` or `AngelChipEmulator_AutoSleep.jar`.
+
+For every selected account:
 
 ```text
-%USERPROFILE%\Desktop\EmulatorRemoter\MicroEmulatorRemoter_v103.exe
-%USERPROFILE%\Desktop\EmulatorRemoter\AngelChipEmulator_AutoSleep.jar
-%USERPROFILE%\Desktop\EmulatorRemoter\Dragonboy250-test.jar
+java -jar microemulator-2.0.4.jar Dragonboy250-test.jar
 ```
 
-The next integration step is automating the Remoter fields/Start button and assigning each newly connected J2ME client to the pending account queue.
+is started as a separate process.
 
-
-## Launcher fallback
-
-Account login now uses this order:
+The game JAR defaults to:
 
 ```text
-1. Try MicroEmulatorRemoter_v103.exe
-2. If missing / startup fails / exits immediately:
-   launch original microemulator-2.0.4.jar directly
-3. When multiple accounts are selected in fallback mode,
-   start one MicroEmulator process per account
+%USERPROFILE%\Desktop\EmulatorRemoter\Dragonboy250-test.jar
 ```
 
 Original MicroEmulator is searched in:
