@@ -116,3 +116,30 @@ This preserves special server names such as `Võ đài liên vũ trụ`,
 If the dropdown says `(Chưa đọc được server từ game)`, run the patched game
 once in original MicroEmulator so its current server catalog is persisted, then
 open the dropdown again.
+
+
+## Persistent accounts
+
+Account data is now loaded automatically when Dragon Controller starts and
+saved after Add / Edit / Delete / Import and again when the controller closes.
+
+Storage path:
+
+```text
+%LOCALAPPDATA%\DragonController\accounts.json
+```
+
+Passwords are not stored as plain text. They are encrypted with Windows DPAPI
+(`CurrentUser`) before being written to disk, so the saved credential blob is
+bound to the current Windows user.
+
+## Auto-login fix
+
+Controller auto-login now invokes the same game flow as pressing `Chơi TK`:
+
+```text
+select server -> bR.gB() -> bR.ef() -> original connect/login logic
+```
+
+This replaces the previous timer/flag approach that could stop after account
+and server were filled without actually starting login.

@@ -13,6 +13,7 @@ public sealed class MainForm : Form
     private readonly Dictionary<string, NavButton> _navButtons = new();
     private readonly MicroEmulatorLauncher _microEmulatorLauncher = new();
     private readonly GameServerCatalogService _serverCatalogService = new();
+    private readonly AccountStore _accountStore = new();
     private IReadOnlyList<GameServerInfo> _gameServers = Array.Empty<GameServerInfo>();
 
     private DataGridView _grid = null!;
@@ -39,8 +40,11 @@ public sealed class MainForm : Form
         Icon = SystemIcons.Application;
 
         BuildShell();
+        LoadAccounts();
         ShowTab("Tài khoản");
-        SeedPreviewAccount();
+        ApplyFilter();
+
+        FormClosing += (_, _) => SaveAccounts();
     }
 
     private void BuildShell()
@@ -551,6 +555,7 @@ public sealed class MainForm : Form
 
         ClearEditor();
         ApplyFilter();
+        SaveAccounts();
     }
 
     private void EditAccount()
@@ -579,6 +584,7 @@ public sealed class MainForm : Form
         account.Note = _txtNote.Text.Trim();
         account.WindowSize = NormalizeSize(_txtSize.Text);
         ApplyFilter();
+        SaveAccounts();
     }
 
     private void DeleteSelected()
@@ -597,6 +603,7 @@ public sealed class MainForm : Form
 
         foreach (var account in selected) _accounts.Remove(account);
         ApplyFilter();
+        SaveAccounts();
     }
 
     private void SetSelectedStatus(string status)
@@ -721,6 +728,7 @@ public sealed class MainForm : Form
         }
 
         ApplyFilter();
+        SaveAccounts();
         MessageBox.Show(this, $"Đã thêm {added} tài khoản.", "Dragon Controller");
     }
 
@@ -814,18 +822,32 @@ public sealed class MainForm : Form
         return clean.Length == 0 ? "1024×600" : clean;
     }
 
-    private void SeedPreviewAccount()
+    private void LoadAccounts()
     {
-        _accounts.Add(new AccountProfile
+        _accounts.Clear();
+
+        foreach (var account in _accountStore.Load())
+            _accounts.Add(account);
+
+        _nextId = _accounts.Count == 0
+            ? 1
+            : _accounts.Max(x => x.Id) + 1;
+    }
+
+    private void SaveAccounts()
+    {
+        try
         {
-            Id = _nextId++,
-            Username = "0977128039",
-            Password = "",
-            Server = "Vũ trụ 15",
-            Note = "",
-            WindowSize = "1024×600",
-            Status = "Offline"
-        });
-        ApplyFilter();
+            _accountStore.Save(_accounts);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                "Không thể lưu danh sách tài khoản:\n" + ex.Message,
+                "Dragon Controller",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+        }
     }
 }

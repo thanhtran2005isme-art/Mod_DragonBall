@@ -189,12 +189,13 @@ public final class ModHorizontalRuntime {
             return;
         }
 
-        // Keep the original game's server/login state machine. bR.a(index,true)
-        // selects + persists the server; aZ/fU starts the existing delayed path
-        // which connects, creates the login screen and invokes bb.fk().
+        // Reuse the exact game actions instead of simulating a mouse click:
+        // 1) select/persist the requested server,
+        // 2) gB() applies that server's host/port to GameMidlet,
+        // 3) ef() is the game's own "Chơi TK" flow and performs connect/login.
         bR.a(serverIndex, true);
-        bR.fU = 0;
-        bR.aZ = true;
+        serverScreen.gB();
+        bR.ef();
         autoLoginTriggered = true;
     }
 
