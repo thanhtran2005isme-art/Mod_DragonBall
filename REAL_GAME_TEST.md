@@ -50,3 +50,16 @@ preview-run.bat
 Some horizontal menu cells still have command ID `-1` because their exact old dispatcher IDs have not yet been verified. Those cells render but intentionally do nothing until their original v4.0 action is mapped.
 
 The already verified actions use the original `N.a(int,Object)` dispatcher, so feature logic is preserved rather than reimplemented.
+
+
+## Compact layout update
+
+The in-game overlay no longer fills the gameplay area.
+
+It is now a compact bottom strip:
+- top row: horizontally scrollable feature groups;
+- second row: horizontally scrollable actions for the selected group;
+- total overlay height: about 82 logical pixels;
+- gameplay remains visible above the menu.
+
+This matches the requested compact horizontal style more closely.
