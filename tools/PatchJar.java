@@ -23,6 +23,8 @@ public final class PatchJar {
         byte[] runtime = normalizeToJ2ME(readAll(new FileInputStream(runtimeClass)));
         boolean patchedN = false;
         boolean patchedCanvas = false;
+        boolean patchedPanel = false;
+        boolean patchedCommand = false;
 
         JarFile jf = new JarFile(in);
         Manifest mf = jf.getManifest();
@@ -50,6 +52,12 @@ public final class PatchJar {
                 } else if (name.equals("nro/aE.class")) {
                     data = patchCanvas(data);
                     patchedCanvas = true;
+                } else if (name.equals("nro/aB.class")) {
+                    data = patchPanel(data);
+                    patchedPanel = true;
+                } else if (name.equals("nro/cw.class")) {
+                    data = patchCommand(data);
+                    patchedCommand = true;
                 }
 
                 JarEntry ne = new JarEntry(name);
@@ -68,13 +76,17 @@ public final class PatchJar {
             try { jf.close(); } catch (Exception ignored) {}
         }
 
-        if (!patchedN || !patchedCanvas) {
+        if (!patchedN || !patchedCanvas || !patchedPanel || !patchedCommand) {
             out.delete();
-            throw new IllegalStateException("Required classes not found. N=" + patchedN + " aE=" + patchedCanvas);
+            throw new IllegalStateException(
+                    "Required classes not found. N=" + patchedN +
+                    " aE=" + patchedCanvas + " aB=" + patchedPanel + " cw=" + patchedCommand);
         }
 
         System.out.println("[patch] N.bt() now opens the horizontal menu overlay");
-        System.out.println("[patch] Legacy vertical submenu reopen calls are suppressed while the overlay is active");
+        System.out.println("[patch] N legacy static submenu reopen calls are suppressed while overlay is active");
+        System.out.println("[patch] aB.dw() captures remaining dynamic/legacy side menus into the horizontal row");
+        System.out.println("[patch] cw.toString() exposes the exact legacy row label to the horizontal renderer");
         System.out.println("[patch] aE.paint/key/touch feed the horizontal menu");
         System.out.println("[patch] Output: " + out.getAbsolutePath());
     }
@@ -107,13 +119,7 @@ public final class PatchJar {
                         public void visitCode() {
                             super.visitCode();
                             Label original = new Label();
-                            super.visitMethodInsn(
-                                    Opcodes.INVOKESTATIC,
-                                    RUNTIME,
-                                    "blockLegacyMenu",
-                                    "()Z",
-                                    false
-                            );
+                            super.visitMethodInsn(Opcodes.INVOKESTATIC, RUNTIME, "blockLegacyMenu", "()Z", false);
                             super.visitJumpInsn(Opcodes.IFEQ, original);
                             super.visitInsn(Opcodes.RETURN);
                             super.visitLabel(original);
@@ -143,6 +149,73 @@ public final class PatchJar {
         return cw.toByteArray();
     }
 
+    private static byte[] patchPanel(byte[] input) {
+        final boolean[] foundDw = new boolean[1];
+        ClassReader cr = new ClassReader(input);
+        ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
+
+        ClassVisitor cv = new ClassVisitor(Opcodes.ASM8, cw) {
+            public MethodVisitor visitMethod(int access, String name, String desc, String[] ex) {
+                MethodVisitor base = super.visitMethod(access, name, desc, sig, ex);
+
+                if (name.equals("dw") && desc.equals("()V")) {
+                    foundDw[0] = true;
+                    return new MethodVisitor(Opcodes.ASM8, base) {
+                        public void visitCode() {
+                            super.visitCode();
+                            Label original = new Label();
+                            super.visitVarInsn(Opcodes.ALOAD, 0);
+                            super.visitFieldInsn(Opcodes.GETFIELD, "nro/aB", "t", "Lnro/bT;");
+                            super.visitFieldInsn(Opcodes.GETSTATIC, "nro/N", "G", "Ljava/lang/String;");
+                            super.visitMethodInsn(
+                                    Opcodes.INVOKESTATIC, RUNTIME, "captureLegacyMenu", "(Ljava/util/Vector;Ljava/lang/String;)Z", false);
+                            super.visitJumpInsn(Opcodes.IFEQ, original);
+                            super.visitInsn(Opcodes.RETURN);
+                            super.visitLabel(original);
+                        }
+                    };
+                }
+
+                return base;
+            }
+        };
+
+        cr.accept(cv, 0);
+        if (!foundDw[0]) throw new IllegalStateException("aB.dw() not found");
+        return cw.toByteArray();
+    }
+
+    private static byte[] patchCommand(byte[] input) {
+        final boolean[] existingToString = new boolean[1];
+        ClassReader cr = new ClassReader(input);
+        ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
+
+        ClassVisitor cv = new ClassVisitor(Opcodes.ASM8, cw) {
+            public MethodVisitor visitMethod(int access, String name, String desc, String sig, String[] ex) {
+                if (name.equals("toString") && desc.equals("()Ljava/lang/String;")) {
+                    existingToString[0] = true;
+                }
+                return super.visitMethod(access, name, desc, sig, ex);
+            }
+
+            public void visitEnd() {
+                if (!existingToString[0]) {
+                    MethodVisitor mv = super.visitMethod(Opcodes.ACC_PUBLIC, "toString", "()Ljava/lang/String;", null, null);
+                    mv.visitCode();
+                    mv.visitVarInsn(Opcodes.ALOAD, 0);
+                    mv.visitFieldInsn(Opcodes.GETFIELD, "nro/cw", "p", "Ljava/lang/String;");
+                    mv.visitInsn(Opcodes.ARETURN);
+                    mv.visitMaxs(1, 1);
+                    mv.visitEnd();
+                }
+                super.visitEnd();
+            }
+        };
+
+        cr.accept(cv, 0);
+        return cw.toByteArray();
+    }
+
     private static byte[] patchCanvas(byte[] input) {
         final boolean[] paint = new boolean[1];
         final boolean[] key = new boolean[1];
@@ -160,13 +233,7 @@ public final class PatchJar {
                         public void visitInsn(int opcode) {
                             if (opcode == Opcodes.RETURN) {
                                 super.visitVarInsn(Opcodes.ALOAD, 1);
-                                super.visitMethodInsn(
-                                        Opcodes.INVOKESTATIC,
-                                        RUNTIME,
-                                        "paint",
-                                        "(Ljavax/microedition/lcdui/Graphics;)V",
-                                        false
-                                );
+                                super.visitMethodInsn(Opcodes.INVOKESTATIC, RUNTIME, "paint", "(Ljavax/microedition/lcdui/Graphics;)V", false);
                             }
                             super.visitInsn(opcode);
                         }
@@ -221,11 +288,7 @@ public final class PatchJar {
         };
 
         cr.accept(cv, 0);
-
-        if (!paint[0] || !key[0]) {
-            throw new IllegalStateException("aE paint/keyPressed not found");
-        }
-
+        if (!paint[0] || !key[0]) throw new IllegalStateException("aE paint/keyPressed not found");
         return cw.toByteArray();
     }
 
@@ -255,11 +318,7 @@ public final class PatchJar {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         byte[] buf = new byte[16384];
         int n;
-
-        while ((n = in.read(buf)) >= 0) {
-            out.write(buf, 0, n);
-        }
-
+        while ((n = in.read(buf)) >= 0) out.write(buf, 0, n);
         return out.toByteArray();
     }
 }
