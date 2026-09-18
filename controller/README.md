@@ -96,3 +96,23 @@ multiple clients start at once.
 
 After updating the repository, rebuild `Dragonboy250-test.jar` with
 `build-run.bat` before testing controller auto-login.
+
+
+## Real game server catalog
+
+The account server ComboBox is no longer populated with a guessed "Vũ trụ 1..20" list.
+
+Dragon Controller now reads MicroEmulator's RMS files and parses the same
+`NRlink3` server records used by the obfuscated game class `nro.bR`.
+Each parsed row comes from the game's persisted server data:
+
+```text
+name | host | port | language | metadata...
+```
+
+This preserves special server names such as `Võ đài liên vũ trụ`,
+`Super 1`, `VIP 2`, etc. when they are present in the game data.
+
+If the dropdown says `(Chưa đọc được server từ game)`, run the patched game
+once in original MicroEmulator so its current server catalog is persisted, then
+open the dropdown again.

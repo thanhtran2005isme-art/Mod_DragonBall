@@ -12,6 +12,8 @@ public sealed class MainForm : Form
     private readonly Panel _content = new();
     private readonly Dictionary<string, NavButton> _navButtons = new();
     private readonly MicroEmulatorLauncher _microEmulatorLauncher = new();
+    private readonly GameServerCatalogService _serverCatalogService = new();
+    private IReadOnlyList<GameServerInfo> _gameServers = Array.Empty<GameServerInfo>();
 
     private DataGridView _grid = null!;
     private TextBox _txtSearch = null!;
@@ -285,8 +287,8 @@ public sealed class MainForm : Form
         AddFullField(layout, 2, "Mật khẩu", passwordPanel);
 
         _cmbServer = MakeComboBox();
-        for (var i = 1; i <= 20; i++) _cmbServer.Items.Add($"Vũ trụ {i}");
-        _cmbServer.SelectedIndex = 0;
+        RefreshServerCatalog();
+        _cmbServer.DropDown += (_, _) => RefreshServerCatalog(preserveSelection: true);
 
         var import = MakeButton("+ TỆP");
         import.Click += (_, _) => ImportAccounts();
@@ -505,8 +507,7 @@ public sealed class MainForm : Form
         _txtPassword.Text = account.Password;
         _txtNote.Text = account.Note;
         _txtSize.Text = account.WindowSize;
-        _cmbServer.SelectedItem = account.Server;
-        if (_cmbServer.SelectedIndex < 0) _cmbServer.Text = account.Server;
+        SelectServerByName(account.Server);
         UpdateSummary();
     }
 
@@ -526,12 +527,23 @@ public sealed class MainForm : Form
             return;
         }
 
+        if (!TryGetSelectedGameServer(out var selectedServer))
+        {
+            MessageBox.Show(
+                this,
+                "Chưa đọc được danh sách máy chủ thật từ game. Hãy mở Dragonboy250-test.jar bằng MicroEmulator ít nhất một lần để game cập nhật server, rồi mở lại danh sách Máy chủ.",
+                "Chưa có dữ liệu máy chủ",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            return;
+        }
+
         _accounts.Add(new AccountProfile
         {
             Id = _nextId++,
             Username = username,
             Password = _txtPassword.Text,
-            Server = _cmbServer.Text,
+            Server = selectedServer.Name,
             Note = _txtNote.Text.Trim(),
             WindowSize = NormalizeSize(_txtSize.Text),
             Status = "Offline"
@@ -550,9 +562,20 @@ public sealed class MainForm : Form
             return;
         }
 
+        if (!TryGetSelectedGameServer(out var selectedServer))
+        {
+            MessageBox.Show(
+                this,
+                "Không có máy chủ hợp lệ từ dữ liệu game.",
+                "Dragon Controller",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            return;
+        }
+
         account.Username = _txtUsername.Text.Trim();
         account.Password = _txtPassword.Text;
-        account.Server = _cmbServer.Text;
+        account.Server = selectedServer.Name;
         account.Note = _txtNote.Text.Trim();
         account.WindowSize = NormalizeSize(_txtSize.Text);
         ApplyFilter();
@@ -707,7 +730,71 @@ public sealed class MainForm : Form
         _txtPassword.Clear();
         _txtNote.Clear();
         _txtSize.Text = "1024×600";
-        _cmbServer.SelectedIndex = 0;
+        if (_cmbServer.Items.Count > 0) _cmbServer.SelectedIndex = 0;
+    }
+
+    private void RefreshServerCatalog(bool preserveSelection = false)
+    {
+        var previous = preserveSelection && _cmbServer?.SelectedItem is GameServerInfo selected
+            ? selected.Name
+            : null;
+
+        _gameServers = _serverCatalogService.LoadServers();
+
+        if (_cmbServer is null) return;
+
+        _cmbServer.BeginUpdate();
+        try
+        {
+            _cmbServer.Items.Clear();
+
+            if (_gameServers.Count == 0)
+            {
+                _cmbServer.Items.Add("(Chưa đọc được server từ game)");
+                _cmbServer.SelectedIndex = 0;
+                return;
+            }
+
+            foreach (var server in _gameServers)
+                _cmbServer.Items.Add(server);
+
+            if (!string.IsNullOrWhiteSpace(previous))
+                SelectServerByName(previous);
+
+            if (_cmbServer.SelectedIndex < 0)
+                _cmbServer.SelectedIndex = 0;
+        }
+        finally
+        {
+            _cmbServer.EndUpdate();
+        }
+    }
+
+    private void SelectServerByName(string? serverName)
+    {
+        if (_cmbServer is null || string.IsNullOrWhiteSpace(serverName)) return;
+
+        for (var i = 0; i < _cmbServer.Items.Count; i++)
+        {
+            if (_cmbServer.Items[i] is GameServerInfo server &&
+                string.Equals(server.Name, serverName, StringComparison.OrdinalIgnoreCase))
+            {
+                _cmbServer.SelectedIndex = i;
+                return;
+            }
+        }
+    }
+
+    private bool TryGetSelectedGameServer(out GameServerInfo server)
+    {
+        if (_cmbServer.SelectedItem is GameServerInfo selected)
+        {
+            server = selected;
+            return true;
+        }
+
+        server = null!;
+        return false;
     }
 
     private void UpdateSummary()
