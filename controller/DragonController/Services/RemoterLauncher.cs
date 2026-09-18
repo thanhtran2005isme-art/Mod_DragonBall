@@ -45,7 +45,7 @@ internal sealed class MicroEmulatorLauncher
         {
             throw new FileNotFoundException(
                 "Không tìm thấy microemulator-2.0.4.jar. " +
-                "Hãy giữ file trong thư mục lib của project hoặc Desktop\EmulatorRemoter.");
+                "Hãy giữ file trong thư mục lib của project hoặc Desktop\\EmulatorRemoter.");
         }
 
         var java = ResolveJavaExecutable();
