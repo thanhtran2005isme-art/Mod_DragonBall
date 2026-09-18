@@ -14,20 +14,47 @@ echo   build.bat mod
 exit /b 2
 
 :CHECK_JAVA
-where java >nul 2>nul || (
-  echo [ERROR] Java was not found in PATH.
-  echo Install a JDK and restart VS Code.
-  exit /b 10
+rem First try the current PATH.
+where javac >nul 2>nul && where jar >nul 2>nul && where java >nul 2>nul && exit /b 0
+
+rem Then try JAVA_HOME if a JDK is installed but VS Code/PATH has not picked it up.
+if defined JAVA_HOME if exist "%JAVA_HOME%\bin\javac.exe" (
+  set "PATH=%JAVA_HOME%\bin;%PATH%"
+  echo [java] Using JAVA_HOME: %JAVA_HOME%
+  exit /b 0
 )
-where javac >nul 2>nul || (
-  echo [ERROR] javac was not found in PATH. A JDK is required.
-  exit /b 11
+
+rem Auto-detect common Windows JDK install locations.
+for /d %%D in (
+  "%ProgramFiles%\Eclipse Adoptium\jdk-*"
+  "%ProgramFiles%\Java\jdk-*"
+  "%ProgramFiles%\Microsoft\jdk-*"
+  "%ProgramFiles%\Zulu\zulu-*"
+  "%LocalAppData%\Programs\Eclipse Adoptium\jdk-*"
+) do (
+  if exist "%%~fD\bin\javac.exe" (
+    set "JAVA_HOME=%%~fD"
+    set "PATH=%%~fD\bin;!PATH!"
+    echo [java] Auto-detected JDK: %%~fD
+    exit /b 0
+  )
 )
-where jar >nul 2>nul || (
-  echo [ERROR] jar.exe was not found in PATH. A JDK is required.
-  exit /b 12
-)
-exit /b 0
+
+echo.
+echo [ERROR] A full JDK was not found.
+echo.
+echo Java runtime alone is not enough; this project also needs javac.exe and jar.exe.
+echo Install JDK 17 with:
+echo.
+echo   winget install --id EclipseAdoptium.Temurin.17.JDK -e
+echo.
+echo After installation, close all VS Code windows, reopen VS Code, then run:
+echo.
+echo   java -version
+echo   javac -version
+echo   build-run.bat
+echo.
+exit /b 11
 
 :BOOTSTRAP
 powershell -NoProfile -ExecutionPolicy Bypass -File "tools\bootstrap-test-runtime.ps1"
