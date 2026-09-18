@@ -7,18 +7,35 @@ call build.bat mod
 if errorlevel 1 (
   echo.
   echo [ERROR] Real game build failed.
-  echo This script no longer falls back to the standalone menu preview.
   echo.
   pause
   exit /b 1
 )
 
-echo [run] Starting patched Dragonboy250 game...
-java -jar "lib\microemulator-2.0.4.jar" "dist\Dragonboy250-test.jar"
-if errorlevel 1 (
-  echo.
-  echo [ERROR] MicroEmulator could not start the patched game.
-  echo You can open dist\Dragonboy250-test.jar with your current J2ME emulator.
-  pause
-  exit /b 2
+echo.
+echo [OK] Patched game built:
+echo   %CD%\dist\Dragonboy250-test.jar
+echo.
+
+set "REMOTER_DIR=%USERPROFILE%\Desktop\EmulatorRemoter"
+if exist "%REMOTER_DIR%" (
+  copy /Y "dist\Dragonboy250-test.jar" "%REMOTER_DIR%\Dragonboy250-test.jar" >nul
+  if errorlevel 1 (
+    echo [WARN] Could not copy the test JAR to:
+    echo   %REMOTER_DIR%
+  ) else (
+    echo [OK] Copied for MicroEmulatorRemoter:
+    echo   %REMOTER_DIR%\Dragonboy250-test.jar
+    echo.
+    echo In MicroEmulatorRemoter, set the Game field to:
+    echo   %REMOTER_DIR%\Dragonboy250-test.jar
+    echo then click Bat dau.
+  )
+) else (
+  echo [INFO] EmulatorRemoter folder was not found automatically.
+  echo In your emulator, browse to:
+  echo   %CD%\dist\Dragonboy250-test.jar
 )
+
+echo.
+pause
