@@ -1,0 +1,139 @@
+name: Push all exact recovered resources
+
+on:
+  push:
+    paths:
+      - ".github/workflows/push-resources.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  resources:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout destination
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore exact resource hash manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d payload/resource_gitsha.csv.xz.b64 > /tmp/resource_gitsha.csv.xz
+          xz -dc /tmp/resource_gitsha.csv.xz > /tmp/resource_gitsha.csv
+          test "$(wc -l < /tmp/resource_gitsha.csv)" -eq 505
+          head -1 /tmp/resource_gitsha.csv
+
+      - name: Clone readable legacy client for matching resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone -q https://github.com/duykhongphai/DragonBoyOnline-J2ME.git /tmp/legacy
+          git -C /tmp/legacy checkout -q 25503c65e56dd2d38f69213f1771c556120bf414
+
+      - name: Copy only byte-identical legacy resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf resources
+          mkdir -p resources
+          python3 - <<'PY'
+          from pathlib import Path
+          import csv, hashlib, subprocess, shutil
+
+          def git_blob_sha(data: bytes) -> str:
+              h = hashlib.sha1()
+              h.update(f"blob {len(data)}\0".encode())
+              h.update(data)
+              return h.hexdigest()
+
+          expected = {}
+          with open('/tmp/resource_gitsha.csv', newline='', encoding='utf-8') as f:
+              for row in csv.DictReader(f):
+                  expected[row['path']] = (int(row['size_bytes']), row['git_blob_sha1'])
+
+          src = Path('/tmp/legacy')
+          dst = Path('resources')
+          copied = 0
+          for rel, (size, sha) in expected.items():
+              candidates = [src/'src'/rel, src/rel]
+              for p in candidates:
+                  if p.is_file():
+                      data = p.read_bytes()
+                      if len(data) == size and git_blob_sha(data) == sha:
+                          out = dst/rel
+                          out.parent.mkdir(parents=True, exist_ok=True)
+                          out.write_bytes(data)
+                          copied += 1
+                          break
+
+          print('Byte-identical resources copied from legacy source:', copied)
+          if copied != 477:
+              raise SystemExit(f'Expected exactly 477 exact matches, got {copied}')
+          PY
+
+      - name: Overlay 27 exact v4-only resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat payload/custom-res-00.b64 payload/custom-res-01.b64 | base64 -d > /tmp/custom-res.tar.xz
+          tar -xJf /tmp/custom-res.tar.xz -C resources
+
+      - name: Verify all 504 resources byte-for-byte
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import csv, hashlib
+
+          def git_blob_sha(data: bytes) -> str:
+              h = hashlib.sha1()
+              h.update(f"blob {len(data)}\0".encode())
+              h.update(data)
+              return h.hexdigest()
+
+          rows = list(csv.DictReader(open('/tmp/resource_gitsha.csv', encoding='utf-8')))
+          root = Path('resources')
+          files = [p for p in root.rglob('*') if p.is_file()]
+          if len(files) != 504:
+              raise SystemExit(f'Expected 504 resource files, got {len(files)}')
+
+          bad = []
+          total = 0
+          for row in rows:
+              p = root / row['path']
+              if not p.is_file():
+                  bad.append((row['path'], 'missing'))
+                  continue
+              data = p.read_bytes()
+              total += len(data)
+              if len(data) != int(row['size_bytes']):
+                  bad.append((row['path'], 'size'))
+              elif git_blob_sha(data) != row['git_blob_sha1']:
+                  bad.append((row['path'], 'sha'))
+
+          print('Verified resources:', len(rows))
+          print('Total bytes:', total)
+          if total != 913955:
+              raise SystemExit(f'Expected 913955 bytes, got {total}')
+          if bad:
+              raise SystemExit('Verification failures: ' + repr(bad[:20]))
+          print('ALL 504 RESOURCES VERIFIED BYTE-FOR-BYTE')
+          PY
+
+      - name: Commit resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resources
+          if git diff --cached --quiet; then
+            echo "Resources already complete"
+          else
+            git commit -m "Add all 504 exact recovered v4 resources"
+            git push origin HEAD:main
+          fi
