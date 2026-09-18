@@ -78,7 +78,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat payload/custom-res-00.b64 payload/custom-res-01.b64 | base64 -d > /tmp/custom-res.tar.xz
+          cat payload/custom-res-000.b64 payload/custom-res-001.b64 payload/custom-res-01.b64 | base64 -d > /tmp/custom-res.tar.xz
           tar -xJf /tmp/custom-res.tar.xz -C resources
 
       - name: Verify all 504 resources byte-for-byte
