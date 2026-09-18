@@ -1,0 +1,39 @@
+name: Expand recovered Dragonboy250 v4.0 source
+
+on:
+  push:
+    paths:
+      - "payload/READY"
+
+permissions:
+  contents: write
+
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and extract recovered source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat payload/chunk-*.b64 | tr -d '\n\r' | base64 -d > /tmp/dragonboy_v4_recovered.tar.xz
+          tar -xJf /tmp/dragonboy_v4_recovered.tar.xz -C .
+          rm -rf payload
+
+      - name: Commit extracted files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Expand recovered Dragonboy250 v4.0 source"
+          git push
