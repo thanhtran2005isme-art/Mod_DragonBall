@@ -75,3 +75,24 @@ Original MicroEmulator is searched in:
 %USERPROFILE%\Desktop\EmulatorRemoter\MicroEmulator\microemulator-2.0.4.jar
 <repo>\lib\microemulator-2.0.4.jar
 ```
+
+
+## Direct controller auto-login
+
+The account launcher now starts each MicroEmulator JVM with per-process properties:
+
+```text
+-Ddragon.auto.login=1
+-Ddragon.auto.user=<account>
+-Ddragon.auto.pass=<password>
+-Ddragon.auto.server=<server>
+```
+
+The patched game reads these properties internally. It selects the requested
+server through the original `bR` server-list state machine and lets the
+original login flow call `bb.fk()`. Account/password RMS reads are overridden
+per JVM, avoiding keyboard automation and avoiding credential mix-ups when
+multiple clients start at once.
+
+After updating the repository, rebuild `Dragonboy250-test.jar` with
+`build-run.bat` before testing controller auto-login.

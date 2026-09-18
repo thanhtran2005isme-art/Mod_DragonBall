@@ -30,6 +30,10 @@ public final class ModHorizontalRuntime {
     private static String legacyTitle = "";
     private static int legacyGeneration;
 
+    // One-shot automatic login state for controller-launched MicroEmulator JVMs.
+    private static boolean autoLoginTriggered;
+    private static int autoLoginWait;
+
     private static final String[] GROUPS = new String[] {
         "Tàn Sát", "Auto Skill", "Nhặt Đồ", "Xmap", "Boss",
         "TĐLT / NV", "Đậu", "Hỗ Trợ", "Vật Phẩm", "Hiển Thị", "Cài Đặt"
@@ -136,6 +140,124 @@ public final class ModHorizontalRuntime {
         legacyMode = false;
         legacyItems = null;
         legacyTitle = "";
+    }
+
+
+    /**
+     * Per-process RMS override used by controller-launched clients. This makes
+     * each MicroEmulator JVM read its own account/password from -D properties
+     * instead of racing on the shared RMS files when many clients start.
+     */
+    public static String overrideRmsString(String key) {
+        if (!autoLoginEnabled() || key == null) return null;
+
+        if (key.equals(bH.ae)) {
+            return safeProperty("dragon.auto.user");
+        }
+
+        if (key.equals(bH.L)) {
+            return safeProperty("dragon.auto.pass");
+        }
+
+        return null;
+    }
+
+    /**
+     * Called from the patched bR.cp() (ServerListScreen update). Once the
+     * current server list is available, select the requested server and reuse
+     * the game's own delayed login path: bR.gB() -> bb.fk().
+     */
+    public static void autoLoginTick(bR serverScreen) {
+        if (autoLoginTriggered || serverScreen == null || !autoLoginEnabled()) return;
+
+        String user = safeProperty("dragon.auto.user");
+        String pass = safeProperty("dragon.auto.pass");
+        String requestedServer = safeProperty("dragon.auto.server");
+
+        if (user == null || user.trim().length() == 0) return;
+        if (pass == null || pass.length() == 0) return;
+
+        String[] servers = bR.y;
+        if (servers == null || servers.length == 0) {
+            autoLoginWait++;
+            return;
+        }
+
+        int serverIndex = resolveServerIndex(servers, requestedServer);
+        if (serverIndex < 0 || serverIndex >= servers.length) {
+            autoLoginWait++;
+            return;
+        }
+
+        // Keep the original game's server/login state machine. bR.a(index,true)
+        // selects + persists the server; aZ/fU starts the existing delayed path
+        // which connects, creates the login screen and invokes bb.fk().
+        bR.a(serverIndex, true);
+        bR.fU = 0;
+        bR.aZ = true;
+        autoLoginTriggered = true;
+    }
+
+    private static boolean autoLoginEnabled() {
+        String enabled = safeProperty("dragon.auto.login");
+        return "1".equals(enabled);
+    }
+
+    private static String safeProperty(String name) {
+        try {
+            return System.getProperty(name);
+        } catch (Throwable ignored) {
+            return null;
+        }
+    }
+
+    private static int resolveServerIndex(String[] servers, String requested) {
+        if (servers == null || servers.length == 0) return -1;
+        if (requested == null) return -1;
+
+        requested = requested.trim();
+        if (requested.length() == 0) return -1;
+
+        for (int i = 0; i < servers.length; i++) {
+            String current = servers[i];
+            if (current != null && requested.equals(current.trim())) return i;
+        }
+
+        int wantedNumber = trailingNumber(requested);
+        if (wantedNumber > 0) {
+            for (int i = 0; i < servers.length; i++) {
+                String current = servers[i];
+                if (current != null && trailingNumber(current) == wantedNumber) return i;
+            }
+
+            // Server arrays are normally ordered Vũ trụ 1..N. This fallback
+            // handles minor text differences while still respecting bounds.
+            int ordinal = wantedNumber - 1;
+            if (ordinal >= 0 && ordinal < servers.length) return ordinal;
+        }
+
+        return -1;
+    }
+
+    private static int trailingNumber(String value) {
+        if (value == null) return -1;
+
+        int end = value.length() - 1;
+        while (end >= 0 && value.charAt(end) == ' ') end--;
+        if (end < 0 || value.charAt(end) < '0' || value.charAt(end) > '9') return -1;
+
+        int start = end;
+        while (start >= 0) {
+            char c = value.charAt(start);
+            if (c < '0' || c > '9') break;
+            start--;
+        }
+
+        try {
+            return Integer.parseInt(value.substring(start + 1, end + 1));
+        } catch (Exception ignored) {
+            return -1;
+        }
     }
 
     public static boolean onKeyPressed(int key) {

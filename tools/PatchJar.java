@@ -25,6 +25,8 @@ public final class PatchJar {
         boolean patchedCanvas = false;
         boolean patchedPanel = false;
         boolean patchedCommand = false;
+        boolean patchedServerList = false;
+        boolean patchedRms = false;
 
         JarFile jf = new JarFile(in);
         Manifest mf = jf.getManifest();
@@ -58,6 +60,12 @@ public final class PatchJar {
                 } else if (name.equals("nro/cw.class")) {
                     data = patchCommand(data);
                     patchedCommand = true;
+                } else if (name.equals("nro/bR.class")) {
+                    data = patchServerList(data);
+                    patchedServerList = true;
+                } else if (name.equals("nro/bH.class")) {
+                    data = patchRms(data);
+                    patchedRms = true;
                 }
 
                 JarEntry ne = new JarEntry(name);
@@ -76,11 +84,14 @@ public final class PatchJar {
             try { jf.close(); } catch (Exception ignored) {}
         }
 
-        if (!patchedN || !patchedCanvas || !patchedPanel || !patchedCommand) {
+        if (!patchedN || !patchedCanvas || !patchedPanel || !patchedCommand ||
+                !patchedServerList || !patchedRms) {
             out.delete();
             throw new IllegalStateException(
                     "Required classes not found. N=" + patchedN +
-                    " aE=" + patchedCanvas + " aB=" + patchedPanel + " cw=" + patchedCommand);
+                    " aE=" + patchedCanvas + " aB=" + patchedPanel +
+                    " cw=" + patchedCommand + " bR=" + patchedServerList +
+                    " bH=" + patchedRms);
         }
 
         System.out.println("[patch] N.bt() now opens the horizontal menu overlay");
@@ -88,6 +99,8 @@ public final class PatchJar {
         System.out.println("[patch] aB.dw() captures remaining dynamic/legacy side menus into the horizontal row");
         System.out.println("[patch] cw.toString() exposes the exact legacy row label to the horizontal renderer");
         System.out.println("[patch] aE.paint/key/touch feed the horizontal menu");
+        System.out.println("[patch] bR.cp() accepts controller auto-login server selection");
+        System.out.println("[patch] bH.e() reads per-process controller account/password properties");
         System.out.println("[patch] Output: " + out.getAbsolutePath());
     }
 
@@ -213,6 +226,86 @@ public final class PatchJar {
         };
 
         cr.accept(cv, 0);
+        return cw.toByteArray();
+    }
+
+
+    private static byte[] patchServerList(byte[] input) {
+        final boolean[] foundUpdate = new boolean[1];
+
+        ClassReader cr = new ClassReader(input);
+        ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
+
+        ClassVisitor cv = new ClassVisitor(Opcodes.ASM8, cw) {
+            public MethodVisitor visitMethod(int access, String name, String desc, String sig, String[] ex) {
+                MethodVisitor base = super.visitMethod(access, name, desc, sig, ex);
+
+                if (name.equals("cp") && desc.equals("()V")) {
+                    foundUpdate[0] = true;
+                    return new MethodVisitor(Opcodes.ASM8, base) {
+                        public void visitCode() {
+                            super.visitCode();
+                            super.visitVarInsn(Opcodes.ALOAD, 0);
+                            super.visitMethodInsn(
+                                    Opcodes.INVOKESTATIC,
+                                    RUNTIME,
+                                    "autoLoginTick",
+                                    "(Lnro/bR;)V",
+                                    false
+                            );
+                        }
+                    };
+                }
+
+                return base;
+            }
+        };
+
+        cr.accept(cv, 0);
+        if (!foundUpdate[0]) throw new IllegalStateException("bR.cp() not found");
+        return cw.toByteArray();
+    }
+
+    private static byte[] patchRms(byte[] input) {
+        final boolean[] foundLoadString = new boolean[1];
+
+        ClassReader cr = new ClassReader(input);
+        ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
+
+        ClassVisitor cv = new ClassVisitor(Opcodes.ASM8, cw) {
+            public MethodVisitor visitMethod(int access, String name, String desc, String sig, String[] ex) {
+                MethodVisitor base = super.visitMethod(access, name, desc, sig, ex);
+
+                if (name.equals("e") && desc.equals("(Ljava/lang/String;)Ljava/lang/String;")) {
+                    foundLoadString[0] = true;
+                    return new MethodVisitor(Opcodes.ASM8, base) {
+                        public void visitCode() {
+                            super.visitCode();
+
+                            Label original = new Label();
+                            super.visitVarInsn(Opcodes.ALOAD, 0);
+                            super.visitMethodInsn(
+                                    Opcodes.INVOKESTATIC,
+                                    RUNTIME,
+                                    "overrideRmsString",
+                                    "(Ljava/lang/String;)Ljava/lang/String;",
+                                    false
+                            );
+                            super.visitInsn(Opcodes.DUP);
+                            super.visitJumpInsn(Opcodes.IFNULL, original);
+                            super.visitInsn(Opcodes.ARETURN);
+                            super.visitLabel(original);
+                            super.visitInsn(Opcodes.POP);
+                        }
+                    };
+                }
+
+                return base;
+            }
+        };
+
+        cr.accept(cv, 0);
+        if (!foundLoadString[0]) throw new IllegalStateException("bH.e(String) not found");
         return cw.toByteArray();
     }
 

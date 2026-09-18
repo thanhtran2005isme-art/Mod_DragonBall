@@ -587,16 +587,30 @@ public sealed class MainForm : Form
         var selected = accounts.Distinct().ToList();
         if (selected.Count == 0) return;
 
+        var invalid = selected.FirstOrDefault(account =>
+            string.IsNullOrWhiteSpace(account.Username) || string.IsNullOrEmpty(account.Password));
+
+        if (invalid is not null)
+        {
+            MessageBox.Show(
+                this,
+                $"Tài khoản {invalid.Username} chưa có mật khẩu.",
+                "Không thể tự đăng nhập",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            return;
+        }
+
         try
         {
             foreach (var account in selected)
                 account.Status = "Đang mở game";
 
             ApplyFilter();
-            _microEmulatorLauncher.StartClients(selected.Count);
+            _microEmulatorLauncher.StartClients(selected);
 
             foreach (var account in selected)
-                account.Status = "Chờ client (Micro)";
+                account.Status = "Đang đăng nhập";
 
             ApplyFilter();
         }

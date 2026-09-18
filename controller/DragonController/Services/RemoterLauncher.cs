@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using DragonController.Models;
 
 namespace DragonController.Services;
 
@@ -19,9 +20,9 @@ internal sealed class MicroEmulatorLauncher
     /// <summary>
     /// Starts one original MicroEmulator process for each selected account.
     /// </summary>
-    public void StartClients(int clientCount)
+    public void StartClients(IReadOnlyList<AccountProfile> accounts)
     {
-        if (clientCount < 1) clientCount = 1;
+        if (accounts is null || accounts.Count == 0) return;
 
         ValidateGame();
 
@@ -35,17 +36,17 @@ internal sealed class MicroEmulatorLauncher
 
         var java = ResolveJavaExecutable();
 
-        for (var i = 0; i < clientCount; i++)
+        for (var i = 0; i < accounts.Count; i++)
         {
-            StartOne(java, microEmulatorJar, i + 1);
+            StartOne(java, microEmulatorJar, accounts[i], i + 1);
 
             // Tránh khởi động nhiều JVM đúng cùng một thời điểm.
-            if (i + 1 < clientCount)
-                Thread.Sleep(250);
+            if (i + 1 < accounts.Count)
+                Thread.Sleep(300);
         }
     }
 
-    private void StartOne(string java, string microEmulatorJar, int clientNumber)
+    private void StartOne(string java, string microEmulatorJar, AccountProfile account, int clientNumber)
     {
         var psi = new ProcessStartInfo
         {
@@ -54,6 +55,14 @@ internal sealed class MicroEmulatorLauncher
             UseShellExecute = false,
             CreateNoWindow = false
         };
+
+        // Each JVM gets its own credentials/server. The patched game reads
+        // these directly, so multiple MicroEmulator processes do not need
+        // keyboard/mouse automation and do not share login credentials.
+        psi.ArgumentList.Add("-Ddragon.auto.login=1");
+        psi.ArgumentList.Add("-Ddragon.auto.user=" + account.Username);
+        psi.ArgumentList.Add("-Ddragon.auto.pass=" + account.Password);
+        psi.ArgumentList.Add("-Ddragon.auto.server=" + account.Server);
 
         psi.ArgumentList.Add("-jar");
         psi.ArgumentList.Add(microEmulatorJar);
