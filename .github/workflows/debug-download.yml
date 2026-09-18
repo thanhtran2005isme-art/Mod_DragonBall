@@ -1,0 +1,26 @@
+name: Debug Hùng Hero download
+
+on:
+  push:
+    paths:
+      - ".github/workflows/debug-download.yml"
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect page and download endpoint
+        shell: bash
+        run: |
+          set -u
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+          curl -sSL -A "$UA" -c /tmp/c -b /tmp/c "https://hunghero.id.vn/?id=173" -o /tmp/page
+          echo "=== PAGE RELEVANT LINES ==="
+          grep -nEi 'download|tải|drive|mediafire|mega|onedrive|dropbox|href=|data-' /tmp/page | head -250 || true
+          echo "=== END PAGE ==="
+          curl -sSL -A "$UA" -e "https://hunghero.id.vn/?id=173" -c /tmp/c -b /tmp/c                -D /tmp/headers "https://hunghero.id.vn/download.php?id=173" -o /tmp/body || true
+          echo "=== HEADERS ==="
+          cat /tmp/headers || true
+          echo "=== BODY (first 12000 chars) ==="
+          head -c 12000 /tmp/body || true
+          echo
