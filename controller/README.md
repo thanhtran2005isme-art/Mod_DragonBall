@@ -293,7 +293,7 @@ Boss announcement flow:
 server command 93
   -> aL.p(String)
   -> ModHorizontalRuntime.onGameAnnouncement()
-  -> game's original w.a(String) parser
+  -> recovered boss-message separators (same formats used by ListBoss)
   -> BOSS_ANNOUNCED(boss, map, raw)
   -> Dragon Controller
 ```
