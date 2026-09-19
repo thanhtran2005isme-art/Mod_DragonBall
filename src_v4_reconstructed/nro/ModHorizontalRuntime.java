@@ -86,6 +86,13 @@ public final class ModHorizontalRuntime {
     private static int bridgeLastStateZoneCount = -2147483648;
     private static String bridgeLastStateMapName = "";
 
+    // aL contains obfuscated JVM members that differ only by return/field
+    // descriptor. javac cannot express a direct aL.a().r access, so resolve
+    // the exact a() -> aL and r -> String[] members once via reflection.
+    private static boolean bridgeZoneReflectionReady;
+    private static java.lang.reflect.Method bridgeGameScreenGetter;
+    private static java.lang.reflect.Field bridgeZoneListField;
+
     private static final String[] GROUPS = new String[] {
         "Tàn Sát", "Auto Skill", "Nhặt Đồ", "Xmap", "Boss",
         "TĐLT / NV", "Đậu", "Hỗ Trợ", "Vật Phẩm", "Hiển Thị", "Cài Đặt"
@@ -790,16 +797,8 @@ public final class ModHorizontalRuntime {
 
         int mapId = cF.y;
         int zone = cF.v;
-        int zoneCount = 0;
+        int zoneCount = bridgeZoneCount();
         String mapName = bridgeCurrentMapName(mapId);
-
-        try {
-            aL screen = aL.a();
-            if (screen != null && screen.r != null) {
-                zoneCount = screen.r.length;
-            }
-        } catch (Throwable ignored) {
-        }
 
         if (mapId != bridgeLastStateMap ||
             zone != bridgeLastStateZone ||
@@ -832,6 +831,47 @@ public final class ModHorizontalRuntime {
 
         if ("JOIN_BOSS_ZONE".equals(bridgeAction)) {
             bridgeScanAssignedZone(mapName, true);
+        }
+    }
+
+    private static int bridgeZoneCount() {
+        try {
+            if (!bridgeZoneReflectionReady) {
+                bridgeZoneReflectionReady = true;
+
+                java.lang.reflect.Method[] methods = aL.class.getMethods();
+                for (int i = 0; i < methods.length; i++) {
+                    java.lang.reflect.Method method = methods[i];
+                    if (!"a".equals(method.getName())) continue;
+                    if (method.getParameterTypes().length != 0) continue;
+                    if (method.getReturnType() != aL.class) continue;
+
+                    bridgeGameScreenGetter = method;
+                    break;
+                }
+
+                java.lang.reflect.Field[] fields = aL.class.getFields();
+                for (int i = 0; i < fields.length; i++) {
+                    java.lang.reflect.Field field = fields[i];
+                    if (!"r".equals(field.getName())) continue;
+                    if (field.getType() != String[].class) continue;
+
+                    bridgeZoneListField = field;
+                    break;
+                }
+            }
+
+            if (bridgeGameScreenGetter == null || bridgeZoneListField == null) return 0;
+
+            Object screen = bridgeGameScreenGetter.invoke(null, new Object[0]);
+            if (screen == null) return 0;
+
+            Object value = bridgeZoneListField.get(screen);
+            if (!(value instanceof String[])) return 0;
+
+            return ((String[]) value).length;
+        } catch (Throwable ignored) {
+            return 0;
         }
     }
 
