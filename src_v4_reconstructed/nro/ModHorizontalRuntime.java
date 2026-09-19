@@ -485,33 +485,67 @@ public final class ModHorizontalRuntime {
 
     /**
      * Patched into aL.p(String), the exact game path that receives server
-     * announcements. We intentionally reuse w.a(String), the original mod's
-     * own boss parser, so Controller sees the same boss/map values as ListBoss.
+     * announcements. The original obfuscated class w contains two JVM methods
+     * named a(String) that differ only by return type, which Java source cannot
+     * call safely. Mirror the recovered boss separators here instead.
      */
     public static void onGameAnnouncement(String text) {
         ensureBridge();
         if (text == null) return;
 
-        String lower;
-        try {
-            lower = text.toLowerCase().trim();
-        } catch (Throwable ignored) {
-            return;
+        String[] parsed = bridgeParseBossAnnouncement(text);
+        if (parsed == null || parsed.length < 2) return;
+
+        bridgeSend(new String[] {"BOSS_ANNOUNCED", parsed[0], parsed[1], text});
+    }
+
+    private static String[] bridgeParseBossAnnouncement(String text) {
+        String raw = text == null ? "" : text.trim();
+        if (raw.length() == 0) return null;
+
+        String lower = raw.toLowerCase();
+        if (!lower.startsWith("boss")) return null;
+
+        String[] separators = new String[] {
+            " vừa xuất hiện tại ",
+            " vừa xuất hiện ở ",
+            " xuất hiện tại ",
+            " xuất hiện ở ",
+            " appear at ",
+            " appears at ",
+            " muncul di "
+        };
+
+        int separatorAt = -1;
+        String separator = null;
+
+        for (int i = 0; i < separators.length; i++) {
+            int at = lower.indexOf(separators[i]);
+            if (at > 4) {
+                separatorAt = at;
+                separator = separators[i];
+                break;
+            }
         }
 
-        if (!lower.startsWith("boss")) return;
+        if (separatorAt < 0 || separator == null) return null;
 
-        try {
-            String[] parsed = w.a(text);
-            if (parsed == null || parsed.length < 2) return;
-
-            String boss = parsed[0] == null ? "" : parsed[0].trim();
-            String map = parsed[1] == null ? "" : parsed[1].trim();
-            if (boss.length() == 0 || map.length() == 0) return;
-
-            bridgeSend(new String[] {"BOSS_ANNOUNCED", boss, map, text});
-        } catch (Throwable ignored) {
+        int bossStart = 4;
+        while (bossStart < raw.length()) {
+            char ch = raw.charAt(bossStart);
+            if (ch != ' ' && ch != ':' && ch != '-') break;
+            bossStart++;
         }
+
+        String boss = raw.substring(bossStart, separatorAt).trim();
+        String map = raw.substring(separatorAt + separator.length()).trim();
+
+        while (map.endsWith(".") || map.endsWith("!")) {
+            map = map.substring(0, map.length() - 1).trim();
+        }
+
+        if (boss.length() == 0 || map.length() == 0) return null;
+        return new String[] {boss, map};
     }
 
     private static synchronized void ensureBridge() {
