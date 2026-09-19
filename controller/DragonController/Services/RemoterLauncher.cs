@@ -147,6 +147,12 @@ internal sealed class MicroEmulatorLauncher
         psi.ArgumentList.Add("-Ddragon.auto.login=" + (account.AutoLogin ? "1" : "0"));
         psi.ArgumentList.Add("-Ddragon.auto.login.file=" + controlPath);
         psi.ArgumentList.Add("-Ddragon.status.file=" + statusPath);
+
+        // Low-latency localhost bridge used for boss announcements and
+        // controller commands. Each game identifies itself by account id.
+        psi.ArgumentList.Add("-Ddragon.bridge.port=" + GameBridgeServer.DefaultPort);
+        psi.ArgumentList.Add("-Ddragon.client.id=" + account.Id);
+
         psi.ArgumentList.Add("-Ddragon.auto.user=" + account.Username);
         psi.ArgumentList.Add("-Ddragon.auto.pass=" + account.Password);
         psi.ArgumentList.Add("-Ddragon.auto.server=" + account.Server);

@@ -107,6 +107,7 @@ public final class PatchJar {
         System.out.println("[patch] bH.e() reads per-process controller account/password properties");
         System.out.println("[patch] aE login dialogs detect overload and schedule automatic retries");
         System.out.println("[patch] aL.cp() stops login retry after real gameplay starts");
+        System.out.println("[patch] aL.p(String) streams server boss announcements to Dragon Controller");
         System.out.println("[patch] Output: " + out.getAbsolutePath());
     }
 
@@ -318,6 +319,7 @@ public final class PatchJar {
 
     private static byte[] patchGameplay(byte[] input) {
         final boolean[] foundUpdate = new boolean[1];
+        final boolean[] foundAnnouncement = new boolean[1];
 
         ClassReader cr = new ClassReader(input);
         ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
@@ -342,12 +344,34 @@ public final class PatchJar {
                     };
                 }
 
+                // Server announcement path recovered from command 93:
+                // cI -> aL.p(String) -> w.g(String). Capture the original
+                // string before the game displays/parses it so the Controller
+                // receives boss announcements immediately.
+                if (name.equals("p") && desc.equals("(Ljava/lang/String;)V")) {
+                    foundAnnouncement[0] = true;
+                    return new MethodVisitor(Opcodes.ASM8, base) {
+                        public void visitCode() {
+                            super.visitCode();
+                            super.visitVarInsn(Opcodes.ALOAD, 1);
+                            super.visitMethodInsn(
+                                    Opcodes.INVOKESTATIC,
+                                    RUNTIME,
+                                    "onGameAnnouncement",
+                                    "(Ljava/lang/String;)V",
+                                    false
+                            );
+                        }
+                    };
+                }
+
                 return base;
             }
         };
 
         cr.accept(cv, 0);
         if (!foundUpdate[0]) throw new IllegalStateException("aL.cp() not found");
+        if (!foundAnnouncement[0]) throw new IllegalStateException("aL.p(String) not found");
         return cw.toByteArray();
     }
 

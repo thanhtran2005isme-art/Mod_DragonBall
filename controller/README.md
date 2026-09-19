@@ -279,3 +279,56 @@ Off
 If a Java process exits, the controller also forces its displayed state back to
 `Off`. The Close / Close all buttons now terminate the corresponding
 MicroEmulator process instead of merely changing the status text.
+
+
+## Multi-client boss hunt coordinator (phase 1)
+
+The **Điều khiển** tab now runs a low-latency localhost TCP bridge on
+`127.0.0.1:38475`. Every controller-launched game identifies itself with the
+account id from `-Ddragon.client.id`.
+
+Boss announcement flow:
+
+```text
+server command 93
+  -> aL.p(String)
+  -> ModHorizontalRuntime.onGameAnnouncement()
+  -> game's original w.a(String) parser
+  -> BOSS_ANNOUNCED(boss, map, raw)
+  -> Dragon Controller
+```
+
+When Boss Hunt is enabled for a target such as `Super Broly`, the first
+matching server announcement starts one coordinated hunt. Controller is the
+only component allowed to allocate zones, so two clients cannot intentionally
+receive the same scan zone.
+
+```text
+client enters target map
+  -> STATE(map, zone, zoneCount)
+  -> controller reserves the smallest unscanned/unreserved raw zone id
+  -> JOIN_ZONE(zone)
+
+game retries cM.W(zone) every 250 ms until cF.v == zone
+  -> scans the real aL.N character list every frame
+  -> after an 800 ms entity settle window:
+       BOSS_FOUND or ZONE_CLEAR
+
+ZONE_CLEAR
+  -> reservation becomes scanned
+  -> same client receives the next free zone
+
+BOSS_FOUND
+  -> hunt locks immediately
+  -> all pending scan assignments are cancelled
+  -> JOIN_BOSS_ZONE(foundZone) is sent to every connected client
+  -> every client retries the same boss zone until it enters
+```
+
+Commands carry a monotonically increasing sequence plus `HuntId`. The game
+applies only the newest command, which prevents a delayed old scan command from
+overwriting the later `JOIN_BOSS_ZONE` rally command.
+
+The original 12-second `Q.bN()` scan delay is not used by this coordinator.
+The panel scan path retries the assigned zone directly until the server accepts
+the zone change.

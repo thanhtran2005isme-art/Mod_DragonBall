@@ -14,6 +14,8 @@ public sealed class MainForm : Form
     private readonly MicroEmulatorLauncher _microEmulatorLauncher = new();
     private readonly GameServerCatalogService _serverCatalogService = new();
     private readonly AccountStore _accountStore = new();
+    private readonly GameBridgeServer _gameBridge = new();
+    private readonly BossHuntCoordinator _bossHunt;
     private IReadOnlyList<GameServerInfo> _gameServers = Array.Empty<GameServerInfo>();
 
     private DataGridView _grid = null!;
@@ -28,6 +30,14 @@ public sealed class MainForm : Form
     private CheckBox _chkShowPassword = null!;
     private Label _lblSummary = null!;
 
+    // Điều khiển / săn boss nhiều client. Các control này chỉ tồn tại khi tab
+    // Điều khiển đang mở; coordinator vẫn chạy nền và giữ trạng thái.
+    private TextBox? _txtBossTarget;
+    private FlatRoundButton? _btnBossToggle;
+    private Label? _lblBossStatus;
+    private Label? _lblBossAnnouncement;
+    private DataGridView? _bossGrid;
+
     private int _nextId = 1;
     private readonly System.Windows.Forms.Timer _statusTimer = new() { Interval = 500 };
 
@@ -41,7 +51,25 @@ public sealed class MainForm : Form
         Font = new Font("Segoe UI", 9F);
         Icon = SystemIcons.Application;
 
+        _bossHunt = new BossHuntCoordinator(_gameBridge);
+        _bossHunt.Changed += OnBossHuntChanged;
+
         BuildShell();
+
+        try
+        {
+            _gameBridge.Start();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                "Không mở được cổng điều khiển game nội bộ:\n" + ex.Message,
+                "Dragon Controller",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+        }
+
         LoadAccounts();
         ShowTab("Tài khoản");
         ApplyFilter();
@@ -53,6 +81,8 @@ public sealed class MainForm : Form
         {
             _statusTimer.Stop();
             SaveAccounts();
+            _bossHunt.Dispose();
+            _gameBridge.Dispose();
         };
     }
 
@@ -144,10 +174,16 @@ public sealed class MainForm : Form
         _content.SuspendLayout();
         _content.Controls.Clear();
 
+        _txtBossTarget = null;
+        _btnBossToggle = null;
+        _lblBossStatus = null;
+        _lblBossAnnouncement = null;
+        _bossGrid = null;
+
         if (tab == "Tài khoản")
             BuildAccountsTab();
         else if (tab == "Điều khiển")
-            BuildPlaceholder("Điều khiển nhiều client", "Tab này sẽ chứa bảng client đang online, chọn nhóm và broadcast lệnh mod tới nhiều tab game.");
+            BuildControlTab();
         else if (tab == "Cài đặt mặc định")
             BuildPlaceholder("Cài đặt mặc định", "Profile mặc định cho cửa sổ game, server, kích thước, Auto Login, Auto Reconnect và nhóm tài khoản.");
         else
@@ -395,6 +431,229 @@ public sealed class MainForm : Form
 
         for (var row = 0; row < layout.RowCount; row++)
             layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+    }
+
+    private void BuildControlTab()
+    {
+        var root = new TableLayoutPanel
+        {
+            Dock = DockStyle.Fill,
+            ColumnCount = 1,
+            RowCount = 2,
+            BackColor = UiTheme.Page,
+            Padding = new Padding(0)
+        };
+        root.RowStyles.Add(new RowStyle(SizeType.Absolute, 142F));
+        root.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        _content.Controls.Add(root);
+
+        var commandCard = new RoundedPanel
+        {
+            Dock = DockStyle.Fill,
+            Margin = new Padding(0, 0, 0, 8),
+            Padding = new Padding(14),
+            Radius = 11
+        };
+        root.Controls.Add(commandCard, 0, 0);
+
+        var top = new TableLayoutPanel
+        {
+            Dock = DockStyle.Top,
+            Height = 48,
+            ColumnCount = 3,
+            RowCount = 1,
+            BackColor = UiTheme.White
+        };
+        top.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 115F));
+        top.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+        top.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
+        commandCard.Controls.Add(top);
+
+        var caption = new Label
+        {
+            Text = "Boss cần săn",
+            Dock = DockStyle.Fill,
+            TextAlign = ContentAlignment.MiddleLeft,
+            ForeColor = UiTheme.Accent,
+            Font = new Font("Segoe UI", 9F, FontStyle.Bold)
+        };
+        top.Controls.Add(caption, 0, 0);
+
+        _txtBossTarget = MakeTextBox();
+        _txtBossTarget.Text = _bossHunt.Snapshot().TargetBoss;
+        _txtBossTarget.Margin = new Padding(0, 7, 8, 7);
+        top.Controls.Add(_txtBossTarget, 1, 0);
+
+        _btnBossToggle = MakeButton("Bật săn boss", accent: true);
+        _btnBossToggle.Margin = new Padding(0, 5, 0, 5);
+        _btnBossToggle.Click += (_, _) =>
+        {
+            var snapshot = _bossHunt.Snapshot();
+
+            if (snapshot.Monitoring)
+                _bossHunt.Stop();
+            else
+                _bossHunt.Enable(_txtBossTarget?.Text ?? "Super Broly");
+
+            RefreshBossHuntUi();
+        };
+        top.Controls.Add(_btnBossToggle, 2, 0);
+
+        _lblBossStatus = new Label
+        {
+            Dock = DockStyle.Top,
+            Height = 31,
+            Padding = new Padding(2, 6, 0, 0),
+            Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+            ForeColor = UiTheme.Text,
+            BackColor = UiTheme.White
+        };
+        commandCard.Controls.Add(_lblBossStatus);
+        _lblBossStatus.BringToFront();
+
+        _lblBossAnnouncement = new Label
+        {
+            Dock = DockStyle.Top,
+            Height = 31,
+            Padding = new Padding(2, 5, 0, 0),
+            Font = new Font("Segoe UI", 9F),
+            ForeColor = UiTheme.Gray,
+            BackColor = UiTheme.White
+        };
+        commandCard.Controls.Add(_lblBossAnnouncement);
+        _lblBossAnnouncement.BringToFront();
+
+        var listCard = new RoundedPanel
+        {
+            Dock = DockStyle.Fill,
+            Margin = new Padding(0),
+            Padding = new Padding(2),
+            Radius = 11
+        };
+        root.Controls.Add(listCard, 0, 1);
+
+        _bossGrid = new DataGridView
+        {
+            Dock = DockStyle.Fill,
+            BackgroundColor = UiTheme.White,
+            BorderStyle = BorderStyle.None,
+            GridColor = Color.FromArgb(230, 220, 202),
+            RowHeadersVisible = false,
+            AllowUserToAddRows = false,
+            AllowUserToDeleteRows = false,
+            AllowUserToResizeRows = false,
+            MultiSelect = false,
+            SelectionMode = DataGridViewSelectionMode.FullRowSelect,
+            AutoGenerateColumns = false,
+            ReadOnly = true,
+            ColumnHeadersHeight = 34,
+            RowTemplate = { Height = 31 },
+            EnableHeadersVisualStyles = false
+        };
+
+        _bossGrid.ColumnHeadersDefaultCellStyle.BackColor = UiTheme.Header;
+        _bossGrid.ColumnHeadersDefaultCellStyle.ForeColor = UiTheme.Text;
+        _bossGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+        _bossGrid.ColumnHeadersDefaultCellStyle.SelectionBackColor = UiTheme.Header;
+        _bossGrid.DefaultCellStyle.BackColor = UiTheme.White;
+        _bossGrid.DefaultCellStyle.ForeColor = UiTheme.Text;
+        _bossGrid.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 238, 197);
+        _bossGrid.DefaultCellStyle.SelectionForeColor = UiTheme.Text;
+
+        _bossGrid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Client", Width = 65 });
+        _bossGrid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Tài khoản", Width = 150 });
+        _bossGrid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Kết nối", Width = 80 });
+        _bossGrid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Map", Width = 180 });
+        _bossGrid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Khu hiện tại", Width = 95 });
+        _bossGrid.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Khu được giao", Width = 105 });
+        _bossGrid.Columns.Add(new DataGridViewTextBoxColumn
+        {
+            HeaderText = "Hoạt động",
+            AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+            FillWeight = 100
+        });
+
+        listCard.Controls.Add(_bossGrid);
+        RefreshBossHuntUi();
+    }
+
+    private void OnBossHuntChanged()
+    {
+        if (IsDisposed || Disposing) return;
+
+        try
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke((Action)RefreshBossHuntUi);
+                return;
+            }
+
+            RefreshBossHuntUi();
+        }
+        catch
+        {
+        }
+    }
+
+    private void RefreshBossHuntUi()
+    {
+        if (_bossGrid is null || _bossGrid.IsDisposed)
+            return;
+
+        var snapshot = _bossHunt.Snapshot();
+
+        if (_txtBossTarget is not null && !_txtBossTarget.IsDisposed)
+        {
+            if (!_txtBossTarget.Focused && _txtBossTarget.Text.Length == 0)
+                _txtBossTarget.Text = snapshot.TargetBoss;
+
+            _txtBossTarget.ReadOnly = snapshot.Monitoring;
+        }
+
+        if (_btnBossToggle is not null && !_btnBossToggle.IsDisposed)
+        {
+            _btnBossToggle.Text = snapshot.Monitoring ? "Tắt săn boss" : "Bật săn boss";
+            _btnBossToggle.NormalColor = snapshot.Monitoring ? UiTheme.AccentDark : UiTheme.Accent;
+            _btnBossToggle.BorderColor = snapshot.Monitoring ? UiTheme.AccentDark : UiTheme.Accent;
+            _btnBossToggle.Invalidate();
+        }
+
+        if (_lblBossStatus is not null && !_lblBossStatus.IsDisposed)
+        {
+            _lblBossStatus.Text = snapshot.Status;
+            _lblBossStatus.ForeColor = snapshot.Found ? UiTheme.Green : UiTheme.Text;
+        }
+
+        if (_lblBossAnnouncement is not null && !_lblBossAnnouncement.IsDisposed)
+        {
+            _lblBossAnnouncement.Text = string.IsNullOrWhiteSpace(snapshot.LastAnnouncement)
+                ? "Chưa có thông báo boss từ server."
+                : "Thông báo server: " + snapshot.LastAnnouncement;
+        }
+
+        _bossGrid.Rows.Clear();
+
+        foreach (var client in snapshot.Clients)
+        {
+            var account = _accounts.FirstOrDefault(x => x.Id == client.ClientId);
+            var username = account?.Username ?? "";
+
+            var row = _bossGrid.Rows.Add(
+                client.ClientId,
+                username,
+                client.Connected ? "Online" : "Off",
+                client.Map,
+                client.Zone >= 0 ? client.Zone.ToString() : "-",
+                client.AssignedZone?.ToString() ?? "-",
+                client.Action);
+
+            var gridRow = _bossGrid.Rows[row];
+            if (!client.Connected)
+                gridRow.DefaultCellStyle.ForeColor = UiTheme.Gray;
+            else if (client.Action.Contains("PHÁT HIỆN", StringComparison.OrdinalIgnoreCase))
+                gridRow.DefaultCellStyle.ForeColor = UiTheme.Green;
+        }
     }
 
     private void BuildPlaceholder(string title, string detail)

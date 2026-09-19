@@ -48,9 +48,43 @@ public final class ModHorizontalRuntime {
     private static long autoLastPositionChangeAt;
     private static long autoLastIdlePulseAt;
 
-    // Last status written to the controller bridge. Avoids touching disk every
-    // game frame while the state has not changed.
+    // Last status written to the controller file bridge. Avoids touching disk
+    // every game frame while the state has not changed.
     private static String controllerStatusLast = "";
+
+    // Low-latency localhost bridge used by the multi-client boss coordinator.
+    // The socket reader never mutates game state directly; it only publishes
+    // the newest command. The real game loop applies that command in
+    // markLoginOnline(), which keeps cM/i/aL access on the game thread.
+    private static final Object bridgeWriteLock = new Object();
+    private static boolean bridgeStarted;
+    private static java.io.BufferedWriter bridgeWriter;
+
+    private static volatile long bridgePendingSeq = -1L;
+    private static long bridgeAppliedSeq = -1L;
+    private static volatile int bridgePendingHuntId;
+    private static volatile String bridgePendingCommand = "";
+    private static volatile String bridgePendingMap = "";
+    private static volatile String bridgePendingBoss = "";
+    private static volatile int bridgePendingZone = -1;
+
+    private static int bridgeHuntId;
+    private static String bridgeAction = "";
+    private static String bridgeTargetMap = "";
+    private static String bridgeTargetBoss = "";
+    private static int bridgeTargetZone = -1;
+    private static long bridgeLastMapRequestAt;
+    private static long bridgeLastZoneRequestAt;
+    private static long bridgeZoneEnteredAt;
+    private static boolean bridgeZoneEnteredReported;
+    private static boolean bridgeZoneClearReported;
+    private static boolean bridgeBossFoundReported;
+    private static boolean bridgeBossJoinedReported;
+
+    private static int bridgeLastStateMap = -2147483648;
+    private static int bridgeLastStateZone = -2147483648;
+    private static int bridgeLastStateZoneCount = -2147483648;
+    private static String bridgeLastStateMapName = "";
 
     private static final String[] GROUPS = new String[] {
         "Tàn Sát", "Auto Skill", "Nhặt Đồ", "Xmap", "Boss",
@@ -188,6 +222,7 @@ public final class ModHorizontalRuntime {
      * schedules another attempt and this tick executes it after a short delay.
      */
     public static void autoLoginTick(bR serverScreen) {
+        ensureBridge();
         if (serverScreen == null) return;
 
         // bR is the server/login screen. If gameplay had previously marked the
@@ -318,12 +353,16 @@ public final class ModHorizontalRuntime {
      * current coordinates, so the character does not visibly walk.
      */
     public static void markLoginOnline() {
-        if (!autoLoginEnabled()) return;
+        ensureBridge();
 
+        // Gameplay itself is authoritative. Status must become ONLINE even if
+        // Auto Login was switched off and the user entered manually.
         autoLoginOnline = true;
         autoRetryPending = false;
         autoLoginStarted = true;
         writeControllerStatus("ONLINE");
+
+        bridgeGameplayTick();
 
         int pulseMs = intProperty("dragon.auto.idle.pulse.ms", 5000);
         if (pulseMs <= 0) return;
@@ -442,6 +481,509 @@ public final class ModHorizontalRuntime {
                 try { out.close(); } catch (Throwable ignored) {}
             }
         }
+    }
+
+    /**
+     * Patched into aL.p(String), the exact game path that receives server
+     * announcements. We intentionally reuse w.a(String), the original mod's
+     * own boss parser, so Controller sees the same boss/map values as ListBoss.
+     */
+    public static void onGameAnnouncement(String text) {
+        ensureBridge();
+        if (text == null) return;
+
+        String lower;
+        try {
+            lower = text.toLowerCase().trim();
+        } catch (Throwable ignored) {
+            return;
+        }
+
+        if (!lower.startsWith("boss")) return;
+
+        try {
+            String[] parsed = w.a(text);
+            if (parsed == null || parsed.length < 2) return;
+
+            String boss = parsed[0] == null ? "" : parsed[0].trim();
+            String map = parsed[1] == null ? "" : parsed[1].trim();
+            if (boss.length() == 0 || map.length() == 0) return;
+
+            bridgeSend(new String[] {"BOSS_ANNOUNCED", boss, map, text});
+        } catch (Throwable ignored) {
+        }
+    }
+
+    private static synchronized void ensureBridge() {
+        if (bridgeStarted) return;
+
+        int port = intProperty("dragon.bridge.port", 0);
+        int clientId = intProperty("dragon.client.id", 0);
+        if (port <= 0 || clientId <= 0) return;
+
+        bridgeStarted = true;
+
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                bridgeLoop();
+            }
+        }, "DragonControllerBridge");
+
+        try {
+            t.setDaemon(true);
+        } catch (Throwable ignored) {
+        }
+
+        t.start();
+    }
+
+    private static void bridgeLoop() {
+        int port = intProperty("dragon.bridge.port", 0);
+        int clientId = intProperty("dragon.client.id", 0);
+
+        while (true) {
+            java.net.Socket socket = null;
+            java.io.BufferedReader reader = null;
+            java.io.BufferedWriter writer = null;
+
+            try {
+                socket = new java.net.Socket("127.0.0.1", port);
+                try { socket.setTcpNoDelay(true); } catch (Throwable ignored) {}
+                try { socket.setKeepAlive(true); } catch (Throwable ignored) {}
+
+                reader = new java.io.BufferedReader(
+                        new java.io.InputStreamReader(socket.getInputStream(), "UTF-8"));
+                writer = new java.io.BufferedWriter(
+                        new java.io.OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
+
+                synchronized (bridgeWriteLock) {
+                    bridgeWriter = writer;
+                }
+
+                // Force a fresh STATE event after every reconnect.
+                bridgeLastStateMap = -2147483648;
+                bridgeLastStateZone = -2147483648;
+                bridgeLastStateZoneCount = -2147483648;
+                bridgeLastStateMapName = "";
+
+                bridgeSend(new String[] {"HELLO", String.valueOf(clientId)});
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    bridgeReadCommand(line);
+                }
+            } catch (Throwable ignored) {
+            } finally {
+                synchronized (bridgeWriteLock) {
+                    if (bridgeWriter == writer) bridgeWriter = null;
+                }
+
+                try { if (reader != null) reader.close(); } catch (Throwable ignored) {}
+                try { if (writer != null) writer.close(); } catch (Throwable ignored) {}
+                try { if (socket != null) socket.close(); } catch (Throwable ignored) {}
+            }
+
+            try {
+                Thread.sleep(500L);
+            } catch (Throwable ignored) {
+            }
+        }
+    }
+
+    private static boolean bridgeSend(String[] fields) {
+        if (fields == null || fields.length == 0) return false;
+
+        StringBuffer line = new StringBuffer();
+
+        for (int i = 0; i < fields.length; i++) {
+            if (i > 0) line.append('|');
+            line.append(bridgeEscape(fields[i]));
+        }
+
+        synchronized (bridgeWriteLock) {
+            if (bridgeWriter == null) return false;
+
+            try {
+                bridgeWriter.write(line.toString());
+                bridgeWriter.newLine();
+                bridgeWriter.flush();
+                return true;
+            } catch (Throwable ignored) {
+                bridgeWriter = null;
+                return false;
+            }
+        }
+    }
+
+    private static String bridgeEscape(String value) {
+        if (value == null || value.length() == 0) return "";
+
+        StringBuffer out = new StringBuffer();
+
+        for (int i = 0; i < value.length(); i++) {
+            char ch = value.charAt(i);
+
+            if (ch == '\\') out.append("\\\\");
+            else if (ch == '|') out.append("\\p");
+            else if (ch == '\n') out.append("\\n");
+            else if (ch == '\r') out.append("\\r");
+            else out.append(ch);
+        }
+
+        return out.toString();
+    }
+
+    private static String[] bridgeSplit(String line) {
+        Vector values = new Vector();
+        StringBuffer current = new StringBuffer();
+        boolean escaped = false;
+
+        for (int i = 0; i < line.length(); i++) {
+            char ch = line.charAt(i);
+
+            if (escaped) {
+                if (ch == 'p') current.append('|');
+                else if (ch == 'n') current.append('\n');
+                else if (ch == 'r') current.append('\r');
+                else if (ch == '\\') current.append('\\');
+                else current.append(ch);
+
+                escaped = false;
+                continue;
+            }
+
+            if (ch == '\\') {
+                escaped = true;
+                continue;
+            }
+
+            if (ch == '|') {
+                values.addElement(current.toString());
+                current.setLength(0);
+                continue;
+            }
+
+            current.append(ch);
+        }
+
+        if (escaped) current.append('\\');
+        values.addElement(current.toString());
+
+        String[] result = new String[values.size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = (String) values.elementAt(i);
+        }
+
+        return result;
+    }
+
+    private static void bridgeReadCommand(String line) {
+        if (line == null || line.length() == 0) return;
+
+        try {
+            String[] parts = bridgeSplit(line);
+            if (parts.length < 4 || !"CMD".equals(parts[0])) return;
+
+            int huntId = Integer.parseInt(parts[1]);
+            long seq = Long.parseLong(parts[2]);
+            String command = parts[3];
+
+            if (seq <= bridgePendingSeq) return;
+
+            String map = "";
+            String boss = "";
+            int zone = -1;
+
+            if ("MOVE_MAP".equals(command)) {
+                if (parts.length > 4) map = parts[4];
+                if (parts.length > 5) boss = parts[5];
+            } else if ("JOIN_ZONE".equals(command) ||
+                       "JOIN_BOSS_ZONE".equals(command)) {
+                if (parts.length > 4) zone = Integer.parseInt(parts[4]);
+                if (parts.length > 5) boss = parts[5];
+                if (parts.length > 6) map = parts[6];
+            }
+
+            // Publish payload first and sequence last. The volatile sequence is
+            // the hand-off barrier consumed by the game thread.
+            bridgePendingHuntId = huntId;
+            bridgePendingCommand = command;
+            bridgePendingMap = map == null ? "" : map;
+            bridgePendingBoss = boss == null ? "" : boss;
+            bridgePendingZone = zone;
+            bridgePendingSeq = seq;
+        } catch (Throwable ignored) {
+        }
+    }
+
+    private static void bridgeApplyPendingCommand() {
+        long seq = bridgePendingSeq;
+        if (seq <= bridgeAppliedSeq) return;
+
+        bridgeAppliedSeq = seq;
+        bridgeHuntId = bridgePendingHuntId;
+
+        String command = bridgePendingCommand == null ? "" : bridgePendingCommand;
+
+        if ("STOP_HUNT".equals(command)) {
+            bridgeAction = "";
+            bridgeTargetMap = "";
+            bridgeTargetBoss = "";
+            bridgeTargetZone = -1;
+            bridgeResetZoneProgress();
+            return;
+        }
+
+        bridgeTargetMap = bridgePendingMap == null ? "" : bridgePendingMap;
+        bridgeTargetBoss = bridgePendingBoss == null ? "" : bridgePendingBoss;
+        bridgeTargetZone = bridgePendingZone;
+        bridgeAction = command;
+        bridgeLastMapRequestAt = 0L;
+        bridgeLastZoneRequestAt = 0L;
+        bridgeResetZoneProgress();
+    }
+
+    private static void bridgeResetZoneProgress() {
+        bridgeZoneEnteredAt = 0L;
+        bridgeZoneEnteredReported = false;
+        bridgeZoneClearReported = false;
+        bridgeBossFoundReported = false;
+        bridgeBossJoinedReported = false;
+    }
+
+    private static void bridgeGameplayTick() {
+        bridgeApplyPendingCommand();
+
+        int mapId = cF.y;
+        int zone = cF.v;
+        int zoneCount = 0;
+        String mapName = bridgeCurrentMapName(mapId);
+
+        try {
+            aL screen = aL.a();
+            if (screen != null && screen.r != null) {
+                zoneCount = screen.r.length;
+            }
+        } catch (Throwable ignored) {
+        }
+
+        if (mapId != bridgeLastStateMap ||
+            zone != bridgeLastStateZone ||
+            zoneCount != bridgeLastStateZoneCount ||
+            !mapName.equals(bridgeLastStateMapName)) {
+
+            if (bridgeSend(new String[] {
+                    "STATE",
+                    String.valueOf(mapId),
+                    mapName,
+                    String.valueOf(zone),
+                    String.valueOf(zoneCount)})) {
+
+                bridgeLastStateMap = mapId;
+                bridgeLastStateZone = zone;
+                bridgeLastStateZoneCount = zoneCount;
+                bridgeLastStateMapName = mapName;
+            }
+        }
+
+        if ("MOVE_MAP".equals(bridgeAction)) {
+            bridgeMoveToTargetMap(mapName);
+            return;
+        }
+
+        if ("JOIN_ZONE".equals(bridgeAction)) {
+            bridgeScanAssignedZone(mapName, false);
+            return;
+        }
+
+        if ("JOIN_BOSS_ZONE".equals(bridgeAction)) {
+            bridgeScanAssignedZone(mapName, true);
+        }
+    }
+
+    private static String bridgeCurrentMapName(int mapId) {
+        try {
+            if (cF.f != null && mapId >= 0 && mapId < cF.f.length) {
+                String name = cF.f[mapId];
+                return name == null ? "" : name;
+            }
+        } catch (Throwable ignored) {
+        }
+
+        return "";
+    }
+
+    private static void bridgeMoveToTargetMap(String currentMapName) {
+        if (bridgeTargetMap == null || bridgeTargetMap.length() == 0) return;
+
+        if (bridgeSameText(currentMapName, bridgeTargetMap)) {
+            bridgeSend(new String[] {
+                    "MAP_REACHED",
+                    String.valueOf(bridgeHuntId),
+                    String.valueOf(cF.y),
+                    currentMapName});
+            bridgeAction = "WAIT_ASSIGN";
+            return;
+        }
+
+        long now = System.currentTimeMillis();
+        if (now - bridgeLastMapRequestAt < 1000L) return;
+        bridgeLastMapRequestAt = now;
+
+        int mapId = bridgeFindMapId(bridgeTargetMap);
+        if (mapId < 0) return;
+
+        try {
+            i.d(mapId);
+        } catch (Throwable ignored) {
+        }
+    }
+
+    private static int bridgeFindMapId(String mapName) {
+        if (mapName == null || mapName.length() == 0 || cF.f == null) return -1;
+
+        String wanted = mapName.trim().toLowerCase();
+
+        for (int i = 0; i < cF.f.length; i++) {
+            String current = cF.f[i];
+            if (current == null) continue;
+
+            String normalized = current.trim().toLowerCase();
+            if (wanted.equals(normalized)) return i;
+        }
+
+        for (int i = 0; i < cF.f.length; i++) {
+            String current = cF.f[i];
+            if (current == null) continue;
+
+            String normalized = current.trim().toLowerCase();
+            if (normalized.indexOf(wanted) >= 0 || wanted.indexOf(normalized) >= 0) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private static void bridgeScanAssignedZone(String currentMapName, boolean bossRally) {
+        if (bridgeTargetMap != null &&
+            bridgeTargetMap.length() > 0 &&
+            !bridgeSameText(currentMapName, bridgeTargetMap)) {
+
+            bridgeMoveToTargetMap(currentMapName);
+            return;
+        }
+
+        if (bridgeTargetZone < 0) return;
+
+        long now = System.currentTimeMillis();
+
+        if (cF.v != bridgeTargetZone) {
+            bridgeResetZoneProgress();
+
+            // Deliberately retry the SAME assigned zone until the server accepts
+            // it. Controller never gives this client another zone meanwhile.
+            if (now - bridgeLastZoneRequestAt >= 250L) {
+                bridgeLastZoneRequestAt = now;
+                try {
+                    cM.a().W(bridgeTargetZone);
+                } catch (Throwable ignored) {
+                }
+            }
+
+            return;
+        }
+
+        if (bridgeZoneEnteredAt == 0L) {
+            bridgeZoneEnteredAt = now;
+        }
+
+        if (!bridgeZoneEnteredReported) {
+            bridgeZoneEnteredReported = true;
+            bridgeSend(new String[] {
+                    "ZONE_ENTERED",
+                    String.valueOf(bridgeHuntId),
+                    String.valueOf(bridgeTargetZone)});
+        }
+
+        if (bossRally) {
+            if (!bridgeBossJoinedReported) {
+                bridgeBossJoinedReported = true;
+                bridgeSend(new String[] {
+                        "BOSS_JOINED",
+                        String.valueOf(bridgeHuntId),
+                        String.valueOf(bridgeTargetZone)});
+            }
+            return;
+        }
+
+        bv found = bridgeFindTargetBoss(bridgeTargetBoss);
+        if (found != null) {
+            if (!bridgeBossFoundReported) {
+                bridgeBossFoundReported = true;
+                String name = found.aq == null ? bridgeTargetBoss : found.aq;
+                bridgeSend(new String[] {
+                        "BOSS_FOUND",
+                        String.valueOf(bridgeHuntId),
+                        String.valueOf(bridgeTargetZone),
+                        name});
+            }
+
+            bridgeAction = "WAIT_FOUND";
+            return;
+        }
+
+        // Scan every frame immediately, but allow the map's entity list a short
+        // settle window before declaring the zone empty. This prevents a false
+        // ZONE_CLEAR on the first frame after a zone transition.
+        if (!bridgeZoneClearReported && now - bridgeZoneEnteredAt >= 800L) {
+            bridgeZoneClearReported = true;
+            bridgeSend(new String[] {
+                    "ZONE_CLEAR",
+                    String.valueOf(bridgeHuntId),
+                    String.valueOf(bridgeTargetZone)});
+            bridgeAction = "WAIT_ASSIGN";
+        }
+    }
+
+    private static bv bridgeFindTargetBoss(String targetBoss) {
+        if (targetBoss == null || targetBoss.trim().length() == 0) return null;
+
+        try {
+            Vector characters = aL.N;
+            if (characters == null) return null;
+
+            for (int i = 0; i < characters.size(); i++) {
+                Object row = characters.elementAt(i);
+                if (!(row instanceof bv)) continue;
+
+                bv candidate = (bv) row;
+                if (candidate == null || candidate.aq == null) continue;
+                if (!v.a(candidate)) continue;
+
+                if (bridgeBossNameMatches(candidate.aq, targetBoss)) {
+                    return candidate;
+                }
+            }
+        } catch (Throwable ignored) {
+        }
+
+        return null;
+    }
+
+    private static boolean bridgeBossNameMatches(String actual, String wanted) {
+        if (actual == null || wanted == null) return false;
+
+        String a = actual.trim().toLowerCase();
+        String b = wanted.trim().toLowerCase();
+
+        if (a.length() == 0 || b.length() == 0) return false;
+        return a.indexOf(b) >= 0 || b.indexOf(a) >= 0;
+    }
+
+    private static boolean bridgeSameText(String left, String right) {
+        if (left == null || right == null) return false;
+        return left.trim().equalsIgnoreCase(right.trim());
     }
 
     private static int loginCooldownSeconds(String text) {
